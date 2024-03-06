@@ -1,0 +1,49 @@
+﻿@model List<NhanVien.Models.MySQL.nhanvien>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<br />
+<a href="/NhanVien/ThemMoi" class="btn btn-success">Tạo mới hồ sơ nhân viên</a>
+<br /><br />
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <td>Mã NV</td>
+            <td>Họ tên</td>
+            <td>Ngày sinh</td>
+            <td>Giới tính</td>
+            <td>Địa chỉ</td>
+            <td>Tên phòng ban</td>
+            <td></td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.MANHANVIEN</td>
+                <td>@item.HO @item.TEN</td>
+                <td>@item.NGAYSINH</td>
+                @if (item.GIOITINH == 0)
+                {
+                    <td>Nam</td>
+                }
+                else
+                {
+                    <td>Nữ</td>
+                }
+                <td>@item.DIACHI</td>
+                <td>@item.phongban.TENPHONGBAN</td>
+                <td>
+                    <a href="/NhanVien/Sua/@item.MANHANVIEN">Sửa</a>
+                    |
+                    <a href="/NhanVien/Xoa/@item.MANHANVIEN">Xóa</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<br />
+<a href="/Home/Index" class="btn btn-danger">Trở lại</a>

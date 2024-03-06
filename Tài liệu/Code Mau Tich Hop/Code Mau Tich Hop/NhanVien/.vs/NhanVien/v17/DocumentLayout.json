@@ -1,0 +1,86 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\Workspace\\CMU_CS445_System_Integration_Practices_Group2\\T\u00E0i li\u1EC7u\\Code Mau Tich Hop\\Code Mau Tich Hop\\NhanVien\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{623AE88E-8EA8-464B-8C45-494DA2665EC8}|NhanVien\\NhanVien.csproj|d:\\workspace\\cmu_cs445_system_integration_practices_group2\\t\u00E0i li\u1EC7u\\code mau tich hop\\code mau tich hop\\nhanvien\\nhanvien\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{623AE88E-8EA8-464B-8C45-494DA2665EC8}|NhanVien\\NhanVien.csproj|solutionrelative:nhanvien\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{623AE88E-8EA8-464B-8C45-494DA2665EC8}|NhanVien\\NhanVien.csproj|d:\\workspace\\cmu_cs445_system_integration_practices_group2\\t\u00E0i li\u1EC7u\\code mau tich hop\\code mau tich hop\\nhanvien\\nhanvien\\controllers\\nhanviencontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{623AE88E-8EA8-464B-8C45-494DA2665EC8}|NhanVien\\NhanVien.csproj|solutionrelative:nhanvien\\controllers\\nhanviencontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 1,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedHeight": 280,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "HomeController.cs",
+              "DocumentMoniker": "D:\\Workspace\\CMU_CS445_System_Integration_Practices_Group2\\T\u00E0i li\u1EC7u\\Code Mau Tich Hop\\Code Mau Tich Hop\\NhanVien\\NhanVien\\Controllers\\HomeController.cs",
+              "RelativeDocumentMoniker": "NhanVien\\Controllers\\HomeController.cs",
+              "ToolTip": "D:\\Workspace\\CMU_CS445_System_Integration_Practices_Group2\\T\u00E0i li\u1EC7u\\Code Mau Tich Hop\\Code Mau Tich Hop\\NhanVien\\NhanVien\\Controllers\\HomeController.cs",
+              "RelativeToolTip": "NhanVien\\Controllers\\HomeController.cs",
+              "ViewState": "AQIAACIAAAAAAAAAAAAQwAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-06T19:51:49.056Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "NhanVienController.cs",
+              "DocumentMoniker": "D:\\Workspace\\CMU_CS445_System_Integration_Practices_Group2\\T\u00E0i li\u1EC7u\\Code Mau Tich Hop\\Code Mau Tich Hop\\NhanVien\\NhanVien\\Controllers\\NhanVienController.cs",
+              "RelativeDocumentMoniker": "NhanVien\\Controllers\\NhanVienController.cs",
+              "ToolTip": "D:\\Workspace\\CMU_CS445_System_Integration_Practices_Group2\\T\u00E0i li\u1EC7u\\Code Mau Tich Hop\\Code Mau Tich Hop\\NhanVien\\NhanVien\\Controllers\\NhanVienController.cs",
+              "RelativeToolTip": "NhanVien\\Controllers\\NhanVienController.cs",
+              "ViewState": "AQIAAAYAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-06T19:51:39.616Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
+            }
+          ]
+        },
+        {
+          "DockedHeight": 682,
+          "SelectedChildIndex": -1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{0ad07096-bba9-4900-a651-0598d26f6d24}"
+            }
+          ]
+        },
+        {
+          "DockedHeight": 25,
+          "SelectedChildIndex": -1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{b1e99781-ab81-11d0-b683-00aa00a3ee26}"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

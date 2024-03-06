@@ -1,0 +1,321 @@
+C:\Users\DTU\source\repos\NhanVien\NhanVien\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+C:\Users\DTU\source\repos\NhanVien\NhanVien\bin\roslyn\Microsoft.CodeAnalysis.dll
+C:\Users\DTU\source\repos\NhanVien\NhanVien\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+C:\Users\DTU\source\repos\NhanVien\NhanVien\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+C:\Users\DTU\source\repos\NhanVien\NhanVien\bin\roslyn\System.Collections.Immutable.dll
+C:\Users\DTU\source\repos\NhanVien\NhanVien\bin\roslyn\System.Diagnostics.FileVersionInfo.dll
+C:\Users\DTU\source\repos\NhanVien\NhanVien\bin\roslyn\System.IO.Compression.dll
+C:\Users\DTU\source\repos\NhanVien\NhanVien\bin\roslyn\System.IO.FileSystem.dll
+C:\Users\DTU\source\repos\NhanVien\NhanVien\bin\roslyn\System.IO.FileSystem.Primitives.dll
+C:\Users\DTU\source\repos\NhanVien\NhanVien\bin\roslyn\System.Reflection.Metadata.dll
+C:\Users\DTU\source\repos\NhanVien\NhanVien\bin\roslyn\System.Security.Cryptography.Algorithms.dll
+C:\Users\DTU\source\repos\NhanVien\NhanVien\bin\roslyn\System.Security.Cryptography.Primitives.dll
+C:\Users\DTU\source\repos\NhanVien\NhanVien\bin\roslyn\System.ValueTuple.dll
+C:\Users\DTU\source\repos\NhanVien\NhanVien\bin\roslyn\VBCSCompiler.exe
+C:\Users\DTU\source\repos\NhanVien\NhanVien\bin\ApplicationInsights.config
+C:\Users\DTU\source\repos\NhanVien\NhanVien\bin\roslyn\csc.exe
+C:\Users\DTU\source\repos\NhanVien\NhanVien\bin\roslyn\csc.exe.config
+C:\Users\DTU\source\repos\NhanVien\NhanVien\bin\roslyn\csc.rsp
+C:\Users\DTU\source\repos\NhanVien\NhanVien\bin\roslyn\csi.exe
+C:\Users\DTU\source\repos\NhanVien\NhanVien\bin\roslyn\csi.exe.config
+C:\Users\DTU\source\repos\NhanVien\NhanVien\bin\roslyn\csi.rsp
+C:\Users\DTU\source\repos\NhanVien\NhanVien\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+C:\Users\DTU\source\repos\NhanVien\NhanVien\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+C:\Users\DTU\source\repos\NhanVien\NhanVien\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+C:\Users\DTU\source\repos\NhanVien\NhanVien\bin\roslyn\Microsoft.CSharp.Core.targets
+C:\Users\DTU\source\repos\NhanVien\NhanVien\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+C:\Users\DTU\source\repos\NhanVien\NhanVien\bin\roslyn\Microsoft.VisualBasic.Core.targets
+C:\Users\DTU\source\repos\NhanVien\NhanVien\bin\roslyn\Microsoft.Win32.Primitives.dll
+C:\Users\DTU\source\repos\NhanVien\NhanVien\bin\roslyn\System.AppContext.dll
+C:\Users\DTU\source\repos\NhanVien\NhanVien\bin\roslyn\System.Console.dll
+C:\Users\DTU\source\repos\NhanVien\NhanVien\bin\roslyn\System.Diagnostics.Process.dll
+C:\Users\DTU\source\repos\NhanVien\NhanVien\bin\roslyn\System.Diagnostics.StackTrace.dll
+C:\Users\DTU\source\repos\NhanVien\NhanVien\bin\roslyn\System.IO.FileSystem.DriveInfo.dll
+C:\Users\DTU\source\repos\NhanVien\NhanVien\bin\roslyn\System.IO.Pipes.dll
+C:\Users\DTU\source\repos\NhanVien\NhanVien\bin\roslyn\System.Security.AccessControl.dll
+C:\Users\DTU\source\repos\NhanVien\NhanVien\bin\roslyn\System.Security.Claims.dll
+C:\Users\DTU\source\repos\NhanVien\NhanVien\bin\roslyn\System.Security.Cryptography.Encoding.dll
+C:\Users\DTU\source\repos\NhanVien\NhanVien\bin\roslyn\System.Security.Cryptography.X509Certificates.dll
+C:\Users\DTU\source\repos\NhanVien\NhanVien\bin\roslyn\System.Security.Principal.Windows.dll
+C:\Users\DTU\source\repos\NhanVien\NhanVien\bin\roslyn\System.Text.Encoding.CodePages.dll
+C:\Users\DTU\source\repos\NhanVien\NhanVien\bin\roslyn\System.Threading.Thread.dll
+C:\Users\DTU\source\repos\NhanVien\NhanVien\bin\roslyn\System.Xml.ReaderWriter.dll
+C:\Users\DTU\source\repos\NhanVien\NhanVien\bin\roslyn\System.Xml.XmlDocument.dll
+C:\Users\DTU\source\repos\NhanVien\NhanVien\bin\roslyn\System.Xml.XPath.dll
+C:\Users\DTU\source\repos\NhanVien\NhanVien\bin\roslyn\System.Xml.XPath.XDocument.dll
+C:\Users\DTU\source\repos\NhanVien\NhanVien\bin\roslyn\vbc.exe
+C:\Users\DTU\source\repos\NhanVien\NhanVien\bin\roslyn\vbc.exe.config
+C:\Users\DTU\source\repos\NhanVien\NhanVien\bin\roslyn\vbc.rsp
+C:\Users\DTU\source\repos\NhanVien\NhanVien\bin\roslyn\VBCSCompiler.exe.config
+C:\Users\DTU\source\repos\NhanVien\NhanVien\bin\Antlr3.Runtime.dll
+C:\Users\DTU\source\repos\NhanVien\NhanVien\bin\EntityFramework.dll
+C:\Users\DTU\source\repos\NhanVien\NhanVien\bin\EntityFramework.SqlServer.dll
+C:\Users\DTU\source\repos\NhanVien\NhanVien\bin\Microsoft.AI.Agent.Intercept.dll
+C:\Users\DTU\source\repos\NhanVien\NhanVien\bin\Microsoft.AI.DependencyCollector.dll
+C:\Users\DTU\source\repos\NhanVien\NhanVien\bin\Microsoft.AI.PerfCounterCollector.dll
+C:\Users\DTU\source\repos\NhanVien\NhanVien\bin\Microsoft.AI.ServerTelemetryChannel.dll
+C:\Users\DTU\source\repos\NhanVien\NhanVien\bin\Microsoft.AI.Web.dll
+C:\Users\DTU\source\repos\NhanVien\NhanVien\bin\Microsoft.AI.WindowsServer.dll
+C:\Users\DTU\source\repos\NhanVien\NhanVien\bin\Microsoft.ApplicationInsights.dll
+C:\Users\DTU\source\repos\NhanVien\NhanVien\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Users\DTU\source\repos\NhanVien\NhanVien\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\DTU\source\repos\NhanVien\NhanVien\bin\MySql.Data.dll
+C:\Users\DTU\source\repos\NhanVien\NhanVien\bin\Newtonsoft.Json.dll
+C:\Users\DTU\source\repos\NhanVien\NhanVien\bin\System.Net.Http.Formatting.dll
+C:\Users\DTU\source\repos\NhanVien\NhanVien\bin\System.Web.Helpers.dll
+C:\Users\DTU\source\repos\NhanVien\NhanVien\bin\System.Web.Http.dll
+C:\Users\DTU\source\repos\NhanVien\NhanVien\bin\System.Web.Http.WebHost.dll
+C:\Users\DTU\source\repos\NhanVien\NhanVien\bin\System.Web.Mvc.dll
+C:\Users\DTU\source\repos\NhanVien\NhanVien\bin\System.Web.Optimization.dll
+C:\Users\DTU\source\repos\NhanVien\NhanVien\bin\System.Web.Razor.dll
+C:\Users\DTU\source\repos\NhanVien\NhanVien\bin\System.Web.WebPages.Deployment.dll
+C:\Users\DTU\source\repos\NhanVien\NhanVien\bin\System.Web.WebPages.dll
+C:\Users\DTU\source\repos\NhanVien\NhanVien\bin\System.Web.WebPages.Razor.dll
+C:\Users\DTU\source\repos\NhanVien\NhanVien\bin\WebGrease.dll
+C:\Users\DTU\source\repos\NhanVien\NhanVien\bin\EntityFramework.xml
+C:\Users\DTU\source\repos\NhanVien\NhanVien\bin\EntityFramework.SqlServer.xml
+C:\Users\DTU\source\repos\NhanVien\NhanVien\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\DTU\source\repos\NhanVien\NhanVien\bin\System.Net.Http.Formatting.xml
+C:\Users\DTU\source\repos\NhanVien\NhanVien\bin\System.Web.Http.xml
+C:\Users\DTU\source\repos\NhanVien\NhanVien\bin\System.Web.Http.WebHost.xml
+C:\Users\DTU\source\repos\NhanVien\NhanVien\bin\System.Web.Helpers.xml
+C:\Users\DTU\source\repos\NhanVien\NhanVien\bin\System.Web.Mvc.xml
+C:\Users\DTU\source\repos\NhanVien\NhanVien\bin\System.Web.Optimization.xml
+C:\Users\DTU\source\repos\NhanVien\NhanVien\bin\System.Web.Razor.xml
+C:\Users\DTU\source\repos\NhanVien\NhanVien\bin\System.Web.WebPages.xml
+C:\Users\DTU\source\repos\NhanVien\NhanVien\bin\System.Web.WebPages.Deployment.xml
+C:\Users\DTU\source\repos\NhanVien\NhanVien\bin\System.Web.WebPages.Razor.xml
+C:\Users\DTU\source\repos\NhanVien\NhanVien\bin\Antlr3.Runtime.pdb
+C:\Users\DTU\source\repos\NhanVien\NhanVien\bin\Newtonsoft.Json.xml
+C:\Users\DTU\source\repos\NhanVien\NhanVien\bin\Microsoft.ApplicationInsights.xml
+C:\Users\DTU\source\repos\NhanVien\NhanVien\bin\Microsoft.AI.DependencyCollector.xml
+C:\Users\DTU\source\repos\NhanVien\NhanVien\bin\Microsoft.AI.ServerTelemetryChannel.xml
+C:\Users\DTU\source\repos\NhanVien\NhanVien\bin\Microsoft.AI.WindowsServer.xml
+C:\Users\DTU\source\repos\NhanVien\NhanVien\bin\Microsoft.AI.Web.xml
+C:\Users\DTU\source\repos\NhanVien\NhanVien\obj\Debug\NhanVien.csproj.CoreCompileInputs.cache
+C:\Users\DTU\source\repos\NhanVien\NhanVien\obj\Debug\NhanVien.dll
+C:\Users\DTU\source\repos\NhanVien\NhanVien\obj\Debug\NhanVien.pdb
+D:\NhanVien\NhanVien\bin\ApplicationInsights.config
+D:\NhanVien\NhanVien\bin\roslyn\csc.exe
+D:\NhanVien\NhanVien\bin\roslyn\csc.exe.config
+D:\NhanVien\NhanVien\bin\roslyn\csc.rsp
+D:\NhanVien\NhanVien\bin\roslyn\csi.exe
+D:\NhanVien\NhanVien\bin\roslyn\csi.exe.config
+D:\NhanVien\NhanVien\bin\roslyn\csi.rsp
+D:\NhanVien\NhanVien\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+D:\NhanVien\NhanVien\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+D:\NhanVien\NhanVien\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+D:\NhanVien\NhanVien\bin\roslyn\Microsoft.CodeAnalysis.dll
+D:\NhanVien\NhanVien\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+D:\NhanVien\NhanVien\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+D:\NhanVien\NhanVien\bin\roslyn\Microsoft.CSharp.Core.targets
+D:\NhanVien\NhanVien\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+D:\NhanVien\NhanVien\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+D:\NhanVien\NhanVien\bin\roslyn\Microsoft.VisualBasic.Core.targets
+D:\NhanVien\NhanVien\bin\roslyn\Microsoft.Win32.Primitives.dll
+D:\NhanVien\NhanVien\bin\roslyn\System.AppContext.dll
+D:\NhanVien\NhanVien\bin\roslyn\System.Collections.Immutable.dll
+D:\NhanVien\NhanVien\bin\roslyn\System.Console.dll
+D:\NhanVien\NhanVien\bin\roslyn\System.Diagnostics.FileVersionInfo.dll
+D:\NhanVien\NhanVien\bin\roslyn\System.Diagnostics.Process.dll
+D:\NhanVien\NhanVien\bin\roslyn\System.Diagnostics.StackTrace.dll
+D:\NhanVien\NhanVien\bin\roslyn\System.IO.Compression.dll
+D:\NhanVien\NhanVien\bin\roslyn\System.IO.FileSystem.dll
+D:\NhanVien\NhanVien\bin\roslyn\System.IO.FileSystem.DriveInfo.dll
+D:\NhanVien\NhanVien\bin\roslyn\System.IO.FileSystem.Primitives.dll
+D:\NhanVien\NhanVien\bin\roslyn\System.IO.Pipes.dll
+D:\NhanVien\NhanVien\bin\roslyn\System.Reflection.Metadata.dll
+D:\NhanVien\NhanVien\bin\roslyn\System.Security.AccessControl.dll
+D:\NhanVien\NhanVien\bin\roslyn\System.Security.Claims.dll
+D:\NhanVien\NhanVien\bin\roslyn\System.Security.Cryptography.Algorithms.dll
+D:\NhanVien\NhanVien\bin\roslyn\System.Security.Cryptography.Encoding.dll
+D:\NhanVien\NhanVien\bin\roslyn\System.Security.Cryptography.Primitives.dll
+D:\NhanVien\NhanVien\bin\roslyn\System.Security.Cryptography.X509Certificates.dll
+D:\NhanVien\NhanVien\bin\roslyn\System.Security.Principal.Windows.dll
+D:\NhanVien\NhanVien\bin\roslyn\System.Text.Encoding.CodePages.dll
+D:\NhanVien\NhanVien\bin\roslyn\System.Threading.Thread.dll
+D:\NhanVien\NhanVien\bin\roslyn\System.ValueTuple.dll
+D:\NhanVien\NhanVien\bin\roslyn\System.Xml.ReaderWriter.dll
+D:\NhanVien\NhanVien\bin\roslyn\System.Xml.XmlDocument.dll
+D:\NhanVien\NhanVien\bin\roslyn\System.Xml.XPath.dll
+D:\NhanVien\NhanVien\bin\roslyn\System.Xml.XPath.XDocument.dll
+D:\NhanVien\NhanVien\bin\roslyn\vbc.exe
+D:\NhanVien\NhanVien\bin\roslyn\vbc.exe.config
+D:\NhanVien\NhanVien\bin\roslyn\vbc.rsp
+D:\NhanVien\NhanVien\bin\roslyn\VBCSCompiler.exe
+D:\NhanVien\NhanVien\bin\roslyn\VBCSCompiler.exe.config
+D:\NhanVien\NhanVien\bin\NhanVien.dll.config
+D:\NhanVien\NhanVien\bin\NhanVien.dll
+D:\NhanVien\NhanVien\bin\NhanVien.pdb
+D:\NhanVien\NhanVien\bin\Antlr3.Runtime.dll
+D:\NhanVien\NhanVien\bin\EntityFramework.dll
+D:\NhanVien\NhanVien\bin\EntityFramework.SqlServer.dll
+D:\NhanVien\NhanVien\bin\Microsoft.AI.Agent.Intercept.dll
+D:\NhanVien\NhanVien\bin\Microsoft.AI.DependencyCollector.dll
+D:\NhanVien\NhanVien\bin\Microsoft.AI.PerfCounterCollector.dll
+D:\NhanVien\NhanVien\bin\Microsoft.AI.ServerTelemetryChannel.dll
+D:\NhanVien\NhanVien\bin\Microsoft.AI.Web.dll
+D:\NhanVien\NhanVien\bin\Microsoft.AI.WindowsServer.dll
+D:\NhanVien\NhanVien\bin\Microsoft.ApplicationInsights.dll
+D:\NhanVien\NhanVien\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+D:\NhanVien\NhanVien\bin\Microsoft.Web.Infrastructure.dll
+D:\NhanVien\NhanVien\bin\Newtonsoft.Json.dll
+D:\NhanVien\NhanVien\bin\System.Net.Http.Formatting.dll
+D:\NhanVien\NhanVien\bin\System.Web.Helpers.dll
+D:\NhanVien\NhanVien\bin\System.Web.Http.dll
+D:\NhanVien\NhanVien\bin\System.Web.Http.WebHost.dll
+D:\NhanVien\NhanVien\bin\System.Web.Mvc.dll
+D:\NhanVien\NhanVien\bin\System.Web.Optimization.dll
+D:\NhanVien\NhanVien\bin\System.Web.Razor.dll
+D:\NhanVien\NhanVien\bin\System.Web.WebPages.Deployment.dll
+D:\NhanVien\NhanVien\bin\System.Web.WebPages.dll
+D:\NhanVien\NhanVien\bin\System.Web.WebPages.Razor.dll
+D:\NhanVien\NhanVien\bin\WebGrease.dll
+D:\NhanVien\NhanVien\bin\EntityFramework.xml
+D:\NhanVien\NhanVien\bin\EntityFramework.SqlServer.xml
+D:\NhanVien\NhanVien\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+D:\NhanVien\NhanVien\bin\System.Net.Http.Formatting.xml
+D:\NhanVien\NhanVien\bin\System.Web.Http.xml
+D:\NhanVien\NhanVien\bin\System.Web.Http.WebHost.xml
+D:\NhanVien\NhanVien\bin\System.Web.Helpers.xml
+D:\NhanVien\NhanVien\bin\System.Web.Mvc.xml
+D:\NhanVien\NhanVien\bin\System.Web.Optimization.xml
+D:\NhanVien\NhanVien\bin\System.Web.Razor.xml
+D:\NhanVien\NhanVien\bin\System.Web.WebPages.xml
+D:\NhanVien\NhanVien\bin\System.Web.WebPages.Deployment.xml
+D:\NhanVien\NhanVien\bin\System.Web.WebPages.Razor.xml
+D:\NhanVien\NhanVien\bin\Antlr3.Runtime.pdb
+D:\NhanVien\NhanVien\bin\Newtonsoft.Json.xml
+D:\NhanVien\NhanVien\bin\Microsoft.ApplicationInsights.xml
+D:\NhanVien\NhanVien\bin\Microsoft.AI.DependencyCollector.xml
+D:\NhanVien\NhanVien\bin\Microsoft.AI.ServerTelemetryChannel.xml
+D:\NhanVien\NhanVien\bin\Microsoft.AI.WindowsServer.xml
+D:\NhanVien\NhanVien\bin\Microsoft.AI.Web.xml
+D:\NhanVien\NhanVien\obj\Debug\NhanVien.csprojResolveAssemblyReference.cache
+D:\NhanVien\NhanVien\obj\Debug\NhanVien.csproj.CoreCompileInputs.cache
+D:\NhanVien\NhanVien\obj\Debug\NhanVien.dll
+D:\NhanVien\NhanVien\obj\Debug\NhanVien.pdb
+D:\CSE\TUYEN DUNG NHAN VIEN\Ung Vien Can Tho\BaiTest_VoHoangNhatMinh\BaiTest_VoHoangNhatMinh\NhanVien\NhanVien\bin\ApplicationInsights.config
+D:\CSE\TUYEN DUNG NHAN VIEN\Ung Vien Can Tho\BaiTest_VoHoangNhatMinh\BaiTest_VoHoangNhatMinh\NhanVien\NhanVien\bin\NhanVien.dll.config
+D:\CSE\TUYEN DUNG NHAN VIEN\Ung Vien Can Tho\BaiTest_VoHoangNhatMinh\BaiTest_VoHoangNhatMinh\NhanVien\NhanVien\bin\NhanVien.dll
+D:\CSE\TUYEN DUNG NHAN VIEN\Ung Vien Can Tho\BaiTest_VoHoangNhatMinh\BaiTest_VoHoangNhatMinh\NhanVien\NhanVien\bin\NhanVien.pdb
+D:\CSE\TUYEN DUNG NHAN VIEN\Ung Vien Can Tho\BaiTest_VoHoangNhatMinh\BaiTest_VoHoangNhatMinh\NhanVien\NhanVien\bin\Antlr3.Runtime.dll
+D:\CSE\TUYEN DUNG NHAN VIEN\Ung Vien Can Tho\BaiTest_VoHoangNhatMinh\BaiTest_VoHoangNhatMinh\NhanVien\NhanVien\bin\EntityFramework.dll
+D:\CSE\TUYEN DUNG NHAN VIEN\Ung Vien Can Tho\BaiTest_VoHoangNhatMinh\BaiTest_VoHoangNhatMinh\NhanVien\NhanVien\bin\EntityFramework.SqlServer.dll
+D:\CSE\TUYEN DUNG NHAN VIEN\Ung Vien Can Tho\BaiTest_VoHoangNhatMinh\BaiTest_VoHoangNhatMinh\NhanVien\NhanVien\bin\Microsoft.AI.Agent.Intercept.dll
+D:\CSE\TUYEN DUNG NHAN VIEN\Ung Vien Can Tho\BaiTest_VoHoangNhatMinh\BaiTest_VoHoangNhatMinh\NhanVien\NhanVien\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+D:\CSE\TUYEN DUNG NHAN VIEN\Ung Vien Can Tho\BaiTest_VoHoangNhatMinh\BaiTest_VoHoangNhatMinh\NhanVien\NhanVien\bin\Microsoft.Web.Infrastructure.dll
+D:\CSE\TUYEN DUNG NHAN VIEN\Ung Vien Can Tho\BaiTest_VoHoangNhatMinh\BaiTest_VoHoangNhatMinh\NhanVien\NhanVien\bin\Newtonsoft.Json.dll
+D:\CSE\TUYEN DUNG NHAN VIEN\Ung Vien Can Tho\BaiTest_VoHoangNhatMinh\BaiTest_VoHoangNhatMinh\NhanVien\NhanVien\bin\System.Net.Http.Formatting.dll
+D:\CSE\TUYEN DUNG NHAN VIEN\Ung Vien Can Tho\BaiTest_VoHoangNhatMinh\BaiTest_VoHoangNhatMinh\NhanVien\NhanVien\bin\System.Web.Helpers.dll
+D:\CSE\TUYEN DUNG NHAN VIEN\Ung Vien Can Tho\BaiTest_VoHoangNhatMinh\BaiTest_VoHoangNhatMinh\NhanVien\NhanVien\bin\System.Web.Http.dll
+D:\CSE\TUYEN DUNG NHAN VIEN\Ung Vien Can Tho\BaiTest_VoHoangNhatMinh\BaiTest_VoHoangNhatMinh\NhanVien\NhanVien\bin\System.Web.Http.WebHost.dll
+D:\CSE\TUYEN DUNG NHAN VIEN\Ung Vien Can Tho\BaiTest_VoHoangNhatMinh\BaiTest_VoHoangNhatMinh\NhanVien\NhanVien\bin\System.Web.Mvc.dll
+D:\CSE\TUYEN DUNG NHAN VIEN\Ung Vien Can Tho\BaiTest_VoHoangNhatMinh\BaiTest_VoHoangNhatMinh\NhanVien\NhanVien\bin\System.Web.Optimization.dll
+D:\CSE\TUYEN DUNG NHAN VIEN\Ung Vien Can Tho\BaiTest_VoHoangNhatMinh\BaiTest_VoHoangNhatMinh\NhanVien\NhanVien\bin\System.Web.Razor.dll
+D:\CSE\TUYEN DUNG NHAN VIEN\Ung Vien Can Tho\BaiTest_VoHoangNhatMinh\BaiTest_VoHoangNhatMinh\NhanVien\NhanVien\bin\System.Web.WebPages.Deployment.dll
+D:\CSE\TUYEN DUNG NHAN VIEN\Ung Vien Can Tho\BaiTest_VoHoangNhatMinh\BaiTest_VoHoangNhatMinh\NhanVien\NhanVien\bin\System.Web.WebPages.dll
+D:\CSE\TUYEN DUNG NHAN VIEN\Ung Vien Can Tho\BaiTest_VoHoangNhatMinh\BaiTest_VoHoangNhatMinh\NhanVien\NhanVien\bin\System.Web.WebPages.Razor.dll
+D:\CSE\TUYEN DUNG NHAN VIEN\Ung Vien Can Tho\BaiTest_VoHoangNhatMinh\BaiTest_VoHoangNhatMinh\NhanVien\NhanVien\bin\WebGrease.dll
+D:\CSE\TUYEN DUNG NHAN VIEN\Ung Vien Can Tho\BaiTest_VoHoangNhatMinh\BaiTest_VoHoangNhatMinh\NhanVien\NhanVien\bin\EntityFramework.xml
+D:\CSE\TUYEN DUNG NHAN VIEN\Ung Vien Can Tho\BaiTest_VoHoangNhatMinh\BaiTest_VoHoangNhatMinh\NhanVien\NhanVien\bin\EntityFramework.SqlServer.xml
+D:\CSE\TUYEN DUNG NHAN VIEN\Ung Vien Can Tho\BaiTest_VoHoangNhatMinh\BaiTest_VoHoangNhatMinh\NhanVien\NhanVien\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+D:\CSE\TUYEN DUNG NHAN VIEN\Ung Vien Can Tho\BaiTest_VoHoangNhatMinh\BaiTest_VoHoangNhatMinh\NhanVien\NhanVien\bin\System.Net.Http.Formatting.xml
+D:\CSE\TUYEN DUNG NHAN VIEN\Ung Vien Can Tho\BaiTest_VoHoangNhatMinh\BaiTest_VoHoangNhatMinh\NhanVien\NhanVien\bin\System.Web.Http.xml
+D:\CSE\TUYEN DUNG NHAN VIEN\Ung Vien Can Tho\BaiTest_VoHoangNhatMinh\BaiTest_VoHoangNhatMinh\NhanVien\NhanVien\bin\System.Web.Http.WebHost.xml
+D:\CSE\TUYEN DUNG NHAN VIEN\Ung Vien Can Tho\BaiTest_VoHoangNhatMinh\BaiTest_VoHoangNhatMinh\NhanVien\NhanVien\bin\System.Web.Helpers.xml
+D:\CSE\TUYEN DUNG NHAN VIEN\Ung Vien Can Tho\BaiTest_VoHoangNhatMinh\BaiTest_VoHoangNhatMinh\NhanVien\NhanVien\bin\System.Web.Mvc.xml
+D:\CSE\TUYEN DUNG NHAN VIEN\Ung Vien Can Tho\BaiTest_VoHoangNhatMinh\BaiTest_VoHoangNhatMinh\NhanVien\NhanVien\bin\System.Web.Optimization.xml
+D:\CSE\TUYEN DUNG NHAN VIEN\Ung Vien Can Tho\BaiTest_VoHoangNhatMinh\BaiTest_VoHoangNhatMinh\NhanVien\NhanVien\bin\System.Web.Razor.xml
+D:\CSE\TUYEN DUNG NHAN VIEN\Ung Vien Can Tho\BaiTest_VoHoangNhatMinh\BaiTest_VoHoangNhatMinh\NhanVien\NhanVien\bin\System.Web.WebPages.xml
+D:\CSE\TUYEN DUNG NHAN VIEN\Ung Vien Can Tho\BaiTest_VoHoangNhatMinh\BaiTest_VoHoangNhatMinh\NhanVien\NhanVien\bin\System.Web.WebPages.Deployment.xml
+D:\CSE\TUYEN DUNG NHAN VIEN\Ung Vien Can Tho\BaiTest_VoHoangNhatMinh\BaiTest_VoHoangNhatMinh\NhanVien\NhanVien\bin\System.Web.WebPages.Razor.xml
+D:\CSE\TUYEN DUNG NHAN VIEN\Ung Vien Can Tho\BaiTest_VoHoangNhatMinh\BaiTest_VoHoangNhatMinh\NhanVien\NhanVien\bin\Antlr3.Runtime.pdb
+D:\CSE\TUYEN DUNG NHAN VIEN\Ung Vien Can Tho\BaiTest_VoHoangNhatMinh\BaiTest_VoHoangNhatMinh\NhanVien\NhanVien\bin\Newtonsoft.Json.xml
+D:\CSE\TUYEN DUNG NHAN VIEN\Ung Vien Can Tho\BaiTest_VoHoangNhatMinh\BaiTest_VoHoangNhatMinh\NhanVien\NhanVien\obj\Debug\NhanVien.csprojResolveAssemblyReference.cache
+D:\CSE\TUYEN DUNG NHAN VIEN\Ung Vien Can Tho\BaiTest_VoHoangNhatMinh\BaiTest_VoHoangNhatMinh\NhanVien\NhanVien\obj\Debug\NhanVien.dll
+D:\CSE\TUYEN DUNG NHAN VIEN\Ung Vien Can Tho\BaiTest_VoHoangNhatMinh\BaiTest_VoHoangNhatMinh\NhanVien\NhanVien\obj\Debug\NhanVien.pdb
+G:\CSE\TUYEN DUNG NHAN VIEN\Ung Vien Can Tho\BaiTest_VoHoangNhatMinh\BaiTest_VoHoangNhatMinh\NhanVien\NhanVien\bin\ApplicationInsights.config
+G:\CSE\TUYEN DUNG NHAN VIEN\Ung Vien Can Tho\BaiTest_VoHoangNhatMinh\BaiTest_VoHoangNhatMinh\NhanVien\NhanVien\bin\NhanVien.dll.config
+G:\CSE\TUYEN DUNG NHAN VIEN\Ung Vien Can Tho\BaiTest_VoHoangNhatMinh\BaiTest_VoHoangNhatMinh\NhanVien\NhanVien\bin\NhanVien.dll
+G:\CSE\TUYEN DUNG NHAN VIEN\Ung Vien Can Tho\BaiTest_VoHoangNhatMinh\BaiTest_VoHoangNhatMinh\NhanVien\NhanVien\bin\NhanVien.pdb
+G:\CSE\TUYEN DUNG NHAN VIEN\Ung Vien Can Tho\BaiTest_VoHoangNhatMinh\BaiTest_VoHoangNhatMinh\NhanVien\NhanVien\bin\Antlr3.Runtime.dll
+G:\CSE\TUYEN DUNG NHAN VIEN\Ung Vien Can Tho\BaiTest_VoHoangNhatMinh\BaiTest_VoHoangNhatMinh\NhanVien\NhanVien\bin\EntityFramework.dll
+G:\CSE\TUYEN DUNG NHAN VIEN\Ung Vien Can Tho\BaiTest_VoHoangNhatMinh\BaiTest_VoHoangNhatMinh\NhanVien\NhanVien\bin\EntityFramework.SqlServer.dll
+G:\CSE\TUYEN DUNG NHAN VIEN\Ung Vien Can Tho\BaiTest_VoHoangNhatMinh\BaiTest_VoHoangNhatMinh\NhanVien\NhanVien\bin\Microsoft.AI.Agent.Intercept.dll
+G:\CSE\TUYEN DUNG NHAN VIEN\Ung Vien Can Tho\BaiTest_VoHoangNhatMinh\BaiTest_VoHoangNhatMinh\NhanVien\NhanVien\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+G:\CSE\TUYEN DUNG NHAN VIEN\Ung Vien Can Tho\BaiTest_VoHoangNhatMinh\BaiTest_VoHoangNhatMinh\NhanVien\NhanVien\bin\Microsoft.Web.Infrastructure.dll
+G:\CSE\TUYEN DUNG NHAN VIEN\Ung Vien Can Tho\BaiTest_VoHoangNhatMinh\BaiTest_VoHoangNhatMinh\NhanVien\NhanVien\bin\Newtonsoft.Json.dll
+G:\CSE\TUYEN DUNG NHAN VIEN\Ung Vien Can Tho\BaiTest_VoHoangNhatMinh\BaiTest_VoHoangNhatMinh\NhanVien\NhanVien\bin\System.Net.Http.Formatting.dll
+G:\CSE\TUYEN DUNG NHAN VIEN\Ung Vien Can Tho\BaiTest_VoHoangNhatMinh\BaiTest_VoHoangNhatMinh\NhanVien\NhanVien\bin\System.Web.Helpers.dll
+G:\CSE\TUYEN DUNG NHAN VIEN\Ung Vien Can Tho\BaiTest_VoHoangNhatMinh\BaiTest_VoHoangNhatMinh\NhanVien\NhanVien\bin\System.Web.Http.dll
+G:\CSE\TUYEN DUNG NHAN VIEN\Ung Vien Can Tho\BaiTest_VoHoangNhatMinh\BaiTest_VoHoangNhatMinh\NhanVien\NhanVien\bin\System.Web.Http.WebHost.dll
+G:\CSE\TUYEN DUNG NHAN VIEN\Ung Vien Can Tho\BaiTest_VoHoangNhatMinh\BaiTest_VoHoangNhatMinh\NhanVien\NhanVien\bin\System.Web.Mvc.dll
+G:\CSE\TUYEN DUNG NHAN VIEN\Ung Vien Can Tho\BaiTest_VoHoangNhatMinh\BaiTest_VoHoangNhatMinh\NhanVien\NhanVien\bin\System.Web.Optimization.dll
+G:\CSE\TUYEN DUNG NHAN VIEN\Ung Vien Can Tho\BaiTest_VoHoangNhatMinh\BaiTest_VoHoangNhatMinh\NhanVien\NhanVien\bin\System.Web.Razor.dll
+G:\CSE\TUYEN DUNG NHAN VIEN\Ung Vien Can Tho\BaiTest_VoHoangNhatMinh\BaiTest_VoHoangNhatMinh\NhanVien\NhanVien\bin\System.Web.WebPages.Deployment.dll
+G:\CSE\TUYEN DUNG NHAN VIEN\Ung Vien Can Tho\BaiTest_VoHoangNhatMinh\BaiTest_VoHoangNhatMinh\NhanVien\NhanVien\bin\System.Web.WebPages.dll
+G:\CSE\TUYEN DUNG NHAN VIEN\Ung Vien Can Tho\BaiTest_VoHoangNhatMinh\BaiTest_VoHoangNhatMinh\NhanVien\NhanVien\bin\System.Web.WebPages.Razor.dll
+G:\CSE\TUYEN DUNG NHAN VIEN\Ung Vien Can Tho\BaiTest_VoHoangNhatMinh\BaiTest_VoHoangNhatMinh\NhanVien\NhanVien\bin\WebGrease.dll
+G:\CSE\TUYEN DUNG NHAN VIEN\Ung Vien Can Tho\BaiTest_VoHoangNhatMinh\BaiTest_VoHoangNhatMinh\NhanVien\NhanVien\bin\EntityFramework.xml
+G:\CSE\TUYEN DUNG NHAN VIEN\Ung Vien Can Tho\BaiTest_VoHoangNhatMinh\BaiTest_VoHoangNhatMinh\NhanVien\NhanVien\bin\EntityFramework.SqlServer.xml
+G:\CSE\TUYEN DUNG NHAN VIEN\Ung Vien Can Tho\BaiTest_VoHoangNhatMinh\BaiTest_VoHoangNhatMinh\NhanVien\NhanVien\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+G:\CSE\TUYEN DUNG NHAN VIEN\Ung Vien Can Tho\BaiTest_VoHoangNhatMinh\BaiTest_VoHoangNhatMinh\NhanVien\NhanVien\bin\System.Net.Http.Formatting.xml
+G:\CSE\TUYEN DUNG NHAN VIEN\Ung Vien Can Tho\BaiTest_VoHoangNhatMinh\BaiTest_VoHoangNhatMinh\NhanVien\NhanVien\bin\System.Web.Http.xml
+G:\CSE\TUYEN DUNG NHAN VIEN\Ung Vien Can Tho\BaiTest_VoHoangNhatMinh\BaiTest_VoHoangNhatMinh\NhanVien\NhanVien\bin\System.Web.Http.WebHost.xml
+G:\CSE\TUYEN DUNG NHAN VIEN\Ung Vien Can Tho\BaiTest_VoHoangNhatMinh\BaiTest_VoHoangNhatMinh\NhanVien\NhanVien\bin\System.Web.Helpers.xml
+G:\CSE\TUYEN DUNG NHAN VIEN\Ung Vien Can Tho\BaiTest_VoHoangNhatMinh\BaiTest_VoHoangNhatMinh\NhanVien\NhanVien\bin\System.Web.Mvc.xml
+G:\CSE\TUYEN DUNG NHAN VIEN\Ung Vien Can Tho\BaiTest_VoHoangNhatMinh\BaiTest_VoHoangNhatMinh\NhanVien\NhanVien\bin\System.Web.Optimization.xml
+G:\CSE\TUYEN DUNG NHAN VIEN\Ung Vien Can Tho\BaiTest_VoHoangNhatMinh\BaiTest_VoHoangNhatMinh\NhanVien\NhanVien\bin\System.Web.Razor.xml
+G:\CSE\TUYEN DUNG NHAN VIEN\Ung Vien Can Tho\BaiTest_VoHoangNhatMinh\BaiTest_VoHoangNhatMinh\NhanVien\NhanVien\bin\System.Web.WebPages.xml
+G:\CSE\TUYEN DUNG NHAN VIEN\Ung Vien Can Tho\BaiTest_VoHoangNhatMinh\BaiTest_VoHoangNhatMinh\NhanVien\NhanVien\bin\System.Web.WebPages.Deployment.xml
+G:\CSE\TUYEN DUNG NHAN VIEN\Ung Vien Can Tho\BaiTest_VoHoangNhatMinh\BaiTest_VoHoangNhatMinh\NhanVien\NhanVien\bin\System.Web.WebPages.Razor.xml
+G:\CSE\TUYEN DUNG NHAN VIEN\Ung Vien Can Tho\BaiTest_VoHoangNhatMinh\BaiTest_VoHoangNhatMinh\NhanVien\NhanVien\bin\Antlr3.Runtime.pdb
+G:\CSE\TUYEN DUNG NHAN VIEN\Ung Vien Can Tho\BaiTest_VoHoangNhatMinh\BaiTest_VoHoangNhatMinh\NhanVien\NhanVien\bin\Newtonsoft.Json.xml
+G:\CSE\TUYEN DUNG NHAN VIEN\Ung Vien Can Tho\BaiTest_VoHoangNhatMinh\BaiTest_VoHoangNhatMinh\NhanVien\NhanVien\obj\Debug\NhanVien.csprojAssemblyReference.cache
+G:\CSE\TUYEN DUNG NHAN VIEN\Ung Vien Can Tho\BaiTest_VoHoangNhatMinh\BaiTest_VoHoangNhatMinh\NhanVien\NhanVien\obj\Debug\NhanVien.csproj.CoreCompileInputs.cache
+G:\CSE\TUYEN DUNG NHAN VIEN\Ung Vien Can Tho\BaiTest_VoHoangNhatMinh\BaiTest_VoHoangNhatMinh\NhanVien\NhanVien\obj\Debug\NhanVien.csproj.CopyComplete
+G:\CSE\TUYEN DUNG NHAN VIEN\Ung Vien Can Tho\BaiTest_VoHoangNhatMinh\BaiTest_VoHoangNhatMinh\NhanVien\NhanVien\obj\Debug\NhanVien.dll
+G:\CSE\TUYEN DUNG NHAN VIEN\Ung Vien Can Tho\BaiTest_VoHoangNhatMinh\BaiTest_VoHoangNhatMinh\NhanVien\NhanVien\obj\Debug\NhanVien.pdb
+D:\Workspace\CMU_CS445_System_Integration_Practices_Group2\Tài liệu\Code Mau Tich Hop\Code Mau Tich Hop\NhanVien\NhanVien\bin\ApplicationInsights.config
+D:\Workspace\CMU_CS445_System_Integration_Practices_Group2\Tài liệu\Code Mau Tich Hop\Code Mau Tich Hop\NhanVien\NhanVien\bin\NhanVien.dll.config
+D:\Workspace\CMU_CS445_System_Integration_Practices_Group2\Tài liệu\Code Mau Tich Hop\Code Mau Tich Hop\NhanVien\NhanVien\bin\NhanVien.dll
+D:\Workspace\CMU_CS445_System_Integration_Practices_Group2\Tài liệu\Code Mau Tich Hop\Code Mau Tich Hop\NhanVien\NhanVien\bin\NhanVien.pdb
+D:\Workspace\CMU_CS445_System_Integration_Practices_Group2\Tài liệu\Code Mau Tich Hop\Code Mau Tich Hop\NhanVien\NhanVien\bin\Antlr3.Runtime.dll
+D:\Workspace\CMU_CS445_System_Integration_Practices_Group2\Tài liệu\Code Mau Tich Hop\Code Mau Tich Hop\NhanVien\NhanVien\bin\EntityFramework.dll
+D:\Workspace\CMU_CS445_System_Integration_Practices_Group2\Tài liệu\Code Mau Tich Hop\Code Mau Tich Hop\NhanVien\NhanVien\bin\EntityFramework.SqlServer.dll
+D:\Workspace\CMU_CS445_System_Integration_Practices_Group2\Tài liệu\Code Mau Tich Hop\Code Mau Tich Hop\NhanVien\NhanVien\bin\Microsoft.AI.Agent.Intercept.dll
+D:\Workspace\CMU_CS445_System_Integration_Practices_Group2\Tài liệu\Code Mau Tich Hop\Code Mau Tich Hop\NhanVien\NhanVien\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+D:\Workspace\CMU_CS445_System_Integration_Practices_Group2\Tài liệu\Code Mau Tich Hop\Code Mau Tich Hop\NhanVien\NhanVien\bin\Microsoft.Web.Infrastructure.dll
+D:\Workspace\CMU_CS445_System_Integration_Practices_Group2\Tài liệu\Code Mau Tich Hop\Code Mau Tich Hop\NhanVien\NhanVien\bin\Newtonsoft.Json.dll
+D:\Workspace\CMU_CS445_System_Integration_Practices_Group2\Tài liệu\Code Mau Tich Hop\Code Mau Tich Hop\NhanVien\NhanVien\bin\System.Net.Http.Formatting.dll
+D:\Workspace\CMU_CS445_System_Integration_Practices_Group2\Tài liệu\Code Mau Tich Hop\Code Mau Tich Hop\NhanVien\NhanVien\bin\System.Web.Helpers.dll
+D:\Workspace\CMU_CS445_System_Integration_Practices_Group2\Tài liệu\Code Mau Tich Hop\Code Mau Tich Hop\NhanVien\NhanVien\bin\System.Web.Http.dll
+D:\Workspace\CMU_CS445_System_Integration_Practices_Group2\Tài liệu\Code Mau Tich Hop\Code Mau Tich Hop\NhanVien\NhanVien\bin\System.Web.Http.WebHost.dll
+D:\Workspace\CMU_CS445_System_Integration_Practices_Group2\Tài liệu\Code Mau Tich Hop\Code Mau Tich Hop\NhanVien\NhanVien\bin\System.Web.Mvc.dll
+D:\Workspace\CMU_CS445_System_Integration_Practices_Group2\Tài liệu\Code Mau Tich Hop\Code Mau Tich Hop\NhanVien\NhanVien\bin\System.Web.Optimization.dll
+D:\Workspace\CMU_CS445_System_Integration_Practices_Group2\Tài liệu\Code Mau Tich Hop\Code Mau Tich Hop\NhanVien\NhanVien\bin\System.Web.Razor.dll
+D:\Workspace\CMU_CS445_System_Integration_Practices_Group2\Tài liệu\Code Mau Tich Hop\Code Mau Tich Hop\NhanVien\NhanVien\bin\System.Web.WebPages.Deployment.dll
+D:\Workspace\CMU_CS445_System_Integration_Practices_Group2\Tài liệu\Code Mau Tich Hop\Code Mau Tich Hop\NhanVien\NhanVien\bin\System.Web.WebPages.dll
+D:\Workspace\CMU_CS445_System_Integration_Practices_Group2\Tài liệu\Code Mau Tich Hop\Code Mau Tich Hop\NhanVien\NhanVien\bin\System.Web.WebPages.Razor.dll
+D:\Workspace\CMU_CS445_System_Integration_Practices_Group2\Tài liệu\Code Mau Tich Hop\Code Mau Tich Hop\NhanVien\NhanVien\bin\WebGrease.dll
+D:\Workspace\CMU_CS445_System_Integration_Practices_Group2\Tài liệu\Code Mau Tich Hop\Code Mau Tich Hop\NhanVien\NhanVien\bin\EntityFramework.xml
+D:\Workspace\CMU_CS445_System_Integration_Practices_Group2\Tài liệu\Code Mau Tich Hop\Code Mau Tich Hop\NhanVien\NhanVien\bin\EntityFramework.SqlServer.xml
+D:\Workspace\CMU_CS445_System_Integration_Practices_Group2\Tài liệu\Code Mau Tich Hop\Code Mau Tich Hop\NhanVien\NhanVien\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+D:\Workspace\CMU_CS445_System_Integration_Practices_Group2\Tài liệu\Code Mau Tich Hop\Code Mau Tich Hop\NhanVien\NhanVien\bin\System.Net.Http.Formatting.xml
+D:\Workspace\CMU_CS445_System_Integration_Practices_Group2\Tài liệu\Code Mau Tich Hop\Code Mau Tich Hop\NhanVien\NhanVien\bin\System.Web.Http.xml
+D:\Workspace\CMU_CS445_System_Integration_Practices_Group2\Tài liệu\Code Mau Tich Hop\Code Mau Tich Hop\NhanVien\NhanVien\bin\System.Web.Http.WebHost.xml
+D:\Workspace\CMU_CS445_System_Integration_Practices_Group2\Tài liệu\Code Mau Tich Hop\Code Mau Tich Hop\NhanVien\NhanVien\bin\System.Web.Helpers.xml
+D:\Workspace\CMU_CS445_System_Integration_Practices_Group2\Tài liệu\Code Mau Tich Hop\Code Mau Tich Hop\NhanVien\NhanVien\bin\System.Web.Mvc.xml
+D:\Workspace\CMU_CS445_System_Integration_Practices_Group2\Tài liệu\Code Mau Tich Hop\Code Mau Tich Hop\NhanVien\NhanVien\bin\System.Web.Optimization.xml
+D:\Workspace\CMU_CS445_System_Integration_Practices_Group2\Tài liệu\Code Mau Tich Hop\Code Mau Tich Hop\NhanVien\NhanVien\bin\System.Web.Razor.xml
+D:\Workspace\CMU_CS445_System_Integration_Practices_Group2\Tài liệu\Code Mau Tich Hop\Code Mau Tich Hop\NhanVien\NhanVien\bin\System.Web.WebPages.xml
+D:\Workspace\CMU_CS445_System_Integration_Practices_Group2\Tài liệu\Code Mau Tich Hop\Code Mau Tich Hop\NhanVien\NhanVien\bin\System.Web.WebPages.Deployment.xml
+D:\Workspace\CMU_CS445_System_Integration_Practices_Group2\Tài liệu\Code Mau Tich Hop\Code Mau Tich Hop\NhanVien\NhanVien\bin\System.Web.WebPages.Razor.xml
+D:\Workspace\CMU_CS445_System_Integration_Practices_Group2\Tài liệu\Code Mau Tich Hop\Code Mau Tich Hop\NhanVien\NhanVien\bin\Antlr3.Runtime.pdb
+D:\Workspace\CMU_CS445_System_Integration_Practices_Group2\Tài liệu\Code Mau Tich Hop\Code Mau Tich Hop\NhanVien\NhanVien\bin\Newtonsoft.Json.xml
+D:\Workspace\CMU_CS445_System_Integration_Practices_Group2\Tài liệu\Code Mau Tich Hop\Code Mau Tich Hop\NhanVien\NhanVien\obj\Debug\NhanVien.csproj.AssemblyReference.cache
+D:\Workspace\CMU_CS445_System_Integration_Practices_Group2\Tài liệu\Code Mau Tich Hop\Code Mau Tich Hop\NhanVien\NhanVien\obj\Debug\NhanVien.csproj.CoreCompileInputs.cache
+D:\Workspace\CMU_CS445_System_Integration_Practices_Group2\Tài liệu\Code Mau Tich Hop\Code Mau Tich Hop\NhanVien\NhanVien\obj\Debug\NhanVien.csproj.Up2Date
+D:\Workspace\CMU_CS445_System_Integration_Practices_Group2\Tài liệu\Code Mau Tich Hop\Code Mau Tich Hop\NhanVien\NhanVien\obj\Debug\NhanVien.dll
+D:\Workspace\CMU_CS445_System_Integration_Practices_Group2\Tài liệu\Code Mau Tich Hop\Code Mau Tich Hop\NhanVien\NhanVien\obj\Debug\NhanVien.pdb

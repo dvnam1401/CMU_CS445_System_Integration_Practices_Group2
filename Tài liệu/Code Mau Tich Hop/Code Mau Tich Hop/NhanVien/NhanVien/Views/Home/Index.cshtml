@@ -1,0 +1,46 @@
+﻿@model List<NhanVien.Models.ViewModel.BangLuongNhanVienViewModel>
+
+@{
+    ViewBag.Title = "Home Page";
+}
+<br />
+<a href="/NhanVien/Index" class="btn btn-success">Xem hồ sơ nhân viên</a>
+<br /><br />
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <td>Mã NV</td>
+            <td>Họ tên</td>
+            <td>Ngày sinh</td>
+            <td>Giới tính</td>
+            <td>Tên phòng ban</td>
+            <td>Hệ số lương</td>
+            <td>Lương cơ bản</td>
+            <td>Số ngày công</td>
+            <td>Lương thực lĩnh</td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.MANHANVIEN</td>
+                <td>@item.HO @item.TEN</td>
+                <td>@item.NGAYSINH.Value.ToShortDateString()</td>
+                @if (item.GIOITINH == 0)
+                {
+                    <td>Nam</td>
+                }
+                else
+                {
+                    <td>Nữ</td>
+                }
+                <td>@item.TENPHONGBAN</td>
+                <td>@item.HESOLUONG</td>
+                <td>@item.LUONGCOBAN</td>
+                <td>@item.SONGAYCONG</td>
+                <td>@item.LUONGTHUCLINH</td>
+            </tr>
+        }
+    </tbody>
+</table>
