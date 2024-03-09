@@ -1,0 +1,17 @@
+dotnet ef dbcontext scaffold -o Models -f -d "Server=localhost;port=3306;database=mydb;user=root;password=12345" "MySql.EntityFrameworkCore"  --project DashBoard.API
+dotnet ef migrations add v0 --project DashBoard.API --context MysqlContext
+dotnet ef migrations list --project DashBoard.API --context MysqlContext 
+dotnet ef database update --project DashBoard.API --context MysqlContext
+dotnet ef migrations script --output migrations_mysql.sql --project DashBoard.API --context MysqlContext
+
+
+
+dotnet ef dbcontext scaffold -o Models -f -d "Data Source=VAN-NAM;Initial Catalog=HR;User ID=sa;Password=12345" "Microsoft.EntityFrameworkCore.SqlServer" --project DashBoard.API
+dotnet ef migrations add v0 --project DashBoard.API --context SqlServerContext
+dotnet ef migrations list --project DashBoard.API --context SqlServerContext 
+dotnet ef database update --project DashBoard.API --context SqlServerContext
+dotnet ef migrations script --output migrations_sqlserver.sql --project DashBoard.API --context SqlServerContext
+
+
+//dotnet ef migrations list --project DashBoard.API --context SqlServerContext
+ //Add-Migration MyMigration -context MysqlContext
