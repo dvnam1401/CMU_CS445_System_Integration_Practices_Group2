@@ -1,16 +1,6 @@
 [
   {
     "ContainingType": "DashBoard.API.Controllers.ServicesController",
-    "Method": "GetAll",
-    "RelativePath": "api/Services",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "DashBoard.API.Controllers.ServicesController",
     "Method": "GetById",
     "RelativePath": "api/Services/{id}",
     "HttpMethod": "GET",
@@ -23,6 +13,26 @@
         "IsRequired": true
       }
     ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "DashBoard.API.Controllers.ServicesController",
+    "Method": "GetAll",
+    "RelativePath": "api/Services/GetAllBenifit",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "DashBoard.API.Controllers.ServicesController",
+    "Method": "GetAllEmployee",
+    "RelativePath": "api/Services/GetAllEmployee",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
     "ReturnTypes": []
   },
   {

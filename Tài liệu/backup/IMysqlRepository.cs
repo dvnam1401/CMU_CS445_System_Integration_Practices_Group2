@@ -2,10 +2,9 @@
 
 namespace DashBoard.API.Repositories.Inteface
 {
-    public interface IServiceRepository
+    public interface IMysqlRepository
     {
-        Task<BenefitPlan?> GetById(int benefit);
-        Task<IEnumerable<BenefitPlan?>> GetByAll();
         Task<IEnumerable<Employee?>> GetByAllEmployee();
+
     }
 }

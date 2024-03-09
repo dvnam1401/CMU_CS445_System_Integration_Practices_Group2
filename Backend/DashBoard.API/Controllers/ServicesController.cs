@@ -27,11 +27,19 @@ namespace DashBoard.API.Controllers
             return Ok(existing);
         }
 
-        [HttpGet]
+        [HttpGet("GetAllBenifit")]
         public async Task<IActionResult> GetAll()
         {
             var result = await serviceRepository.GetByAll();
             return Ok(result);
         }
+
+        [HttpGet("GetAllEmployee")]
+        public async Task<IActionResult> GetAllEmployee()
+        {
+            var result = await serviceRepository.GetByAllEmployee();
+            return Ok(result);
+        }
+
     }
 }
