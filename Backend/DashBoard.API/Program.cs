@@ -31,6 +31,8 @@ builder.Services.AddDbContextPool<MysqlContext>(options =>
 
 //builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 builder.Services.AddScoped<IServiceRepository, ServiceRepository>();
+builder.Services.AddScoped<IHRRepository, HRRepository>();
+builder.Services.AddScoped<IPayrollRepository, PayrollRepository>();
 //builder.Services.AddScoped<IMysqlRepository, MysqlRepository>();
 
 var app = builder.Build();

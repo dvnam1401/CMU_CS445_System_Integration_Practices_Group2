@@ -3,20 +3,52 @@
   "WorkspaceRootPath": "D:\\Workspace\\CMU_CS445_System_Integration_Practices_Group2\\Backend\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{C712C63E-30BF-4280-A5BA-272340ED5412}|DashBoard.API\\DashBoard.API.csproj|d:\\workspace\\cmu_cs445_system_integration_practices_group2\\backend\\dashboard.api\\repositories\\implementation\\hrrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C712C63E-30BF-4280-A5BA-272340ED5412}|DashBoard.API\\DashBoard.API.csproj|solutionrelative:dashboard.api\\repositories\\implementation\\hrrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C712C63E-30BF-4280-A5BA-272340ED5412}|DashBoard.API\\DashBoard.API.csproj|d:\\workspace\\cmu_cs445_system_integration_practices_group2\\backend\\dashboard.api\\repositories\\implementation\\payrollrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C712C63E-30BF-4280-A5BA-272340ED5412}|DashBoard.API\\DashBoard.API.csproj|solutionrelative:dashboard.api\\repositories\\implementation\\payrollrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{C712C63E-30BF-4280-A5BA-272340ED5412}|DashBoard.API\\DashBoard.API.csproj|d:\\workspace\\cmu_cs445_system_integration_practices_group2\\backend\\dashboard.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{C712C63E-30BF-4280-A5BA-272340ED5412}|DashBoard.API\\DashBoard.API.csproj|solutionrelative:dashboard.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C712C63E-30BF-4280-A5BA-272340ED5412}|DashBoard.API\\DashBoard.API.csproj|d:\\workspace\\cmu_cs445_system_integration_practices_group2\\backend\\dashboard.api\\controllers\\servicescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C712C63E-30BF-4280-A5BA-272340ED5412}|DashBoard.API\\DashBoard.API.csproj|solutionrelative:dashboard.api\\controllers\\servicescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{C712C63E-30BF-4280-A5BA-272340ED5412}|DashBoard.API\\DashBoard.API.csproj|d:\\workspace\\cmu_cs445_system_integration_practices_group2\\backend\\dashboard.api\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{C712C63E-30BF-4280-A5BA-272340ED5412}|DashBoard.API\\DashBoard.API.csproj|solutionrelative:dashboard.api\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{C712C63E-30BF-4280-A5BA-272340ED5412}|DashBoard.API\\DashBoard.API.csproj|d:\\workspace\\cmu_cs445_system_integration_practices_group2\\backend\\dashboard.api\\repositories\\implementation\\servicerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{C712C63E-30BF-4280-A5BA-272340ED5412}|DashBoard.API\\DashBoard.API.csproj|solutionrelative:dashboard.api\\repositories\\implementation\\servicerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C712C63E-30BF-4280-A5BA-272340ED5412}|DashBoard.API\\DashBoard.API.csproj|d:\\workspace\\cmu_cs445_system_integration_practices_group2\\backend\\dashboard.api\\repositories\\inteface\\iservicerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C712C63E-30BF-4280-A5BA-272340ED5412}|DashBoard.API\\DashBoard.API.csproj|solutionrelative:dashboard.api\\repositories\\inteface\\iservicerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{C712C63E-30BF-4280-A5BA-272340ED5412}|DashBoard.API\\DashBoard.API.csproj|d:\\workspace\\cmu_cs445_system_integration_practices_group2\\backend\\dashboard.api\\repositories\\inteface\\ipayrollrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C712C63E-30BF-4280-A5BA-272340ED5412}|DashBoard.API\\DashBoard.API.csproj|solutionrelative:dashboard.api\\repositories\\inteface\\ipayrollrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C712C63E-30BF-4280-A5BA-272340ED5412}|DashBoard.API\\DashBoard.API.csproj|d:\\workspace\\cmu_cs445_system_integration_practices_group2\\backend\\dashboard.api\\repositories\\inteface\\ihrrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C712C63E-30BF-4280-A5BA-272340ED5412}|DashBoard.API\\DashBoard.API.csproj|solutionrelative:dashboard.api\\repositories\\inteface\\ihrrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C712C63E-30BF-4280-A5BA-272340ED5412}|DashBoard.API\\DashBoard.API.csproj|d:\\workspace\\cmu_cs445_system_integration_practices_group2\\backend\\dashboard.api\\controllers\\hrcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C712C63E-30BF-4280-A5BA-272340ED5412}|DashBoard.API\\DashBoard.API.csproj|solutionrelative:dashboard.api\\controllers\\hrcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C712C63E-30BF-4280-A5BA-272340ED5412}|DashBoard.API\\DashBoard.API.csproj|D:\\Workspace\\CMU_CS445_System_Integration_Practices_Group2\\Backend\\dashboard.api\\controllers\\servicescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C712C63E-30BF-4280-A5BA-272340ED5412}|DashBoard.API\\DashBoard.API.csproj|solutionrelative:dashboard.api\\controllers\\servicescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C712C63E-30BF-4280-A5BA-272340ED5412}|DashBoard.API\\DashBoard.API.csproj|d:\\workspace\\cmu_cs445_system_integration_practices_group2\\backend\\dashboard.api\\controllers\\payrollcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C712C63E-30BF-4280-A5BA-272340ED5412}|DashBoard.API\\DashBoard.API.csproj|solutionrelative:dashboard.api\\controllers\\payrollcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C712C63E-30BF-4280-A5BA-272340ED5412}|DashBoard.API\\DashBoard.API.csproj|D:\\Workspace\\CMU_CS445_System_Integration_Practices_Group2\\Backend\\dashboard.api\\models\\jobhistory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C712C63E-30BF-4280-A5BA-272340ED5412}|DashBoard.API\\DashBoard.API.csproj|solutionrelative:dashboard.api\\models\\jobhistory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C712C63E-30BF-4280-A5BA-272340ED5412}|DashBoard.API\\DashBoard.API.csproj|d:\\workspace\\cmu_cs445_system_integration_practices_group2\\backend\\dashboard.api\\models\\personal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C712C63E-30BF-4280-A5BA-272340ED5412}|DashBoard.API\\DashBoard.API.csproj|solutionrelative:dashboard.api\\models\\personal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -26,60 +58,164 @@
       "DocumentGroups": [
         {
           "DockedHeight": 280,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 5,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "launchSettings.json",
+              "DocumentMoniker": "D:\\Workspace\\CMU_CS445_System_Integration_Practices_Group2\\Backend\\DashBoard.API\\Properties\\launchSettings.json",
+              "RelativeDocumentMoniker": "DashBoard.API\\Properties\\launchSettings.json",
+              "ToolTip": "D:\\Workspace\\CMU_CS445_System_Integration_Practices_Group2\\Backend\\DashBoard.API\\Properties\\launchSettings.json",
+              "RelativeToolTip": "DashBoard.API\\Properties\\launchSettings.json",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAAPAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2024-03-17T16:45:24.238Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\Workspace\\CMU_CS445_System_Integration_Practices_Group2\\Backend\\DashBoard.API\\Program.cs",
+              "RelativeDocumentMoniker": "DashBoard.API\\Program.cs",
+              "ToolTip": "D:\\Workspace\\CMU_CS445_System_Integration_Practices_Group2\\Backend\\DashBoard.API\\Program.cs",
+              "RelativeToolTip": "DashBoard.API\\Program.cs",
+              "ViewState": "AQIAAAkAAAAAAAAAAAAAACMAAABCAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-17T16:43:08.375Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "ServiceRepository.cs",
+              "DocumentMoniker": "D:\\Workspace\\CMU_CS445_System_Integration_Practices_Group2\\Backend\\DashBoard.API\\Repositories\\Implementation\\ServiceRepository.cs",
+              "RelativeDocumentMoniker": "DashBoard.API\\Repositories\\Implementation\\ServiceRepository.cs",
+              "ToolTip": "D:\\Workspace\\CMU_CS445_System_Integration_Practices_Group2\\Backend\\DashBoard.API\\Repositories\\Implementation\\ServiceRepository.cs",
+              "RelativeToolTip": "DashBoard.API\\Repositories\\Implementation\\ServiceRepository.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-17T16:41:05.458Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Program.cs",
-              "DocumentMoniker": "D:\\Workspace\\CMU_CS445_System_Integration_Practices_Group2\\Backend\\DashBoard.API\\Program.cs",
-              "RelativeDocumentMoniker": "DashBoard.API\\Program.cs",
-              "ToolTip": "D:\\Workspace\\CMU_CS445_System_Integration_Practices_Group2\\Backend\\DashBoard.API\\Program.cs",
-              "RelativeToolTip": "DashBoard.API\\Program.cs",
-              "ViewState": "AQIAAAQAAAAAAAAAAAAWwBYAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-09T18:45:16.018Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "IServiceRepository.cs",
-              "DocumentMoniker": "D:\\Workspace\\CMU_CS445_System_Integration_Practices_Group2\\Backend\\DashBoard.API\\Repositories\\Inteface\\IServiceRepository.cs",
-              "RelativeDocumentMoniker": "DashBoard.API\\Repositories\\Inteface\\IServiceRepository.cs",
-              "ToolTip": "D:\\Workspace\\CMU_CS445_System_Integration_Practices_Group2\\Backend\\DashBoard.API\\Repositories\\Inteface\\IServiceRepository.cs",
-              "RelativeToolTip": "DashBoard.API\\Repositories\\Inteface\\IServiceRepository.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-09T18:36:34.169Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "ServiceRepository.cs",
-              "DocumentMoniker": "D:\\Workspace\\CMU_CS445_System_Integration_Practices_Group2\\Backend\\DashBoard.API\\Repositories\\Implementation\\ServiceRepository.cs",
-              "RelativeDocumentMoniker": "DashBoard.API\\Repositories\\Implementation\\ServiceRepository.cs",
-              "ToolTip": "D:\\Workspace\\CMU_CS445_System_Integration_Practices_Group2\\Backend\\DashBoard.API\\Repositories\\Implementation\\ServiceRepository.cs",
-              "RelativeToolTip": "DashBoard.API\\Repositories\\Implementation\\ServiceRepository.cs",
-              "ViewState": "AQIAAAsAAAAAAAAAAAAAwBwAAABCAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-09T18:34:40.059Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 1,
+              "Title": "PayrollRepository.cs",
+              "DocumentMoniker": "D:\\Workspace\\CMU_CS445_System_Integration_Practices_Group2\\Backend\\DashBoard.API\\Repositories\\Implementation\\PayrollRepository.cs",
+              "RelativeDocumentMoniker": "DashBoard.API\\Repositories\\Implementation\\PayrollRepository.cs",
+              "ToolTip": "D:\\Workspace\\CMU_CS445_System_Integration_Practices_Group2\\Backend\\DashBoard.API\\Repositories\\Implementation\\PayrollRepository.cs",
+              "RelativeToolTip": "DashBoard.API\\Repositories\\Implementation\\PayrollRepository.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAQAAAA3AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-17T16:41:37.941Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "HRRepository.cs",
+              "DocumentMoniker": "D:\\Workspace\\CMU_CS445_System_Integration_Practices_Group2\\Backend\\DashBoard.API\\Repositories\\Implementation\\HRRepository.cs",
+              "RelativeDocumentMoniker": "DashBoard.API\\Repositories\\Implementation\\HRRepository.cs",
+              "ToolTip": "D:\\Workspace\\CMU_CS445_System_Integration_Practices_Group2\\Backend\\DashBoard.API\\Repositories\\Implementation\\HRRepository.cs",
+              "RelativeToolTip": "DashBoard.API\\Repositories\\Implementation\\HRRepository.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-17T16:41:26.483Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "IPayrollRepository.cs",
+              "DocumentMoniker": "D:\\Workspace\\CMU_CS445_System_Integration_Practices_Group2\\Backend\\DashBoard.API\\Repositories\\Inteface\\IPayrollRepository.cs",
+              "RelativeDocumentMoniker": "DashBoard.API\\Repositories\\Inteface\\IPayrollRepository.cs",
+              "ToolTip": "D:\\Workspace\\CMU_CS445_System_Integration_Practices_Group2\\Backend\\DashBoard.API\\Repositories\\Inteface\\IPayrollRepository.cs",
+              "RelativeToolTip": "DashBoard.API\\Repositories\\Inteface\\IPayrollRepository.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAYAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-17T16:41:01.878Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "IHRRepository.cs",
+              "DocumentMoniker": "D:\\Workspace\\CMU_CS445_System_Integration_Practices_Group2\\Backend\\DashBoard.API\\Repositories\\Inteface\\IHRRepository.cs",
+              "RelativeDocumentMoniker": "DashBoard.API\\Repositories\\Inteface\\IHRRepository.cs",
+              "ToolTip": "D:\\Workspace\\CMU_CS445_System_Integration_Practices_Group2\\Backend\\DashBoard.API\\Repositories\\Inteface\\IHRRepository.cs",
+              "RelativeToolTip": "DashBoard.API\\Repositories\\Inteface\\IHRRepository.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAYAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-17T16:40:11.082Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "PayrollController.cs",
+              "DocumentMoniker": "D:\\Workspace\\CMU_CS445_System_Integration_Practices_Group2\\Backend\\DashBoard.API\\Controllers\\PayrollController.cs",
+              "RelativeDocumentMoniker": "DashBoard.API\\Controllers\\PayrollController.cs",
+              "ToolTip": "D:\\Workspace\\CMU_CS445_System_Integration_Practices_Group2\\Backend\\DashBoard.API\\Controllers\\PayrollController.cs",
+              "RelativeToolTip": "DashBoard.API\\Controllers\\PayrollController.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-17T16:32:44.462Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "HRController.cs",
+              "DocumentMoniker": "D:\\Workspace\\CMU_CS445_System_Integration_Practices_Group2\\Backend\\DashBoard.API\\Controllers\\HRController.cs",
+              "RelativeDocumentMoniker": "DashBoard.API\\Controllers\\HRController.cs",
+              "ToolTip": "D:\\Workspace\\CMU_CS445_System_Integration_Practices_Group2\\Backend\\DashBoard.API\\Controllers\\HRController.cs",
+              "RelativeToolTip": "DashBoard.API\\Controllers\\HRController.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-17T16:30:14.346Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "Personal.cs",
+              "DocumentMoniker": "D:\\Workspace\\CMU_CS445_System_Integration_Practices_Group2\\Backend\\DashBoard.API\\Models\\Personal.cs",
+              "RelativeDocumentMoniker": "DashBoard.API\\Models\\Personal.cs",
+              "ToolTip": "D:\\Workspace\\CMU_CS445_System_Integration_Practices_Group2\\Backend\\DashBoard.API\\Models\\Personal.cs",
+              "RelativeToolTip": "DashBoard.API\\Models\\Personal.cs",
+              "ViewState": "AQIAACUAAAAAAAAAAADwvzkAAAAzAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-15T11:00:08.629Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "JobHistory.cs",
+              "DocumentMoniker": "D:\\Workspace\\CMU_CS445_System_Integration_Practices_Group2\\Backend\\DashBoard.API\\Models\\JobHistory.cs",
+              "RelativeDocumentMoniker": "DashBoard.API\\Models\\JobHistory.cs",
+              "ToolTip": "D:\\Workspace\\CMU_CS445_System_Integration_Practices_Group2\\Backend\\DashBoard.API\\Models\\JobHistory.cs",
+              "RelativeToolTip": "DashBoard.API\\Models\\JobHistory.cs",
+              "ViewState": "AQIAABkAAAAAAAAAAAAkwDEAAAAgAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-15T10:59:08.816Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
               "Title": "ServicesController.cs",
               "DocumentMoniker": "D:\\Workspace\\CMU_CS445_System_Integration_Practices_Group2\\Backend\\DashBoard.API\\Controllers\\ServicesController.cs",
               "RelativeDocumentMoniker": "DashBoard.API\\Controllers\\ServicesController.cs",
               "ToolTip": "D:\\Workspace\\CMU_CS445_System_Integration_Practices_Group2\\Backend\\DashBoard.API\\Controllers\\ServicesController.cs",
               "RelativeToolTip": "DashBoard.API\\Controllers\\ServicesController.cs",
-              "ViewState": "AQIAAAIAAAAAAAAAAAAuwB0AAAAfAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABMAAABEAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-03-09T18:21:59.312Z",
               "EditorCaption": ""
