@@ -3,8 +3,16 @@
   "WorkspaceRootPath": "D:\\Workspace\\CMU_CS445_System_Integration_Practices_Group2\\Backend\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{C712C63E-30BF-4280-A5BA-272340ED5412}|DashBoard.API\\DashBoard.API.csproj|d:\\workspace\\cmu_cs445_system_integration_practices_group2\\backend\\dashboard.api\\repositories\\implementation\\hrrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{C712C63E-30BF-4280-A5BA-272340ED5412}|DashBoard.API\\DashBoard.API.csproj|d:\\workspace\\cmu_cs445_system_integration_practices_group2\\backend\\dashboard.api\\migrations\\mysql\\20240325153147_v0.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C712C63E-30BF-4280-A5BA-272340ED5412}|DashBoard.API\\DashBoard.API.csproj|solutionrelative:dashboard.api\\migrations\\mysql\\20240325153147_v0.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C712C63E-30BF-4280-A5BA-272340ED5412}|DashBoard.API\\DashBoard.API.csproj|D:\\Workspace\\CMU_CS445_System_Integration_Practices_Group2\\Backend\\dashboard.api\\repositories\\implementation\\hrrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{C712C63E-30BF-4280-A5BA-272340ED5412}|DashBoard.API\\DashBoard.API.csproj|solutionrelative:dashboard.api\\repositories\\implementation\\hrrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C712C63E-30BF-4280-A5BA-272340ED5412}|DashBoard.API\\DashBoard.API.csproj|D:\\Workspace\\CMU_CS445_System_Integration_Practices_Group2\\Backend\\dashboard.api\\controllers\\payrollcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C712C63E-30BF-4280-A5BA-272340ED5412}|DashBoard.API\\DashBoard.API.csproj|solutionrelative:dashboard.api\\controllers\\payrollcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{C712C63E-30BF-4280-A5BA-272340ED5412}|DashBoard.API\\DashBoard.API.csproj|D:\\Workspace\\CMU_CS445_System_Integration_Practices_Group2\\Backend\\dashboard.api\\controllers\\hrcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -22,7 +30,7 @@
       "DocumentGroups": [
         {
           "DockedHeight": 280,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Bookmark",
@@ -30,7 +38,45 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "20240325153147_v0.cs",
+              "DocumentMoniker": "D:\\Workspace\\CMU_CS445_System_Integration_Practices_Group2\\Backend\\DashBoard.API\\Migrations\\Mysql\\20240325153147_v0.cs",
+              "RelativeDocumentMoniker": "DashBoard.API\\Migrations\\Mysql\\20240325153147_v0.cs",
+              "ToolTip": "D:\\Workspace\\CMU_CS445_System_Integration_Practices_Group2\\Backend\\DashBoard.API\\Migrations\\Mysql\\20240325153147_v0.cs",
+              "RelativeToolTip": "DashBoard.API\\Migrations\\Mysql\\20240325153147_v0.cs",
+              "ViewState": "AQIAAAgAAAAAAAAAAAAAwAwAAAAlAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-26T10:08:26.376Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "HRRepository.cs",
+              "DocumentMoniker": "D:\\Workspace\\CMU_CS445_System_Integration_Practices_Group2\\Backend\\DashBoard.API\\Repositories\\Implementation\\HRRepository.cs",
+              "RelativeDocumentMoniker": "DashBoard.API\\Repositories\\Implementation\\HRRepository.cs",
+              "ToolTip": "D:\\Workspace\\CMU_CS445_System_Integration_Practices_Group2\\Backend\\DashBoard.API\\Repositories\\Implementation\\HRRepository.cs",
+              "RelativeToolTip": "DashBoard.API\\Repositories\\Implementation\\HRRepository.cs",
+              "ViewState": "AQIAAEAAAAAAAAAAAAAnwE8AAAAwAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-26T10:04:32.734Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 2,
+              "Title": "PayrollController.cs",
+              "DocumentMoniker": "D:\\Workspace\\CMU_CS445_System_Integration_Practices_Group2\\Backend\\DashBoard.API\\Controllers\\PayrollController.cs",
+              "RelativeDocumentMoniker": "DashBoard.API\\Controllers\\PayrollController.cs",
+              "ToolTip": "D:\\Workspace\\CMU_CS445_System_Integration_Practices_Group2\\Backend\\DashBoard.API\\Controllers\\PayrollController.cs",
+              "RelativeToolTip": "DashBoard.API\\Controllers\\PayrollController.cs",
+              "ViewState": "AQIAABYAAAAAAAAAAAAQwCMAAABBAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-26T10:01:36.038Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
               "Title": "CreateEmployeeDto.cs",
               "DocumentMoniker": "D:\\Workspace\\CMU_CS445_System_Integration_Practices_Group2\\Backend\\DashBoard.API\\Models\\DTO\\CreateEmployeeDto.cs",
               "RelativeDocumentMoniker": "DashBoard.API\\Models\\DTO\\CreateEmployeeDto.cs",
@@ -42,26 +88,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "HRRepository.cs",
-              "DocumentMoniker": "D:\\Workspace\\CMU_CS445_System_Integration_Practices_Group2\\Backend\\DashBoard.API\\Repositories\\Implementation\\HRRepository.cs",
-              "RelativeDocumentMoniker": "DashBoard.API\\Repositories\\Implementation\\HRRepository.cs",
-              "ToolTip": "D:\\Workspace\\CMU_CS445_System_Integration_Practices_Group2\\Backend\\DashBoard.API\\Repositories\\Implementation\\HRRepository.cs",
-              "RelativeToolTip": "DashBoard.API\\Repositories\\Implementation\\HRRepository.cs",
-              "ViewState": "AQIAADcAAAAAAAAAAAAmwDIAAAAoAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-26T08:47:46.887Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
               "Title": "HRController.cs",
               "DocumentMoniker": "D:\\Workspace\\CMU_CS445_System_Integration_Practices_Group2\\Backend\\DashBoard.API\\Controllers\\HRController.cs",
               "RelativeDocumentMoniker": "DashBoard.API\\Controllers\\HRController.cs",
               "ToolTip": "D:\\Workspace\\CMU_CS445_System_Integration_Practices_Group2\\Backend\\DashBoard.API\\Controllers\\HRController.cs",
               "RelativeToolTip": "DashBoard.API\\Controllers\\HRController.cs",
-              "ViewState": "AQIAAAYAAAAAAAAAAAAAABEAAAAAAAAA",
+              "ViewState": "AQIAABMAAAAAAAAAAAAQwBEAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-03-26T08:47:15.911Z"
             }
