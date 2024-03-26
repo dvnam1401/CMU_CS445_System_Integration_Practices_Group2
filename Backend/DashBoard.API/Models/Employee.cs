@@ -44,5 +44,7 @@ namespace DashBoard.API.Models
         [ForeignKey(nameof(PayRatesIdPayRates))]
         [InverseProperty("Employees")]
         public virtual PayRate PayRatesIdPayRatesNavigation { get; set; }
+        public virtual Birthday Birthday { get; set; }
+        public virtual DetailVacation DetailVacation { get; set; }
     }
 }

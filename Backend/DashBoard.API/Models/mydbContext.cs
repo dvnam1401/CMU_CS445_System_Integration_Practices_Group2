@@ -17,6 +17,9 @@ namespace DashBoard.API.Models
         {
         }
 
+        public virtual DbSet<Birthday> Birthdays { get; set; }
+        public virtual DbSet<DetailVacation> DetailVacations { get; set; }
+        public virtual DbSet<Efmigrationshistory> Efmigrationshistories { get; set; }
         public virtual DbSet<Employee> Employees { get; set; }
         public virtual DbSet<PayRate> PayRates { get; set; }
 
@@ -31,6 +34,38 @@ namespace DashBoard.API.Models
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Birthday>(entity =>
+            {
+                entity.HasKey(e => e.EmployeeNumber)
+                    .HasName("PRIMARY");
+
+                entity.HasOne(d => d.EmployeeNumberNavigation)
+                    .WithOne(p => p.Birthday)
+                    .HasPrincipalKey<Employee>(p => p.EmployeeNumber)
+                    .HasForeignKey<Birthday>(d => d.EmployeeNumber)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("birthday_ibfk_1");
+            });
+
+            modelBuilder.Entity<DetailVacation>(entity =>
+            {
+                entity.HasKey(e => e.EmployeeNumber)
+                    .HasName("PRIMARY");
+
+                entity.HasOne(d => d.EmployeeNumberNavigation)
+                    .WithOne(p => p.DetailVacation)
+                    .HasPrincipalKey<Employee>(p => p.EmployeeNumber)
+                    .HasForeignKey<DetailVacation>(d => d.EmployeeNumber)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("detail vacation_ibfk_1");
+            });
+
+            modelBuilder.Entity<Efmigrationshistory>(entity =>
+            {
+                entity.HasKey(e => e.MigrationId)
+                    .HasName("PRIMARY");
+            });
+
             modelBuilder.Entity<Employee>(entity =>
             {
                 entity.HasKey(e => new { e.EmployeeNumber, e.PayRatesIdPayRates })

@@ -1,8 +1,9 @@
 dotnet ef dbcontext scaffold -o Models -f -d "Server=localhost;port=3306;database=mydb;user=root;password=12345" "MySql.EntityFrameworkCore"  --project DashBoard.API
 dotnet ef migrations add v0 --project DashBoard.API --context MysqlContext
-dotnet ef migrations list --project DashBoard.API --context MysqlContext 
-dotnet ef database update --project DashBoard.API --context MysqlContext
+dotnet ef migrations list --project DashBoard.API --context MysqlContext
 dotnet ef migrations script --output migrations_mysql.sql --project DashBoard.API --context MysqlContext
+dotnet ef database update --project DashBoard.API --context MysqlContext
+
 
 
 
@@ -15,3 +16,6 @@ dotnet ef migrations script --output migrations_sqlserver.sql --project DashBoar
 
 //dotnet ef migrations list --project DashBoard.API --context SqlServerContext
  //Add-Migration MyMigration -context MysqlContext
+
+//builder.Services.AddDbContextPool<MysqlContext>(
+//    o => o.UseSqlServer(builder.Configuration.GetConnectionString("MysqlContext")));
