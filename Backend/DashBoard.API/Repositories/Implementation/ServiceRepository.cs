@@ -33,37 +33,37 @@ namespace DashBoard.API.Repositories.Implementation
         {
             return await mysqlContext.Employees.ToListAsync();
         }
-        public async Task<IEnumerable<EmployeeSalaryDto>> GetEmployeeAllSalary()
-        {
-            var dataMysql = mysqlContext.Employees
-                .Select(e => new
-                {
-                    e.EmployeeNumber,
-                    e.LastName,
-                    e.FirstName,
-                    e.PayRatesIdPayRatesNavigation,
-                }).ToList();
-            var dataSqlServer = sqlServerContext.Personals
-                .Select(e => new
-                {
-                    EmployeeId = Convert.ToInt32(e.EmployeeId),
-                    e.ShareholderStatus,
-                    e.Gender,
-                    e.Ethnicity,
-                }).ToList();
-            var employeeResult = from e in dataMysql
-                                 join p in dataSqlServer on e.EmployeeNumber equals p.EmployeeId
-                                 select new EmployeeSalaryDto
-                                 {
-                                     ShareholderStatus = p.ShareholderStatus,
-                                     FullName = $"{e.LastName} {e.FirstName}",
-                                     Gender = p.Gender.HasValue,
-                                     Ethnicity = p.Ethnicity,
-                                     PayRateName = e.PayRatesIdPayRatesNavigation.PayRateName,
-                                     TotalIncome = 1,
-                                 };
-            return employeeResult;
-        }
+        //public async Task<IEnumerable<EmployeeSalaryDto>> GetEmployeeAllSalary()
+        //{
+        //    var dataMysql = mysqlContext.Employees
+        //        .Select(e => new
+        //        {
+        //            e.EmployeeNumber,
+        //            e.LastName,
+        //            e.FirstName,
+        //            e.PayRatesIdPayRatesNavigation,
+        //        }).ToList();
+        //    var dataSqlServer = sqlServerContext.Personals
+        //        .Select(e => new
+        //        {
+        //            EmployeeId = Convert.ToInt32(e.EmployeeId),
+        //            e.ShareholderStatus,
+        //            e.Gender,
+        //            e.Ethnicity,
+        //        }).ToList();
+        //    var employeeResult = from e in dataMysql
+        //                         join p in dataSqlServer on e.EmployeeNumber equals p.EmployeeId
+        //                         select new EmployeeSalaryDto
+        //                         {
+        //                             ShareholderStatus = p.ShareholderStatus,
+        //                             FullName = $"{e.LastName} {e.FirstName}",
+        //                             Gender = p.Gender.HasValue,
+        //                             Ethnicity = p.Ethnicity,
+        //                             //PayRateName = e.PayRatesIdPayRatesNavigation.PayRateName,
+        //                             TotalIncome = 1,
+        //                         };
+        //    return employeeResult;
+        //}
 
         public async Task<IEnumerable<EmployeeSalaryDto>> GetEmployeesByFilter(EmployeeFilterDto filter)
         {
@@ -73,6 +73,7 @@ namespace DashBoard.API.Repositories.Implementation
                     e.EmployeeNumber,
                     e.LastName,
                     e.FirstName,
+                    e.PaidToDate,
                     e.PayRatesIdPayRatesNavigation,
                 }).ToList();
             var dataSqlServer = sqlServerContext.Personals
@@ -92,20 +93,15 @@ namespace DashBoard.API.Repositories.Implementation
                                      FullName = $"{e.LastName} {e.FirstName}",
                                      Gender = p.Gender.HasValue,
                                      Ethnicity = p.Ethnicity,
-                                     PayRateName = e.PayRatesIdPayRatesNavigation.PayRateName,
-                                     JobHistories = new List<JobHistory>(p.JobHistories),
-                                     TotalIncome = 1,
+                                     Category = p.JobHistories != null ? p.JobHistories.FirstOrDefault(jb => jb.EmployeeId == p.EmployeeId)?.JobCategory : null,
+                                     JobHistories = p.JobHistories != null ? new List<JobHistory>(p.JobHistories) : new List<JobHistory>(),
+                                     TotalIncome = e.PaidToDate,
                                  };
-            //var filteredResult = employeeResult
-            //    .Where(e => !filter.Gender.HasValue || e.Gender == filter.Gender)
-            //    .Where(e => string.IsNullOrEmpty(filter.Ethnicity) || (e.Ethnicity != null && e.Ethnicity.Contains(filter.Ethnicity)))
-            //    .Where(e => string.IsNullOrEmpty(filter.Department) || e.JobHistories.Any(jh => jh.Department == filter.Department))
-            //    .Where(e => string.IsNullOrEmpty(filter.PayRateName) || e.PayRateName.Contains(filter.PayRateName)).ToList();
             var filteredResult = employeeResult
                 .Where(e => !filter.Gender.HasValue || e.Gender == filter.Gender)
                 .Where(e => string.IsNullOrEmpty(filter.Ethnicity) || filter.Ethnicity.ToLower() == "null" || (e.Ethnicity != null && e.Ethnicity.Contains(filter.Ethnicity)))
                 .Where(e => string.IsNullOrEmpty(filter.Department) || filter.Department.ToLower() == "null" || e.JobHistories.Any(jh => jh.Department == filter.Department))
-                .Where(e => string.IsNullOrEmpty(filter.PayRateName) || filter.PayRateName.ToLower() == "null" || e.PayRateName.Contains(filter.PayRateName));
+                .Where(e => string.IsNullOrEmpty(filter.Category) || filter.Category.ToLower() == "null" || (e.Category != null && e.Category.Contains(filter.Category)));
 
             if (filter.IsAscending is not null)
             {
@@ -117,38 +113,38 @@ namespace DashBoard.API.Repositories.Implementation
             }
             return filteredResult;
         }
-        public async Task<IEnumerable<EmployeeSalaryDto>> GetEmployeeSalaryByGender(bool Gender)
-        {
-            var dataMysql = mysqlContext.Employees
-                .Select(e => new
-                {
-                    e.EmployeeNumber,
-                    e.LastName,
-                    e.FirstName,
-                    e.PayRatesIdPayRatesNavigation,
-                }).ToList();
-            var dataSqlServer = sqlServerContext.Personals
-                .Where(p => p.Gender == Gender)
-                .Select(e => new
-                {
-                    EmployeeId = Convert.ToInt32(e.EmployeeId),
-                    e.ShareholderStatus,
-                    e.Gender,
-                    e.Ethnicity,
-                }).ToList();
-            var employeeResult = from e in dataMysql
-                                 join p in dataSqlServer on e.EmployeeNumber equals p.EmployeeId
-                                 select new EmployeeSalaryDto
-                                 {
-                                     ShareholderStatus = p.ShareholderStatus,
-                                     FullName = $"{e.LastName} {e.FirstName}",
-                                     //Gender = p.Gender,
-                                     Ethnicity = p.Ethnicity,
-                                     PayRateName = e.PayRatesIdPayRatesNavigation.PayRateName,
-                                     TotalIncome = 0,
-                                 };
-            return employeeResult;
-        }
+        //public async Task<IEnumerable<EmployeeSalaryDto>> GetEmployeeSalaryByGender(bool Gender)
+        //{
+        //    var dataMysql = mysqlContext.Employees
+        //        .Select(e => new
+        //        {
+        //            e.EmployeeNumber,
+        //            e.LastName,
+        //            e.FirstName,
+        //            e.PayRatesIdPayRatesNavigation,
+        //        }).ToList();
+        //    var dataSqlServer = sqlServerContext.Personals
+        //        .Where(p => p.Gender == Gender)
+        //        .Select(e => new
+        //        {
+        //            EmployeeId = Convert.ToInt32(e.EmployeeId),
+        //            e.ShareholderStatus,
+        //            e.Gender,
+        //            e.Ethnicity,
+        //        }).ToList();
+        //    var employeeResult = from e in dataMysql
+        //                         join p in dataSqlServer on e.EmployeeNumber equals p.EmployeeId
+        //                         select new EmployeeSalaryDto
+        //                         {
+        //                             ShareholderStatus = p.ShareholderStatus,
+        //                             FullName = $"{e.LastName} {e.FirstName}",
+        //                             //Gender = p.Gender,
+        //                             Ethnicity = p.Ethnicity,
+        //                             //PayRateName = e.PayRatesIdPayRatesNavigation.PayRateName,
+        //                             TotalIncome = 0,
+        //                         };
+        //    return employeeResult;
+        //}
         //public async Task<List<EmployeeSalaryDto>> GetEmployeesByFilter(EmployeeFilterDto filter)
         //{
         //    var queryMysql = mysqlContext.Employees.AsQueryable();
@@ -228,21 +224,21 @@ namespace DashBoard.API.Repositories.Implementation
         //    return employees;
         //}
 
-        public Task<IEnumerable<EmployeeSalaryDto>> GetEmployeeSalaryEthnicity(string ethnicity)
-        {
-            throw new NotImplementedException();
-        }
+        //public Task<IEnumerable<EmployeeSalaryDto>> GetEmployeeSalaryEthnicity(string ethnicity)
+        //{
+        //    throw new NotImplementedException();
+        //}
 
-        public Task<IEnumerable<EmployeeSalaryDto>> GetEmployeeSalaryByCategory(string category)
-        {
-            throw new NotImplementedException();
-        }
+        //public Task<IEnumerable<EmployeeSalaryDto>> GetEmployeeSalaryByCategory(string category)
+        //{
+        //    throw new NotImplementedException();
+        //}
 
-        public Task<IEnumerable<EmployeeSalaryDto>> GetEmployeeSalaryByDepartment(string department)
-        {
-            //var contextMysql = from e in dbMysqlContext.Employees
-            //                   join p in dbMysqlContext.Payrates on
-            throw new NotImplementedException();
-        }
+        //public Task<IEnumerable<EmployeeSalaryDto>> GetEmployeeSalaryByDepartment(string department)
+        //{
+        //    //var contextMysql = from e in dbMysqlContext.Employees
+        //    //                   join p in dbMysqlContext.Payrates on
+        //    throw new NotImplementedException();
+        //}
     }
 }

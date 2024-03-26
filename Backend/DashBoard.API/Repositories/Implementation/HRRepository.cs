@@ -37,12 +37,16 @@ namespace DashBoard.API.Repositories.Implementation
             return createEmployeeDto;
         }
 
+        private int GetAllIdEmployee()
+        {
+            return mysqlContext.Employees.Max(e => e.EmployeeNumber);
+        }
         private Employee CreateEmployeeObject(CreateEmployeeDto dto)
         {
             return new Employee
             {
-                IdEmployee = dto.IdEmployee,
-                EmployeeNumber = dto.EmployeeNumber,
+                IdEmployee = GetAllIdEmployee() + 1,
+                EmployeeNumber = GetAllIdEmployee() + 1,
                 FirstName = dto.FirstName,
                 LastName = dto.LastName,
                 Ssn = dto.Ssn,
@@ -55,7 +59,7 @@ namespace DashBoard.API.Repositories.Implementation
             return new Birthday
             {
                 Dateofbirthday = dto.Dateofbirthday,
-                EmployeeNumber = dto.EmployeeNumber,
+                EmployeeNumber = GetAllIdEmployee() + 1,
             };
         }
 
@@ -63,7 +67,7 @@ namespace DashBoard.API.Repositories.Implementation
         {
             return new Personal
             {
-                EmployeeId = dto.EmployeeNumber,
+                EmployeeId = GetAllIdEmployee() + 1,
                 FirstName = dto.FirstName,
                 LastName = dto.LastName,
                 PhoneNumber = dto.PhoneNumber,
@@ -71,7 +75,7 @@ namespace DashBoard.API.Repositories.Implementation
                 Email = dto.Email,
                 Address1 = dto.Address1
             };
-        }    
+        }
 
         public async Task<HRUpdateEmployeeDto?> UpdateEmployeeAsync(HRUpdateEmployeeDto updateEmployeeDto)
         {
@@ -118,7 +122,6 @@ namespace DashBoard.API.Repositories.Implementation
                 await sqlServerContext.SaveChangesAsync();
             }
         }
-
     }
 }
 

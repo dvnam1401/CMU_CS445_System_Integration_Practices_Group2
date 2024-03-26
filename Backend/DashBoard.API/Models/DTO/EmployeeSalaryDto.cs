@@ -5,11 +5,11 @@
         public bool? ShareholderStatus { get; set; }
         public string? FullName { get; set; }
         public bool? Gender { get; set; }
-        public string? PayRateName { get; set; } // category
+        public string? Category { get; set; } // category
 
         public string? Ethnicity { get; set; }
         public List<JobHistory> JobHistories { get; set; }
 
-        public decimal TotalIncome { get; set; }
+        public decimal? TotalIncome { get; set; }
     }
 }
