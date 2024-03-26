@@ -84,7 +84,18 @@ namespace DashBoard.API.Repositories.Implementation
                     e.Gender,
                     e.Ethnicity,
                     e.JobHistories,
+                    StartDate = e.JobHistories.Where(jb => jb.EmployeeId == e.EmployeeId).Select(jb => jb.StartDate),
+                    EndDate = e.JobHistories.Where(jb => jb.EmployeeId == e.EmployeeId).Select(jb => jb.EndDate),
+
                 }).ToList();
+            if (filter.Year.HasValue && filter.Month.HasValue)
+            {
+                var years = dataSqlServer.Where(e => e.EndDate.Any(date => date.HasValue)).Select(e => e.EndDate.Select(date => date.Value.Year));
+                var month = dataSqlServer.Where(e => e.EndDate.Any(date => date.HasValue)).Select(e => e.EndDate.Select(date => date.Value.Month));
+                dataSqlServer = dataSqlServer.Where(p => p.JobHistories.Any(jb =>
+                    (jb.EndDate.HasValue && jb.EndDate.Value.Year == filter.Year.Value && jb.EndDate.Value.Month == filter.Month.Value)
+                    )).ToList();
+            }
             var employeeResult = from e in dataMysql
                                  join p in dataSqlServer on e.EmployeeNumber equals p.EmployeeId
                                  select new EmployeeSalaryDto
@@ -97,6 +108,7 @@ namespace DashBoard.API.Repositories.Implementation
                                      JobHistories = p.JobHistories != null ? new List<JobHistory>(p.JobHistories) : new List<JobHistory>(),
                                      TotalIncome = e.PaidToDate,
                                  };
+
             var filteredResult = employeeResult
                 .Where(e => !filter.Gender.HasValue || e.Gender == filter.Gender)
                 .Where(e => string.IsNullOrEmpty(filter.Ethnicity) || filter.Ethnicity.ToLower() == "null" || (e.Ethnicity != null && e.Ethnicity.Contains(filter.Ethnicity)))

@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DashBoard.API.Migrations.Mysql
 {
     [DbContext(typeof(MysqlContext))]
-    [Migration("20240325153147_v0")]
+    [Migration("20240325132330_v0")]
     partial class v0
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -21,35 +21,66 @@ namespace DashBoard.API.Migrations.Mysql
 
             modelBuilder.Entity("DashBoard.API.Models.Birthday", b =>
                 {
-                    b.Property<int>("EmployeeNumber")
-                        .HasColumnType("int unsigned")
-                        .HasColumnName("employeeNumber");
+                    b.Property<int>("Idbirthday")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasColumnName("idbirthday");
 
                     b.Property<DateTime?>("Dateofbirthday")
                         .HasColumnType("date")
                         .HasColumnName("dateofbirthday");
 
-                    b.HasKey("EmployeeNumber");
+                    b.Property<int>("EmployeeNumber")
+                        .HasColumnType("int unsigned")
+                        .HasColumnName("employeeNumber");
+
+                    b.Property<int?>("EmployeeNumberNavigationEmployeeNumber")
+                        .HasColumnType("int unsigned");
+
+                    b.Property<int?>("EmployeeNumberNavigationPayRatesIdPayRates")
+                        .HasColumnType("int");
+
+                    b.HasKey("Idbirthday");
+
+                    b.HasIndex("EmployeeNumberNavigationEmployeeNumber", "EmployeeNumberNavigationPayRatesIdPayRates");
+
+                    b.HasIndex(new[] { "EmployeeNumber" }, "employeeNumber");
 
                     b.ToTable("birthday");
                 });
 
             modelBuilder.Entity("DashBoard.API.Models.DetailVacation", b =>
                 {
-                    b.Property<int>("EmployeeNumber")
-                        .HasColumnType("int unsigned")
-                        .HasColumnName("employeeNumber");
+                    b.Property<int>("Idvacation")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasColumnName("idvacation");
 
                     b.Property<DateTime?>("Dayoff")
                         .HasColumnType("date")
                         .HasColumnName("dayoff");
+
+                    b.Property<int>("EmployeeNumber")
+                        .HasColumnType("int unsigned")
+                        .HasColumnName("employeeNumber");
+
+                    b.Property<int?>("EmployeeNumberNavigationEmployeeNumber")
+                        .HasColumnType("int unsigned");
+
+                    b.Property<int?>("EmployeeNumberNavigationPayRatesIdPayRates")
+                        .HasColumnType("int");
 
                     b.Property<string>("ResignationContent")
                         .HasMaxLength(500)
                         .HasColumnType("varchar(500)")
                         .HasColumnName("resignation content");
 
-                    b.HasKey("EmployeeNumber");
+                    b.HasKey("Idvacation");
+
+                    b.HasIndex("EmployeeNumberNavigationEmployeeNumber", "EmployeeNumberNavigationPayRatesIdPayRates");
+
+                    b.HasIndex(new[] { "EmployeeNumber" }, "employeeNumber")
+                        .HasDatabaseName("employeeNumber1");
 
                     b.ToTable("detail vacation");
                 });
@@ -57,9 +88,12 @@ namespace DashBoard.API.Migrations.Mysql
             modelBuilder.Entity("DashBoard.API.Models.Employee", b =>
                 {
                     b.Property<int>("EmployeeNumber")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("int unsigned")
                         .HasColumnName("Employee Number");
+
+                    b.Property<int>("PayRatesIdPayRates")
+                        .HasColumnType("int")
+                        .HasColumnName("Pay Rates_idPay Rates");
 
                     b.Property<string>("FirstName")
                         .IsRequired()
@@ -90,10 +124,6 @@ namespace DashBoard.API.Migrations.Mysql
                         .HasColumnType("varchar(40)")
                         .HasColumnName("Pay Rate");
 
-                    b.Property<int>("PayRatesIdPayRates")
-                        .HasColumnType("int")
-                        .HasColumnName("Pay Rates_idPay Rates");
-
                     b.Property<decimal>("Ssn")
                         .HasColumnType("decimal(10,0)")
                         .HasColumnName("SSN");
@@ -102,7 +132,7 @@ namespace DashBoard.API.Migrations.Mysql
                         .HasColumnType("int")
                         .HasColumnName("Vacation Days");
 
-                    b.HasKey("EmployeeNumber");
+                    b.HasKey("EmployeeNumber", "PayRatesIdPayRates");
 
                     b.HasIndex(new[] { "EmployeeNumber" }, "Employee Number_UNIQUE")
                         .IsUnique();
@@ -152,10 +182,8 @@ namespace DashBoard.API.Migrations.Mysql
             modelBuilder.Entity("DashBoard.API.Models.Birthday", b =>
                 {
                     b.HasOne("DashBoard.API.Models.Employee", "EmployeeNumberNavigation")
-                        .WithOne("Birthday")
-                        .HasForeignKey("DashBoard.API.Models.Birthday", "EmployeeNumber")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .WithMany("Birthdays")
+                        .HasForeignKey("EmployeeNumberNavigationEmployeeNumber", "EmployeeNumberNavigationPayRatesIdPayRates");
 
                     b.Navigation("EmployeeNumberNavigation");
                 });
@@ -163,10 +191,8 @@ namespace DashBoard.API.Migrations.Mysql
             modelBuilder.Entity("DashBoard.API.Models.DetailVacation", b =>
                 {
                     b.HasOne("DashBoard.API.Models.Employee", "EmployeeNumberNavigation")
-                        .WithOne("DetailVacation")
-                        .HasForeignKey("DashBoard.API.Models.DetailVacation", "EmployeeNumber")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .WithMany("DetailVacations")
+                        .HasForeignKey("EmployeeNumberNavigationEmployeeNumber", "EmployeeNumberNavigationPayRatesIdPayRates");
 
                     b.Navigation("EmployeeNumberNavigation");
                 });
@@ -184,9 +210,9 @@ namespace DashBoard.API.Migrations.Mysql
 
             modelBuilder.Entity("DashBoard.API.Models.Employee", b =>
                 {
-                    b.Navigation("Birthday");
+                    b.Navigation("Birthdays");
 
-                    b.Navigation("DetailVacation");
+                    b.Navigation("DetailVacations");
                 });
 
             modelBuilder.Entity("DashBoard.API.Models.PayRate", b =>
