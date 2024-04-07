@@ -1,9 +1,11 @@
-﻿namespace DashBoard.API.Models.DTO
+﻿using DashBoard.API.Models.Inteface;
+
+namespace DashBoard.API.Models.DTO
 {
-    public class CreateEmployeeDto
+    public class CreateEmployeeDto : EmployeeDtoBase
     {
-        public int IdEmployee { get; set; }
-        public int EmployeeNumber { get; set; }
+        //public int IdEmployee { get; set; }
+        //public int EmployeeNumber { get; set; }
         public string LastName { get; set; }
         public string FirstName { get; set; }
         public DateTime? Dateofbirthday { get; set; }

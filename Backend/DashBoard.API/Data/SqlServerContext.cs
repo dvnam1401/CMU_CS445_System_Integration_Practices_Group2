@@ -1,4 +1,4 @@
-﻿using DashBoard.API.Models;
+﻿using DashBoard.API.Models.Domain;
 using Microsoft.EntityFrameworkCore;
 
 namespace DashBoard.API.Data

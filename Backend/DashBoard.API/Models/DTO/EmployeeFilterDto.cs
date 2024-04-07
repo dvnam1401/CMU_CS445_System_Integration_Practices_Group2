@@ -6,7 +6,7 @@
         public bool? Gender { get; set; }
         public string? Category { get; set; } // category: partime or fulltime
         public string? Ethnicity { get; set; }
-        public string? Department { get; set; }
+        public string? Department { get; set; } // phong ban
         public int? Year { get; set; }
         public int? Month { get; set; }
     }

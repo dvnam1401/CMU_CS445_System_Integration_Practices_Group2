@@ -17,10 +17,10 @@ namespace DashBoard.API.Controllers
         }
 
         [HttpGet]
-        [Route("{id:int}")]
-        public async Task<IActionResult> GetById([FromRoute] int id)
+        [Route("{id}")]
+        public async Task<IActionResult> GetById([FromRoute] uint id)
         {
-            var existing = await serviceRepository.GetById(id);
+            var existing = await serviceRepository.GetBenefitPlanById(id);
             if (existing == null)
             {
                 return NotFound();
@@ -42,27 +42,13 @@ namespace DashBoard.API.Controllers
             return Ok(result);
         }
 
-        //[HttpGet("GetAllSalary")]
-        //public async Task<IActionResult> GetEmployeeAllSalary()
-        //{
-        //    var result = await serviceRepository.GetEmployeeAllSalary();
-        //    return Ok(result);
-        //}
-
-        //[HttpGet] //
-        //[Route("{gender}")]
-        //public async Task<IActionResult> GetEmployeeSalaryByGender([FromRoute] bool gender)
-        //{
-        //    var result = await serviceRepository.GetEmployeeSalaryByGender(gender);
-        //    return Ok(result);
-        //}
-        [HttpPost("filter")]
+        [HttpPost("filter/employees")]
         //[Route("{filter}")]
-        public async Task<ActionResult<IEnumerable<EmployeeSalaryDto>>> GetEmployees([FromBody] EmployeeFilterDto filter)
+        public async Task<ActionResult<IEnumerable<EmployeeSalaryDto>>> GetEmployeeSalary([FromBody] EmployeeFilterDto filter)
         {
             try
             {
-                var employees = await serviceRepository.GetEmployeesByFilter(filter);
+                var employees = await serviceRepository.GetEmployeesSalary(filter);
                 return Ok(employees);
             }
             catch (Exception ex)
@@ -70,6 +56,30 @@ namespace DashBoard.API.Controllers
                 // Xử lý lỗi
                 return StatusCode(500, ex.Message);
             }
+        }
+
+        [HttpPost("filter/number-vacation-days")]
+        public async Task<ActionResult<IEnumerable<NumberOfVacationDay>>> GetNumberVacationDay([FromBody] EmployeeFilterDto filter)
+        {
+            try
+            {
+                var employees = await serviceRepository.GetNumberOfVacationDays(filter);
+                return Ok(employees);
+            }
+            catch (Exception ex)
+            {
+                // Xử lý lỗi
+                return StatusCode(500, ex.Message);
+            }
+        }
+
+        [HttpGet("GetEmployeeAnniversary")]
+        //[Route("{daysLimit}")]
+
+        public async Task<ActionResult<IEnumerable<EmployeeAnniversaryDto>>> GetEmployeeAnniversary([FromQuery] int daysLimit)
+        {
+            var result = await serviceRepository.GetEmployeesAnniversaryInfo(daysLimit);
+            return Ok(result);
         }
     }
 }

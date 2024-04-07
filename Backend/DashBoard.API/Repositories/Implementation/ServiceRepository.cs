@@ -1,256 +1,209 @@
 ﻿using DashBoard.API.Data;
-using DashBoard.API.Models;
+using DashBoard.API.Models.Domain;
 using DashBoard.API.Models.DTO;
+using DashBoard.API.Models.Inteface;
 using DashBoard.API.Repositories.Inteface;
+using Microsoft.AspNetCore.Components.RenderTree;
 using Microsoft.EntityFrameworkCore;
+using Org.BouncyCastle.Pqc.Crypto.Lms;
+using System.ComponentModel;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace DashBoard.API.Repositories.Implementation
 {
     public class ServiceRepository : IServiceRepository
     {
-        private readonly SqlServerContext? sqlServerContext;
 
-        private readonly MysqlContext? mysqlContext;
+        private readonly IMysqlDataRepository mysqlDataRepository;
+        private readonly ISqlDataRepository sqlDataRepository;
 
-        public ServiceRepository(SqlServerContext? sqlServerContext, MysqlContext? mysqlContext)
+        public ServiceRepository(IMysqlDataRepository mysqlDataRepository, ISqlDataRepository sqlDataRepository)
         {
-            this.sqlServerContext = sqlServerContext;
-            this.mysqlContext = mysqlContext;
+
+            this.mysqlDataRepository = mysqlDataRepository;
+            this.sqlDataRepository = sqlDataRepository;
+        }
+        public Task<BenefitPlan?> GetBenefitPlanById(uint benefit)
+        {
+            return sqlDataRepository.GetBenefitPlanById(benefit);
         }
 
-        public async Task<IEnumerable<BenefitPlan?>> GetByAll()
+        public Task<IEnumerable<BenefitPlan?>> GetByAll()
         {
-            return await sqlServerContext.BenefitPlans.ToListAsync();
+            return sqlDataRepository.GetByAll();
         }
 
-        public async Task<BenefitPlan?> GetById(int benefit)
+        public Task<IEnumerable<Employee?>> GetByAllEmployee()
         {
-            return await sqlServerContext.BenefitPlans.FirstOrDefaultAsync(x => x.BenefitPlanId == benefit);
+            return mysqlDataRepository.GetByAllEmployee();
         }
 
-        public async Task<IEnumerable<Employee?>> GetByAllEmployee()
+        // lọc lịch sử làm việc của nhân viên dựa vào endate
+        private List<EmployeeSqlServerDto> FilterJobHistorySqlServe(List<EmployeeSqlServerDto> data, EmployeeFilterDto filter)
         {
-            return await mysqlContext.Employees.ToListAsync();
+            var query = data.Where(p => p.JobHistories.Any(jb =>
+                jb.EndDate.HasValue &&
+               ((!filter.Year.HasValue || jb.EndDate.Value.Year == filter.Year.Value) && // Kiểm tra năm nếu có
+               (!filter.Month.HasValue || jb.EndDate.Value.Month == filter.Month.Value)))) // Kiểm tra tháng nếu có
+               .ToList();
+            return query;
         }
-        //public async Task<IEnumerable<EmployeeSalaryDto>> GetEmployeeAllSalary()
-        //{
-        //    var dataMysql = mysqlContext.Employees
-        //        .Select(e => new
-        //        {
-        //            e.EmployeeNumber,
-        //            e.LastName,
-        //            e.FirstName,
-        //            e.PayRatesIdPayRatesNavigation,
-        //        }).ToList();
-        //    var dataSqlServer = sqlServerContext.Personals
-        //        .Select(e => new
-        //        {
-        //            EmployeeId = Convert.ToInt32(e.EmployeeId),
-        //            e.ShareholderStatus,
-        //            e.Gender,
-        //            e.Ethnicity,
-        //        }).ToList();
-        //    var employeeResult = from e in dataMysql
-        //                         join p in dataSqlServer on e.EmployeeNumber equals p.EmployeeId
-        //                         select new EmployeeSalaryDto
-        //                         {
-        //                             ShareholderStatus = p.ShareholderStatus,
-        //                             FullName = $"{e.LastName} {e.FirstName}",
-        //                             Gender = p.Gender.HasValue,
-        //                             Ethnicity = p.Ethnicity,
-        //                             //PayRateName = e.PayRatesIdPayRatesNavigation.PayRateName,
-        //                             TotalIncome = 1,
-        //                         };
-        //    return employeeResult;
-        //}
 
-        public async Task<IEnumerable<EmployeeSalaryDto>> GetEmployeesByFilter(EmployeeFilterDto filter)
+        // lọc nhân viên theo giới tính, chức vụ,...
+        private IEnumerable<T> FilterEmployees<T>(IEnumerable<T> employees, EmployeeFilterDto filter) where T : IEmployeeData
         {
-            var dataMysql = mysqlContext.Employees
-                .Select(e => new
-                {
-                    e.EmployeeNumber,
-                    e.LastName,
-                    e.FirstName,
-                    e.PaidToDate,
-                    e.PayRatesIdPayRatesNavigation,
-                }).ToList();
-            var dataSqlServer = sqlServerContext.Personals
-                .Select(e => new
-                {
-                    EmployeeId = Convert.ToInt32(e.EmployeeId),
-                    e.ShareholderStatus,
-                    e.Gender,
-                    e.Ethnicity,
-                    e.JobHistories,
-                    StartDate = e.JobHistories.Where(jb => jb.EmployeeId == e.EmployeeId).Select(jb => jb.StartDate),
-                    EndDate = e.JobHistories.Where(jb => jb.EmployeeId == e.EmployeeId).Select(jb => jb.EndDate),
-
-                }).ToList();
-            if (filter.Year.HasValue && filter.Month.HasValue)
-            {
-                var years = dataSqlServer.Where(e => e.EndDate.Any(date => date.HasValue)).Select(e => e.EndDate.Select(date => date.Value.Year));
-                var month = dataSqlServer.Where(e => e.EndDate.Any(date => date.HasValue)).Select(e => e.EndDate.Select(date => date.Value.Month));
-                dataSqlServer = dataSqlServer.Where(p => p.JobHistories.Any(jb =>
-                    (jb.EndDate.HasValue && jb.EndDate.Value.Year == filter.Year.Value && jb.EndDate.Value.Month == filter.Month.Value)
-                    )).ToList();
-            }
-            var employeeResult = from e in dataMysql
-                                 join p in dataSqlServer on e.EmployeeNumber equals p.EmployeeId
-                                 select new EmployeeSalaryDto
-                                 {
-                                     ShareholderStatus = p.ShareholderStatus,
-                                     FullName = $"{e.LastName} {e.FirstName}",
-                                     Gender = p.Gender.HasValue,
-                                     Ethnicity = p.Ethnicity,
-                                     Category = p.JobHistories != null ? p.JobHistories.FirstOrDefault(jb => jb.EmployeeId == p.EmployeeId)?.JobCategory : null,
-                                     JobHistories = p.JobHistories != null ? new List<JobHistory>(p.JobHistories) : new List<JobHistory>(),
-                                     TotalIncome = e.PaidToDate,
-                                 };
-
-            var filteredResult = employeeResult
+            return employees
                 .Where(e => !filter.Gender.HasValue || e.Gender == filter.Gender)
                 .Where(e => string.IsNullOrEmpty(filter.Ethnicity) || filter.Ethnicity.ToLower() == "null" || (e.Ethnicity != null && e.Ethnicity.Contains(filter.Ethnicity)))
                 .Where(e => string.IsNullOrEmpty(filter.Department) || filter.Department.ToLower() == "null" || e.JobHistories.Any(jh => jh.Department == filter.Department))
                 .Where(e => string.IsNullOrEmpty(filter.Category) || filter.Category.ToLower() == "null" || (e.Category != null && e.Category.Contains(filter.Category)));
-
-            if (filter.IsAscending is not null)
-            {
-                IEnumerable<EmployeeSalaryDto> sortedFilteredResult;
-                sortedFilteredResult = (bool)filter.IsAscending ?
-                    filteredResult.OrderBy(e => e.FullName) :
-                    filteredResult.OrderByDescending(e => e.FullName);
-                return sortedFilteredResult;
-            }
-            return filteredResult;
         }
-        //public async Task<IEnumerable<EmployeeSalaryDto>> GetEmployeeSalaryByGender(bool Gender)
-        //{
-        //    var dataMysql = mysqlContext.Employees
-        //        .Select(e => new
-        //        {
-        //            e.EmployeeNumber,
-        //            e.LastName,
-        //            e.FirstName,
-        //            e.PayRatesIdPayRatesNavigation,
-        //        }).ToList();
-        //    var dataSqlServer = sqlServerContext.Personals
-        //        .Where(p => p.Gender == Gender)
-        //        .Select(e => new
-        //        {
-        //            EmployeeId = Convert.ToInt32(e.EmployeeId),
-        //            e.ShareholderStatus,
-        //            e.Gender,
-        //            e.Ethnicity,
-        //        }).ToList();
-        //    var employeeResult = from e in dataMysql
-        //                         join p in dataSqlServer on e.EmployeeNumber equals p.EmployeeId
-        //                         select new EmployeeSalaryDto
-        //                         {
-        //                             ShareholderStatus = p.ShareholderStatus,
-        //                             FullName = $"{e.LastName} {e.FirstName}",
-        //                             //Gender = p.Gender,
-        //                             Ethnicity = p.Ethnicity,
-        //                             //PayRateName = e.PayRatesIdPayRatesNavigation.PayRateName,
-        //                             TotalIncome = 0,
-        //                         };
-        //    return employeeResult;
-        //}
-        //public async Task<List<EmployeeSalaryDto>> GetEmployeesByFilter(EmployeeFilterDto filter)
-        //{
-        //    var queryMysql = mysqlContext.Employees.AsQueryable();
-        //    var querySql = sqlServerContext.Personals.AsQueryable();
 
-        //    // Giả định có trường ShareholderStatus trong đối tượng Employee
-        //    if (filter.ShareholderStatus.HasValue)
-        //    {
-        //        querySql = querySql.Where(x => x.ShareholderStatus == filter.ShareholderStatus);
-        //    }
+        private IEnumerable<T> ApplySorting<T>(IEnumerable<T> filteredResult, bool? isAscending) where T : IEmployeeData
+        {
+            return isAscending.HasValue
+                ? isAscending == true
+                    ? filteredResult.OrderBy(e => e.FullName)
+                    : filteredResult.OrderByDescending(e => e.FullName)
+                : filteredResult;
+        }
 
-        //    // Sắp xếp
-        //    if (!string.IsNullOrEmpty(filter.FullName))
-        //    {
-        //        // Sắp xếp tăng dần theo FullName
-        //        if (filter.SortOrder.ToLower() == "asc")
-        //        {
-        //            querySql = querySql.OrderBy(x => x.FirstName).ThenBy(x => x.LastName);
-        //        }
-        //        // Sắp xếp giảm dần theo FullName
-        //        else if (filter.SortOrder.ToLower() == "desc")
-        //        {
-        //            querySql = querySql.OrderByDescending(x => x.FirstName).ThenByDescending(x => x.LastName);
-        //        }
-        //    }
+        public async Task<IEnumerable<NumberOfVacationDay>> GetNumberOfVacationDays(EmployeeFilterDto filter)
+        {
 
-        //    // Giả định có trường Gender dưới dạng bool trong đối tượng Employee
-        //    if (filter.Gender)
-        //    {
-        //        querySql = querySql.Where(x => x.Gender != null && x.Gender == filter.Gender);
-        //    }
+            // Khởi tạo tác vụ để lấy dữ liệu nhân viên và kỳ nghỉ
+            var employeeTask = mysqlDataRepository.FetchMysqlEmployeeDataAsync();
+            var vacationTask = mysqlDataRepository.FeatchMysqlDetailVacationAsync();
 
-        //    if (!string.IsNullOrEmpty(filter.PayRateName))
-        //    {
-        //        queryMysql = queryMysql.Where(x => x.PayRatesIdPayRatesNavigation.PayRateName == filter.PayRateName);
-        //    }
+            // Đợi cho cả hai tác vụ hoàn thành
+            await Task.WhenAll(employeeTask, vacationTask);
 
-        //    // Xử lý cho Ethnicity và Department (điều chỉnh lại nếu có sai sót do không thấy rõ định nghĩa của model)
-        //    if (!string.IsNullOrEmpty(filter.Ethnicity))
-        //    {
-        //        // Giả định có trường Ethnicity trong đối tượng Employee
-        //        querySql = querySql.Where(x => x.Ethnicity == filter.Ethnicity);
-        //    }
-
-        //    if (!string.IsNullOrEmpty(filter.Department))
-        //    {
-        //        // Giả định có trường Department trong đối tượng Employee
-        //        querySql = querySql.Where(x => x.JobHistories.Any(j => j.Department == filter.Department));
-        //    }
-
-        //    var mysqlEmployees = await queryMysql.Select(x => new
-        //    {
-        //        x.EmployeeNumber,
-        //        x.LastName,
-        //        x.FirstName,
-        //        x.PayRatesIdPayRatesNavigation.PayRateName,
-        //    }).ToListAsync();
-
-        //    var sqlServerPersonals = await querySql.Select(x => new
-        //    {
-        //        x.EmployeeId,
-        //        x.ShareholderStatus,
-        //        x.Gender,
-        //        x.Ethnicity,
-        //    }).ToListAsync();
+            // Lấy kết quả từ các tác vụ
+            var employees = await employeeTask;
+            var vacations = await vacationTask;
 
 
-        //    var employees = mysqlEmployees.Select(e => new EmployeeSalaryDto
-        //    {
-        //        FullName = $"{e.LastName} {e.FirstName}",
-        //        PayRateName = e.PayRateName,
-        //        ShareholderStatus = sqlServerPersonals.FirstOrDefault(p => p.EmployeeId == e.EmployeeNumber)?.ShareholderStatus ?? false,
-        //        Gender = sqlServerPersonals.FirstOrDefault(p => p.EmployeeId == e.EmployeeNumber)?.Gender ?? false,
-        //        Ethnicity = sqlServerPersonals.FirstOrDefault(p => p.EmployeeId == e.EmployeeNumber)?.Ethnicity
-        //    }).ToList();
+            // Gọi phương thức kết hợp dữ liệu và tiếp tục xử lý
+            var dataSqlServerTask = sqlDataRepository.FetchSqlServerData();
 
-        //    return employees;
-        //}
+            // Khi đến đây, cả hai tác vụ đều đã hoàn thành
+            var dataMysql = mysqlDataRepository.FeatchMysql(employees, vacations);
+            var dataSqlServer = await dataSqlServerTask;
 
-        //public Task<IEnumerable<EmployeeSalaryDto>> GetEmployeeSalaryEthnicity(string ethnicity)
-        //{
-        //    throw new NotImplementedException();
-        //}
+            if (filter.Year.HasValue || filter.Month.HasValue)
+            {
+                dataMysql = mysqlDataRepository.FilterEmployeeDataByVacation(dataMysql, filter);
+            }
+            // Tính toán tổng số ngày nghỉ phép của mỗi nhân viên
+            //var totalDaysOffDictionary = CalculateTotalDaysOff(dataMysql);
 
-        //public Task<IEnumerable<EmployeeSalaryDto>> GetEmployeeSalaryByCategory(string category)
-        //{
-        //    throw new NotImplementedException();
-        //}
+            // Tiếp tục xử lý với dữ liệu đã được tải
+            var employeeResult = JoinAndTransformDataForVacationDays(dataMysql, dataSqlServer);
+            var filteredResult = FilterEmployees<NumberOfVacationDay>(employeeResult, filter);
+            return ApplySorting<NumberOfVacationDay>(filteredResult, filter.IsAscending);
+        }
 
-        //public Task<IEnumerable<EmployeeSalaryDto>> GetEmployeeSalaryByDepartment(string department)
-        //{
-        //    //var contextMysql = from e in dbMysqlContext.Employees
-        //    //                   join p in dbMysqlContext.Payrates on
-        //    throw new NotImplementedException();
-        //}
+        private IEnumerable<NumberOfVacationDay> JoinAndTransformDataForVacationDays(IEnumerable<EmployeeMysqlDto> dataMysql, IEnumerable<EmployeeSqlServerDto> dataSqlServer)
+        {
+            return from e in dataMysql
+                   join p in dataSqlServer on e.EmployeeNumber equals p.EmployeeId
+                   select new NumberOfVacationDay
+                   {
+                       ShareholderStatus = p.ShareholderStatus,
+                       FullName = $"{e.LastName} {e.FirstName}",
+                       Gender = p.Gender.HasValue,
+                       Ethnicity = p.Ethnicity,
+                       Category = p.JobHistories?.FirstOrDefault(jh => jh.EmployeeId == p.EmployeeId)?.JobCategory,
+                       JobHistories = p.JobHistories != null ? new List<JobHistory>(p.JobHistories) : new List<JobHistory>(),
+                       Vacations = e.Vacations,
+                       TotalDaysOff = e.TotalVacationsCount,
+                   };
+        }
+        public async Task<IEnumerable<EmployeeSalaryDto>> GetEmployeesSalary(EmployeeFilterDto filter)
+        {
+            // Khởi tạo tác vụ để lấy dữ liệu nhân viên và kỳ nghỉ
+            var employeeTask = mysqlDataRepository.FetchMysqlEmployeeDataAsync();
+            var vacationTask = mysqlDataRepository.FeatchMysqlDetailVacationAsync();
+
+            // Đợi cho cả hai tác vụ hoàn thành
+            await Task.WhenAll(employeeTask, vacationTask);
+
+            // Lấy kết quả từ các tác vụ
+            var employees = await employeeTask;
+            var vacations = await vacationTask;
+
+            // Khi đến đây, cả hai tác vụ đều đã hoàn thành
+            var dataMysql = mysqlDataRepository.FeatchMysql(employees, vacations);
+
+            var dataSqlServerTask = sqlDataRepository.FetchSqlServerData();
+            var dataSqlServer = await dataSqlServerTask;
+
+            // Kiểm tra xem có giá trị year, month tồn tại không
+            if (filter.Year.HasValue || filter.Month.HasValue)
+            {
+                dataSqlServer = sqlDataRepository.FilterJobHistorySqlServe(dataSqlServer, filter);
+            }
+
+            // Tiếp tục xử lý với dữ liệu đã được tải
+            var employeeResult = JoinAndTransformDataSalary(dataMysql, dataSqlServer);
+            var filteredResult = FilterEmployees<EmployeeSalaryDto>(employeeResult, filter);
+            return ApplySorting<EmployeeSalaryDto>(filteredResult, filter.IsAscending);
+        }
+
+        private IEnumerable<EmployeeSalaryDto> JoinAndTransformDataSalary(IEnumerable<EmployeeMysqlDto> dataMysql, IEnumerable<EmployeeSqlServerDto> dataSqlServer)
+        {
+            return from e in dataMysql
+                   join p in dataSqlServer on e.EmployeeNumber equals p.EmployeeId
+                   select new EmployeeSalaryDto
+                   {
+                       ShareholderStatus = p.ShareholderStatus,
+                       FullName = $"{e.LastName} {e.FirstName}",
+                       Gender = p.Gender.HasValue,
+                       Ethnicity = p.Ethnicity,
+                       Employment = p.Employments,
+                       //Category = p.JobHistories != null ? p.JobHistories.FirstOrDefault(jb => jb.EmployeeId == p.EmployeeId)?.JobCategory : null,
+                       Category = p.JobHistories?.FirstOrDefault(jb => jb.EmployeeId == p.EmployeeId)?.JobCategory,
+                       JobHistories = p.JobHistories != null ? new List<JobHistory>(p.JobHistories) : new List<JobHistory>(),
+                       TotalSalary = e.PaidToDate,
+                   };
+        }
+        
+        public async Task<IEnumerable<EmployeeAnniversaryDto>> GetEmployeesAnniversaryInfo(int daysLimit)
+        {
+            var today = DateTime.Today;
+            var personal = await sqlDataRepository.FetchSqlServerData();
+
+            // Trước tiên, lọc danh sách để chỉ giữ lại những đối tượng có HireDate và số ngày đến ngày kỷ niệm nằm trong phạm vi được truyền vào
+            var filteredPersonal = personal.Where(e =>
+            {              
+                if (e.Employments?.HireDate is null) return false;
+                var hireDateThisYear = new DateTime(today.Year, e.Employments.HireDate.Value.Month, e.Employments.HireDate.Value.Day);
+                if (hireDateThisYear < today) hireDateThisYear = hireDateThisYear.AddYears(1); // Chuyển sang năm tiếp theo nếu đã qua
+                var daysUntilNextAnniversary = (hireDateThisYear - today).Days;
+                return daysUntilNextAnniversary <= daysLimit;
+            });
+
+            // Sau đó, chuyển đổi những đối tượng đã lọc thành định dạng đầu ra mong muốn
+            var employeeAnniversaryInfos = filteredPersonal.Select(e =>
+            {
+                var nextAnniversary = new DateTime(today.Year, e.Employments.HireDate.Value.Month, e.Employments.HireDate.Value.Day);
+                if (nextAnniversary < today) nextAnniversary = nextAnniversary.AddYears(1);
+                var daysUntilNextAnniversary = (nextAnniversary - today).Days;
+
+                var content = $"Số ngày còn lại trước khi tới ngày kỷ niệm: {daysUntilNextAnniversary}";
+                var department = e.JobHistories?.FirstOrDefault()?.Department ?? "Không rõ";
+
+                return new EmployeeAnniversaryDto
+                {
+                    FullName = $"{e.LastName} {e.FirstName}",
+                    Department = department,
+                    Content = content
+                };
+            });
+
+            return employeeAnniversaryInfos.ToList(); // Chuyển IEnumerable thành List nếu bạn muốn kết quả là một danh sách cụ thể
+        }
+
+
     }
 }

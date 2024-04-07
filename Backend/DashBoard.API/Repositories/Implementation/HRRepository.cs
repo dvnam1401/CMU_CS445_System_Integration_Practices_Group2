@@ -1,8 +1,9 @@
 ﻿using DashBoard.API.Data;
-using DashBoard.API.Models;
+using DashBoard.API.Models.Domain;
 using DashBoard.API.Models.DTO;
 using DashBoard.API.Repositories.Inteface;
 using Microsoft.EntityFrameworkCore;
+using System.Runtime.Intrinsics.X86;
 
 namespace DashBoard.API.Repositories.Implementation
 {
@@ -16,9 +17,25 @@ namespace DashBoard.API.Repositories.Implementation
             this.mysqlContext = mysqlContext;
             this.sqlServerContext = sqlServerContext;
         }
-        public async Task<Employee> FindEmployee(int id)
+        public async Task<HRUpdateEmployeeDto?> FindEmployee(uint id)
         {
-            return await mysqlContext.Employees.FirstOrDefaultAsync(x => x.EmployeeNumber == id);
+            var employeeMysql = await mysqlContext.Employees.Include(x => x.Birthday).FirstOrDefaultAsync(x => x.EmployeeNumber == id);
+            var employeeSql = await sqlServerContext.Personals.FirstOrDefaultAsync(x => x.EmployeeId == id);
+            if (employeeMysql is not null && employeeSql is not null)
+            {
+                return new HRUpdateEmployeeDto
+                {
+                    EmployeeId = employeeMysql.EmployeeNumber,
+                    LastName = employeeMysql.LastName,
+                    FirstName = employeeMysql.FirstName,
+                    Dateofbirthday = employeeMysql.Birthday?.Dateofbirthday ?? null,
+                    PhoneNumber = employeeSql.PhoneNumber,
+                    ShareholderStatus = employeeSql.ShareholderStatus,
+                    Email = employeeSql.Email,
+                    Address1 = employeeSql.Address1
+                };
+            }
+            return null;
         }
 
         public async Task<CreateEmployeeDto> CreateEployeeAsync(CreateEmployeeDto createEmployeeDto)
@@ -37,7 +54,7 @@ namespace DashBoard.API.Repositories.Implementation
             return createEmployeeDto;
         }
 
-        private int GetAllIdEmployee()
+        private uint GetAllIdEmployee()
         {
             return mysqlContext.Employees.Max(e => e.EmployeeNumber);
         }
@@ -45,7 +62,7 @@ namespace DashBoard.API.Repositories.Implementation
         {
             return new Employee
             {
-                IdEmployee = GetAllIdEmployee() + 1,
+                IdEmployee = (int)GetAllIdEmployee() + 1,
                 EmployeeNumber = GetAllIdEmployee() + 1,
                 FirstName = dto.FirstName,
                 LastName = dto.LastName,
@@ -90,6 +107,7 @@ namespace DashBoard.API.Repositories.Implementation
             return updateEmployeeDto;
         }
 
+        //kiểm tra employee có tồn tại hay không
         private async Task<bool> EmployeeExistsInSqlServer(decimal employeeId)
         {
             return await sqlServerContext.Personals.AnyAsync(x => x.EmployeeId == employeeId);
@@ -100,11 +118,15 @@ namespace DashBoard.API.Repositories.Implementation
             var employee = await mysqlContext.Employees
                 .Include(x => x.Birthday)
                 .FirstOrDefaultAsync(x => x.EmployeeNumber == updateEmployeeDto.EmployeeId);
-
-            if (employee != null)
+            if (employee is not null)
             {
                 employee.FirstName = updateEmployeeDto.FirstName;
                 employee.LastName = updateEmployeeDto.LastName;
+                if (employee.Birthday == null)
+                {
+                    employee.Birthday = new Birthday(); // Giả sử Birthday là tên lớp chính xác
+                }
+                employee.Birthday.Dateofbirthday = updateEmployeeDto.Dateofbirthday;
                 employee.Birthday.Dateofbirthday = updateEmployeeDto.Dateofbirthday;
 
                 await mysqlContext.SaveChangesAsync();

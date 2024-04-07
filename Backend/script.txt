@@ -1,0 +1,38 @@
+dotnet ef dbcontext scaffold -o Models -f -d "Server=localhost;port=3306;database=mydb;user=root;password=12345" "MySql.EntityFrameworkCore"  --project DashBoard.API
+
+dotnet ef migrations add v0 --project DashBoard.API --context MysqlContext
+dotnet ef migrations list --project DashBoard.API --context MysqlContext
+dotnet ef migrations script --output migrations_mysql.sql --project DashBoard.API --context MysqlContext
+dotnet ef database update --project DashBoard.API --context MysqlContext
+
+
+
+
+dotnet ef dbcontext scaffold -o Models -f -d "Data Source=VAN-NAM;Initial Catalog=HR;User ID=sa;Password=12345" "Microsoft.EntityFrameworkCore.SqlServer" --project DashBoard.API
+dotnet ef migrations add v0 --project DashBoard.API --context SqlServerContext
+dotnet ef migrations list --project DashBoard.API --context SqlServerContext 
+dotnet ef database update --project DashBoard.API --context SqlServerContext
+dotnet ef migrations script --output migrations_sqlserver.sql --project DashBoard.API --context SqlServerContext
+
+
+//dotnet ef migrations list --project DashBoard.API --context SqlServerContext
+ //Add-Migration MyMigration -context MysqlContext
+
+//builder.Services.AddDbContextPool<MysqlContext>(
+//    o => o.UseSqlServer(builder.Configuration.GetConnectionString("MysqlContext")));
+
+Guid.NewGuid()
+
+ dotnet tool update --global dotnet-ef
+
+nuget:
+Microsoft.aspnetcore.authentication.jwtbearer
+Microsoft.aspnetcore.identity.entityframeworkcore
+microsoft.identitymodel.tokens
+system.identitymodel.tokens.jwt
+
+<PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="7.0.0" />
+npm install ngx-cookie-service --save
+npm install ngx-markdown@16.0.0 --save
+npm view ngx-cookie-service versions
+npm install ngx-cookie-service@16.0.2 --save

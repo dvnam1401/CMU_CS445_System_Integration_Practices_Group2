@@ -1,4 +1,5 @@
-﻿using DashBoard.API.Models;
+﻿
+using DashBoard.API.Models.Domain;
 using DashBoard.API.Models.DTO;
 
 namespace DashBoard.API.Repositories.Inteface

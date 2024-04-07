@@ -1,5 +1,4 @@
-﻿using DashBoard.API.Models;
-using DashBoard.API.Models.DTO;
+﻿using DashBoard.API.Models.DTO;
 
 namespace DashBoard.API.Repositories.Inteface
 {
@@ -7,6 +6,6 @@ namespace DashBoard.API.Repositories.Inteface
     {
         Task<CreateEmployeeDto> CreateEployeeAsync(CreateEmployeeDto createEmployeeDto);
         Task<HRUpdateEmployeeDto> UpdateEmployeeAsync(HRUpdateEmployeeDto updateEmployeeDto);
-        Task<Employee> FindEmployee(int id);
+        Task<HRUpdateEmployeeDto> FindEmployee(uint id);
     }
 }

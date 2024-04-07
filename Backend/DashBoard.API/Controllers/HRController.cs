@@ -1,5 +1,6 @@
 ﻿using DashBoard.API.Models.DTO;
 using DashBoard.API.Repositories.Inteface;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -7,6 +8,7 @@ namespace DashBoard.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    //[Authorize(Roles = "HR")]
     public class HRController : ControllerBase
     {
         private readonly IHRRepository hRRepository;
@@ -14,6 +16,18 @@ namespace DashBoard.API.Controllers
         public HRController(IHRRepository hRRepository)
         {
             this.hRRepository = hRRepository;
+        }
+
+        [HttpGet]
+        [Route("{id}")]
+        public async Task<IActionResult> GetEmployeeById(uint id)
+        {
+            var response = await hRRepository.FindEmployee(id);
+            if (response is not null)
+            {
+                return Ok(response);
+            }
+            return NotFound();
         }
 
         [HttpPost]

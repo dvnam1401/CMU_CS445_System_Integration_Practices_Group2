@@ -1,7 +1,10 @@
 using DashBoard.API.Data;
 using DashBoard.API.Repositories.Implementation;
 using DashBoard.API.Repositories.Inteface;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using MySqlConnector;
 using System.Configuration;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
@@ -25,6 +28,10 @@ builder.Services.AddDbContext<SqlServerContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("ConnectionSQLServer"));
 });
+builder.Services.AddDbContext<AuthContext>(options =>
+{
+    options.UseSqlServer(builder.Configuration.GetConnectionString("ConnectionAuth"));
+});
 
 //builder.Services.AddMySqlDataSource(builder.Configuration.GetConnectionString("ConnectionMysql")!);
 //builder.Services.AddTransient<MySqlConnection>(_ =>
@@ -34,6 +41,41 @@ builder.Services.AddDbContext<SqlServerContext>(options =>
 builder.Services.AddScoped<IServiceRepository, ServiceRepository>();
 builder.Services.AddScoped<IHRRepository, HRRepository>();
 builder.Services.AddScoped<IPayrollRepository, PayrollRepository>();
+builder.Services.AddScoped<IMysqlDataRepository, MysqlDataRepository>();
+builder.Services.AddScoped<ISqlDataRepository, SqlDataRepository>();
+builder.Services.AddScoped<ITokenRepository, TokenRepository>();
+
+builder.Services.AddIdentityCore<IdentityUser>()
+    .AddRoles<IdentityRole>()
+    .AddTokenProvider<DataProtectorTokenProvider<IdentityUser>>("DashBoard")
+    .AddEntityFrameworkStores<AuthContext>()
+    .AddDefaultTokenProviders();
+
+builder.Services.Configure<IdentityOptions>(option =>
+{
+    option.Password.RequireDigit = false;
+    option.Password.RequireLowercase = false;
+    option.Password.RequireNonAlphanumeric = false;
+    option.Password.RequireUppercase = false;
+    option.Password.RequiredLength = 6;
+    option.Password.RequiredUniqueChars = 1;
+});
+
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddJwtBearer(option =>
+    {
+        option.TokenValidationParameters = new TokenValidationParameters
+        {
+            AuthenticationType = "Jwt",
+            ValidateIssuer = true,
+            ValidateAudience = true,
+            ValidateLifetime = true,
+            ValidateIssuerSigningKey = true,
+            ValidIssuer = builder.Configuration["Jwt:Issuer"],
+            ValidAudience = builder.Configuration["Jwt:Audience"],
+            IssuerSigningKey = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]))
+        };
+    });
 
 var app = builder.Build();
 
@@ -53,6 +95,7 @@ app.UseCors(options =>
     options.AllowAnyMethod();
 });
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();

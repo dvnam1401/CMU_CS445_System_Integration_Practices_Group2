@@ -1,8 +1,10 @@
 ﻿using DashBoard.API.Models;
+using DashBoard.API.Models.Domain;
 using DashBoard.API.Models.DTO;
 using DashBoard.API.Repositories.Implementation;
 using DashBoard.API.Repositories.Inteface;
 using Google.Protobuf.WellKnownTypes;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Runtime.Intrinsics.X86;
@@ -11,6 +13,7 @@ namespace DashBoard.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    //[Authorize(Roles = "PayRoll")]
     public class PayrollController : ControllerBase
     {
         private readonly IPayrollRepository payrollRepository;
@@ -19,8 +22,7 @@ namespace DashBoard.API.Controllers
         {
             this.payrollRepository = payrollRepository;
         }
-
-        //GET: api/payroll/{idEmployee}
+        // GET: api/payroll/{idEmployee
         [HttpGet]
         [Route("{idEmployee}")]
         public async Task<IActionResult> GetEmployeeById([FromRoute] int idEmployee)
@@ -86,7 +88,7 @@ namespace DashBoard.API.Controllers
             //map dto to domain model
             var employee = new PayRollUpdateEmployeeDto
             {
-                EmployeeNumber = idEmployee,
+                EmployeeNumber = (uint)idEmployee,
                 LastName = request.LastName,
                 FirstName = request.FirstName,
                 Ssn = request.Ssn,
@@ -96,4 +98,6 @@ namespace DashBoard.API.Controllers
             return Ok(employee);
         }
     }
+
 }
+
