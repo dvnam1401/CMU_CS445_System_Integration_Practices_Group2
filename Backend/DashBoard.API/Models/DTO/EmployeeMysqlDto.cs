@@ -9,6 +9,7 @@ namespace DashBoard.API.Models.DTO
         public string? FirstName { get; set; }
         public string? PayRate { get; set; }
         public decimal? PaidToDate { get; set; }
+        public Birthday? BirthDate { get; set; }
         public decimal? PaidLastYear { get; set; }
         public PayRate? PayRatesIdPayRates { get; set; }
         public List<VacationMysqlDto>? Vacations { get; set; } = new List<VacationMysqlDto>();

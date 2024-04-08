@@ -21,13 +21,13 @@ namespace DashBoard.API.Repositories.Implementation
             using (var mysqlContext = new MysqlContext()) // Tạo phiên bản DbContext mới
             {
                 var query = await mysqlContext.Employees
-                //.Include(e => e.DetailVacations)
                 .Select(e => new EmployeeMysqlDto
                 {
                     EmployeeNumber = e.EmployeeNumber,
                     LastName = e.LastName,
                     FirstName = e.FirstName,
                     PaidToDate = e.PaidToDate,
+                    BirthDate = e.Birthday,
                     PayRatesIdPayRates = e.PayRatesIdPayRatesNavigation,
                 }).ToListAsync();
                 return query;
@@ -72,32 +72,12 @@ namespace DashBoard.API.Repositories.Implementation
         }
 
         // lọc các lịch sử làm việc 
-        public List<EmployeeMysqlDto> FilterEmployeeDataByVacation(IEnumerable<EmployeeMysqlDto> data, EmployeeFilterDto filter)
+        public List<EmployeeMysqlDto> FilterEmployeeDataByVacation(IEnumerable<EmployeeMysqlDto> data, EmployeeFilterDto? filter)
         {
-            //// Chuyển đổi và lọc dữ liệu
-            //var filteredData = data.Select(e => new EmployeeMysqlDto
-            //{
-            //    // Sao chép/Ánh xạ các thuộc tính khác của EmployeeMysqlDto tại đây
-            //    EmployeeNumber = e.EmployeeNumber,
-            //    LastName = e.LastName,
-            //    FirstName = e.FirstName,
-            //    PaidToDate = e.PaidToDate,
-            //    PayRatesIdPayRates = e.PayRatesIdPayRates,
-            //    // Lọc và chỉ giữ lại các vacations phù hợp
-            //    Vacations = e.Vacations.Where(vacation =>
-            //        vacation.Dayoff.HasValue &&
-            //        (!filter.Year.HasValue || vacation.Dayoff.Value.Year == filter.Year.Value) &&
-            //        (!filter.Month.HasValue || vacation.Dayoff.Value.Month == filter.Month.Value)
-            //    ).ToList(),            
-            //})
-            ////.Where(employee => employee.Vacations.Any()) // Chỉ giữ lại những nhân viên có ít nhất một kỳ nghỉ phù hợp
-            //.ToList();
-            //return filteredData;
-
             // Chuyển đổi và lọc dữ liệu
             var filteredData = data.Select(e =>
             {
-                var filteredVacations = e.Vacations.Where(vacation =>
+                var filteredVacations = e.Vacations?.Where(vacation =>
                     vacation.Dayoff.HasValue &&
                     (!filter.Year.HasValue || vacation.Dayoff.Value.Year == filter.Year.Value) &&
                     (!filter.Month.HasValue || vacation.Dayoff.Value.Month == filter.Month.Value)
@@ -116,18 +96,16 @@ namespace DashBoard.API.Repositories.Implementation
                     TotalVacationsCount = filteredVacations.Count, // Cập nhật số lượng Vacations phù hợp
                 };
             })
-            //.Where(employee => employee.Vacations.Any())
+            .Where(employee => employee.Vacations.Any())
             .ToList();
 
             return filteredData;
         }
 
-         
-
         public async Task<IEnumerable<Employee?>> GetByAllEmployee()
         {
             return await mysqlContext.Employees.ToListAsync();
         }
-       
+
     }
 }

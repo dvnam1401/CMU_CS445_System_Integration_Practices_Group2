@@ -74,12 +74,37 @@ namespace DashBoard.API.Controllers
         }
 
         [HttpGet("GetEmployeeAnniversary")]
-        //[Route("{daysLimit}")]
-
-        public async Task<ActionResult<IEnumerable<EmployeeAnniversaryDto>>> GetEmployeeAnniversary([FromQuery] int daysLimit)
+        public async Task<ActionResult<IEnumerable<EmployeeAnniversaryDto>>> GetEmployeeAnniversary([FromQuery] int daysLimit = 55)
         {
             var result = await serviceRepository.GetEmployeesAnniversaryInfo(daysLimit);
             return Ok(result);
+        }
+
+        [HttpGet("GetEmployeeBirthday")]
+        public async Task<ActionResult<IEnumerable<EmployeeAnniversaryDto>>> GetEmployeeBirthday()
+        {
+            try
+            {
+                var result = await serviceRepository.GetEmployeesWithBirthdaysThisMonth();
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
+        [HttpGet("CountVacationEmployee")]
+        public async Task<ActionResult<IEnumerable<EmployeeVacationDto>>> GetVacationEmployeeThisYear([FromQuery] int minimumDays = 12)
+        {
+            try
+            {
+                var result = await serviceRepository.GetEmployeesWithAccumulatedVacationDays(minimumDays);
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
         }
     }
 }
