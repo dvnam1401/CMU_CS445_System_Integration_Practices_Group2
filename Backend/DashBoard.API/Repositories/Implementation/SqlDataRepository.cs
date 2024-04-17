@@ -20,40 +20,147 @@ namespace DashBoard.API.Repositories.Implementation
             return await sqlServerContext.BenefitPlans.ToListAsync();
         }
 
-        public async Task<BenefitPlan?> GetBenefitPlanById(uint benefit)
+        public async Task<BenefitPlan?> GetBenefitPlanById(decimal BenefitPlansId)
         {
-            return await sqlServerContext.BenefitPlans.FirstOrDefaultAsync(x => x.BenefitPlanId == (decimal)benefit);
+            return await sqlServerContext.BenefitPlans.FirstOrDefaultAsync(x => x.BenefitPlansId == BenefitPlansId);
         }
 
-        // lấy dữ liệu từ sql server
-        public async Task<List<EmployeeSqlServerDto>> FetchSqlServerData()
+        public async Task<List<EmploymentWorkingTimeDto>> FetchWorkingTimes(EmployeeFilterDto? filter)
         {
-            /*var query =*/
-            return await sqlServerContext.Personals
-                .Select(e => new EmployeeSqlServerDto
+            using (var sqlServerContext = new SqlServerContext()) // Tạo phiên bản DbContext mới
+            {
+                var query = sqlServerContext.EmergencyContacts.AsQueryable();
+                if (filter != null)
                 {
-                    EmployeeId = Convert.ToUInt32(e.EmployeeId),
-                    LastName = e.LastName,
-                    FirstName = e.FirstName,
-                    ShareholderStatus = e.ShareholderStatus,
-                    Gender = e.Gender,
-                    Ethnicity = e.Ethnicity,
-                    StartDate = e.JobHistories.Where(jb => jb.EmployeeId == e.EmployeeId).Select(jb => jb.StartDate).FirstOrDefault(),
-                    EndDate = e.JobHistories.Where(jb => jb.EmployeeId == e.EmployeeId).Select(jb => jb.EndDate).FirstOrDefault(),
-                    Employments = e.Employment,
-                    JobHistories = e.JobHistories.ToList(),
+                    if (filter.Year.HasValue)
+                    {
+                        query = query.Where(ewt => ewt.YearWorking.HasValue && ewt.YearWorking.Value.Year == filter.Year);
+                    }
+                    if (filter.Month.HasValue)
+                    {
+                        query = query.Where(ewt => ewt.MonthWorking.HasValue && ewt.MonthWorking.Value == filter.Month);
+                    }
+                }
+                var result = await query.Select(ewt => new EmploymentWorkingTimeDto
+                {
+                    EmploymentWorkingTimeId = ewt.EmploymentWorkingTimeId,
+                    EmploymentId = ewt.EmploymentId,
+                    YearWorking = ewt.YearWorking,
+                    MonthWorking = ewt.MonthWorking,
+                    NumberDaysActualOfWorkingPerMonth = ewt.NumberDaysActualOfWorkingPerMonth,
+                    TotalNumberVacationWorkingDaysPerMonth = ewt.TotalNumberVacationWorkingDaysPerMonth
                 }).ToListAsync();
+
+                //var filteredData = await result.ToListAsync();
+                return result;
+            }
+        }
+
+        // lọc các lịch sử làm việc 
+        public List<EmploymentWorkingTimeDto> FilterEmployeeDataByVacation(IEnumerable<EmploymentWorkingTimeDto> data, EmployeeFilterDto? filter)
+        {
+            var filteredData = data.Where(wk =>
+                    wk.YearWorking.HasValue && wk.MonthWorking.HasValue &&
+                    (!filter.Year.HasValue || wk.YearWorking?.Year == filter.Year) &&
+                    (!filter.Month.HasValue || wk.MonthWorking == filter.Month)
+            ).ToList();
+            return filteredData;
+        }
+
+        public async Task<List<JobHistoryDto>> FetchJobHistories(EmployeeFilterDto filter)
+        {
+            using (var sqlServerContext = new SqlServerContext()) // Tạo phiên bản DbContext mới
+            {
+                var query = sqlServerContext.JobHistory.AsQueryable();
+                // Apply year and month filters if they are provided
+                if (filter.Year.HasValue)
+                {
+                    query = query.Where(jh => jh.FromDate.HasValue && jh.FromDate.Value.Year == filter.Year.Value);
+                }
+                if (filter.Month.HasValue)
+                {
+                    query = query.Where(jh => jh.FromDate.HasValue && jh.FromDate.Value.Month == filter.Month.Value);
+                }
+                // Project the filtered job histories to JobHistoryDto
+                var result = await query.Select(jh => new JobHistoryDto
+                {
+                    EmploymentId = jh.EmploymentId,
+                    FromDate = jh.FromDate,
+                    Department = jh.Department,
+                    JobTitle = jh.JobTitle,
+                    ThruDate = jh.ThruDate,
+                    Location = jh.Location,
+                    TypeOfWork = jh.TypeOfWork,
+                }).ToListAsync();
+
+                return result;
+            }
         }
 
         // lọc lịch sử làm việc của nhân viên dựa vào endate
-        public List<EmployeeSqlServerDto> FilterJobHistorySqlServe(List<EmployeeSqlServerDto> data, EmployeeFilterDto filter)
+        public List<EmploymentSqlServerDto> FilterJobHistorySqlServe(List<EmploymentSqlServerDto> data, EmployeeFilterDto filter)
         {
             var query = data.Where(p => p.JobHistories.Any(jb =>
-                jb.EndDate.HasValue &&
-               ((!filter.Year.HasValue || jb.EndDate.Value.Year == filter.Year.Value) && // Kiểm tra năm nếu có
-               (!filter.Month.HasValue || jb.EndDate.Value.Month == filter.Month.Value)))) // Kiểm tra tháng nếu có
-               .ToList();
+                jb.FromDate.HasValue &&
+                ((!filter.Year.HasValue || jb.FromDate.Value.Year == filter.Year.Value) && // Kiểm tra năm nếu có
+                (!filter.Month.HasValue || jb.FromDate.Value.Month == filter.Month.Value)))) // Kiểm tra tháng nếu có
+                .ToList();
             return query;
+        }
+
+        // lấy dữ liệu từ sql server
+        public async Task<List<EmploymentSqlServerDto>> FetchSqlServerData(EmployeeFilterDto filter)
+        {
+            var employments = await sqlServerContext.Employments
+                //.Include(e => e.Personal)
+                //.Include(e => e.EmploymentWorkingTimes)
+                .Select(e => new EmploymentSqlServerDto
+                {
+                    EmploymentId = e.EmploymentId,
+                    LastName = e.Personal.CurrentLastName,
+                    FirstName = e.Personal.CurrentFirstName,
+                    ShareholderStatus = e.Personal.ShareholderStatus,
+                    NumberDaysRequirementOfWorkingPerMonth = e.NumberDaysRequirementOfWorkingPerMonth,
+                    EmploymentStatus = e.EmploymentStatus,
+                    Gender = e.Personal.CurrentGender,
+                    Ethnicity = e.Personal.Ethnicity,
+                    Personal = e.Personal,
+                }).ToListAsync();
+            var workingTimes = await FetchWorkingTimes(filter);
+            var jobHistories = await FetchJobHistories(filter);
+
+            var workingTimesDict = workingTimes?.GroupBy(wt => wt.EmploymentId)?
+                                       .ToDictionary(g => g.Key, g => g.ToList());
+            var jobHistoriesDict = jobHistories?.GroupBy(jh => jh.EmploymentId)?
+                                               .ToDictionary(g => g.Key, g => g.ToList());
+
+            employments = employments.Where(emp =>
+                workingTimesDict.ContainsKey(emp.EmploymentId) || jobHistoriesDict.ContainsKey(emp.EmploymentId)).ToList();
+            //foreach (var employment in employments)
+            //{
+            //    employment.WorkingTime = workingTimes.Where(wt => wt.EmploymentId == employment.EmploymentId).ToList();
+            //    employment.JobHistories = jobHistories.Where(jh => jh.EmploymentId == employment.EmploymentId).ToList();
+            //}
+            foreach (var employment in employments)
+            {
+                if (workingTimesDict.TryGetValue(employment.EmploymentId, out var wtList))
+                {
+                    employment.WorkingTime = wtList;
+                }
+                else
+                {
+                    employment.WorkingTime = new List<EmploymentWorkingTimeDto>();
+                }
+                if (jobHistoriesDict.TryGetValue(employment.EmploymentId, out var jhList))
+                {
+                    employment.JobHistories = jhList;
+                }
+                else
+                {
+                    employment.JobHistories = new List<JobHistoryDto>();
+                }
+            }
+            return employments;
         }
     }
 }

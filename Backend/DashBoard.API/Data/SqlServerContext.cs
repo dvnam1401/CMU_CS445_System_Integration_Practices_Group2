@@ -9,7 +9,7 @@ namespace DashBoard.API.Data
         {
         }
         public SqlServerContext(DbContextOptions<SqlServerContext> options) : base(options)
-        {            
+        {
         }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -23,10 +23,10 @@ namespace DashBoard.API.Data
                 optionsBuilder.UseSqlServer(connectionString);
             }
         }
+        public DbSet<Personal> Personals { get; set; }
         public DbSet<BenefitPlan> BenefitPlans { get; set; }
-        public DbSet<EmergencyContact> EmergencyContacts { get; set; }
+        public DbSet<EmploymentWorkingTime> EmergencyContacts { get; set; }
         public DbSet<Employment> Employments { get; set; }
         public DbSet<JobHistory> JobHistory { get; set; }
-        public DbSet<Personal> Personals { get; set; }
     }
 }

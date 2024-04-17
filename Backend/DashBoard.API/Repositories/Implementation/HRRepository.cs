@@ -1,8 +1,11 @@
 ﻿using DashBoard.API.Data;
 using DashBoard.API.Models.Domain;
+
+//using DashBoard.API.Models.Domain;
 using DashBoard.API.Models.DTO;
 using DashBoard.API.Repositories.Inteface;
 using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
 using System.Runtime.Intrinsics.X86;
 
 namespace DashBoard.API.Repositories.Implementation
@@ -17,38 +20,42 @@ namespace DashBoard.API.Repositories.Implementation
             this.mysqlContext = mysqlContext;
             this.sqlServerContext = sqlServerContext;
         }
-        public async Task<HRUpdateEmployeeDto?> FindEmployee(uint id)
+
+        public async Task<HRUpdateEmployeeDto?> FindEmployee(decimal employmentId)
         {
-            var employeeMysql = await mysqlContext.Employees.Include(x => x.Birthday).FirstOrDefaultAsync(x => x.EmployeeNumber == id);
-            var employeeSql = await sqlServerContext.Personals.FirstOrDefaultAsync(x => x.EmployeeId == id);
+            var employeeMysql = await mysqlContext.Employees.FirstOrDefaultAsync(x => x.IdEmployee == employmentId);
+            var employeeSql = await sqlServerContext.Employments.Include(x => x.Personal).FirstOrDefaultAsync(x => x.EmploymentId == employmentId);
             if (employeeMysql is not null && employeeSql is not null)
             {
                 return new HRUpdateEmployeeDto
                 {
-                    EmployeeId = employeeMysql.EmployeeNumber,
+                    EmploymentId = employeeMysql.EmployeeNumber,
                     LastName = employeeMysql.LastName,
                     FirstName = employeeMysql.FirstName,
-                    Dateofbirthday = employeeMysql.Birthday?.Dateofbirthday ?? null,
-                    PhoneNumber = employeeSql.PhoneNumber,
-                    ShareholderStatus = employeeSql.ShareholderStatus,
-                    Email = employeeSql.Email,
-                    Address1 = employeeSql.Address1
+                    PhoneNumber = employeeSql.Personal?.CurrentPhoneNumber,
+                    ShareholderStatus = employeeSql.Personal?.ShareholderStatus,
+                    Email = employeeSql.Personal?.CurrentPersonalEmail,
+                    Address = employeeSql.Personal?.CurrentAddress1
                 };
             }
             return null;
         }
 
+        public async Task<IEnumerable<BenefitPlan>> FindAllBenefitPlan()
+        {
+            return await sqlServerContext.BenefitPlans.ToListAsync();
+        }
+
         public async Task<CreateEmployeeDto> CreateEployeeAsync(CreateEmployeeDto createEmployeeDto)
         {
-            var employee = CreateEmployeeObject(createEmployeeDto);
-            var birthday = CreateBirthdayObject(createEmployeeDto);
-            var personal = CreatePersonalObject(createEmployeeDto);
+            var employee = CreateObjectPayroll(createEmployeeDto);
+            var employment = CreateObjectHR(createEmployeeDto);
 
             await mysqlContext.Employees.AddAsync(employee);
-            await mysqlContext.Birthdays.AddAsync(birthday);
+
             await mysqlContext.SaveChangesAsync();
 
-            await sqlServerContext.Personals.AddAsync(personal);
+            await sqlServerContext.Employments.AddAsync(employment);
             await sqlServerContext.SaveChangesAsync();
 
             return createEmployeeDto;
@@ -58,11 +65,16 @@ namespace DashBoard.API.Repositories.Implementation
         {
             return mysqlContext.Employees.Max(e => e.EmployeeNumber);
         }
-        private Employee CreateEmployeeObject(CreateEmployeeDto dto)
+
+        private decimal GetAllIdJobHistory()
+        {
+            return sqlServerContext.JobHistory.Max(e => e.JobHistoryId);
+        }
+        private Employee CreateObjectPayroll(CreateEmployeeDto dto)
         {
             return new Employee
             {
-                IdEmployee = (int)GetAllIdEmployee() + 1,
+                IdEmployee = dto.IdEmployee,
                 EmployeeNumber = GetAllIdEmployee() + 1,
                 FirstName = dto.FirstName,
                 LastName = dto.LastName,
@@ -70,33 +82,37 @@ namespace DashBoard.API.Repositories.Implementation
                 PayRatesIdPayRates = dto.PayRatesIdPayRates,
             };
         }
-
-        private Birthday CreateBirthdayObject(CreateEmployeeDto dto)
+        private Employment CreateObjectHR(CreateEmployeeDto dto)
         {
-            return new Birthday
+            Personal personal = new Personal
             {
-                Dateofbirthday = dto.Dateofbirthday,
-                EmployeeNumber = GetAllIdEmployee() + 1,
-            };
-        }
-
-        private Personal CreatePersonalObject(CreateEmployeeDto dto)
-        {
-            return new Personal
-            {
-                EmployeeId = GetAllIdEmployee() + 1,
-                FirstName = dto.FirstName,
-                LastName = dto.LastName,
-                PhoneNumber = dto.PhoneNumber,
+                PersonalId = dto.PersonalId,
+                CurrentFirstName = dto.FirstName,
+                CurrentLastName = dto.LastName,
+                SocialSecurityNumber = dto.Ssn.ToString(),
+                CurrentAddress1 = dto.Address,
+                CurrentCity = dto.City,
+                CurrentGender = dto.Gender,
                 ShareholderStatus = dto.ShareholderStatus,
-                Email = dto.Email,
-                Address1 = dto.Address1
+                BenefitPlanId = dto.BenefitPlanId,
             };
+            JobHistory jobHistory = new JobHistory
+            {
+                JobHistoryId = GetAllIdJobHistory() + 1,
+                Department = dto.Department,
+            };
+            Employment employment = new Employment
+            {
+                EmploymentId = dto.IdEmployee,
+                Personal = personal,
+            };
+            employment.JobHistories.Add(jobHistory);
+            return employment;
         }
 
         public async Task<HRUpdateEmployeeDto?> UpdateEmployeeAsync(HRUpdateEmployeeDto updateEmployeeDto)
         {
-            if (!await EmployeeExistsInSqlServer(updateEmployeeDto.EmployeeId))
+            if (!await EmployeeExistsInSqlServer(updateEmployeeDto.EmploymentId))
             {
                 return null;
             }
@@ -110,24 +126,24 @@ namespace DashBoard.API.Repositories.Implementation
         //kiểm tra employee có tồn tại hay không
         private async Task<bool> EmployeeExistsInSqlServer(decimal employeeId)
         {
-            return await sqlServerContext.Personals.AnyAsync(x => x.EmployeeId == employeeId);
+            return await sqlServerContext.Employments.AnyAsync(x => x.EmploymentId == employeeId);
         }
 
         private async Task UpdateEmployeeInMySql(HRUpdateEmployeeDto updateEmployeeDto)
         {
             var employee = await mysqlContext.Employees
-                .Include(x => x.Birthday)
-                .FirstOrDefaultAsync(x => x.EmployeeNumber == updateEmployeeDto.EmployeeId);
+                //.Include(x => x.Birthday)
+                .FirstOrDefaultAsync(x => x.IdEmployee == updateEmployeeDto.EmploymentId);
             if (employee is not null)
             {
                 employee.FirstName = updateEmployeeDto.FirstName;
                 employee.LastName = updateEmployeeDto.LastName;
-                if (employee.Birthday == null)
-                {
-                    employee.Birthday = new Birthday(); // Giả sử Birthday là tên lớp chính xác
-                }
-                employee.Birthday.Dateofbirthday = updateEmployeeDto.Dateofbirthday;
-                employee.Birthday.Dateofbirthday = updateEmployeeDto.Dateofbirthday;
+                //if (employee.Birthday == null)
+                //{
+                //    employee.Birthday = new Birthday(); // Giả sử Birthday là tên lớp chính xác
+                //}
+                //employee.Birthday.Dateofbirthday = updateEmployeeDto.Dateofbirthday;
+                //employee.Birthday.Dateofbirthday = updateEmployeeDto.Dateofbirthday;
 
                 await mysqlContext.SaveChangesAsync();
             }
@@ -135,10 +151,10 @@ namespace DashBoard.API.Repositories.Implementation
 
         private async Task UpdateEmployeeInSqlServer(HRUpdateEmployeeDto updateEmployeeDto)
         {
-            var existingEmployee = await sqlServerContext.Personals
-                .FirstOrDefaultAsync(x => x.EmployeeId == updateEmployeeDto.EmployeeId);
+            var existingEmployee = await sqlServerContext.Employments
+                .FirstOrDefaultAsync(x => x.EmploymentId == updateEmployeeDto.EmploymentId);
 
-            if (existingEmployee != null)
+            if (existingEmployee is not null)
             {
                 sqlServerContext.Entry(existingEmployee).CurrentValues.SetValues(updateEmployeeDto);
                 await sqlServerContext.SaveChangesAsync();

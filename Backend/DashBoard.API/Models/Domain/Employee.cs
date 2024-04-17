@@ -50,9 +50,6 @@ public partial class Employee
     [Precision(2, 0)]
     public decimal? PaidLastYear { get; set; }
 
-    [InverseProperty("EmployeeNumberNavigation")]
-    public virtual Birthday? Birthday { get; set; }
-
     [ForeignKey("PayRatesIdPayRates")]
     [InverseProperty("Employees")]
     public virtual PayRate PayRatesIdPayRatesNavigation { get; set; } = null!;

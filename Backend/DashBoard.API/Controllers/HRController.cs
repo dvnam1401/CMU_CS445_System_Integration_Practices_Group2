@@ -20,7 +20,7 @@ namespace DashBoard.API.Controllers
 
         [HttpGet]
         [Route("{id}")]
-        public async Task<IActionResult> GetEmployeeById(uint id)
+        public async Task<IActionResult> GetEmployeeById(decimal id)
         {
             var response = await hRRepository.FindEmployee(id);
             if (response is not null)
@@ -37,6 +37,12 @@ namespace DashBoard.API.Controllers
             return Ok(request);
         }
 
+        [HttpGet]
+        public async Task<IActionResult> GetBenefitPlan()
+        {
+            var benefit = await hRRepository.FindAllBenefitPlan();
+            return Ok(benefit);
+        }
         [HttpPut]
         [Route("{idEmployee}")]
         public async Task<IActionResult> EditEmployee([FromRoute] int idEmployee, HRUpdateEmployeeDto request)
@@ -44,14 +50,13 @@ namespace DashBoard.API.Controllers
             //map dto to domain model
             var response = new HRUpdateEmployeeDto
             {
-                EmployeeId = idEmployee,
+                EmploymentId = idEmployee,
                 LastName = request.LastName,
-                FirstName = request.FirstName,
-                Dateofbirthday = request.Dateofbirthday,
+                FirstName = request.FirstName,                
                 ShareholderStatus = request.ShareholderStatus,
                 PhoneNumber = request.PhoneNumber,
                 Email = request.Email,
-                Address1 = request.Address1,
+                Address = request.Address,
             };
             await hRRepository.UpdateEmployeeAsync(response);
             return Ok(response);

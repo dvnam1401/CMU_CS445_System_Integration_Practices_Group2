@@ -3,6 +3,7 @@ using DashBoard.API.Models.DTO;
 using DashBoard.API.Repositories.Inteface;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Reflection;
 
 namespace DashBoard.API.Controllers
 {
@@ -46,10 +47,23 @@ namespace DashBoard.API.Controllers
         //[Route("{filter}")]
         public async Task<ActionResult<IEnumerable<EmployeeSalaryDto>>> GetEmployeeSalary([FromBody] EmployeeFilterDto filter)
         {
+            List<ViewTotal> view = new List<ViewTotal>();
             try
             {
                 var employees = await serviceRepository.GetEmployeesSalary(filter);
-                return Ok(employees);
+                foreach (var employee in employees)
+                {
+                    view.Add(new ViewTotal
+                    {
+                        FullName = employee.FullName,
+                        Gender = employee.Gender,
+                        Ethnicity = employee.Ethnicity,
+                        Category = employee.Category,
+                        Department = employee.JobHistories?.FirstOrDefault()?.Department,
+                        Total = employee.TotalSalary,
+                    });
+                }
+                return Ok(view);
             }
             catch (Exception ex)
             {
@@ -61,10 +75,23 @@ namespace DashBoard.API.Controllers
         [HttpPost("filter/number-vacation-days")]
         public async Task<ActionResult<IEnumerable<NumberOfVacationDay>>> GetNumberVacationDay([FromBody] EmployeeFilterDto filter)
         {
+            List<ViewTotal> view = new List<ViewTotal>();
             try
             {
                 var employees = await serviceRepository.GetNumberOfVacationDays(filter);
-                return Ok(employees);
+                foreach (var employee in employees)
+                {
+                    view.Add(new ViewTotal
+                    {
+                        FullName = employee.FullName,
+                        Gender = employee.Gender,
+                        Ethnicity = employee.Ethnicity,
+                        Category = employee.Category,
+                        Department = employee.JobHistories?.FirstOrDefault()?.Department,
+                        Total = employee.TotalDaysOff,
+                    });
+                }
+                return Ok(view);
             }
             catch (Exception ex)
             {
@@ -73,38 +100,38 @@ namespace DashBoard.API.Controllers
             }
         }
 
-        [HttpGet("GetEmployeeAnniversary")]
-        public async Task<ActionResult<IEnumerable<EmployeeAnniversaryDto>>> GetEmployeeAnniversary([FromQuery] int daysLimit = 55)
-        {
-            var result = await serviceRepository.GetEmployeesAnniversaryInfo(daysLimit);
-            return Ok(result);
-        }
+        //[HttpGet("GetEmployeeAnniversary")]
+        //public async Task<ActionResult<IEnumerable<EmployeeAnniversaryDto>>> GetEmployeeAnniversary([FromQuery] int daysLimit = 55)
+        //{
+        //    var result = await serviceRepository.GetEmployeesAnniversaryInfo(daysLimit);
+        //    return Ok(result);
+        //}
 
-        [HttpGet("GetEmployeeBirthday")]
-        public async Task<ActionResult<IEnumerable<EmployeeAnniversaryDto>>> GetEmployeeBirthday()
-        {
-            try
-            {
-                var result = await serviceRepository.GetEmployeesWithBirthdaysThisMonth();
-                return Ok(result);
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(500, ex.Message);
-            }
-        }
-        [HttpGet("CountVacationEmployee")]
-        public async Task<ActionResult<IEnumerable<EmployeeVacationDto>>> GetVacationEmployeeThisYear([FromQuery] int minimumDays = 12)
-        {
-            try
-            {
-                var result = await serviceRepository.GetEmployeesWithAccumulatedVacationDays(minimumDays);
-                return Ok(result);
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(500, ex.Message);
-            }
-        }
+        //[HttpGet("GetEmployeeBirthday")]
+        //public async Task<ActionResult<IEnumerable<EmployeeAnniversaryDto>>> GetEmployeeBirthday()
+        //{
+        //    try
+        //    {
+        //        var result = await serviceRepository.GetEmployeesWithBirthdaysThisMonth();
+        //        return Ok(result);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return StatusCode(500, ex.Message);
+        //    }
+        //}
+        //[HttpGet("CountVacationEmployee")]
+        //public async Task<ActionResult<IEnumerable<EmployeeVacationDto>>> GetVacationEmployeeThisYear([FromQuery] int minimumDays = 12)
+        //{
+        //    try
+        //    {
+        //        var result = await serviceRepository.GetEmployeesWithAccumulatedVacationDays(minimumDays);
+        //        return Ok(result);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return StatusCode(500, ex.Message);
+        //    }
+        //}
     }
 }

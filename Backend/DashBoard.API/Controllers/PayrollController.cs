@@ -1,5 +1,7 @@
 ﻿using DashBoard.API.Models;
 using DashBoard.API.Models.Domain;
+
+//using DashBoard.API.Models.Domain;
 using DashBoard.API.Models.DTO;
 using DashBoard.API.Repositories.Implementation;
 using DashBoard.API.Repositories.Inteface;
@@ -35,7 +37,7 @@ namespace DashBoard.API.Controllers
             //convert domain model to dto
             var respone = new EmployeeDto
             {
-                EmployeeNumber = existingEmployee.EmployeeNumber,
+                EmployeeId = existingEmployee.EmployeeId,
                 LastName = existingEmployee.LastName,
                 FirstName = existingEmployee.FirstName,
                 Ssn = existingEmployee.Ssn,
@@ -88,7 +90,7 @@ namespace DashBoard.API.Controllers
             //map dto to domain model
             var employee = new PayRollUpdateEmployeeDto
             {
-                EmployeeNumber = (uint)idEmployee,
+                EmployeeId = idEmployee,
                 LastName = request.LastName,
                 FirstName = request.FirstName,
                 Ssn = request.Ssn,

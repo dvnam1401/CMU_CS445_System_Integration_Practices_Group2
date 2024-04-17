@@ -4,34 +4,55 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore;
 
-#nullable disable
+namespace DashBoard.API.Models.Domain;
 
-namespace DashBoard.API.Models.Domain
+[Table("EMPLOYMENT")]
+public partial class Employment
 {
-    [Table("Employment")]
-    [Index(nameof(EmployeeId), Name = "IX_Employee_ID")]
-    public partial class Employment
-    {
-        [Key]
-        [Column("Employee_ID", TypeName = "numeric(18, 0)")]
-        public decimal EmployeeId { get; set; }
-        [Column("Employment_Status")]
-        [StringLength(50)]
-        public string EmploymentStatus { get; set; }
-        [Column("Hire_Date", TypeName = "datetime")]
-        public DateTime? HireDate { get; set; }
-        [Column("Workers_Comp_Code")]
-        [StringLength(50)]
-        public string WorkersCompCode { get; set; }
-        [Column("Termination_Date", TypeName = "datetime")]
-        public DateTime? TerminationDate { get; set; }
-        [Column("Rehire_Date", TypeName = "datetime")]
-        public DateTime? RehireDate { get; set; }
-        [Column("Last_Review_Date", TypeName = "datetime")]
-        public DateTime? LastReviewDate { get; set; }
+    [Key]
+    [Column("EMPLOYMENT_ID", TypeName = "numeric(18, 0)")]
+    public decimal EmploymentId { get; set; }
 
-        [ForeignKey(nameof(EmployeeId))]
-        [InverseProperty(nameof(Personal.Employment))]
-        public virtual Personal Employee { get; set; }
-    }
+    [Column("EMPLOYMENT_CODE")]
+    [StringLength(50)]
+    public string? EmploymentCode { get; set; }
+
+    [Column("EMPLOYMENT_STATUS")]
+    [StringLength(10)]
+    public string? EmploymentStatus { get; set; }
+
+    [Column("HIRE_DATE_FOR_WORKING")]
+    public DateOnly? HireDateForWorking { get; set; }
+
+    /// <summary>
+    /// MÃ CÔNG VIỆC
+    /// </summary>
+    [Column("WORKERS_COMP_CODE")]
+    [StringLength(10)]
+    public string? WorkersCompCode { get; set; }
+
+    [Column("TERMINATION_DATE")]
+    public DateOnly? TerminationDate { get; set; }
+
+    [Column("REHIRE_DATE_FOR_WORKING")]
+    public DateOnly? RehireDateForWorking { get; set; }
+
+    [Column("LAST_REVIEW_DATE")]
+    public DateOnly? LastReviewDate { get; set; }
+
+    [Column("NUMBER_DAYS_REQUIREMENT_OF_WORKING_PER_MONTH", TypeName = "numeric(18, 0)")]
+    public decimal? NumberDaysRequirementOfWorkingPerMonth { get; set; }
+
+    [Column("PERSONAL_ID", TypeName = "numeric(18, 0)")]
+    public decimal? PersonalId { get; set; }
+
+    [InverseProperty("Employment")]
+    public virtual ICollection<EmploymentWorkingTime> EmploymentWorkingTimes { get; set; } = new List<EmploymentWorkingTime>();
+
+    [InverseProperty("Employment")]
+    public virtual ICollection<JobHistory> JobHistories { get; set; } = new List<JobHistory>();
+
+    [ForeignKey("PersonalId")]
+    [InverseProperty("Employments")]
+    public virtual Personal? Personal { get; set; }
 }

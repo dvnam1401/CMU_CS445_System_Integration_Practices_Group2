@@ -1,5 +1,7 @@
 ﻿using DashBoard.API.Data;
 using DashBoard.API.Models.Domain;
+
+//using DashBoard.API.Models.Domain;
 using DashBoard.API.Models.DTO;
 using DashBoard.API.Repositories.Inteface;
 using Microsoft.EntityFrameworkCore;
@@ -22,10 +24,10 @@ namespace DashBoard.API.Repositories.Implementation
         public async Task<EmployeeDto?> GetEmployeeById(int id)
         {
             var employeeDto = await mysqlContext.Employees
-                .Where(x => x.EmployeeNumber == id)
+                .Where(x => x.IdEmployee == id)
                 .Select(x => new EmployeeDto
                 {
-                    EmployeeNumber = x.EmployeeNumber,
+                    EmployeeId = x.IdEmployee,
                     LastName = x.LastName,
                     FirstName = x.FirstName,
                     Ssn = x.Ssn,
@@ -42,7 +44,7 @@ namespace DashBoard.API.Repositories.Implementation
 
         public async Task<PayRollUpdateEmployeeDto?> UpdateEmployeeAsync(PayRollUpdateEmployeeDto? employee)
         {
-            var existingEmployee = await mysqlContext.Employees.FirstOrDefaultAsync(x => x.EmployeeNumber == employee.EmployeeNumber);
+            var existingEmployee = await mysqlContext.Employees.FirstOrDefaultAsync(x => x.IdEmployee == employee.EmployeeId);
             if (existingEmployee is not null)
             {
                 mysqlContext.Entry(existingEmployee).

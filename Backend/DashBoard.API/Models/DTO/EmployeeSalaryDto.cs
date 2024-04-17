@@ -5,14 +5,12 @@ namespace DashBoard.API.Models.DTO
 {
     public class EmployeeSalaryDto : IEmployeeData
     {
-        public bool? ShareholderStatus { get; set; }
+        public short? ShareholderStatus { get; set; }
         public string? FullName { get; set; }
-        public bool? Gender { get; set; }
-        public string? Category { get; set; } // category
-
+        public string? Gender { get; set; }
+        public string? Category { get; set; } // full time or parttime
         public string? Ethnicity { get; set; }
-        public List<JobHistory>? JobHistories { get; set; }
-        public Employment? Employment { get; set; }
+        public List<JobHistoryDto>? JobHistories { get; set; }
         public decimal? TotalSalary { get; set; }
     }
 }

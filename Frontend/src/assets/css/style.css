@@ -4678,7 +4678,7 @@ textarea.form-control-lg {
     color: #6c757d; }
 
 .btn-lg, .btn-group-lg > .btn {
-  padding: 1rem 3rem;
+  padding: 1rem 2rem;
   font-size: 0.875rem;
   border-radius: 0.1875rem; }
 
@@ -11028,6 +11028,11 @@ input:focus {
   border-color: transparent;
   outline: none; }
 
+.table-wrapper{
+  max-height: 300px; /* Đặt chiều cao tối đa cho phần tử <div> */
+  overflow-y: auto; /* Tạo thanh cuộn dọc khi cần */
+}
+
 /* Fonts */
 @font-face {
   font-family: 'ubuntu-light';
@@ -11280,7 +11285,7 @@ code {
   border-radius: 4px; }
 
 .page-header {
-  margin: 0 0 1.5rem 0; }
+  margin: 0 0 0.25rem 1rem; }
   .page-header .breadcrumb {
     border: 0;
     margin-bottom: 0; }

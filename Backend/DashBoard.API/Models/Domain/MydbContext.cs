@@ -15,12 +15,6 @@ public partial class MydbContext : DbContext
     {
     }
 
-    public virtual DbSet<Birthday> Birthdays { get; set; }
-
-    public virtual DbSet<DetailVacation> DetailVacations { get; set; }
-
-    public virtual DbSet<Efmigrationshistory> Efmigrationshistories { get; set; }
-
     public virtual DbSet<Employee> Employees { get; set; }
 
     public virtual DbSet<PayRate> PayRates { get; set; }
@@ -31,27 +25,6 @@ public partial class MydbContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.Entity<Birthday>(entity =>
-        {
-            entity.HasKey(e => e.EmployeeNumber).HasName("PRIMARY");
-
-            entity.HasOne(d => d.EmployeeNumberNavigation).WithOne(p => p.Birthday)
-                .HasPrincipalKey<Employee>(p => p.EmployeeNumber)
-                .HasForeignKey<Birthday>(d => d.EmployeeNumber)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("birthday_ibfk_1");
-        });
-
-        modelBuilder.Entity<DetailVacation>(entity =>
-        {
-            entity.HasKey(e => e.VacationId).HasName("PRIMARY");
-        });
-
-        modelBuilder.Entity<Efmigrationshistory>(entity =>
-        {
-            entity.HasKey(e => e.MigrationId).HasName("PRIMARY");
-        });
-
         modelBuilder.Entity<Employee>(entity =>
         {
             entity.HasKey(e => new { e.EmployeeNumber, e.PayRatesIdPayRates }).HasName("PRIMARY");

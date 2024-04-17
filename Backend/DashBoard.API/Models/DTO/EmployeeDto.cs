@@ -1,12 +1,13 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
 using DashBoard.API.Models.Domain;
+//using DashBoard.API.Models.Domain;
 
 namespace DashBoard.API.Models.DTO
 {
     public class EmployeeDto
     {
-        public uint EmployeeNumber { get; set; }
+        public int EmployeeId { get; set; }
         public string? LastName { get; set; }
         public string? FirstName { get; set; }
         public decimal Ssn { get; set; }

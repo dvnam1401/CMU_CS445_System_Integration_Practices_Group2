@@ -3,7 +3,7 @@
     public class EmployeeFilterDto
     {
         public bool? IsAscending { get; set; }
-        public bool? Gender { get; set; }
+        public string? Gender { get; set; }
         public string? Category { get; set; } // category: partime or fulltime
         public string? Ethnicity { get; set; }
         public string? Department { get; set; } // phong ban

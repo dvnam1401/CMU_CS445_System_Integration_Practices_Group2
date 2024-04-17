@@ -1,16 +1,17 @@
 ﻿
 
 using DashBoard.API.Models.Domain;
+using DashBoard.API.Models.DTO;
 
 namespace DashBoard.API.Models.Inteface
 {
     public interface IEmployeeData
     {
-        bool? ShareholderStatus { get; set; }
+        short? ShareholderStatus { get; set; }
         string FullName { get; set; }
-        bool? Gender { get; set; }
+        string? Gender { get; set; }
         string Category { get; set; }
         string Ethnicity { get; set; }
-        List<JobHistory> JobHistories { get; set; }
+        List<JobHistoryDto> JobHistories { get; set; }
     }
 }

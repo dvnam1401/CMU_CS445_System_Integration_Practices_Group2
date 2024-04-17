@@ -6,8 +6,8 @@ namespace DashBoard.API.Repositories.Inteface
     public interface ISqlDataRepository
     {
         Task<IEnumerable<BenefitPlan?>> GetByAll();
-        Task<BenefitPlan?> GetBenefitPlanById(uint benefit);
-        Task<List<EmployeeSqlServerDto>> FetchSqlServerData();
-        List<EmployeeSqlServerDto> FilterJobHistorySqlServe(List<EmployeeSqlServerDto> data, EmployeeFilterDto filter);
+        Task<BenefitPlan?> GetBenefitPlanById(decimal BenefitPlansId);
+        Task<List<EmploymentSqlServerDto>> FetchSqlServerData(EmployeeFilterDto filter);
+        List<EmploymentSqlServerDto> FilterJobHistorySqlServe(List<EmploymentSqlServerDto> data, EmployeeFilterDto filter);
     }
 }

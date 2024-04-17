@@ -4,71 +4,86 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore;
 
-#nullable disable
+namespace DashBoard.API.Models.Domain;
 
-namespace DashBoard.API.Models.Domain
+[Table("PERSONAL")]
+public partial class Personal
 {
-    [Table("Personal")]
-    [Index(nameof(BenefitPlans), Name = "IX_Benefit_Plans")]
-    public partial class Personal
-    {
-        public Personal()
-        {
-            JobHistories = new HashSet<JobHistory>();
-        }
+    [Key]
+    [Column("PERSONAL_ID", TypeName = "numeric(18, 0)")]
+    public decimal PersonalId { get; set; }
 
-        [Key]
-        [Column("Employee_ID", TypeName = "numeric(18, 0)")]
-        public decimal EmployeeId { get; set; }
-        [Column("First_Name")]
-        [StringLength(50)]
-        public string FirstName { get; set; }
-        [Column("Last_Name")]
-        [StringLength(50)]
-        public string LastName { get; set; }
-        [Column("Middle_Initial")]
-        [StringLength(50)]
-        public string MiddleInitial { get; set; }
-        [StringLength(50)]
-        public string Address1 { get; set; }
-        [StringLength(50)]
-        public string Address2 { get; set; }
-        [StringLength(50)]
-        public string City { get; set; }
-        [StringLength(50)]
-        public string State { get; set; }
-        [Column(TypeName = "numeric(18, 0)")]
-        public decimal? Zip { get; set; }
-        [StringLength(50)]
-        public string Email { get; set; }
-        [Column("Phone_Number")]
-        [StringLength(50)]
-        public string PhoneNumber { get; set; }
-        [Column("Social_Security_Number")]
-        [StringLength(50)]
-        public string SocialSecurityNumber { get; set; }
-        [Column("Drivers_License")]
-        [StringLength(50)]
-        public string DriversLicense { get; set; }
-        [Column("Marital_Status")]
-        [StringLength(50)]
-        public string MaritalStatus { get; set; }
-        public bool? Gender { get; set; }
-        [Column("Shareholder_Status")]
-        public bool ShareholderStatus { get; set; }
-        [Column("Benefit_Plans", TypeName = "numeric(18, 0)")]
-        public decimal? BenefitPlans { get; set; }
-        [StringLength(50)]
-        public string Ethnicity { get; set; }
+    [Column("CURRENT_FIRST_NAME")]
+    [StringLength(50)]
+    public string? CurrentFirstName { get; set; }
 
-        [ForeignKey(nameof(BenefitPlans))]
-        [InverseProperty(nameof(BenefitPlan.Personals))]
-        public virtual BenefitPlan BenefitPlansNavigation { get; set; }
-        [InverseProperty("Employee")]
-        public virtual EmergencyContact EmergencyContact { get; set; }
-        [InverseProperty("Employee")]
-        public virtual Employment Employment { get; set; }
-        [InverseProperty(nameof(JobHistory.Employee))]
-        public virtual ICollection<JobHistory> JobHistories { get; set; }
-    }
+    [Column("CURRENT_LAST_NAME")]
+    public string? CurrentLastName { get; set; }
+
+    [Column("CURRENT_MIDDLE_NAME")]
+    [StringLength(50)]
+    public string? CurrentMiddleName { get; set; }
+
+    [Column("BIRTH_DATE")]
+    public DateOnly? BirthDate { get; set; }
+
+    [Column("SOCIAL_SECURITY_NUMBER")]
+    [StringLength(20)]
+    public string? SocialSecurityNumber { get; set; }
+
+    [Column("DRIVERS_LICENSE")]
+    [StringLength(50)]
+    public string? DriversLicense { get; set; }
+
+    [Column("CURRENT_ADDRESS_1")]
+    [StringLength(255)]
+    public string? CurrentAddress1 { get; set; }
+
+    [Column("CURRENT_ADDRESS_2")]
+    [StringLength(255)]
+    public string? CurrentAddress2 { get; set; }
+
+    [Column("CURRENT_CITY")]
+    [StringLength(100)]
+    public string? CurrentCity { get; set; }
+
+    [Column("CURRENT_COUNTRY")]
+    [StringLength(100)]
+    public string? CurrentCountry { get; set; }
+
+    [Column("CURRENT_ZIP", TypeName = "numeric(18, 0)")]
+    public decimal? CurrentZip { get; set; }
+
+    [Column("CURRENT_GENDER")]
+    [StringLength(20)]
+    public string? CurrentGender { get; set; }
+
+    [Column("CURRENT_PHONE_NUMBER")]
+    [StringLength(15)]
+    public string? CurrentPhoneNumber { get; set; }
+
+    [Column("CURRENT_PERSONAL_EMAIL")]
+    [StringLength(50)]
+    public string? CurrentPersonalEmail { get; set; }
+
+    [Column("CURRENT_MARITAL_STATUS")]
+    [StringLength(50)]
+    public string? CurrentMaritalStatus { get; set; }
+
+    [Column("ETHNICITY")]
+    [StringLength(10)]
+    public string? Ethnicity { get; set; }
+
+    [Column("SHAREHOLDER_STATUS")]
+    public short? ShareholderStatus { get; set; }
+
+    [Column("BENEFIT_PLAN_ID", TypeName = "numeric(18, 0)")]
+    public decimal? BenefitPlanId { get; set; }
+
+    [ForeignKey("BenefitPlanId")]
+    [InverseProperty("Personals")]
+    public virtual BenefitPlan? BenefitPlan { get; set; }
+
+    [InverseProperty("Personal")]
+    public virtual ICollection<Employment> Employments { get; set; } = new List<Employment>();
 }

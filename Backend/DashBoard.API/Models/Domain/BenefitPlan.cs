@@ -4,30 +4,25 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore;
 
-#nullable disable
+namespace DashBoard.API.Models.Domain;
 
-namespace DashBoard.API.Models.Domain
+[Table("BENEFIT_PLANS")]
+public partial class BenefitPlan
 {
-    [Table("Benefit_Plans")]
-    public partial class BenefitPlan
-    {
-        public BenefitPlan()
-        {
-            Personals = new HashSet<Personal>();
-        }
+    [Key]
+    [Column("BENEFIT_PLANS_ID", TypeName = "numeric(18, 0)")]
+    public decimal BenefitPlansId { get; set; }
 
-        [Key]
-        [Column("Benefit_Plan_ID", TypeName = "numeric(18, 0)")]
-        public decimal BenefitPlanId { get; set; }
-        [Column("Plan_Name")]
-        [StringLength(50)]
-        public string PlanName { get; set; }
-        [Column(TypeName = "numeric(18, 0)")]
-        public decimal? Deductable { get; set; }
-        [Column("Percentage_CoPay")]
-        public int? PercentageCoPay { get; set; }
+    [Column("PLAN_NAME")]
+    [StringLength(10)]
+    public string? PlanName { get; set; }
 
-        [InverseProperty(nameof(Personal.BenefitPlansNavigation))]
-        public virtual ICollection<Personal> Personals { get; set; }
-    }
+    [Column("DEDUCTABLE", TypeName = "money")]
+    public decimal? Deductable { get; set; }
+
+    [Column("PERCENTAGE_COPAY", TypeName = "numeric(18, 0)")]
+    public decimal? PercentageCopay { get; set; }
+
+    [InverseProperty("BenefitPlan")]
+    public virtual ICollection<Personal> Personals { get; set; } = new List<Personal>();
 }

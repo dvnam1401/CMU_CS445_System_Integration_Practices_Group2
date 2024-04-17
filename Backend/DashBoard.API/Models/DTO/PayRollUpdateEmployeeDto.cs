@@ -2,10 +2,10 @@
 {
     public class PayRollUpdateEmployeeDto
     {
-        public uint EmployeeNumber { get; set; }
-        public string LastName { get; set; }
-        public string FirstName { get; set; }
-        public decimal Ssn { get; set; }
-        public int PayRatesIdPayRates { get; set; }
+        public int EmployeeId { get; set; }
+        public string? LastName { get; set; }
+        public string? FirstName { get; set; }
+        public decimal? Ssn { get; set; }
+        public int? PayRatesIdPayRates { get; set; }
     }
 }
