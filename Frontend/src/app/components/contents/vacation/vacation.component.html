@@ -1,35 +1,46 @@
 <div class="row">
-    <div class="col-12 grid-margin">
-      <div class="card">
-        <div class="card-body">
-          <h4 class="card-title">Total of number vacation days</h4>
+  <div class="col-12 grid-margin">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title">Total of number vacation days</h4>        
           <div class="table-responsive table-wrapper">
-            <table class="table">
-              <thead>
-                <tr>
-                  <th> Full Name </th>
-                  <th> Gender </th>
-                  <th> Ethnicity </th>
-                  <th> Category </th>
-                  <th> Department </th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>
-                    <!-- <img src="assets/images/faces/face1.jpg" class="me-2" alt="image">  -->
-                    David Grey
-                  </td>
-                  <td> Fund is not recieved </td>
-                  <td>
-                    <!-- <label class="badge badge-gradient-success">DONE</label> -->
-                  </td>
-                  <td> Dec 5, 2017 </td>
-                  <td> WD-12345 </td>
-                </tr>                          
-              </tbody>
-            </table>
+            <ng-container
+              *ngIf="
+                employeeVacation$ | async as employeeVacation;
+                else noDataTemplate
+              "
+            >
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>STT</th>
+                    <th>Full Name</th>
+                    <th>Gender</th>
+                    <th>Ethnicity</th>
+                    <th>Category</th>
+                    <th>Department</th>
+                    <th>Total day off</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let employee of employeeVacation; let i = index">
+                    <td>{{ i + 1 }}</td>
+                    <td>{{ employee.fullName }}</td>
+                    <td>{{ employee.gender }}</td>
+                    <td>{{ employee.ethnicity }}</td>
+                    <td>{{ employee.category }}</td>
+                    <td>{{ employee.department }}</td>
+                    <td>{{ employee.total }}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </ng-container>
           </div>
-        </div>
+       
       </div>
+      <ng-template #noDataTemplate>
+        <p>No data available.</p>
+      </ng-template>
     </div>
+  </div>
+</div>

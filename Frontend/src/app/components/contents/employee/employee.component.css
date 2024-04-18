@@ -1,0 +1,32 @@
+table {
+  table-layout: fixed;
+}
+
+thead {
+  /* background: #f9f9f9; */
+  display: table;
+  /* width: 100%;
+    width: calc(100% - 18px); */
+}
+
+tbody {
+  height: 210px;
+  overflow: auto;
+  display: block;
+  width: 100%;
+
+}
+
+tr {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+}
+
+th select {
+  width: 15px;
+  height: 20px;
+  border: none;
+  margin-left: -2px;
+  padding-bottom: 2px
+}

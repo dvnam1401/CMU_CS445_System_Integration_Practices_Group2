@@ -1,0 +1,206 @@
+<div class="content-wrapper">
+  <div class="row">
+    <div class="col-md-4 stretch-card grid-margin">
+      <a
+        type="button"
+        style="text-decoration: none"
+        class="card bg-gradient-danger card-img-holder text-white toggleTable"
+        (click)="loadEarnings()"
+      >
+        <div class="card-body">
+          <img
+            src="assets/images/dashboard/circle.svg"
+            class="card-img-absolute"
+            alt="circle-image"
+          />
+          <h4 class="font-weight-normal mb-3">
+            Employee Salary
+            <i class="mdi mdi-chart-line mdi-24px float-right"></i>
+          </h4>
+          <h2 class="mb-5">Total earnings</h2>
+          <h6 class="card-text">
+            <i class="bx bxs-wallet menu-icon"></i
+            ><i class="bx bxs-wallet menu-icon"></i
+            ><i class="bx bxs-wallet menu-icon"></i>
+          </h6>
+        </div>
+      </a>
+    </div>
+    <!-- Card 2 -->
+    <div class="col-md-4 stretch-card grid-margin">
+      <a
+        type="button"
+        style="text-decoration: none"
+        class="card bg-gradient-info card-img-holder text-white toggleTable"
+        (click)="loadVacationDays()"
+      >
+        <div class="card-body">
+          <img
+            src="assets/images/dashboard/circle.svg"
+            class="card-img-absolute"
+            alt="circle-image"
+          />
+          <h4 class="font-weight-normal mb-3">
+            Total Number Vacation Days
+            <i class="mdi mdi-diamond mdi-24px float-right"></i>
+          </h4>
+          <h2 class="mb-5">Number of vacation days</h2>
+          <h6 class="card-text">
+            <i class="bx bxs-calendar menu-icon"></i
+            ><i class="bx bxs-calendar menu-icon"></i
+            ><i class="bx bxs-calendar menu-icon"></i>
+          </h6>
+        </div>
+      </a>
+    </div>
+    <!-- card 3 -->
+    <div class="col-md-4 stretch-card grid-margin">
+      <a
+      type="button"
+        style="text-decoration: none"
+        class="card bg-gradient-success card-img-holder text-white toggleTable"
+        (click)="loadEarnings()"
+      >
+        <div class="card-body">
+          <img
+            src="assets/images/dashboard/circle.svg"
+            class="card-img-absolute"
+            alt="circle-image"
+          />
+          <h4 class="font-weight-normal mb-3">
+            Benefits Management
+            <i class="mdi mdi-diamond mdi-24px float-right"></i>
+          </h4>
+          <h2 class="mb-5">Average Benefits</h2>
+          <h6 class="card-text">
+            <i class="bx bx-money menu-icon"></i
+            ><i class="bx bx-money menu-icon"></i
+            ><i class="bx bx-money menu-icon"></i>
+          </h6>
+        </div>
+      </a>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12 grid-margin">
+      <div class="card">
+        <div class="card-body hidden" id="tableContainer">
+          <h4 class="card-title">Summarized Information</h4>
+          <div class="table-responsive table-wrapper">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Full Name</th>
+                  <th>Gender</th>
+                  <th>Ethnicity</th>
+                  <th>Category</th>
+                  <th>Department</th>
+                  <th>Total</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let data of currentData">
+                  <td>{{ data.fullName }}</td>
+                  <td>{{ data.gender }}</td>
+                  <td>{{ data.ethnicity }}</td>
+                  <td>{{ data.category }}</td>
+                  <td>{{ data.department }}</td>
+                  <td>{{ data.total }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12 grid-margin">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title">Notification</h4>
+          <div class="table-responsive table-wrapper">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>STT</th>
+                  <th>Full Name</th>
+                  <th>Department</th>
+                  <th>Content</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>1</td>
+                  <td>Herman Beck</td>
+                  <td>May 15, 2015</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>2</td>
+                  <td>Messsy Adam</td>
+                  <td>Jul 01, 2015</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>3</td>
+                  <td>John Richards</td>
+                  <td>Apr 12, 2015</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>4</td>
+                  <td>Peter Meggik</td>
+                  <td>May 15, 2015</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>5</td>
+                  <td>Edward</td>
+                  <td>May 03, 2015</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>5</td>
+                  <td>Ronald</td>
+                  <td>Jun 05, 2015</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>5</td>
+                  <td>Ronald</td>
+                  <td>Jun 05, 2015</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>5</td>
+                  <td>Ronald</td>
+                  <td>Jun 05, 2015</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>5</td>
+                  <td>Ronald</td>
+                  <td>Jun 05, 2015</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>5</td>
+                  <td>Ronald</td>
+                  <td>Jun 05, 2015</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>5</td>
+                  <td>Ronald</td>
+                  <td>Jun 05, 2015</td>
+                  <td></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

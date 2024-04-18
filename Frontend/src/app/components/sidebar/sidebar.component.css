@@ -526,3 +526,7 @@
   font-size: 1.25rem;
   border-radius: 0.3rem;
 }
+
+.hidden {
+  display: none !important;
+}

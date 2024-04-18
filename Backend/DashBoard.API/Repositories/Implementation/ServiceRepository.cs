@@ -204,6 +204,11 @@ namespace DashBoard.API.Repositories.Implementation
                    };
         }
 
+        public Task<IEnumerable<EmployeeAnniversaryDto>> GetEmployeesAnniversaryInfo(int daysLimit)
+        {
+            throw new NotImplementedException();
+        }
+
         //// lấy ra số ngày kỉ niệm của nhân viên
         //public async Task<IEnumerable<EmployeeAnniversaryDto>> GetEmployeesAnniversaryInfo(int daysLimit)
         //{

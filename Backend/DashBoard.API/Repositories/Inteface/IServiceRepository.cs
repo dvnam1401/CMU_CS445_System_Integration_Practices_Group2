@@ -10,7 +10,7 @@ namespace DashBoard.API.Repositories.Inteface
         Task<IEnumerable<Employee?>> GetByAllEmployee();
         Task<IEnumerable<EmployeeSalaryDto>> GetEmployeesSalary(EmployeeFilterDto filter);
         Task<IEnumerable<NumberOfVacationDay>> GetNumberOfVacationDays(EmployeeFilterDto filter);
-        //Task<IEnumerable<EmployeeAnniversaryDto>> GetEmployeesAnniversaryInfo(int daysLimit);
+        Task<IEnumerable<EmployeeAnniversaryDto>> GetEmployeesAnniversaryInfo(int daysLimit);
         //Task<IEnumerable<EmployeeVacationDto>> GetEmployeesWithAccumulatedVacationDays(int minimumDays);
         //Task<IEnumerable<EmployeeBirthdayDto>> GetEmployeesWithBirthdaysThisMonth();
     }

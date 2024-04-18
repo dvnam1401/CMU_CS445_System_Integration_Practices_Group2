@@ -45,7 +45,8 @@ namespace DashBoard.API.Controllers
 
         [HttpPost("filter/employees")]
         //[Route("{filter}")]
-        public async Task<ActionResult<IEnumerable<EmployeeSalaryDto>>> GetEmployeeSalary([FromBody] EmployeeFilterDto filter)
+        //<IEnumerable<EmployeeSalaryDto>>
+        public async Task<ActionResult> GetEmployeeSalary([FromBody] EmployeeFilterDto filter)
         {
             List<ViewTotal> view = new List<ViewTotal>();
             try
@@ -73,7 +74,8 @@ namespace DashBoard.API.Controllers
         }
 
         [HttpPost("filter/number-vacation-days")]
-        public async Task<ActionResult<IEnumerable<NumberOfVacationDay>>> GetNumberVacationDay([FromBody] EmployeeFilterDto filter)
+        //<IEnumerable<NumberOfVacationDay>>
+        public async Task<ActionResult> GetNumberVacationDay([FromBody] EmployeeFilterDto filter)
         {
             List<ViewTotal> view = new List<ViewTotal>();
             try
@@ -96,16 +98,17 @@ namespace DashBoard.API.Controllers
             catch (Exception ex)
             {
                 // Xử lý lỗi
+
                 return StatusCode(500, ex.Message);
             }
         }
 
-        //[HttpGet("GetEmployeeAnniversary")]
-        //public async Task<ActionResult<IEnumerable<EmployeeAnniversaryDto>>> GetEmployeeAnniversary([FromQuery] int daysLimit = 55)
-        //{
-        //    var result = await serviceRepository.GetEmployeesAnniversaryInfo(daysLimit);
-        //    return Ok(result);
-        //}
+        [HttpGet("GetEmployeeAnniversary")]
+        public async Task<ActionResult<IEnumerable<EmployeeAnniversaryDto>>> GetEmployeeAnniversary([FromQuery] int daysLimit = 55)
+        {
+            var result = await serviceRepository.GetEmployeesAnniversaryInfo(daysLimit);
+            return Ok(result);
+        }
 
         //[HttpGet("GetEmployeeBirthday")]
         //public async Task<ActionResult<IEnumerable<EmployeeAnniversaryDto>>> GetEmployeeBirthday()
