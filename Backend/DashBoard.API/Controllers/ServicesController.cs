@@ -133,7 +133,7 @@ namespace DashBoard.API.Controllers
 
 
         [HttpGet("GetEmployeeAnniversary")]
-        public async Task<ActionResult<IEnumerable<EmployeeAnniversaryDto>>> GetEmployeeAnniversary([FromQuery] int daysLimit = 12)
+        public async Task<ActionResult<IEnumerable<EmployeeAnniversaryDto>>> GetEmployeeAnniversary([FromQuery] int daysLimit = 30)
         {
             List<EmployeeAnniversaryDto> view = new List<EmployeeAnniversaryDto>();
             try
@@ -157,7 +157,7 @@ namespace DashBoard.API.Controllers
         }
 
         [HttpGet("GetEmployeeBirthday")]
-        public async Task<ActionResult<IEnumerable<EmployeeAnniversaryDto>>> GetEmployeeBirthday([FromQuery] int daysLimit = 12)
+        public async Task<ActionResult<IEnumerable<EmployeeAnniversaryDto>>> GetEmployeeBirthday([FromQuery] int daysLimit = 30)
         {
             List<EmployeeAnniversaryDto> view = new List<EmployeeAnniversaryDto>();
             try
@@ -177,7 +177,7 @@ namespace DashBoard.API.Controllers
             catch (Exception ex)
             {
                 return StatusCode(500, ex.Message);
-            }            
+            }
         }
 
         [HttpGet("CountVacationEmployee")]
@@ -186,7 +186,7 @@ namespace DashBoard.API.Controllers
             List<EmployeeVacationDto> view = new List<EmployeeVacationDto>();
             try
             {
-                var employments = await serviceRepository.GetEmployeesWithAccumulatedVacationDays(minimumDays);                
+                var employments = await serviceRepository.GetEmployeesWithAccumulatedVacationDays(minimumDays);
                 foreach (var employee in employments)
                 {
                     view.Add(new EmployeeVacationDto
@@ -201,7 +201,52 @@ namespace DashBoard.API.Controllers
             catch (Exception ex)
             {
                 return StatusCode(500, ex.Message);
-            }          
+            }
+        }
+
+        [HttpGet("getAllVacation")]
+        public async Task<ActionResult<IEnumerable<EmployeeVacationDto>>> GetAllVacation()
+        {
+            List<EmployeeVacationDto> view = new List<EmployeeVacationDto>();
+            try
+            {
+                var employmentAccumulatedVacation = await serviceRepository.GetEmployeesWithAccumulatedVacationDays(12);
+                var employmentWithBirthday = await serviceRepository.GetEmployeesWithBirthdaysThisMonth(15);
+                var employmentAnniversary = await serviceRepository.GetEmployeesAnniversaryInfo(15);
+
+                foreach (var employee in employmentAccumulatedVacation)
+                {
+                    view.Add(new EmployeeVacationDto
+                    {
+                        FullName = employee.FullName,
+                        Department = employee.Department,
+                        Content = employee.Content,
+                    });
+                }
+                foreach (var employee in employmentWithBirthday)
+                {
+                    view.Add(new EmployeeVacationDto
+                    {
+                        FullName = employee.FullName,
+                        Department = employee.Department,
+                        Content = employee.Content,
+                    });
+                }
+                foreach (var employee in employmentAnniversary)
+                {
+                    view.Add(new EmployeeVacationDto
+                    {
+                        FullName = employee.FullName,
+                        Department = employee.Department,
+                        Content = employee.Content,
+                    });
+                }
+                return Ok(view);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
         }
     }
 }

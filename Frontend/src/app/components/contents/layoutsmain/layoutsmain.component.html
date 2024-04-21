@@ -120,85 +120,32 @@
         <div class="card-body">
           <h4 class="card-title">Notification</h4>
           <div class="table-responsive table-wrapper">
-            <table class="table">
-              <thead>
-                <tr>
-                  <th>STT</th>
-                  <th>Full Name</th>
-                  <th>Department</th>
-                  <th>Content</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>1</td>
-                  <td>Herman Beck</td>
-                  <td>May 15, 2015</td>
-                  <td></td>
-                </tr>
-                <tr>
-                  <td>2</td>
-                  <td>Messsy Adam</td>
-                  <td>Jul 01, 2015</td>
-                  <td></td>
-                </tr>
-                <tr>
-                  <td>3</td>
-                  <td>John Richards</td>
-                  <td>Apr 12, 2015</td>
-                  <td></td>
-                </tr>
-                <tr>
-                  <td>4</td>
-                  <td>Peter Meggik</td>
-                  <td>May 15, 2015</td>
-                  <td></td>
-                </tr>
-                <tr>
-                  <td>5</td>
-                  <td>Edward</td>
-                  <td>May 03, 2015</td>
-                  <td></td>
-                </tr>
-                <tr>
-                  <td>5</td>
-                  <td>Ronald</td>
-                  <td>Jun 05, 2015</td>
-                  <td></td>
-                </tr>
-                <tr>
-                  <td>5</td>
-                  <td>Ronald</td>
-                  <td>Jun 05, 2015</td>
-                  <td></td>
-                </tr>
-                <tr>
-                  <td>5</td>
-                  <td>Ronald</td>
-                  <td>Jun 05, 2015</td>
-                  <td></td>
-                </tr>
-                <tr>
-                  <td>5</td>
-                  <td>Ronald</td>
-                  <td>Jun 05, 2015</td>
-                  <td></td>
-                </tr>
-                <tr>
-                  <td>5</td>
-                  <td>Ronald</td>
-                  <td>Jun 05, 2015</td>
-                  <td></td>
-                </tr>
-                <tr>
-                  <td>5</td>
-                  <td>Ronald</td>
-                  <td>Jun 05, 2015</td>
-                  <td></td>
-                </tr>
-              </tbody>
-            </table>
+            <ng-container
+              *ngIf="employment$ | async as employments; else noDataTemplate"
+            >
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>STT</th>
+                    <th>Full Name</th>
+                    <th>Department</th>
+                    <th>Content</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let employment of employments; let i = index">
+                    <!-- <td>{{ i + 1 }}</td> -->
+                    <td>{{ employment.fullName }}</td>
+                    <td>{{ employment.department }}</td>
+                    <td>{{ employment.content }}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </ng-container>
           </div>
+          <ng-template #noDataTemplate>
+            <p>No data available.</p>
+          </ng-template>
         </div>
       </div>
     </div>

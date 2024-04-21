@@ -19,7 +19,7 @@ export class EmployeeService {
 
   getEmployeeNumberVacation(filter: EmployeeFilter): Observable<EmployeeTotal[]> {
     return this.http.post<EmployeeTotal[]>(`${environment.apiUrl}/api/Services/filter/number-vacation-days`, filter);
-  }  
+  }
 
   getEmployeeAvergeBenefit(filter: EmployeeFilter): Observable<EmployeeTotal[]> {
     return this.http.post<EmployeeTotal[]>(`${environment.apiUrl}/api/Services/filter/average-benefit`, filter);
@@ -35,4 +35,9 @@ export class EmployeeService {
   getVacationEmployeeThisYear(): Observable<EmployeeNotification[]> {
     return this.http.get<EmployeeNotification[]>(`${environment.apiUrl}/api/Services/CountVacationEmployee`);
   }
+
+  getAllNotification(): Observable<EmployeeNotification[]> { 
+    return this.http.get<EmployeeNotification[]>(`${environment.apiUrl}/api/Services/getAllVacation`);
+  }
+
 }
