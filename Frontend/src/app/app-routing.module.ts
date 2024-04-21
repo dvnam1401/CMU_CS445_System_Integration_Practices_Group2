@@ -4,8 +4,6 @@ import { LoginComponent } from './auth/login/login.component';
 import { EmployeeComponent } from './components/contents/employee/employee.component';
 import { LayoutsmainComponent } from './components/contents/layoutsmain/layoutsmain.component';
 import { NotificationComponent } from './components/contents/notification/notification.component';
-import { AuthlayoutComponent } from './auth/authlayout/authlayout.component';
-import { HomeComponent } from './home/home/home.component';
 
 const routes: Routes = [
   {
@@ -64,6 +62,12 @@ const routes: Routes = [
       },
     ]
   },
+  { path: 'employee', component: EmployeeComponent, data: { type: 'totalEarnings', title: 'Total Earnings' } },
+  { path: 'vacation', component: EmployeeComponent, data: { type: 'vacationDays', title: 'Number of Vacation Days' } },
+  { path: 'benefits', component: EmployeeComponent, data: { type: 'averageBenefits', title: 'Average Benefits' } },
+  {
+    path: 'notification', component: NotificationComponent
+  }
 ];
 
 @NgModule({

@@ -14,7 +14,6 @@ import { BenefitsComponent } from './components/contents/benefits/benefits.compo
 import { NotificationComponent } from './components/contents/notification/notification.component';
 import { HomeComponent } from './home/home/home.component';
 import { HttpClientModule } from '@angular/common/http';
-import { AuthlayoutComponent } from './auth/authlayout/authlayout.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +28,7 @@ import { AuthlayoutComponent } from './auth/authlayout/authlayout.component';
     BenefitsComponent,
     NotificationComponent,
     HomeComponent,
-    AuthlayoutComponent,
+    
   ],
   imports: [
     BrowserModule,
