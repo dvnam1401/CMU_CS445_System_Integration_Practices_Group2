@@ -14,6 +14,9 @@ import { BenefitsComponent } from './components/contents/benefits/benefits.compo
 import { NotificationComponent } from './components/contents/notification/notification.component';
 import { HomeComponent } from './home/home/home.component';
 import { HttpClientModule } from '@angular/common/http';
+import { AddComponent } from './components/contents/add/add.component';
+import { EditComponent } from './components/contents/edit/edit.component';
+import { EditpayComponent } from './components/contents/editpay/editpay.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +31,9 @@ import { HttpClientModule } from '@angular/common/http';
     BenefitsComponent,
     NotificationComponent,
     HomeComponent,
+    AddComponent,
+    EditComponent,
+    EditpayComponent,
     
   ],
   imports: [

@@ -63,33 +63,33 @@
       <div class="collapse" id="general-pages">
         <ul class="nav flex-column sub-menu">
           <li class="nav-item">
-            <a class="nav-link" href="#!notification"> Hiring anniversary </a>
+            <a class="nav-link" [routerLink]="['/notification']"> Hiring anniversary </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#!notification">
+            <a class="nav-link" [routerLink]="['/notification']">
               Notifications of vacation
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#!notification"> Change benefits plan </a>
+            <a class="nav-link" [routerLink]="['/notification']"> Change benefits plan </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#!notification"> Birtdays </a>
+            <a class="nav-link" [routerLink]="['/notification']"> Birtdays </a>
           </li>
         </ul>
       </div>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="./edit.html">
+      <a class="nav-link" [routerLink]="['/edit']">
         <span class="menu-title">Edit</span>
         <i class="bx bxs-edit menu-icon"></i>
       </a>
     </li>
     <li class="nav-item sidebar-actions">
       <span class="nav-link">
-        <button class="btn btn-block btn-lg btn-gradient-primary mt-4">
+        <button class="btn btn-block btn-lg btn-gradient-primary mt-4"><a style="color: black; text-decoration: none;" [routerLink]="['/add']">
           + Add new account
-        </button>
+        </a></button>
       </span>
     </li>
   </ul>

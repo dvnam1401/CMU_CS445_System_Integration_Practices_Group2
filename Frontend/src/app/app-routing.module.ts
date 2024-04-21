@@ -4,6 +4,9 @@ import { LoginComponent } from './auth/login/login.component';
 import { EmployeeComponent } from './components/contents/employee/employee.component';
 import { LayoutsmainComponent } from './components/contents/layoutsmain/layoutsmain.component';
 import { NotificationComponent } from './components/contents/notification/notification.component';
+import { EditComponent } from './components/contents/edit/edit.component';
+import { EditpayComponent } from './components/contents/editpay/editpay.component';
+import { AddComponent } from './components/contents/add/add.component';
 
 const routes: Routes = [
   {
@@ -17,6 +20,15 @@ const routes: Routes = [
   { path: 'benefits', component: EmployeeComponent, data: { type: 'averageBenefits', title: 'Average Benefits' } },
   {
     path: 'notification', component: NotificationComponent
+  },
+  {
+    path: 'edit', component: EditComponent
+  },
+  {
+    path: 'editpayroll', component: EditpayComponent
+  },
+  {
+    path: 'add', component: AddComponent
   }
 ];
 
