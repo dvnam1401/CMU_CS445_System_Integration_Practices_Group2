@@ -3,28 +3,20 @@
   "WorkspaceRootPath": "D:\\Workspace\\CMU_CS445_System_Integration_Practices_Group2\\Backend\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{C712C63E-30BF-4280-A5BA-272340ED5412}|DashBoard.API\\DashBoard.API.csproj|D:\\Workspace\\CMU_CS445_System_Integration_Practices_Group2\\Backend\\dashboard.api\\repositories\\implementation\\servicerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C712C63E-30BF-4280-A5BA-272340ED5412}|DashBoard.API\\DashBoard.API.csproj|solutionrelative:dashboard.api\\repositories\\implementation\\servicerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C712C63E-30BF-4280-A5BA-272340ED5412}|DashBoard.API\\DashBoard.API.csproj|d:\\workspace\\cmu_cs445_system_integration_practices_group2\\backend\\dashboard.api\\repositories\\inteface\\iservicerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C712C63E-30BF-4280-A5BA-272340ED5412}|DashBoard.API\\DashBoard.API.csproj|solutionrelative:dashboard.api\\repositories\\inteface\\iservicerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C712C63E-30BF-4280-A5BA-272340ED5412}|DashBoard.API\\DashBoard.API.csproj|d:\\workspace\\cmu_cs445_system_integration_practices_group2\\backend\\dashboard.api\\repositories\\implementation\\hrrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C712C63E-30BF-4280-A5BA-272340ED5412}|DashBoard.API\\DashBoard.API.csproj|solutionrelative:dashboard.api\\repositories\\implementation\\hrrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{C712C63E-30BF-4280-A5BA-272340ED5412}|DashBoard.API\\DashBoard.API.csproj|d:\\workspace\\cmu_cs445_system_integration_practices_group2\\backend\\dashboard.api\\controllers\\servicescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{C712C63E-30BF-4280-A5BA-272340ED5412}|DashBoard.API\\DashBoard.API.csproj|solutionrelative:dashboard.api\\controllers\\servicescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C712C63E-30BF-4280-A5BA-272340ED5412}|DashBoard.API\\DashBoard.API.csproj|d:\\workspace\\cmu_cs445_system_integration_practices_group2\\backend\\dashboard.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C712C63E-30BF-4280-A5BA-272340ED5412}|DashBoard.API\\DashBoard.API.csproj|solutionrelative:dashboard.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{C712C63E-30BF-4280-A5BA-272340ED5412}|DashBoard.API\\DashBoard.API.csproj|D:\\Workspace\\CMU_CS445_System_Integration_Practices_Group2\\Backend\\dashboard.api\\repositories\\implementation\\sqldatarepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C712C63E-30BF-4280-A5BA-272340ED5412}|DashBoard.API\\DashBoard.API.csproj|solutionrelative:dashboard.api\\repositories\\implementation\\sqldatarepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C712C63E-30BF-4280-A5BA-272340ED5412}|DashBoard.API\\DashBoard.API.csproj|d:\\workspace\\cmu_cs445_system_integration_practices_group2\\backend\\dashboard.api\\models\\dto\\employeefilterdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C712C63E-30BF-4280-A5BA-272340ED5412}|DashBoard.API\\DashBoard.API.csproj|solutionrelative:dashboard.api\\models\\dto\\employeefilterdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{C712C63E-30BF-4280-A5BA-272340ED5412}|DashBoard.API\\DashBoard.API.csproj|D:\\Workspace\\CMU_CS445_System_Integration_Practices_Group2\\Backend\\dashboard.api\\repositories\\implementation\\mysqldatarepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C712C63E-30BF-4280-A5BA-272340ED5412}|DashBoard.API\\DashBoard.API.csproj|solutionrelative:dashboard.api\\repositories\\implementation\\mysqldatarepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C712C63E-30BF-4280-A5BA-272340ED5412}|DashBoard.API\\DashBoard.API.csproj|D:\\Workspace\\CMU_CS445_System_Integration_Practices_Group2\\Backend\\dashboard.api\\repositories\\implementation\\servicerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C712C63E-30BF-4280-A5BA-272340ED5412}|DashBoard.API\\DashBoard.API.csproj|solutionrelative:dashboard.api\\repositories\\implementation\\servicerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -34,7 +26,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 6,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Bookmark",
@@ -42,81 +34,52 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "IServiceRepository.cs",
-              "DocumentMoniker": "D:\\Workspace\\CMU_CS445_System_Integration_Practices_Group2\\Backend\\DashBoard.API\\Repositories\\Inteface\\IServiceRepository.cs",
-              "RelativeDocumentMoniker": "DashBoard.API\\Repositories\\Inteface\\IServiceRepository.cs",
-              "ToolTip": "D:\\Workspace\\CMU_CS445_System_Integration_Practices_Group2\\Backend\\DashBoard.API\\Repositories\\Inteface\\IServiceRepository.cs",
-              "RelativeToolTip": "DashBoard.API\\Repositories\\Inteface\\IServiceRepository.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAuwAUAAAAnAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-17T19:12:10.623Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "Program.cs",
-              "DocumentMoniker": "D:\\Workspace\\CMU_CS445_System_Integration_Practices_Group2\\Backend\\DashBoard.API\\Program.cs",
-              "RelativeDocumentMoniker": "DashBoard.API\\Program.cs",
-              "ToolTip": "D:\\Workspace\\CMU_CS445_System_Integration_Practices_Group2\\Backend\\DashBoard.API\\Program.cs",
-              "RelativeToolTip": "DashBoard.API\\Program.cs",
-              "ViewState": "AQIAAD8AAAAAAAAAAAAAAEQAAAAnAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-17T16:32:53.812Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "HRRepository.cs",
-              "DocumentMoniker": "D:\\Workspace\\CMU_CS445_System_Integration_Practices_Group2\\Backend\\DashBoard.API\\Repositories\\Implementation\\HRRepository.cs",
-              "RelativeDocumentMoniker": "DashBoard.API\\Repositories\\Implementation\\HRRepository.cs",
-              "ToolTip": "D:\\Workspace\\CMU_CS445_System_Integration_Practices_Group2\\Backend\\DashBoard.API\\Repositories\\Implementation\\HRRepository.cs",
-              "RelativeToolTip": "DashBoard.API\\Repositories\\Implementation\\HRRepository.cs",
-              "ViewState": "AQIAAAwAAAAAAAAAAAAAAHcAAAAMAAAA",
+              "Title": "MysqlDataRepository.cs",
+              "DocumentMoniker": "D:\\Workspace\\CMU_CS445_System_Integration_Practices_Group2\\Backend\\DashBoard.API\\Repositories\\Implementation\\MysqlDataRepository.cs",
+              "RelativeDocumentMoniker": "DashBoard.API\\Repositories\\Implementation\\MysqlDataRepository.cs",
+              "ToolTip": "D:\\Workspace\\CMU_CS445_System_Integration_Practices_Group2\\Backend\\DashBoard.API\\Repositories\\Implementation\\MysqlDataRepository.cs",
+              "RelativeToolTip": "DashBoard.API\\Repositories\\Implementation\\MysqlDataRepository.cs",
+              "ViewState": "AQIAAA0AAAAAAAAAAAAzwAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-17T14:31:15.447Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-04-20T07:04:33.837Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "EmployeeFilterDto.cs",
-              "DocumentMoniker": "D:\\Workspace\\CMU_CS445_System_Integration_Practices_Group2\\Backend\\DashBoard.API\\Models\\DTO\\EmployeeFilterDto.cs",
-              "RelativeDocumentMoniker": "DashBoard.API\\Models\\DTO\\EmployeeFilterDto.cs",
-              "ToolTip": "D:\\Workspace\\CMU_CS445_System_Integration_Practices_Group2\\Backend\\DashBoard.API\\Models\\DTO\\EmployeeFilterDto.cs",
-              "RelativeToolTip": "DashBoard.API\\Models\\DTO\\EmployeeFilterDto.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAA8AAAA",
+              "DocumentIndex": 1,
+              "Title": "SqlDataRepository.cs",
+              "DocumentMoniker": "D:\\Workspace\\CMU_CS445_System_Integration_Practices_Group2\\Backend\\DashBoard.API\\Repositories\\Implementation\\SqlDataRepository.cs",
+              "RelativeDocumentMoniker": "DashBoard.API\\Repositories\\Implementation\\SqlDataRepository.cs",
+              "ToolTip": "D:\\Workspace\\CMU_CS445_System_Integration_Practices_Group2\\Backend\\DashBoard.API\\Repositories\\Implementation\\SqlDataRepository.cs",
+              "RelativeToolTip": "DashBoard.API\\Repositories\\Implementation\\SqlDataRepository.cs",
+              "ViewState": "AQIAAD8AAAAAAAAAAAAowDsAAABCAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-17T15:50:35.647Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-04-20T05:56:10.458Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 0,
               "Title": "ServicesController.cs",
               "DocumentMoniker": "D:\\Workspace\\CMU_CS445_System_Integration_Practices_Group2\\Backend\\DashBoard.API\\Controllers\\ServicesController.cs",
               "RelativeDocumentMoniker": "DashBoard.API\\Controllers\\ServicesController.cs",
               "ToolTip": "D:\\Workspace\\CMU_CS445_System_Integration_Practices_Group2\\Backend\\DashBoard.API\\Controllers\\ServicesController.cs",
               "RelativeToolTip": "DashBoard.API\\Controllers\\ServicesController.cs",
-              "ViewState": "AQIAAFAAAAAAAAAAAAAswGwAAAAMAAAA",
+              "ViewState": "AQIAAHcAAAAAAAAAAAAqwIkAAABSAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-17T02:20:59.988Z",
+              "WhenOpened": "2024-04-20T05:50:48.497Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 3,
               "Title": "ServiceRepository.cs",
               "DocumentMoniker": "D:\\Workspace\\CMU_CS445_System_Integration_Practices_Group2\\Backend\\DashBoard.API\\Repositories\\Implementation\\ServiceRepository.cs",
               "RelativeDocumentMoniker": "DashBoard.API\\Repositories\\Implementation\\ServiceRepository.cs",
               "ToolTip": "D:\\Workspace\\CMU_CS445_System_Integration_Practices_Group2\\Backend\\DashBoard.API\\Repositories\\Implementation\\ServiceRepository.cs",
               "RelativeToolTip": "DashBoard.API\\Repositories\\Implementation\\ServiceRepository.cs",
-              "ViewState": "AQIAALUAAAAAAAAAAADwv78AAAA/AAAA",
+              "ViewState": "AQIAAEwBAAAAAAAAAAAUwN8AAAApAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-14T15:57:20.077Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-04-18T09:12:02.351Z"
             }
           ]
         },

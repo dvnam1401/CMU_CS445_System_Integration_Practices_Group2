@@ -3,6 +3,7 @@ using DashBoard.API.Models.Domain;
 using DashBoard.API.Models.DTO;
 using DashBoard.API.Repositories.Inteface;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Identity.Client;
 
 namespace DashBoard.API.Repositories.Implementation
 {
@@ -15,9 +16,30 @@ namespace DashBoard.API.Repositories.Implementation
         }
 
         // lấy ra danh sách benefit
-        public async Task<IEnumerable<BenefitPlan?>> GetByAll()
+        public async Task<IEnumerable<BenefitPlan?>> GetByAllBenefitPlan()
         {
             return await sqlServerContext.BenefitPlans.ToListAsync();
+        }
+
+        public async Task<IEnumerable<EmploymentDto?>> FetchEmployments()
+        {
+            using (var sqlServerContext = new SqlServerContext()) // Tạo phiên bản DbContext mới
+            {
+                var query = sqlServerContext.Employments.AsQueryable();
+                // Project the filtered job histories to JobHistoryDto
+                var result = await query.Select(e => new EmploymentDto
+                {
+                    EmploymentId = e.EmploymentId,
+                    LastName = e.Personal.CurrentLastName,
+                    FirstName = e.Personal.CurrentFirstName,
+                    Birthday = e.Personal.BirthDate,
+                    Department = e.JobHistories.FirstOrDefault().Department,
+                    HireDateForWorking = e.HireDateForWorking,
+                    RehireDateForWorking = e.RehireDateForWorking,
+                }).ToListAsync();
+
+                return result;
+            }
         }
 
         public async Task<BenefitPlan?> GetBenefitPlanById(decimal BenefitPlansId)
@@ -25,7 +47,8 @@ namespace DashBoard.API.Repositories.Implementation
             return await sqlServerContext.BenefitPlans.FirstOrDefaultAsync(x => x.BenefitPlansId == BenefitPlansId);
         }
 
-        public async Task<List<EmploymentWorkingTimeDto>> FetchWorkingTimes(EmployeeFilterDto? filter)
+        // lấy số ngày nghỉ dựa vào filter
+        public async Task<IEnumerable<EmploymentWorkingTimeDto>> FetchWorkingTimes(EmployeeFilterDto? filter)
         {
             using (var sqlServerContext = new SqlServerContext()) // Tạo phiên bản DbContext mới
             {
@@ -50,14 +73,37 @@ namespace DashBoard.API.Repositories.Implementation
                     NumberDaysActualOfWorkingPerMonth = ewt.NumberDaysActualOfWorkingPerMonth,
                     TotalNumberVacationWorkingDaysPerMonth = ewt.TotalNumberVacationWorkingDaysPerMonth
                 }).ToListAsync();
+                //var filteredData = await result.ToListAsync();
+                return result;
+            }
+        }
 
+        // lấy tổng số ngày nghỉ 1 năm
+        public async Task<IEnumerable<EmploymentWorkingTimeDto>> FetchWorkingTimes(int minimumDays)
+        {
+            using (var sqlServerContext = new SqlServerContext()) // Tạo phiên bản DbContext mới
+            {
+                var query = sqlServerContext.EmergencyContacts.AsQueryable();
+                var currentYear = DateTime.Now.Year;
+                //var currentYear = 1996;
+                var result = await query
+                    .Where(ewt => ewt.YearWorking.Value.Year == currentYear)
+                    .GroupBy(ewt => new { ewt.EmploymentId, ewt.YearWorking })
+                    .Select(group => new EmploymentWorkingTimeDto
+                    {
+                        EmploymentWorkingTimeId = group.First().EmploymentWorkingTimeId,
+                        EmploymentId = group.Key.EmploymentId,
+                        YearWorking = group.Key.YearWorking,
+                        TotalNumberVacationWorkingDaysPerMonth = group.Sum(x => x.TotalNumberVacationWorkingDaysPerMonth)
+                    }).Where(x => x.TotalNumberVacationWorkingDaysPerMonth > minimumDays)
+                    .ToListAsync();
                 //var filteredData = await result.ToListAsync();
                 return result;
             }
         }
 
         // lọc các lịch sử làm việc 
-        public List<EmploymentWorkingTimeDto> FilterEmployeeDataByVacation(IEnumerable<EmploymentWorkingTimeDto> data, EmployeeFilterDto? filter)
+        public IEnumerable<EmploymentWorkingTimeDto> FilterEmployeeDataByVacation(IEnumerable<EmploymentWorkingTimeDto> data, EmployeeFilterDto? filter)
         {
             var filteredData = data.Where(wk =>
                     wk.YearWorking.HasValue && wk.MonthWorking.HasValue &&
@@ -67,12 +113,11 @@ namespace DashBoard.API.Repositories.Implementation
             return filteredData;
         }
 
-        public async Task<List<JobHistoryDto>> FetchJobHistories(EmployeeFilterDto filter)
+        public async Task<IEnumerable<JobHistoryDto>> FetchJobHistories(EmployeeFilterDto filter)
         {
             using (var sqlServerContext = new SqlServerContext()) // Tạo phiên bản DbContext mới
             {
                 var query = sqlServerContext.JobHistory.AsQueryable();
-                // Apply year and month filters if they are provided
                 if (filter.Year.HasValue)
                 {
                     query = query.Where(jh => jh.FromDate.HasValue && jh.FromDate.Value.Year == filter.Year.Value);
@@ -80,8 +125,7 @@ namespace DashBoard.API.Repositories.Implementation
                 if (filter.Month.HasValue)
                 {
                     query = query.Where(jh => jh.FromDate.HasValue && jh.FromDate.Value.Month == filter.Month.Value);
-                }
-                // Project the filtered job histories to JobHistoryDto
+                }              
                 var result = await query.Select(jh => new JobHistoryDto
                 {
                     EmploymentId = jh.EmploymentId,
@@ -98,7 +142,7 @@ namespace DashBoard.API.Repositories.Implementation
         }
 
         // lọc lịch sử làm việc của nhân viên dựa vào endate
-        public List<EmploymentSqlServerDto> FilterJobHistorySqlServe(List<EmploymentSqlServerDto> data, EmployeeFilterDto filter)
+        public IEnumerable<EmploymentSqlServerDto> FilterJobHistorySqlServe(IEnumerable<EmploymentSqlServerDto> data, EmployeeFilterDto filter)
         {
             var query = data.Where(p => p.JobHistories.Any(jb =>
                 jb.FromDate.HasValue &&
@@ -109,17 +153,16 @@ namespace DashBoard.API.Repositories.Implementation
         }
 
         // lấy dữ liệu từ sql server
-        public async Task<List<EmploymentSqlServerDto>> FetchSqlServerData(EmployeeFilterDto filter)
+        public async Task<IEnumerable<EmploymentSqlServerDto>> FetchSqlServerData(EmployeeFilterDto filter)
         {
             var employments = await sqlServerContext.Employments
-                //.Include(e => e.Personal)
-                //.Include(e => e.EmploymentWorkingTimes)
                 .Select(e => new EmploymentSqlServerDto
                 {
                     EmploymentId = e.EmploymentId,
                     LastName = e.Personal.CurrentLastName,
                     FirstName = e.Personal.CurrentFirstName,
                     ShareholderStatus = e.Personal.ShareholderStatus,
+                    BenefitPlan = e.Personal.BenefitPlan.Deductable,
                     NumberDaysRequirementOfWorkingPerMonth = e.NumberDaysRequirementOfWorkingPerMonth,
                     EmploymentStatus = e.EmploymentStatus,
                     Gender = e.Personal.CurrentGender,
@@ -136,11 +179,6 @@ namespace DashBoard.API.Repositories.Implementation
 
             employments = employments.Where(emp =>
                 workingTimesDict.ContainsKey(emp.EmploymentId) || jobHistoriesDict.ContainsKey(emp.EmploymentId)).ToList();
-            //foreach (var employment in employments)
-            //{
-            //    employment.WorkingTime = workingTimes.Where(wt => wt.EmploymentId == employment.EmploymentId).ToList();
-            //    employment.JobHistories = jobHistories.Where(jh => jh.EmploymentId == employment.EmploymentId).ToList();
-            //}
             foreach (var employment in employments)
             {
                 if (workingTimesDict.TryGetValue(employment.EmploymentId, out var wtList))

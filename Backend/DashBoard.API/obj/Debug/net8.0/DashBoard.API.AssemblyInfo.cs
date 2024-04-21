@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("DashBoard.API")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+caa83592da1814ab289c9a59ab15e2364320cfdf")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+077a3cfe004e3545ef3892851919ad74d7c7ebd5")]
 [assembly: System.Reflection.AssemblyProductAttribute("DashBoard.API")]
 [assembly: System.Reflection.AssemblyTitleAttribute("DashBoard.API")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

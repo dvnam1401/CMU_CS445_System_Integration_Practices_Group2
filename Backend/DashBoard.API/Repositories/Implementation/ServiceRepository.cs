@@ -30,9 +30,9 @@ namespace DashBoard.API.Repositories.Implementation
             return sqlDataRepository.GetBenefitPlanById(BenefitPlansId);
         }
 
-        public Task<IEnumerable<BenefitPlan?>> GetByAll()
+        public Task<IEnumerable<BenefitPlan?>> GetByAllBenefitPlan()
         {
-            return sqlDataRepository.GetByAll();
+            return sqlDataRepository.GetByAllBenefitPlan();
         }
 
         public Task<IEnumerable<Employee?>> GetByAllEmployee()
@@ -177,12 +177,42 @@ namespace DashBoard.API.Repositories.Implementation
             var sortedQuery = ApplySorting<EmployeeSalaryDto>(filteredQuery, filter.IsAscending);
 
             return sortedQuery;
-            //// Tiếp tục xử lý với dữ liệu đã được tải
-            //var employeeResult = JoinAndTransformDataSalary(dataMysql, dataSqlServer);
-            //var filteredResult = FilterEmployees<EmployeeSalaryDto>(employeeResult, filter);
-            //return ApplySorting<EmployeeSalaryDto>(filteredResult, filter.IsAscending);
         }
 
+        public async Task<IEnumerable<EmployeeAverageBenefitDto>> GetEmployeeAverageBenefit(EmployeeFilterDto filter)
+        {
+            // Khởi tạo tác vụ để lấy dữ liệu nhân viên và kỳ nghỉ
+            var employeeTask = mysqlDataRepository.FetchMysqlEmployeeDataAsync();
+            var dataSqlServerTask = sqlDataRepository.FetchSqlServerData(filter);
+            await Task.WhenAll(employeeTask, dataSqlServerTask);
+            // Lấy kết quả từ các tác vụ
+            var dataMysql = await employeeTask;
+            var dataSqlServer = await dataSqlServerTask;
+
+            // Tiếp tục xử lý với dữ liệu đã được tải
+            var query = JoinAndTransformDataAverageBenefit(dataMysql, dataSqlServer);
+            var filteredQuery = FilterEmployees<EmployeeAverageBenefitDto>(query, filter);
+            var sortedQuery = ApplySorting<EmployeeAverageBenefitDto>(filteredQuery, filter.IsAscending);
+
+            return sortedQuery;
+        }
+
+        private IEnumerable<EmployeeAverageBenefitDto> JoinAndTransformDataAverageBenefit(IEnumerable<EmployeeMysqlDto> dataMysql, IEnumerable<EmploymentSqlServerDto> dataSqlServer)
+        {
+            return from e in dataMysql
+                   join p in dataSqlServer on e.EmployeeId equals p.EmploymentId
+                   select new EmployeeAverageBenefitDto
+                   {
+                       ShareholderStatus = p.ShareholderStatus,
+                       FullName = $"{e.LastName} {e.FirstName}",
+                       Gender = p.Gender,
+                       Ethnicity = p.Ethnicity?.Trim(),
+                       Category = p.JobHistories?.FirstOrDefault()?.JobTitle,
+                       JobHistories = p.JobHistories != null ? new List<JobHistoryDto>(p.JobHistories) : new List<JobHistoryDto>(),
+                       //TotalSalary = p.WorkingTime?.SingleOrDefault(wk => wk.TotalNumberVacationWorkingDaysPerMonth != null)?.TotalNumberVacationWorkingDaysPerMonth,
+                       TotalAverageBenefit = p.BenefitPlan,
+                   };
+        }
         private IEnumerable<EmployeeSalaryDto> JoinAndTransformDataSalary(IEnumerable<EmployeeMysqlDto> dataMysql, IEnumerable<EmploymentSqlServerDto> dataSqlServer)
         {
             return from e in dataMysql
@@ -204,172 +234,150 @@ namespace DashBoard.API.Repositories.Implementation
                    };
         }
 
-        public Task<IEnumerable<EmployeeAnniversaryDto>> GetEmployeesAnniversaryInfo(int daysLimit)
+        // lấy ra số ngày kỉ niệm của nhân viên
+        public async Task<IEnumerable<EmployeeAnniversaryDto>> GetEmployeesAnniversaryInfo(int daysLimit)
         {
-            throw new NotImplementedException();
+            var today = DateTime.Today;
+            var employments = await sqlDataRepository.FetchEmployments();
+
+            // Trước tiên, lọc danh sách để chỉ giữ lại những đối tượng có HireDate và số ngày đến ngày kỷ niệm nằm trong phạm vi được truyền vào
+            var employeeAnniversary = employments
+                .Where(e => e.HireDateForWorking is not null)
+                .Select(e =>
+                {
+                    var hireDateThisYear = DateTime.Now;
+                    if (e.RehireDateForWorking is not null)
+                    {
+                        hireDateThisYear = new DateTime(today.Year, e.RehireDateForWorking.Value.Month, e.RehireDateForWorking.Value.Day);
+                    }
+                    else
+                    {
+                        hireDateThisYear = new DateTime(today.Year, e.HireDateForWorking.Value.Month, e.HireDateForWorking.Value.Day);
+
+                    }
+                    // Tính ngày kỷ niệm trong năm hiện tại
+
+                    // Nếu ngày kỷ niệm đã qua, chuyển sang năm tiếp theo
+                    if (hireDateThisYear < today)
+                    {
+                        hireDateThisYear = hireDateThisYear.AddYears(1);
+                    }
+                    var daysUntilNextAnniversary = (hireDateThisYear - today).Days;
+
+                    // Kiểm tra số ngày còn lại có trong phạm vi được yêu cầu không
+                    if (daysUntilNextAnniversary > daysLimit)
+                    {
+                        return null; // Loại bỏ những nhân viên không trong phạm vi
+                    }
+                    var content = $"Số ngày còn lại trước khi tới ngày kỷ niệm: {daysUntilNextAnniversary}";
+                    var department = e.Department ?? "Không rõ";
+
+                    return new EmployeeAnniversaryDto
+                    {
+                        FullName = $"{e.LastName} {e.FirstName}",
+                        Department = department,
+                        Content = content
+                    };
+                }).Where(e => e is not null);
+            //{
+            //    if (e.Employments?.HireDate is null) return false;
+            //    var hireDateThisYear = new DateTime(today.Year, e.Employments.HireDate.Value.Month, e.Employments.HireDate.Value.Day);
+            //    if (hireDateThisYear < today) hireDateThisYear = hireDateThisYear.AddYears(1); // Chuyển sang năm tiếp theo nếu đã qua
+            //    var daysUntilNextAnniversary = (hireDateThisYear - today).Days;
+            //    return daysUntilNextAnniversary <= daysLimit;
+            return employeeAnniversary;
         }
 
-        //// lấy ra số ngày kỉ niệm của nhân viên
-        //public async Task<IEnumerable<EmployeeAnniversaryDto>> GetEmployeesAnniversaryInfo(int daysLimit)
+
+        //});
+
+        // Sau đó, chuyển đổi những đối tượng đã lọc thành định dạng đầu ra mong muốn
+        //var employeeAnniversaryInfos = filteredPersonal.Select(e =>
         //{
-        //    var today = DateTime.Today;
-        //    var personal = await sqlDataRepository.FetchSqlServerData();
+        //    var nextAnniversary = new DateTime(today.Year, e.Employments.HireDate.Value.Month, e.Employments.HireDate.Value.Day);
+        //    if (nextAnniversary < today) nextAnniversary = nextAnniversary.AddYears(1);
+        //    var daysUntilNextAnniversary = (nextAnniversary - today).Days;
 
-        //    // Trước tiên, lọc danh sách để chỉ giữ lại những đối tượng có HireDate và số ngày đến ngày kỷ niệm nằm trong phạm vi được truyền vào
-        //    var employeeAnniversary = personal
-        //        .Where(e => e.Employments?.HireDate is not null)
-        //        .Select(e =>
-        //        {
-        //            // Tính ngày kỷ niệm trong năm hiện tại
-        //            var hireDateThisYear = new DateTime(today.Year, e.Employments.HireDate.Value.Month, e.Employments.HireDate.Value.Day);
+        //    var content = $"Số ngày còn lại trước khi tới ngày kỷ niệm: {daysUntilNextAnniversary}";
+        //    var department = e.JobHistories?.FirstOrDefault()?.Department ?? "Không rõ";
 
-        //            // Nếu ngày kỷ niệm đã qua, chuyển sang năm tiếp theo
-        //            if (hireDateThisYear < today)
-        //            {
-        //                hireDateThisYear = hireDateThisYear.AddYears(1);
-        //            }
-        //            var daysUntilNextAnniversary = (hireDateThisYear - today).Days;
-
-        //            // Kiểm tra số ngày còn lại có trong phạm vi được yêu cầu không
-        //            if (daysUntilNextAnniversary > daysLimit)
-        //            {
-        //                return null; // Loại bỏ những nhân viên không trong phạm vi
-        //            }
-        //            var content = $"Số ngày còn lại trước khi tới ngày kỷ niệm: {daysUntilNextAnniversary}";
-        //            var department = e.JobHistories?.FirstOrDefault()?.Department ?? "Không rõ";
-
-        //            return new EmployeeAnniversaryDto
-        //            {
-        //                FullName = $"{e.LastName} {e.FirstName}",
-        //                Department = department,
-        //                Content = content
-        //            };
-        //        }).Where(e => e is not null);
-
-        //    //{
-        //    //    if (e.Employments?.HireDate is null) return false;
-        //    //    var hireDateThisYear = new DateTime(today.Year, e.Employments.HireDate.Value.Month, e.Employments.HireDate.Value.Day);
-        //    //    if (hireDateThisYear < today) hireDateThisYear = hireDateThisYear.AddYears(1); // Chuyển sang năm tiếp theo nếu đã qua
-        //    //    var daysUntilNextAnniversary = (hireDateThisYear - today).Days;
-        //    //    return daysUntilNextAnniversary <= daysLimit;
-        //    //});
-
-        //    //// Sau đó, chuyển đổi những đối tượng đã lọc thành định dạng đầu ra mong muốn
-        //    //var employeeAnniversaryInfos = filteredPersonal.Select(e =>
-        //    //{
-        //    //    var nextAnniversary = new DateTime(today.Year, e.Employments.HireDate.Value.Month, e.Employments.HireDate.Value.Day);
-        //    //    if (nextAnniversary < today) nextAnniversary = nextAnniversary.AddYears(1);
-        //    //    var daysUntilNextAnniversary = (nextAnniversary - today).Days;
-
-        //    //    var content = $"Số ngày còn lại trước khi tới ngày kỷ niệm: {daysUntilNextAnniversary}";
-        //    //    var department = e.JobHistories?.FirstOrDefault()?.Department ?? "Không rõ";
-
-        //    //    return new EmployeeAnniversaryDto
-        //    //    {
-        //    //        FullName = $"{e.LastName} {e.FirstName}",
-        //    //        Department = department,
-        //    //        Content = content
-        //    //    };
-        //    //});
+        //    return new EmployeeAnniversaryDto
+        //    {
+        //        FullName = $"{e.LastName} {e.FirstName}",
+        //        Department = department,
+        //        Content = content
+        //    };
+        //     }
+        // );
 
         //    return employeeAnniversary.ToList(); // Chuyển IEnumerable thành List nếu bạn muốn kết quả là một danh sách cụ thể
         //}
 
-        //public async Task<IEnumerable<EmployeeVacationDto>> GetEmployeesWithAccumulatedVacationDays(int minimumDays)
-        //{
-        //    // Khởi tạo tác vụ để lấy dữ liệu nhân viên và kỳ nghỉ
-        //    var employeeTask = mysqlDataRepository.FetchMysqlEmployeeDataAsync();
-        //    var vacationTask = mysqlDataRepository.FeatchMysqlDetailVacationAsync();
+        public async Task<IEnumerable<EmployeeVacationDto>> GetEmployeesWithAccumulatedVacationDays(int minimumDays)
+        {
+            var employmentTask = sqlDataRepository.FetchEmployments();
+            var workingTimeTask = sqlDataRepository.FetchWorkingTimes(minimumDays);
+            await Task.WhenAll(employmentTask, workingTimeTask);
 
-        //    // Đợi cho cả hai tác vụ hoàn thành
-        //    await Task.WhenAll(employeeTask, vacationTask);
-        //    //Console.WriteLine(minimumDays);
-        //    // Lấy kết quả từ các tác vụ
-        //    var employees = await employeeTask;
-        //    var vacations = await vacationTask;
-        //    //var filterYear = DateTime.Today.Year;
-        //    EmployeeFilterDto filter = new EmployeeFilterDto
-        //    {
-        //        Year = DateTime.Today.Year,
-        //        Month = null,
-        //    };
+            var employments = await employmentTask;
+            var workingTimes = await workingTimeTask;
+            //var filterYear = DateTime.Today.Year;
+            EmployeeFilterDto filter = new EmployeeFilterDto
+            {
+                Year = DateTime.Today.Year,
+                Month = null,
+            };
+            var employeesWithAccumulatedDays = JoinAndTransformDataAccumulatedVacationDays(employments, workingTimes);
+            return employeesWithAccumulatedDays;
+        }
 
-        //    var dataMysql = mysqlDataRepository.FeatchMysql(employees, vacations);
-        //    dataMysql = mysqlDataRepository.FilterEmployeeDataByVacation(dataMysql,
-        //                                                                 filter);
+        public IEnumerable<EmployeeVacationDto> JoinAndTransformDataAccumulatedVacationDays(IEnumerable<EmploymentDto> employments, IEnumerable<EmploymentWorkingTimeDto> workingTimes)
+        {
+            return from e in employments
+                   join wkt in workingTimes on e.EmploymentId equals wkt.EmploymentId
+                   select new EmployeeVacationDto
+                   {
+                       FullName = $"{e.FirstName} {e.LastName}",
+                       Department = e.Department,
+                       Content = $"Đã nghỉ {wkt.TotalNumberVacationWorkingDaysPerMonth} ngày, quá số ngày nghỉ phép quy định ",
+                   };
+        }
+        public async Task<IEnumerable<EmployeeBirthdayDto>> GetEmployeesWithBirthdaysThisMonth(int daysLimit)
+        {
+            var brithdayTask = sqlDataRepository.FetchEmployments();
+            var birthdays = await brithdayTask;
 
-        //    var employeesWithAccumulatedDays = dataMysql
-        //        .Where(e => e.TotalVacationsCount > minimumDays)                
-        //        .Select(e => new EmployeeVacationDto
-        //        {                    
-        //            FullName = $"{e.FirstName} {e.LastName}",
-        //            Department = "",
-        //            Content = $"Đã nghỉ {e.TotalVacationsCount} ngày, quá số ngày nghỉ phép quy định ",
-        //            AccumulatedVacationDays = e.TotalVacationsCount,
-        //        })
-        //        .ToList();
+            var today = DateTime.Today;
+            var employeesWithBirthdays = birthdays
+                .Where(e => e.Birthday is not null)
+                .Where(e => e.Birthday.Value.Month == today.Month)
+                .Select(e =>
+                {
+                    var birthdayThisYear = new DateTime(today.Year, e.Birthday.Value.Month, e.Birthday.Value.Day);
+                    if (birthdayThisYear < today)
+                    {
+                        birthdayThisYear = birthdayThisYear.AddYears(1);
+                    }
 
-        //    return employeesWithAccumulatedDays;
-        //}
+                    var daysUntilNextBirthday = (birthdayThisYear - today).Days;
 
-        //private IEnumerable<EmployeeBirthdayDto> JoinAndTransformDataBirthday(IEnumerable<EmployeeMysqlDto> dataMysql, IEnumerable<EmployeeSqlServerDto> dataSqlServer)
-        //{
-        //    return from e in dataMysql
-        //           join p in dataSqlServer on e.EmployeeNumber equals p.EmployeeId
-        //           select new EmployeeBirthdayDto
-        //           {
-        //               FullName = $"{e.LastName} {e.FirstName}",
-        //               Department = p.JobHistories?.FirstOrDefault()?.Department ?? "Không rõ",
-        //               BirthDay = e.BirthDate?.Dateofbirthday
-        //           };
-        //}
+                    // Kiểm tra số ngày còn lại có trong phạm vi được yêu cầu không
+                    if (daysUntilNextBirthday > daysLimit)
+                    {
+                        return null; // Loại bỏ những nhân viên không trong phạm vi
+                    }
 
-
-        //public async Task<IEnumerable<EmployeeBirthdayDto>> GetEmployeesWithBirthdaysThisMonth()
-        //{
-        //    // Khởi tạo tác vụ để lấy dữ liệu nhân viên và kỳ nghỉ
-        //    var employeeTask = mysqlDataRepository.FetchMysqlEmployeeDataAsync();
-        //    var vacationTask = mysqlDataRepository.FeatchMysqlDetailVacationAsync();
-
-        //    // Đợi cho cả hai tác vụ hoàn thành
-        //    await Task.WhenAll(employeeTask, vacationTask);
-
-        //    // Lấy kết quả từ các tác vụ
-        //    var employees = await employeeTask;
-        //    var vacations = await vacationTask;
-
-        //    // Khi đến đây, cả hai tác vụ đều đã hoàn thành
-        //    var dataMysql = mysqlDataRepository.FeatchMysql(employees, vacations);
-
-        //    var dataSqlServerTask = sqlDataRepository.FetchSqlServerData();
-        //    var dataSqlServer = await dataSqlServerTask;
-
-
-        //    // Tiếp tục xử lý với dữ liệu đã được tải
-        //    var employeeResult = JoinAndTransformDataBirthday(dataMysql, dataSqlServer);
-        //    var today = DateTime.Today;
-        //    var employeesWithBirthdays = employeeResult
-        //        .Where(e => e.BirthDay is not null)
-        //        .Where(e => e.BirthDay.Value.Month == today.Month)
-        //        .Select(e =>
-        //        {
-        //            var birthdayThisYear = new DateTime(today.Year, e.BirthDay.Value.Month, e.BirthDay.Value.Day);
-        //            if (birthdayThisYear < today)
-        //            {
-        //                birthdayThisYear = birthdayThisYear.AddYears(1);
-        //            }
-
-        //            var countBirthday = (birthdayThisYear - today).Days;
-        //            var content = $"Còn {countBirthday} là tới ngày sinh nhật";
-        //            var department = e.Department;
-        //            return new EmployeeBirthdayDto
-        //            {
-        //                FullName = e.FullName,
-        //                Department = department,
-        //                Content = content
-        //            };
-        //        }).ToList();
-        //    return employeesWithBirthdays;
-        //}
+                    var countBirthday = (birthdayThisYear - today).Days;
+                    var content = $"Còn {countBirthday} là tới ngày sinh nhật";
+                    var department = e.Department;
+                    return new EmployeeBirthdayDto
+                    {
+                        FullName = $"{e.LastName} {e.FirstName}",
+                        Department = department,
+                        Content = content
+                    };
+                }).Where(e => e is not null);
+            return employeesWithBirthdays;
+        }
     }
 }

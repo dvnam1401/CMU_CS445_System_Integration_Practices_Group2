@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { EmployeeService } from '../services/employee.service';
 import { EmployeeFilter } from '../models/employee-filter.model';
 import { EmployeeTotal } from '../models/employee-total-request.model';
@@ -6,18 +6,15 @@ import { EmployeeTotal } from '../models/employee-total-request.model';
 @Component({
   selector: 'app-layoutsmain',
   templateUrl: './layoutsmain.component.html',
-  styleUrls: ['./layoutsmain.component.css']
+  styleUrls: ['./layoutsmain.component.css'],  
 })
-export class LayoutsmainComponent implements OnInit {
+export class LayoutsmainComponent {
   currentData?: EmployeeTotal[];
   constructor(private employeeService: EmployeeService) { }
 
-  ngOnInit(): void {
-    throw new Error('Method not implemented.');
-  }
   loadEarnings() {
     this.employeeService.getEmployeeSalary(this.onSubmit()).subscribe(data => {
-      this.currentData = data;      
+      this.currentData = data;
     });
   }
   loadVacationDays() {
@@ -26,16 +23,15 @@ export class LayoutsmainComponent implements OnInit {
     });
   }
 
-  // loadBenefits() {
-  //   this.employeeService.getEmployeeBenefits().subscribe(data => {
-  //     this.currentData = data;
-  //     this.showTable = true;
-  //   });
-  // }
+  loadBenefits() {
+    this.employeeService.getEmployeeAvergeBenefit(this.onSubmit()).subscribe(data => {
+      this.currentData = data;
+    });
+  }
 
   onSubmit(): EmployeeFilter {
     return {
-      isAscending: null,
+      isAscending: true,
       gender: null,
       category: null,
       ethnicity: null,

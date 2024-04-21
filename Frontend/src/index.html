@@ -4,27 +4,35 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <base href="/" />
     <title>Dash Board</title>
     <!-- plugins:css -->
     <link
       rel="stylesheet"
-      href="assets/vendors/mdi/css/materialdesignicons.min.css"
+      href="/assets/vendors/mdi/css/materialdesignicons.min.css"
     />
-    <link rel="stylesheet" href="assets/vendors/css/vendor.bundle.base.css" />
+    <link rel="stylesheet" href="/assets/vendors/css/vendor.bundle.base.css" />
     <link
       href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="assets/css/style.css" />
+    <link rel="stylesheet" href="/assets/css/style.css" />
     <!-- End layout styles -->
-    <link rel="shortcut icon" href="assets/images/favicon.ico" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="shortcut icon" href="/assets/images/favicon.ico" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+      integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <script src="/assets/vendors/js/vendor.bundle.base.js"></script>
+
     <!-- <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script> -->
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-route/1.8.3/angular-route.min.js"></script> -->
     <!-- <script src="controllers/HomeController.js"></script> -->
     <!-- <script src="controllers/EmployeeController.js"></script> -->
-    <script src="assets/vendors/js/vendor.bundle.base.js"></script>
-    <script>      
+    <script>
       document.addEventListener("DOMContentLoaded", function () {
         var toggleButtons = document.querySelectorAll(".toggleTable");
         var tableContainer = document.getElementById("tableContainer");
@@ -39,8 +47,13 @@
       });
     </script>
   </head>
-
   <body>
     <app-root></app-root>
+    <!-- <my-app></my-app> -->
+    <app-layoutmains></app-layoutmains>
+    <app-notification></app-notification>
+    <app-authlayout></app-authlayout>
+    <app-login></app-login>
+    <app-employee></app-employee>
   </body>
 </html>

@@ -5,9 +5,11 @@ namespace DashBoard.API.Repositories.Inteface
 {
     public interface ISqlDataRepository
     {
-        Task<IEnumerable<BenefitPlan?>> GetByAll();
+        Task<IEnumerable<BenefitPlan?>> GetByAllBenefitPlan();
         Task<BenefitPlan?> GetBenefitPlanById(decimal BenefitPlansId);
-        Task<List<EmploymentSqlServerDto>> FetchSqlServerData(EmployeeFilterDto filter);
-        List<EmploymentSqlServerDto> FilterJobHistorySqlServe(List<EmploymentSqlServerDto> data, EmployeeFilterDto filter);
+        Task<IEnumerable<EmploymentDto?>> FetchEmployments();
+        Task<IEnumerable<EmploymentWorkingTimeDto>> FetchWorkingTimes(int minimumDays);
+        Task<IEnumerable<EmploymentSqlServerDto>> FetchSqlServerData(EmployeeFilterDto filter);
+        IEnumerable<EmploymentSqlServerDto> FilterJobHistorySqlServe(IEnumerable<EmploymentSqlServerDto> data, EmployeeFilterDto filter);
     }
 }

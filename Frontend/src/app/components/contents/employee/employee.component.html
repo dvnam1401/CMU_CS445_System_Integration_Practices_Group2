@@ -22,7 +22,9 @@
           >
             <table class="table">
               <thead>
-                <tr>                 
+                <!-- <tr *ngIf="employeeSalary && employeeSalary.length > 0">      
+                  <th *ngFor="let key of objectKeys(employeeSalary[0])">{{ key }}</th>            -->
+                <tr>
                   <th>Full Name</th>
                   <th>
                     Gender
@@ -32,7 +34,8 @@
                       <option value="other">Other</option>
                     </select>
                   </th>
-                  <th>Ethnicity 
+                  <th>
+                    Ethnicity
                     <select>
                       <option value="male">Male</option>
                       <option value="female">Female</option>
