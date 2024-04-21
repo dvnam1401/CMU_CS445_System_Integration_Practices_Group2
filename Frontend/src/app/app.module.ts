@@ -14,6 +14,7 @@ import { BenefitsComponent } from './components/contents/benefits/benefits.compo
 import { NotificationComponent } from './components/contents/notification/notification.component';
 import { HomeComponent } from './home/home/home.component';
 import { HttpClientModule } from '@angular/common/http';
+import { AuthlayoutComponent } from './auth/authlayout/authlayout.component';
 
 @NgModule({
   declarations: [
@@ -22,13 +23,13 @@ import { HttpClientModule } from '@angular/common/http';
     HeaderComponent,
     SidebarComponent,
     EmployeeComponent,
-    LoginComponent,    
+    LoginComponent,
     LayoutsmainComponent,
     VacationComponent,
     BenefitsComponent,
     NotificationComponent,
     HomeComponent,
-    
+    AuthlayoutComponent,
   ],
   imports: [
     BrowserModule,
@@ -37,7 +38,9 @@ import { HttpClientModule } from '@angular/common/http';
     HttpClientModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [
+    AuthlayoutComponent,
+    HomeComponent]
 })
 
 export class AppModule { }

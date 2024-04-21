@@ -6,12 +6,13 @@ namespace DashBoard.API.Repositories.Inteface
     public interface IServiceRepository
     {
         Task<BenefitPlan?> GetBenefitPlanById(decimal BenefitPlansId);
-        Task<IEnumerable<BenefitPlan?>> GetByAll();
+        Task<IEnumerable<BenefitPlan?>> GetByAllBenefitPlan();
         Task<IEnumerable<Employee?>> GetByAllEmployee();
         Task<IEnumerable<EmployeeSalaryDto>> GetEmployeesSalary(EmployeeFilterDto filter);
         Task<IEnumerable<NumberOfVacationDay>> GetNumberOfVacationDays(EmployeeFilterDto filter);
         Task<IEnumerable<EmployeeAnniversaryDto>> GetEmployeesAnniversaryInfo(int daysLimit);
-        //Task<IEnumerable<EmployeeVacationDto>> GetEmployeesWithAccumulatedVacationDays(int minimumDays);
-        //Task<IEnumerable<EmployeeBirthdayDto>> GetEmployeesWithBirthdaysThisMonth();
+        Task<IEnumerable<EmployeeAverageBenefitDto>> GetEmployeeAverageBenefit(EmployeeFilterDto filter);
+        Task<IEnumerable<EmployeeVacationDto>> GetEmployeesWithAccumulatedVacationDays(int minimumDays);
+        Task<IEnumerable<EmployeeBirthdayDto>> GetEmployeesWithBirthdaysThisMonth(int daysLimit);
     }
 }

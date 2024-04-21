@@ -6,7 +6,6 @@ namespace DashBoard.API.Models.DTO
     {
         public string? FullName { get; set; }
         public string? Department { get; set; }
-        public string? Content { get; set; }
-        public int AccumulatedVacationDays { get; set; }
+        public string? Content { get; set; }        
     }
 }

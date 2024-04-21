@@ -1,130 +1,36 @@
-<div class="row ">
-    <div class="col-12 grid-margin">
-      <div class="card ">
-        <div class="card-body ">
-          <h4 class="card-title">Notification</h4>
-          <div class="table-responsive table-wrapper">
+<div class="row">
+  <div class="col-12 grid-margin">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title">Notification</h4>
+        <div class="table-responsive table-wrapper">
+          <ng-container
+            *ngIf="employment$ | async as employments; else noDataTemplate"
+          >
             <table class="table">
-              <thead >
-                <tr >
-                  <th> # </th>
-                  <th> Full Name </th>
-                  <th> Department </th>
-                  <th> Content </th>
+              <thead>
+                <tr>
+                  <!-- <th>STT</th> -->
+                  <th>Full Name</th>
+                  <th>Department</th>
+                  <th>Content</th>
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td> 1 </td>
-                  <td> Herman Beck </td>
-                  <td> May 15, 2015 </td>
-                  <td>
-                    
-                  </td>
-                </tr>
-                <tr>
-                  <td> 2 </td>
-                  <td> Messsy Adam </td>
-                  <td> Jul 01, 2015 </td>
-                  <td>
-                    <!-- <div class="progress">
-                      <div class="progress-bar bg-gradient-danger" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-                    </div> -->
-                  </td>
-                </tr>
-                <tr>
-                  <td> 3 </td>
-                  <td> John Richards </td>
-                  <td> Apr 12, 2015 </td>
-                  <td>
-                    <!-- <div class="progress">
-                      <div class="progress-bar bg-gradient-warning" role="progressbar" style="width: 90%" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
-                    </div> -->
-                  </td>
-                </tr>
-                <tr>
-                  <td> 4 </td>
-                  <td> Peter Meggik </td>
-                  <td> May 15, 2015 </td>
-                  <td>
-                    <!-- <div class="progress">
-                      <div class="progress-bar bg-gradient-primary" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-                    </div> -->
-                  </td>
-                </tr>
-                <tr>
-                  <td> 5 </td>
-                  <td> Edward </td>
-                  <td> May 03, 2015 </td>
-                  <td>
-                    <!-- <div class="progress">
-                      <div class="progress-bar bg-gradient-danger" role="progressbar" style="width: 35%" aria-valuenow="35" aria-valuemin="0" aria-valuemax="100"></div>
-                    </div> -->
-                  </td>
-                </tr>
-                <tr>
-                  <td> 5 </td>
-                  <td> Ronald </td>
-                  <td> Jun 05, 2015 </td>
-                  <td>
-                    <!-- <div class="progress">
-                      <div class="progress-bar bg-gradient-info" role="progressbar" style="width: 65%" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"></div>
-                    </div> -->
-                  </td>
-                </tr>
-                <tr>
-                  <td> 5 </td>
-                  <td> Ronald </td>
-                  <td> Jun 05, 2015 </td>
-                  <td>
-                    <!-- <div class="progress">
-                      <div class="progress-bar bg-gradient-info" role="progressbar" style="width: 65%" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"></div>
-                    </div> -->
-                  </td>
-                </tr>
-                <tr>
-                  <td> 5 </td>
-                  <td> Ronald </td>
-                  <td> Jun 05, 2015 </td>
-                  <td>
-                    <!-- <div class="progress">
-                      <div class="progress-bar bg-gradient-info" role="progressbar" style="width: 65%" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"></div>
-                    </div> -->
-                  </td>
-                </tr>
-                <tr>
-                  <td> 5 </td>
-                  <td> Ronald </td>
-                  <td> Jun 05, 2015 </td>
-                  <td>
-                    <!-- <div class="progress">
-                      <div class="progress-bar bg-gradient-info" role="progressbar" style="width: 65%" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"></div>
-                    </div> -->
-                  </td>
-                </tr>
-                <tr>
-                  <td> 5 </td>
-                  <td> Ronald </td>
-                  <td> Jun 05, 2015 </td>
-                  <td>
-                    <!-- <div class="progress">
-                      <div class="progress-bar bg-gradient-info" role="progressbar" style="width: 65%" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"></div>
-                    </div> -->
-                  </td>
-                </tr>
-                <tr>
-                  <td> 5 </td>
-                  <td> Ronald </td>
-                  <td> Jun 05, 2015 </td>
-                  <td>
-                    <!-- <div class="progress">
-                      <div class="progress-bar bg-gradient-info" role="progressbar" style="width: 65%" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"></div>
-                    </div> -->
-                  </td>
+                <tr *ngFor="let employment of employments; let i = index">
+                  <!-- <td>{{ i + 1 }}</td> -->
+                  <td>{{ employment.fullName }}</td>
+                  <td>{{ employment.department }}</td>
+                  <td>{{ employment.content }}</td>
                 </tr>
               </tbody>
             </table>
-          </div>
+          </ng-container>
         </div>
+        <ng-template #noDataTemplate>
+          <p>No data available.</p>
+        </ng-template>
       </div>
     </div>
+  </div>
+</div>

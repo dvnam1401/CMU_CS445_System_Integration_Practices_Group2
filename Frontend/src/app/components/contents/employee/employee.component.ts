@@ -13,7 +13,7 @@ import { ActivatedRoute } from '@angular/router';
 export class EmployeeComponent implements OnInit {
   employeeSalary$?: Observable<EmployeeTotal[]>;
   title?: string;
-  objectKeys = Object.keys;
+  // objectKeys = Object.keys;
 
   constructor(private service: EmployeeService,
     private route: ActivatedRoute,
@@ -46,7 +46,7 @@ export class EmployeeComponent implements OnInit {
       case 'vacationDays':
         return this.service.getEmployeeNumberVacation(filter);
       case 'averageBenefits':
-      // return this.service.getEmployeeAverageBenefits(filter);
+        return this.service.getEmployeeAvergeBenefit(filter);
       default:
         return this.service.getEmployeeSalary(filter);
     }

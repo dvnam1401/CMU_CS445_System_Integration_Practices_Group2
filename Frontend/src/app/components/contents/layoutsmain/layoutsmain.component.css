@@ -37,25 +37,32 @@
 }
 
 table {
-    table-layout: fixed;
-  }
-  
-  thead {
-    /* background: #f9f9f9; */
-    display: table;
-    /* width: 100%;
+  table-layout: fixed;
+}
+
+thead {
+  /* background: #f9f9f9; */
+  display: table;
+  /* width: 100%;
     width: calc(100% - 18px); */
-  }
-  
-  tbody {
-    height: 210px;
-    overflow: auto;
-    display: block;
-    width: 100%;
-    
-  }
-  tr {
-    display: table;
-    width: 100%;
-    table-layout: fixed;
-  }
+}
+
+tbody {
+  height: 210px;
+  overflow: auto;
+  display: block;
+  width: 100%;
+
+}
+
+tr {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+}
+
+.table-wrapper {
+  max-height: 300px;
+  /* Hoặc bất kỳ giá trị nào phù hợp với bạn */
+  overflow-y: auto;
+}

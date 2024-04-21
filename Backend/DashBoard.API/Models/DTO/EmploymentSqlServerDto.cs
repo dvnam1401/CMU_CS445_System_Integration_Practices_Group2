@@ -12,6 +12,7 @@ namespace DashBoard.API.Models.DTO
         public string? Ethnicity { get; set; }
         public string? EmploymentStatus { get; set; }
         public decimal? NumberDaysRequirementOfWorkingPerMonth { get; set; }
+        public decimal? BenefitPlan { get; set; }
         public Personal? Personal { get; set; }
         public List<EmploymentWorkingTimeDto>? WorkingTime { get; set; }
         public List<JobHistoryDto>? JobHistories { get; set; }
