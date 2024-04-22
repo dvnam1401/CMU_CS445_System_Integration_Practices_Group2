@@ -4,6 +4,7 @@
         <div class="card-body ">
           <h4 class="card-title">Notification</h4>
           <div class="table-responsive table-wrapper">
+            <ng-container *ngIf="employment$ | async as employments; else noDataTemplate">
             <table class="table">
               <thead>
                 <tr>

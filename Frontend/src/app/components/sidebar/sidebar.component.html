@@ -4,7 +4,7 @@
       <a href="#" class="nav-link">
         <div class="nav-profile-image">
           <img src="assets/images/faces/face1.jpg" alt="profile" />
-          <span class="login-status online"></span>          
+          <span class="login-status online"></span>
         </div>
         <div class="nav-profile-text d-flex flex-column">
           <span class="font-weight-bold mb-2">David Grey. H</span>
@@ -33,7 +33,7 @@
       <div class="collapse" id="ui-basic">
         <ul class="nav flex-column sub-menu">
           <li class="nav-item">
-            <a class="nav-link" [routerLink]="['/employee']">Total earnings</a>
+            <a class="nav-link" [routerLink]="['/home/employee']">Total earnings</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" [routerLink]="['/vacation']"
@@ -63,38 +63,49 @@
       <div class="collapse" id="general-pages">
         <ul class="nav flex-column sub-menu">
           <li class="nav-item">
-            <a class="nav-link" href="#!notification"> Hiring anniversary </a>
+            <a class="nav-link" [routerLink]="['/home/notification/anniversary']">
+              Hiring anniversary
+            </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#!notification">
+            <a class="nav-link" [routerLink]="['/home/notification/vacation']">
               Notifications of vacation
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#!notification"> Change benefits plan </a>
+            <a class="nav-link" [routerLink]="['/home/notification/benefit']">
+              Change benefits plan
+            </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#!notification"> Birtdays </a>
+            <a class="nav-link" [routerLink]="['/home/notification/birthday']">
+              Birthdays
+            </a>
           </li>
         </ul>
       </div>
     </li>
     <li class="nav-item">
-      <a class="nav-link" [routerLink]="['/edit']">
+      <a class="nav-link" [routerLink]="['/home/edit']">
         <span class="menu-title">Edit</span>
         <i class="bx bxs-edit menu-icon"></i>
       </a>
     </li>
     <li class="nav-item sidebar-actions">
       <span class="nav-link">
-        <button class="btn btn-block btn-lg btn-gradient-primary mt-4"><a style="color: black; text-decoration: none;" [routerLink]="['/add']">
-          + Add new account
-        </a></button>
+        <button class="btn btn-block btn-lg btn-gradient-primary mt-4">
+          <a
+            style="color: black; text-decoration: none"
+            [routerLink]="['/add']"
+          >
+            + Add new account
+          </a>
+        </button>
       </span>
     </li>
   </ul>
 </nav>
-<script>
+<!-- <script>
   (function ($) {
     "use strict";
     $(function () {
@@ -103,4 +114,4 @@
       });
     });
   })(jQuery);
-</script>
+</script> -->

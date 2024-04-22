@@ -30,10 +30,14 @@ export class NotificationComponent implements OnInit {
   fetchDataBasedOnType(type: string): Observable<EmployeeNotification[]> {
     switch (type) {
       case 'anniversary':
+        console.log('anniversary');
         return this.service.getEmploymentAnniversary();
       case 'birthday':
+        console.log('birthday');
         return this.service.getEmployeeBirthday();
       case 'vacation':
+        console.log('vacation');
+
         return this.service.getVacationEmployeeThisYear();
       default:
         return this.service.getEmployeeBirthday();

@@ -3,23 +3,21 @@ import { EmployeeService } from '../services/employee.service';
 import { EmployeeFilter } from '../models/employee-filter.model';
 import { EmployeeTotal } from '../models/employee-total-request.model';
 import { EmployeeNotification } from '../models/employment-anniversary.model';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-layoutsmain',
   templateUrl: './layoutsmain.component.html',
   styleUrls: ['./layoutsmain.component.css'],
 })
-export class LayoutsmainComponent implements OnInit, OnDestroy{
+export class LayoutsmainComponent implements OnInit{
   currentData?: EmployeeTotal[];
   employment$?: Observable<EmployeeNotification[]>;
-
+  private employmentAll?: Subscription;
   constructor(private employeeService: EmployeeService) { }
-  ngOnDestroy(): void {
-    throw new Error('Method not implemented.');
-  }
+ 
 
-  ngOnInit(): void {
+  ngOnInit(): void {  
     this.employment$ = this.employeeService.getAllNotification();
   }
 

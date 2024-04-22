@@ -10,10 +10,10 @@ import { EmployeeComponent } from './components/contents/employee/employee.compo
 import { LoginComponent } from './auth/login/login.component';
 import { LayoutsmainComponent } from './components/contents/layoutsmain/layoutsmain.component';
 import { VacationComponent } from './components/contents/vacation/vacation.component';
-import { BenefitsComponent } from './components/contents/benefits/benefits.component';
 import { NotificationComponent } from './components/contents/notification/notification.component';
 import { HomeComponent } from './home/home/home.component';
 import { HttpClientModule } from '@angular/common/http';
+import { AuthLayoutComponent } from './auth/auth-layout/auth-layout.component';
 
 @NgModule({
   declarations: [
@@ -25,21 +25,23 @@ import { HttpClientModule } from '@angular/common/http';
     LoginComponent,
     LayoutsmainComponent,
     VacationComponent,
-    BenefitsComponent,
     NotificationComponent,
     HomeComponent,
-    
+    AuthLayoutComponent,
+
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [
-    AuthlayoutComponent,
-    HomeComponent]
+    AuthLayoutComponent,
+    HomeComponent,
+    //LoginComponent
+  ]
 })
 
 export class AppModule { }
