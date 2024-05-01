@@ -16,7 +16,7 @@ export const roleGuard: CanActivateFn = (route, state) => {
   // Xử lý truy cập vào /edit-hr
   if (path.includes('/edit-hr')) {
     if (!roles?.includes('HR')) {
-      router.navigate(['/']);  // Chuyển hướng nếu không phải HR
+      router.navigate(['**']);  // Chuyển hướng nếu không phải HR
       return false;
     }
   }
@@ -24,14 +24,14 @@ export const roleGuard: CanActivateFn = (route, state) => {
   // Xử lý truy cập vào /edit-payroll
   if (path.includes('/edit-payroll')) {
     if (!roles?.includes('PayRoll')) {
-      router.navigate(['/']);  // Chuyển hướng nếu không phải PayRoll
+      router.navigate(['**']);  // Chuyển hướng nếu không phải PayRoll
       return false;
     }
   }
 
   // Kiểm tra quyền HR để truy cập /add
   if (path.includes('/add') && !roles?.includes('HR')) {
-    router.navigate(['/']);  // Chuyển hướng nếu không phải HR
+    router.navigate(['**']);  // Chuyển hướng nếu không phải HR
     return false;
   }
 

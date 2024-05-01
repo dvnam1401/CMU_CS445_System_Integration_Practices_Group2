@@ -20,6 +20,8 @@ import { AuthInterceptor } from './components/interceptors/auth.interceptor';
 import { EditComponent } from './components/contents/edit/edit.component';
 import { EditpayComponent } from './components/contents/editpay/editpay.component';
 import { AddComponent } from './components/contents/add/add.component';
+import { NotfoundComponent } from './components/contents/notfound/notfound.component';
+import { LayoutNotfoundComponent } from './components/contents/layout-notfound/layout-notfound.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +40,8 @@ import { AddComponent } from './components/contents/add/add.component';
     NotificationHiringComponent,
     EditComponent,
     EditpayComponent,
+    NotfoundComponent,
+    LayoutNotfoundComponent,
     AddComponent,
   ],
   imports: [

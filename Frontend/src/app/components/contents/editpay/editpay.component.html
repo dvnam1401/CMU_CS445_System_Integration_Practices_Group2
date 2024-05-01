@@ -13,7 +13,7 @@
           <i class="fa-solid fa-magnifying-glass"></i>
         </button>
       </form>
-      <ng-container *ngIf="model">
+      <ng-container *ngIf="model; else noDataTemplate">
         <form class="forms-sample" #form="ngForm">
           <div class="form-group">
             <label for="exampleInputName1">First Name</label>
@@ -75,6 +75,9 @@
           </button>
         </form>
       </ng-container>
+      <ng-template #noDataTemplate>
+        <p>No data available.</p>
+      </ng-template>
     </div>
   </div>
 </div>

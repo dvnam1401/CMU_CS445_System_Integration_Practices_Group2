@@ -12,6 +12,8 @@ import { AddComponent } from './components/contents/add/add.component';
 import { NotificationHiringComponent } from './components/contents/notification-hiring/notification-hiring.component';
 import { authGuard } from './auth/guards/auth.guard';
 import { roleGuard } from './components/guards/role.guard';
+import { LayoutNotfoundComponent } from './components/contents/layout-notfound/layout-notfound.component';
+import { NotfoundComponent } from './components/contents/notfound/notfound.component';
 
 const routes: Routes = [
   {
@@ -65,18 +67,18 @@ const routes: Routes = [
       },
       {
         path: 'edit-hr',
-        component: EditComponent,     
-        canActivate: [roleGuard],        
+        component: EditComponent,
+        canActivate: [roleGuard],
       },
       {
         path: 'edit-payroll',
         component: EditpayComponent,
-        canActivate: [roleGuard],        
+        canActivate: [roleGuard],
       },
       {
         path: 'add',
         component: AddComponent,
-        canActivate: [roleGuard],        
+        canActivate: [roleGuard],
       }
     ]
   },
@@ -90,7 +92,15 @@ const routes: Routes = [
       },
     ]
   },
-
+  {
+    path: '',
+    component: LayoutNotfoundComponent,
+    children: [
+      {
+        path: '**',
+        component: NotfoundComponent
+      },]
+  }
 ];
 
 @NgModule({

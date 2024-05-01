@@ -28,13 +28,13 @@ export class EditpayComponent {
     this.routeSubscription = this.route.paramMap.subscribe({
       next: (param) => {
         this.id = param.get('id');
-
         if (this.id) {
           this.findEmployee();
         }
       }
     })
   }
+
   findEmployee(): void {
     console.log(`Get employee with id: ${this.id}`);
     if (this.id) {
