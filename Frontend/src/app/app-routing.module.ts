@@ -8,16 +8,16 @@ import { HomeComponent } from './home/home/home.component';
 import { AuthLayoutComponent } from './auth/auth-layout/auth-layout.component';
 import { EditComponent } from './components/contents/edit/edit.component';
 import { EditpayComponent } from './components/contents/editpay/editpay.component';
+import { AddComponent } from './components/contents/add/add.component';
+import { NotificationHiringComponent } from './components/contents/notification-hiring/notification-hiring.component';
+import { authGuard } from './auth/guards/auth.guard';
+import { roleGuard } from './components/guards/role.guard';
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo: '/home',
-    pathMatch: 'full'
-  },
-  {
-    path: 'home',
     component: HomeComponent,
+    canActivate: [authGuard],
     children: [
       {
         path: '',
@@ -43,8 +43,8 @@ const routes: Routes = [
         children: [
           {
             path: 'anniversary',
-            component: NotificationComponent,
-            data: { type: 'anniversary', title: 'Hiring anniversary' }
+            component: NotificationHiringComponent,
+            // data: { type: 'anniversary', title: 'Hiring anniversary' }
           },
           {
             path: 'vacation',
@@ -64,8 +64,19 @@ const routes: Routes = [
         ]
       },
       {
-        path: 'edit',
-        component: EditComponent
+        path: 'edit-hr',
+        component: EditComponent,     
+        canActivate: [roleGuard],        
+      },
+      {
+        path: 'edit-payroll',
+        component: EditpayComponent,
+        canActivate: [roleGuard],        
+      },
+      {
+        path: 'add',
+        component: AddComponent,
+        canActivate: [roleGuard],        
       }
     ]
   },
@@ -89,5 +100,3 @@ const routes: Routes = [
 export class AppRoutingModule {
 
 }
-
-

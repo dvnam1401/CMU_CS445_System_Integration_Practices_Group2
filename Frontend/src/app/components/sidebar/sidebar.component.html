@@ -1,4 +1,4 @@
-<nav class="sidebar sidebar-offcanvas" id="sidebar">
+<nav class="sidebar sidebar-offcanvas sidebar-icon-only" id="sidebar">
   <ul class="nav">
     <li class="nav-item nav-profile">
       <a href="#" class="nav-link">
@@ -33,7 +33,7 @@
       <div class="collapse" id="ui-basic">
         <ul class="nav flex-column sub-menu">
           <li class="nav-item">
-            <a class="nav-link" [routerLink]="['/home/employee']">Total earnings</a>
+            <a class="nav-link" [routerLink]="['/employee']">Total earnings</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" [routerLink]="['/vacation']"
@@ -63,22 +63,22 @@
       <div class="collapse" id="general-pages">
         <ul class="nav flex-column sub-menu">
           <li class="nav-item">
-            <a class="nav-link" [routerLink]="['/home/notification/anniversary']">
+            <a class="nav-link" [routerLink]="['/notification/anniversary']">
               Hiring anniversary
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" [routerLink]="['/home/notification/vacation']">
+            <a class="nav-link" [routerLink]="['/notification/vacation']">
               Notifications of vacation
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" [routerLink]="['/home/notification/benefit']">
+            <a class="nav-link" [routerLink]="['/notification/benefit']">
               Change benefits plan
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" [routerLink]="['/home/notification/birthday']">
+            <a class="nav-link" [routerLink]="['/notification/birthday']">
               Birthdays
             </a>
           </li>
@@ -86,32 +86,23 @@
       </div>
     </li>
     <li class="nav-item">
-      <a class="nav-link" [routerLink]="['/home/edit']">
+      <a class="nav-link" (click)="onEditClicked($event)">
         <span class="menu-title">Edit</span>
         <i class="bx bxs-edit menu-icon"></i>
       </a>
     </li>
-    <li class="nav-item sidebar-actions">
-      <span class="nav-link">
-        <button class="btn btn-block btn-lg btn-gradient-primary mt-4">
-          <a
-            style="color: black; text-decoration: none"
-            [routerLink]="['/add']"
-          >
-            + Add new account
-          </a>
-        </button>
-      </span>
-    </li>
+    <ng-container *ngIf="roles[0] === 'HR'">
+      <li class="nav-item sidebar-actions">
+        <span class="nav-link">
+          <button class="btn btn-block btn-lg btn-gradient-primary mt-4" [routerLink]="['/add']">
+            <a
+              style="color: black; text-decoration: none"              
+            >
+              + Add new account
+            </a>
+          </button>
+        </span>
+      </li>
+    </ng-container>
   </ul>
 </nav>
-<!-- <script>
-  (function ($) {
-    "use strict";
-    $(function () {
-      $('[data-toggle="offcanvas"]').on("click", function () {
-        $(".sidebar-offcanvas").toggleClass("active");
-      });
-    });
-  })(jQuery);
-</script> -->

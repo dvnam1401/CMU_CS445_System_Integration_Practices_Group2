@@ -4368,3 +4368,12 @@ button:visited {
   background: white;
   color: #b66dff;
 }
+
+.sidebar {
+  width: 240px;
+  transition: width 0.3s;
+}
+
+body.sidebar-icon-only .sidebar {
+  width: 0;
+}

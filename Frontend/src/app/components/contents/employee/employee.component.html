@@ -10,25 +10,36 @@
             id="birthday"
             name="birthday"
             style="width: 23px; border: none"
+            [(ngModel)]="selectedDate"            
+            (ngModelChange)="onFilterChange()"
           />
         </h4>
-        <!-- <form #form="ngForm" (ngSubmit)="onSubmit()"> -->
-        <div class="table-responsive table-wrapper">
-          <ng-container
-            *ngIf="
-              employeeSalary$ | async as employeeSalary;
-              else noDataTemplate
-            "
-          >
+        <form #form="ngForm">
+          <div class="table-responsive table-wrapper">
             <table class="table">
               <thead>
                 <!-- <tr *ngIf="employeeSalary && employeeSalary.length > 0">      
                   <th *ngFor="let key of objectKeys(employeeSalary[0])">{{ key }}</th>            -->
                 <tr>
-                  <th>Full Name</th>
+                  <th>
+                    Full Name
+                    <select
+                      [(ngModel)]="model.isAscending"
+                      name="isAscending"
+                      (ngModelChange)="onFilterChange()"
+                    >
+                      <option [ngValue]="null">Mặc định</option>
+                      <option [ngValue]="true">A -> Z</option>
+                      <option [ngValue]="false">Z -> A</option>
+                    </select>
+                  </th>
                   <th>
                     Gender
-                    <select>
+                    <select
+                      [(ngModel)]="model.gender"
+                      name="gender"
+                      (ngModelChange)="onFilterChange()"
+                    >
                       <option value="male">Male</option>
                       <option value="female">Female</option>
                       <option value="other">Other</option>
@@ -36,35 +47,69 @@
                   </th>
                   <th>
                     Ethnicity
-                    <select>
+                    <select
+                      [(ngModel)]="model.ethnicity"
+                      (ngModelChange)="onFilterChange()"
+                      name="ethnicity"
+                    >
+                      <option
+                        *ngFor="let ethnicity of selectedEthnicity.ethnicities"
+                        [value]="ethnicity.id"
+                      >
+                        {{ ethnicity.name }}
+                      </option>
+                    </select>
+                  </th>
+                  <th>
+                    Category
+                    <select (ngModelChange)="onFilterChange()" name="category">
                       <option value="male">Male</option>
                       <option value="female">Female</option>
                       <option value="other">Other</option>
                     </select>
                   </th>
-                  <th>Category</th>
-                  <th>Department</th>
+                  <th>
+                    Department
+                    <select
+                    [(ngModel)]="model.department"
+                      (ngModelChange)="onFilterChange()"
+                      name="department"
+                    >
+                      <option
+                        *ngFor="let department of departments$ | async"
+                        value="{{ department }}"
+                      >
+                        {{ department }}
+                      </option>
+                    </select>
+                  </th>
                   <th>Total</th>
                 </tr>
               </thead>
-              <tbody>
-                <tr *ngFor="let employee of employeeSalary; let i = index">
-                  <!-- <td>{{ i + 1 }}</td> -->
-                  <td>{{ employee.fullName }}</td>
-                  <td>{{ employee.gender }}</td>
-                  <td>{{ employee.ethnicity }}</td>
-                  <td>{{ employee.category }}</td>
-                  <td>{{ employee.department }}</td>
-                  <td>{{ employee.total }}</td>
-                </tr>
-              </tbody>
+              <ng-container
+                *ngIf="
+                  employeeSalary$ | async as employeeSalary;
+                  else noDataTemplate
+                "
+              >
+                <tbody>
+                  <tr *ngFor="let employee of employeeSalary; let i = index">
+                    <!-- <td>{{ i + 1 }}</td> -->
+                    <td>{{ employee.fullName }}</td>
+                    <td>{{ employee.gender }}</td>
+                    <td>{{ employee.ethnicity }}</td>
+                    <td>{{ employee.category }}</td>
+                    <td>{{ employee.department }}</td>
+                    <td>{{ employee.total }}</td>
+                  </tr>
+                </tbody>
+              </ng-container>
+              <ng-template #noDataTemplate>
+                <p>No data available.</p>
+              </ng-template>
             </table>
-          </ng-container>
-        </div>
-        <!-- </form> -->
-        <ng-template #noDataTemplate>
-          <p>No data available.</p>
-        </ng-template>
+          </div>
+        </form>
       </div>
     </div>
   </div>

@@ -41,21 +41,22 @@ namespace DashBoard.API.Controllers
                 LastName = existingEmployee.LastName,
                 FirstName = existingEmployee.FirstName,
                 Ssn = existingEmployee.Ssn,
-                PayRate = existingEmployee.PayRate,
+                //PayRate = existingEmployee.PayRate,
                 PayRatesIdPayRates = existingEmployee.PayRatesIdPayRates,
-                VacationDays = existingEmployee.VacationDays,
-                PaidToDate = existingEmployee.PaidToDate,
-                PaidLastYear = existingEmployee.PaidLastYear,
-                PayRates = new PayRate
-                {
-                    IdPayRates = existingEmployee.PayRates.IdPayRates,
-                    PayRateName = existingEmployee.PayRates.PayRateName,
-                    Value = existingEmployee.PayRates.Value,
-                    TaxPercentage = existingEmployee.PayRates.TaxPercentage,
-                    PayType = existingEmployee.PayRates.PayType,
-                    PayAmount = existingEmployee.PayRates.PayAmount,
-                    PtLevelC = existingEmployee.PayRates.PtLevelC,
-                },
+                PayRatesName = existingEmployee.PayRatesName,
+                //VacationDays = existingEmployee.VacationDays,
+                //PaidToDate = existingEmployee.PaidToDate,
+                //PaidLastYear = existingEmployee.PaidLastYear,
+                //PayRates = new PayRate
+                //{
+                //    IdPayRates = existingEmployee.PayRates.IdPayRates,
+                //    PayRateName = existingEmployee.PayRates.PayRateName,
+                //    Value = existingEmployee.PayRates.Value,
+                //    TaxPercentage = existingEmployee.PayRates.TaxPercentage,
+                //    PayType = existingEmployee.PayRates.PayType,
+                //    PayAmount = existingEmployee.PayRates.PayAmount,
+                //    PtLevelC = existingEmployee.PayRates.PtLevelC,
+                //},
             };
             return Ok(respone);
         }
@@ -65,19 +66,18 @@ namespace DashBoard.API.Controllers
         public async Task<IActionResult> GetAllPayRate()
         {
             var payRates = await payrollRepository.GetAllPayRates();
-
             //convert domain model to dto
             var response = new List<PayRateDto>();
             foreach (var payRate in payRates)
             {
                 response.Add(new PayRateDto
                 {
+                    IdPayRates = payRate.IdPayRates,
                     PayRateName = payRate.PayRateName,
                     Value = payRate.Value,
                     TaxPercentage = payRate.TaxPercentage,
                     PayType = payRate.PayType,
-                    PayAmount = payRate.PayAmount,
-                    PtLevelC = payRate.PtLevelC
+                    PayAmount = payRate.PayAmount,                    
                 });
             }
             return Ok(response);

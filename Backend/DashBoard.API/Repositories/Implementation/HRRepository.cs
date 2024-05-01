@@ -29,7 +29,7 @@ namespace DashBoard.API.Repositories.Implementation
             {
                 return new HRUpdateEmployeeDto
                 {
-                    EmploymentId = employeeMysql.EmployeeNumber,
+                    EmploymentId = employeeSql.EmploymentId,
                     LastName = employeeMysql.LastName,
                     FirstName = employeeMysql.FirstName,
                     PhoneNumber = employeeSql.Personal?.CurrentPhoneNumber,
@@ -74,7 +74,7 @@ namespace DashBoard.API.Repositories.Implementation
         {
             return new Employee
             {
-                IdEmployee = dto.IdEmployee,
+                IdEmployee = dto.EmploymentId,
                 EmployeeNumber = GetAllIdEmployee() + 1,
                 FirstName = dto.FirstName,
                 LastName = dto.LastName,
@@ -89,9 +89,11 @@ namespace DashBoard.API.Repositories.Implementation
                 PersonalId = dto.PersonalId,
                 CurrentFirstName = dto.FirstName,
                 CurrentLastName = dto.LastName,
-                SocialSecurityNumber = dto.Ssn.ToString(),
+                //SocialSecurityNumber = dto.Ssn.ToString(),
                 CurrentAddress1 = dto.Address,
-                CurrentCity = dto.City,
+                CurrentPhoneNumber = dto.PhoneNumber,
+                CurrentPersonalEmail = dto.Email,
+                // CurrentCity = dto.City,
                 CurrentGender = dto.Gender,
                 ShareholderStatus = dto.ShareholderStatus,
                 BenefitPlanId = dto.BenefitPlanId,
@@ -103,7 +105,7 @@ namespace DashBoard.API.Repositories.Implementation
             };
             Employment employment = new Employment
             {
-                EmploymentId = dto.IdEmployee,
+                EmploymentId = dto.EmploymentId,
                 Personal = personal,
             };
             employment.JobHistories.Add(jobHistory);
@@ -132,18 +134,11 @@ namespace DashBoard.API.Repositories.Implementation
         private async Task UpdateEmployeeInMySql(HRUpdateEmployeeDto updateEmployeeDto)
         {
             var employee = await mysqlContext.Employees
-                //.Include(x => x.Birthday)
                 .FirstOrDefaultAsync(x => x.IdEmployee == updateEmployeeDto.EmploymentId);
             if (employee is not null)
             {
                 employee.FirstName = updateEmployeeDto.FirstName;
                 employee.LastName = updateEmployeeDto.LastName;
-                //if (employee.Birthday == null)
-                //{
-                //    employee.Birthday = new Birthday(); // Giả sử Birthday là tên lớp chính xác
-                //}
-                //employee.Birthday.Dateofbirthday = updateEmployeeDto.Dateofbirthday;
-                //employee.Birthday.Dateofbirthday = updateEmployeeDto.Dateofbirthday;
 
                 await mysqlContext.SaveChangesAsync();
             }
@@ -152,11 +147,17 @@ namespace DashBoard.API.Repositories.Implementation
         private async Task UpdateEmployeeInSqlServer(HRUpdateEmployeeDto updateEmployeeDto)
         {
             var existingEmployee = await sqlServerContext.Employments
+                .Include(e => e.Personal)
                 .FirstOrDefaultAsync(x => x.EmploymentId == updateEmployeeDto.EmploymentId);
 
             if (existingEmployee is not null)
             {
-                sqlServerContext.Entry(existingEmployee).CurrentValues.SetValues(updateEmployeeDto);
+                sqlServerContext.Entry(existingEmployee).CurrentValues.SetValues(updateEmployeeDto);       
+                existingEmployee.Personal.ShareholderStatus = updateEmployeeDto.ShareholderStatus;
+                existingEmployee.Personal.CurrentAddress1 = updateEmployeeDto.Address;
+                existingEmployee.Personal.CurrentPhoneNumber = updateEmployeeDto.PhoneNumber;
+                existingEmployee.Personal.CurrentPersonalEmail = updateEmployeeDto.Email;
+                                
                 await sqlServerContext.SaveChangesAsync();
             }
         }

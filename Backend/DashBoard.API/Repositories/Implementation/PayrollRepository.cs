@@ -11,6 +11,7 @@ namespace DashBoard.API.Repositories.Implementation
     public class PayrollRepository : IPayrollRepository
     {
         private readonly MysqlContext mysqlContext;
+        private readonly SqlServerContext sqlServerContext;
 
         public PayrollRepository(MysqlContext mysqlContext)
         {
@@ -33,10 +34,11 @@ namespace DashBoard.API.Repositories.Implementation
                     Ssn = x.Ssn,
                     PayRate = x.PayRate,
                     PayRatesIdPayRates = x.PayRatesIdPayRates,
-                    VacationDays = x.VacationDays,
-                    PaidToDate = x.PaidToDate,
-                    PaidLastYear = x.PaidLastYear,
-                    PayRates = x.PayRatesIdPayRatesNavigation
+                    PayRatesName = x.PayRatesIdPayRatesNavigation.PayRateName,
+                    //VacationDays = x.VacationDays,
+                    //PaidToDate = x.PaidToDate,
+                    //PaidLastYear = x.PaidLastYear,
+                    //PayRates = x.PayRatesIdPayRatesNavigation
                 })
                 .FirstOrDefaultAsync();
             return employeeDto;
@@ -52,7 +54,36 @@ namespace DashBoard.API.Repositories.Implementation
                 await mysqlContext.SaveChangesAsync();
                 return employee;
             }
+            await UpdateEmployeeInSqlServer(employee);
+
+
             return null;
+        }
+        private async Task UpdateEmployeeInMySql(HRUpdateEmployeeDto updateEmployeeDto)
+        {
+            var employee = await mysqlContext.Employees
+                //.Include(x => x.Birthday)
+                .FirstOrDefaultAsync(x => x.IdEmployee == updateEmployeeDto.EmploymentId);
+            if (employee is not null)
+            {
+                employee.FirstName = updateEmployeeDto.FirstName;
+                employee.LastName = updateEmployeeDto.LastName;
+
+                await mysqlContext.SaveChangesAsync();
+            }
+        }
+
+        private async Task UpdateEmployeeInSqlServer(PayRollUpdateEmployeeDto? employee)
+        {
+            var existingEmployee = await sqlServerContext.Employments
+                .FirstOrDefaultAsync(x => x.EmploymentId == employee.EmployeeId);
+
+            if (existingEmployee is not null)
+            {
+                existingEmployee.Personal.CurrentLastName = employee.LastName;
+                existingEmployee.Personal.CurrentFirstName = employee.FirstName;               
+                await sqlServerContext.SaveChangesAsync();
+            }
         }
     }
 }

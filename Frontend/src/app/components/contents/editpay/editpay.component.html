@@ -1,38 +1,80 @@
-
 <div class="col-12 grid-margin stretch-card">
-    <div class="card">
-        <div class="card-body">
-            <form action="" id="search-box">
-                <input type="text" id="search-text" placeholder="Search..">
-                <button id="search-btn"><i class="fa-solid fa-magnifying-glass"></i></button>
-            </form>
-            <form class="forms-sample">
-                <div class="form-group">
-                    <label for="exampleInputName1">First Name</label>
-                    <input type="text" class="form-control" id="exampleInputName1" placeholder="Name">
-                </div>
-                <div class="form-group">
-                    <label for="exampleInputName2">Last Name</label>
-                    <input type="text" class="form-control" id="exampleInputName2" placeholder="Email">
-                </div>
-                <div class="form-group">
-                    <label for="exampleInputName3">SSN</label>
-                    <input type="text" class="form-control" id="exampleInputPassword4" placeholder="Password">
-                </div>
-                <div class="form-group">
-                    <label for="exampleInputPassword4">Birthday</label><br />
-                    <input type="date" id="birthday" name="birthday" style="width: 1015px; height: 50px;">
-                </div>
-                <div class="form-group">
-                    <label for="exampleInputPassword4">Shareholder_status</label>
-                    <input type="password" class="form-control" id="exampleInputPassword4" placeholder="Password">
-                </div>
-                <div class="form-group">
-                    <label for="exampleInputPhone">Pay Rates idPay Rates</label>
-                    <input type="text" class="form-control" id="exampleInputPhone" placeholder="Phone">
-                </div>
-                <button type="update" class="btn btn-gradient-primary me-2">Update</button>
-            </form>
-        </div>
+  <div class="card">
+    <div class="card-body">
+      <form action="" id="search-box">
+        <input
+          type="text"
+          id="search-text"
+          placeholder="Search.."
+          [(ngModel)]="id"
+          name="id"
+        />
+        <button id="search-btn" (click)="findEmployee()" type="button">
+          <i class="fa-solid fa-magnifying-glass"></i>
+        </button>
+      </form>
+      <ng-container *ngIf="model">
+        <form class="forms-sample" #form="ngForm">
+          <div class="form-group">
+            <label for="exampleInputName1">First Name</label>
+            <input
+              type="text"
+              class="form-control"
+              id="exampleInputName1"
+              placeholder="First Name"
+              [(ngModel)]="model.firstName"
+              name="firstName"
+            />
+          </div>
+          <div class="form-group">
+            <label for="exampleInputName2">Last Name</label>
+            <input
+              type="text"
+              class="form-control"
+              id="exampleInputName2"
+              placeholder="Last Name"
+              [(ngModel)]="model.lastName"
+              name="lastName"
+            />
+          </div>
+          <div class="form-group">
+            <label for="exampleInputName3">SSN</label>
+            <input
+              type="text"
+              class="form-control"
+              id="exampleInputPassword4"
+              placeholder="SSN"
+              [(ngModel)]="model.ssn"
+              name="ssn"
+            />
+          </div>
+          <div class="form-group">
+            <label for="exampleInputPhone">Pay Rates idPay Rates</label>
+            <ng-container *ngIf="payRates$ | async as payRates">
+              <select
+                class="form-control"
+                name="payRateId"
+                id="payRateId"
+                [(ngModel)]="model.payRatesIdPayRates"
+              >
+                <option
+                  *ngFor="let payRate of payRates"
+                  [ngValue]="payRate.idPayRates"
+                >
+                  {{ payRate.payRateName }}
+                </option>
+              </select>
+            </ng-container>
+          </div>
+          <button
+            type="update"
+            class="btn btn-gradient-primary me-2"
+            (click)="onFormSubmit()"
+          >
+            Update
+          </button>
+        </form>
+      </ng-container>
     </div>
+  </div>
 </div>

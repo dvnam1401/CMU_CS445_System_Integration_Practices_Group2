@@ -21,6 +21,16 @@ namespace DashBoard.API.Repositories.Implementation
             return await sqlServerContext.BenefitPlans.ToListAsync();
         }
 
+        public List<string> GetDepartments()
+        {
+            // Truy vấn và lấy ra danh sách các Department duy nhất
+            var departments = sqlServerContext.JobHistory
+                .Select(e => e.Department)
+                .Distinct()
+                .ToList();
+            return departments;
+        }
+
         public async Task<IEnumerable<EmploymentDto?>> FetchEmployments()
         {
             using (var sqlServerContext = new SqlServerContext()) // Tạo phiên bản DbContext mới

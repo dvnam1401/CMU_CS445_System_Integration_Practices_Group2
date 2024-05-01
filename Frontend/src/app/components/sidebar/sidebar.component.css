@@ -120,12 +120,12 @@
 }
 
 .sidebar .nav .nav-item.active>.nav-link .menu-title {
-  color: #b66dff;
+  /* color: #b66dff; */
   font-family: "ubuntu-medium", sans-serif;
 }
 
 .sidebar .nav .nav-item.active>.nav-link i {
-  color: #b66dff;
+  /* color: #b66dff; */
 }
 
 .sidebar .nav .nav-item:hover {
@@ -230,7 +230,7 @@
 }
 
 .sidebar .nav.sub-menu .nav-item .nav-link.active {
-  color: #b66dff;
+  /* color: #b66dff; */
   background: transparent;
 }
 
@@ -529,4 +529,170 @@
 
 .hidden {
   display: none !important;
+}
+
+
+@media (min-width: 992px) {
+  .sidebar-icon-only .navbar .navbar-brand-wrapper {
+    width: 70px;
+  }
+
+  .sidebar-icon-only .navbar .navbar-brand-wrapper .brand-logo {
+    display: none;
+  }
+
+  .sidebar-icon-only .navbar .navbar-brand-wrapper .brand-logo-mini {
+    display: inline-block;
+  }
+
+  .sidebar-icon-only .navbar .navbar-menu-wrapper {
+    width: calc(100% - 70px);
+  }
+
+  .sidebar-icon-only .sidebar {
+    width: 70px;
+  }
+
+  .sidebar-icon-only .sidebar .nav {
+    overflow: visible;
+  }
+
+  .sidebar-icon-only .sidebar .nav .nav-item {
+    position: relative;
+    padding: 0;
+  }
+
+  .sidebar-icon-only .sidebar .nav .nav-item .nav-link {
+    display: block;
+    text-align: center;
+  }
+
+  .sidebar-icon-only .sidebar .nav .nav-item .nav-link .menu-title,
+  .sidebar-icon-only .sidebar .nav .nav-item .nav-link .badge,
+  .sidebar-icon-only .sidebar .nav .nav-item .nav-link .menu-sub-title {
+    display: none;
+  }
+
+  .sidebar-icon-only .sidebar .nav .nav-item .nav-link .menu-title {
+    border-radius: 0 5px 5px 0px;
+  }
+
+  .rtl.sidebar-icon-only .sidebar .nav .nav-item .nav-link .menu-title {
+    border-radius: 5px 0 0 5px;
+  }
+
+  .sidebar-icon-only .sidebar .nav .nav-item .nav-link i.menu-icon {
+    margin-right: 0;
+    margin-left: 0;
+  }
+
+  .sidebar-icon-only .sidebar .nav .nav-item .nav-link i.menu-arrow {
+    display: none;
+  }
+
+  .sidebar-icon-only .sidebar .nav .nav-item .nav-link[aria-expanded] .menu-title {
+    border-radius: 0 5px 0 0px;
+  }
+
+  .rtl.sidebar-icon-only .sidebar .nav .nav-item .nav-link[aria-expanded] .menu-title {
+    border-radius: 5px 0 0 0;
+  }
+
+  .sidebar-icon-only .sidebar .nav .nav-item.nav-profile {
+    display: none;
+  }
+
+  .sidebar-icon-only .sidebar .nav .nav-item.nav-category {
+    display: none;
+  }
+
+  .sidebar-icon-only .sidebar .nav .nav-item.nav-doc {
+    margin: 0;
+  }
+
+  .sidebar-icon-only .sidebar .nav .nav-item.nav-doc i {
+    display: block;
+  }
+
+  .sidebar-icon-only .sidebar .nav .nav-item .collapse {
+    display: none;
+  }
+
+  .sidebar-icon-only .sidebar .nav .nav-item.hover-open .nav-link .menu-title {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    background: #fcfcfc;
+    padding: 0.5rem 1.4rem;
+    left: 70px;
+    position: absolute;
+    text-align: left;
+    top: 0;
+    bottom: 0;
+    width: 190px;
+    z-index: 1;
+    line-height: 1.8;
+  }
+
+  .rtl.sidebar-icon-only .sidebar .nav .nav-item.hover-open .nav-link .menu-title {
+    left: auto;
+    right: 70px;
+    text-align: left;
+  }
+
+  .sidebar-icon-only .sidebar .nav .nav-item.hover-open .nav-link .menu-title:after {
+    display: none;
+  }
+
+  .sidebar-icon-only .sidebar .nav .nav-item.hover-open .collapse,
+  .sidebar-icon-only .sidebar .nav .nav-item.hover-open .collapsing {
+    display: block;
+    padding: .5rem 0;
+    background: #fcfcfc;
+    border-radius: 0 0 5px 0;
+    position: absolute;
+    left: 70px;
+    width: 190px;
+  }
+
+  .rtl.sidebar-icon-only .sidebar .nav .nav-item.hover-open .collapse,
+  .rtl.sidebar-icon-only .sidebar .nav .nav-item.hover-open .collapsing {
+    left: auto;
+    right: 70px;
+    border-radius: 0 0 0 5px;
+  }
+
+  .sidebar-icon-only .sidebar .nav.sub-menu {
+    padding: 0 0 0 1.5rem;
+  }
+
+  .sidebar-icon-only .sidebar .nav.sub-menu .nav-item .nav-link {
+    text-align: left;
+    padding-left: 20px;
+  }
+
+  .rtl.sidebar-icon-only .sidebar .nav.sub-menu .nav-item {
+    margin-right: auto;
+    margin-left: 0;
+  }
+
+  .rtl.sidebar-icon-only .sidebar .nav.sub-menu .nav-item .nav-link {
+    text-align: right;
+  }
+
+  .rtl.sidebar-icon-only .sidebar .nav.sub-menu .nav-item .nav-link:before {
+    left: 0;
+    right: unset;
+  }
+
+  .sidebar-icon-only .sidebar .sidebar-actions {
+    display: none;
+  }
+
+  .sidebar-icon-only .main-panel {
+    width: calc(100% - 70px);
+  }
 }

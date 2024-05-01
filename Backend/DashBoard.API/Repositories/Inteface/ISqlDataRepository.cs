@@ -5,6 +5,7 @@ namespace DashBoard.API.Repositories.Inteface
 {
     public interface ISqlDataRepository
     {
+        List<string> GetDepartments();
         Task<IEnumerable<BenefitPlan?>> GetByAllBenefitPlan();
         Task<BenefitPlan?> GetBenefitPlanById(decimal BenefitPlansId);
         Task<IEnumerable<EmploymentDto?>> FetchEmployments();

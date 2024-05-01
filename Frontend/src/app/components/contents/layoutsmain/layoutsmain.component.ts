@@ -10,19 +10,23 @@ import { Observable, Subscription } from 'rxjs';
   templateUrl: './layoutsmain.component.html',
   styleUrls: ['./layoutsmain.component.css'],
 })
-export class LayoutsmainComponent implements OnInit{
+export class LayoutsmainComponent implements OnInit, OnDestroy{
   currentData?: EmployeeTotal[];
   employment$?: Observable<EmployeeNotification[]>;
   private employmentAll?: Subscription;
   constructor(private employeeService: EmployeeService) { }
+  ngOnDestroy(): void {
+   this.employmentAll?.unsubscribe();
+  }
  
 
   ngOnInit(): void {  
     this.employment$ = this.employeeService.getAllNotification();
+   
   }
 
   loadEarnings() {
-    this.employeeService.getEmployeeSalary(this.onSubmit()).subscribe(data => {
+    this.employmentAll = this.employeeService.getEmployeeSalary(this.onSubmit()).subscribe(data => {
       this.currentData = data;
     });
   }

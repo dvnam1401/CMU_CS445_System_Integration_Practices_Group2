@@ -1,11 +1,11 @@
 export class EmployeeFilter {
-    isAscending: boolean | null = null;
-    gender: string | null = null;
-    category: string | null = null;
-    ethnicity: string | null = null;
-    department: string | null = null;
-    year: number | null = null;
-    month: number | null = null;
+    isAscending!: boolean | null;
+    gender!: string | null;
+    category!: string | null;
+    ethnicity!: string | null;
+    department!: string | null;
+    year!: number | null;
+    month!: number | null;
 
     // constructor(init?: {
     //     isAscending?: boolean;

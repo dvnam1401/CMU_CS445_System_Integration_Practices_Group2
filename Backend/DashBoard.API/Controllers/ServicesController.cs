@@ -18,6 +18,13 @@ namespace DashBoard.API.Controllers
             this.serviceRepository = serviceRepository;
         }
 
+        [HttpGet("getAllDepartement")]
+        public async Task<IActionResult> GetDepartment()
+        {
+            var resule = serviceRepository.GetAllDepartments();
+            return Ok(resule);
+        }
+
         [HttpGet]
         [Route("{id}")]
         public async Task<IActionResult> GetById([FromRoute] uint id)
@@ -28,21 +35,14 @@ namespace DashBoard.API.Controllers
                 return NotFound();
             }
             return Ok(existing);
-        }
+        }      
 
-        [HttpGet("GetAllBenifit")]
-        public async Task<IActionResult> GetAll()
-        {
-            var result = await serviceRepository.GetByAllBenefitPlan();
-            return Ok(result);
-        }
-
-        [HttpGet("GetAllEmployee")]
-        public async Task<IActionResult> GetAllEmployee()
-        {
-            var result = await serviceRepository.GetByAllEmployee();
-            return Ok(result);
-        }
+        //[HttpGet("GetAllEmployee")]
+        //public async Task<IActionResult> GetAllEmployee()
+        //{
+        //    var result = await serviceRepository.GetByAllEmployee();
+        //    return Ok(result);
+        //}
 
         [HttpPost("filter/employees")]
         //[Route("{filter}")]
@@ -133,7 +133,7 @@ namespace DashBoard.API.Controllers
 
 
         [HttpGet("GetEmployeeAnniversary")]
-        public async Task<ActionResult<IEnumerable<EmployeeAnniversaryDto>>> GetEmployeeAnniversary([FromQuery] int daysLimit = 30)
+        public async Task<ActionResult<IEnumerable<EmployeeAnniversaryDto>>> GetEmployeeAnniversary([FromQuery] int daysLimit)
         {
             List<EmployeeAnniversaryDto> view = new List<EmployeeAnniversaryDto>();
             try
@@ -157,7 +157,7 @@ namespace DashBoard.API.Controllers
         }
 
         [HttpGet("GetEmployeeBirthday")]
-        public async Task<ActionResult<IEnumerable<EmployeeAnniversaryDto>>> GetEmployeeBirthday([FromQuery] int daysLimit = 30)
+        public async Task<ActionResult<IEnumerable<EmployeeAnniversaryDto>>> GetEmployeeBirthday([FromQuery] int daysLimit = 300)
         {
             List<EmployeeAnniversaryDto> view = new List<EmployeeAnniversaryDto>();
             try

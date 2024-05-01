@@ -30,17 +30,21 @@ namespace DashBoard.API.Controllers
             return NotFound();
         }
 
-        [HttpPost]
+        [HttpPost("createEmployment")]
         public async Task<IActionResult> CreateEmployee([FromBody] CreateEmployeeDto request)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState); // This will return a 400 Bad Request if validation fails
+            }
             await hRRepository.CreateEployeeAsync(request);
             return Ok(request);
         }
 
-        [HttpGet]
+        [HttpGet("getBenefit")]
         public async Task<IActionResult> GetBenefitPlan()
         {
-            var benefit = await hRRepository.FindAllBenefitPlan();
+            var benefit = await hRRepository.FindAllBenefitPlan();            
             return Ok(benefit);
         }
         [HttpPut]

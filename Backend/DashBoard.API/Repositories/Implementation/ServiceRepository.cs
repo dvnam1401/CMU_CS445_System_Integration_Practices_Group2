@@ -25,6 +25,11 @@ namespace DashBoard.API.Repositories.Implementation
             this.sqlDataRepository = sqlDataRepository;
         }
 
+        public List<string> GetAllDepartments()
+        {
+            return sqlDataRepository.GetDepartments();
+        }
+
         public Task<BenefitPlan?> GetBenefitPlanById(decimal BenefitPlansId)
         {
             return sqlDataRepository.GetBenefitPlanById(BenefitPlansId);

@@ -3,6 +3,7 @@ using DashBoard.API.Models.Domain;
 using DashBoard.API.Models.DTO;
 using DashBoard.API.Models.Inteface;
 using DashBoard.API.Repositories.Inteface;
+using Google.Protobuf.WellKnownTypes;
 using Microsoft.EntityFrameworkCore;
 
 namespace DashBoard.API.Repositories.Implementation
@@ -21,18 +22,26 @@ namespace DashBoard.API.Repositories.Implementation
             //using (var mysqlContext = new MysqlContext()) // Tạo phiên bản DbContext mới
             //{
             var query = await mysqlContext.Employees
-            .Select(e => new EmployeeMysqlDto
-            {
-                EmployeeId = e.IdEmployee,
-                LastName = e.LastName,
-                FirstName = e.FirstName,
-                PayRate = decimal.Parse(e.PayRate),
-                PaidToDate = e.PaidToDate,
-                PayRatesIdPayRates = e.PayRatesIdPayRatesNavigation,
-            }).ToListAsync();
+        .Select(e => new EmployeeMysqlDto
+        {
+            EmployeeId = e.IdEmployee,
+            LastName = e.LastName,
+            FirstName = e.FirstName,
+            //PayRate = decimal.TryParse(e.PayRate, out decimal result) ? result : 0M,
+            PayRate = ParseDecimalOrDefault(e.PayRate),
+            PaidToDate = e.PaidToDate,
+            PayRatesIdPayRates = e.PayRatesIdPayRatesNavigation,
+        }).ToListAsync();
             return query;
             //}
         }
+
+        private static decimal ParseDecimalOrDefault(string value)
+        {
+            // Thử chuyển đổi chuỗi thành decimal, nếu không thành công thì trả về 0
+            return decimal.TryParse(value, out decimal result) ? result : 0M;
+        }
+
         public async Task<IEnumerable<Employee?>> GetByAllEmployee()
         {
             return await mysqlContext.Employees.ToListAsync();

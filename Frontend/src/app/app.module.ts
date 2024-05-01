@@ -12,8 +12,14 @@ import { LayoutsmainComponent } from './components/contents/layoutsmain/layoutsm
 import { VacationComponent } from './components/contents/vacation/vacation.component';
 import { NotificationComponent } from './components/contents/notification/notification.component';
 import { HomeComponent } from './home/home/home.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AuthLayoutComponent } from './auth/auth-layout/auth-layout.component';
+import { EthnicitySelectorComponent } from './components/contents/ethnicity-selector/ethnicity-selector.component';
+import { NotificationHiringComponent } from './components/contents/notification-hiring/notification-hiring.component';
+import { AuthInterceptor } from './components/interceptors/auth.interceptor';
+import { EditComponent } from './components/contents/edit/edit.component';
+import { EditpayComponent } from './components/contents/editpay/editpay.component';
+import { AddComponent } from './components/contents/add/add.component';
 
 @NgModule({
   declarations: [
@@ -28,19 +34,28 @@ import { AuthLayoutComponent } from './auth/auth-layout/auth-layout.component';
     NotificationComponent,
     HomeComponent,
     AuthLayoutComponent,
-
+    EthnicitySelectorComponent,
+    NotificationHiringComponent,
+    EditComponent,
+    EditpayComponent,
+    AddComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
     FormsModule,
+    AppRoutingModule,
     HttpClientModule,
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [
     AuthLayoutComponent,
     HomeComponent,
-    //LoginComponent
   ]
 })
 
