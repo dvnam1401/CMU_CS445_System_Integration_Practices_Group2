@@ -28,7 +28,7 @@ builder.Services.AddDbContext<SqlServerContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("ConnectionSQLServer"));
 });
-builder.Services.AddDbContext<AuthContext>(options =>
+builder.Services.AddDbContext<AdminContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("ConnectionAuth"));
 });
@@ -38,17 +38,24 @@ builder.Services.AddDbContext<AuthContext>(options =>
 //    new MySqlConnection(builder.Configuration.GetConnectionString("ConnectionMysql")));
 
 //builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-builder.Services.AddScoped<IServiceRepository, ServiceRepository>();
-builder.Services.AddScoped<IHRRepository, HRRepository>();
-builder.Services.AddScoped<IPayrollRepository, PayrollRepository>();
+//builder.Services.AddScoped<IServiceRepository, ServiceRepository>();
+//builder.Services.AddScoped<IHRRepository, HRRepository>();
+//builder.Services.AddScoped<IPayrollRepository, PayrollRepository>();
 builder.Services.AddScoped<IMysqlDataRepository, MysqlDataRepository>();
 builder.Services.AddScoped<ISqlDataRepository, SqlDataRepository>();
 builder.Services.AddScoped<ITokenRepository, TokenRepository>();
+builder.Services.AddScoped<IAdminRepository, AdminRepository>();
+builder.Services.AddScoped<INotificationRepository, NotificationRepository>();
+builder.Services.AddScoped<ISummarizedRepository, SummarizedRepository>();
+builder.Services.AddScoped<ICreatedRepository, CreatedRepository>();
+builder.Services.AddScoped<IDeletedRepository, DeletedRepository>();
+builder.Services.AddScoped<IEditRepository, EditRepository>();
+
 
 builder.Services.AddIdentityCore<IdentityUser>()
     .AddRoles<IdentityRole>()
     .AddTokenProvider<DataProtectorTokenProvider<IdentityUser>>("DashBoard")
-    .AddEntityFrameworkStores<AuthContext>()
+    .AddEntityFrameworkStores<AdminContext>()
     .AddDefaultTokenProviders();
 
 builder.Services.Configure<IdentityOptions>(option =>

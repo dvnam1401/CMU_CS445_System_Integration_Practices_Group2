@@ -8,9 +8,7 @@ namespace DashBoard.API.Models.DTO
         public string? LastName { get; set; }
         public string? FirstName { get; set; }
         public PayRate? PayRatesIdPayRates { get; set; }
-        public decimal? PayRate { get; set; }
-        // public List<VacationMysqlDto>? Vacations { get; set; } = new List<VacationMysqlDto>();
-        public int TotalVacationsCount { get; set; }
+        public decimal? PayRate { get; set; }      
         public decimal? PaidToDate { get; internal set; }
     }
 }

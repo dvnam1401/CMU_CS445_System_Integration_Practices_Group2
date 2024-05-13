@@ -158,3 +158,4 @@ D:\Workspace\CMU_CS445_System_Integration_Practices_Group2\Backend\DashBoard.API
 D:\Workspace\CMU_CS445_System_Integration_Practices_Group2\Backend\DashBoard.API\obj\Debug\net8.0\DashBoard.API.genruntimeconfig.cache
 D:\Workspace\CMU_CS445_System_Integration_Practices_Group2\Backend\DashBoard.API\obj\Debug\net8.0\ref\DashBoard.API.dll
 D:\Workspace\CMU_CS445_System_Integration_Practices_Group2\Backend\DashBoard.API\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+D:\Workspace\CMU_CS445_System_Integration_Practices_Group2\Backend\DashBoard.API\bin\Debug\net8.0\BCrypt.Net-Next.dll

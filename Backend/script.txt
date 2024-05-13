@@ -6,6 +6,11 @@ dotnet ef migrations script --output migrations_mysql.sql --project DashBoard.AP
 dotnet ef database update --project DashBoard.API --context MysqlContext
 
 
+dotnet ef dbcontext scaffold -o Models/Admin -f -d "Data Source=VAN-NAM;Initial Catalog=AdminDashBoard;User ID=sa;Password=12345;TrustServerCertificate=True" "Microsoft.EntityFrameworkCore.SqlServer" --project DashBoard.API
+dotnet ef migrations add createAd --project DashBoard.API --context AdminContext
+dotnet ef migrations script --output migrations_auth.sql --project DashBoard.API --context AdminContext
+dotnet ef database update --project DashBoard.API --context AdminContext
+dotnet ef database update --project DashBoard.API --context AdminContext
 
 
 dotnet ef dbcontext scaffold -o Models/Domain -f -d "Data Source=VAN-NAM;Initial Catalog=HRM;User ID=sa;Password=12345" "Microsoft.EntityFrameworkCore.SqlServer" --project DashBoard.API

@@ -2,21 +2,19 @@
 
 namespace DashBoard.API.Models.DTO
 {
-    public class CreateEmployeeDto : EmployeeDtoBase
+    public class CreateEmployeeDto
     {
-        public int PersonalId { get; set; }
-        public int BenefitPlanId { get; set; }
         public int EmploymentId { get; set; }
+        public string? EmploymentCode { get; set; }
         public string? LastName { get; set; }
         public string? FirstName { get; set; }        
+        public decimal Ssn { get; set; }       
+        public string? EmploymentStatus { get; set; }
+        public DateOnly? HireDateForWorking { get; set; }
+        public decimal? NumberDaysRequirementOfWorkingPerMonth { get; set; }
+        public string? Department { get; set; }        
         public int PayRatesIdPayRates { get; set; }
-        public string? PhoneNumber { get; set; }
-        public decimal Ssn { get; set; }
-        public short? ShareholderStatus { get; set; }
-        public string? Email { get; set; }
-        public string? Address { get; set; }      
-        //public string? City { get; set; }
-        public string? Gender { get; set; }
-        public string? Department { get; set; }
+        public string? PayRate { get; set; }
+        public int PersonalId { get; set; }        
     }
 }

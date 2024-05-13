@@ -1,4 +1,6 @@
-﻿using DashBoard.API.Repositories.Inteface;
+﻿using DashBoard.API.Models.Admin;
+using DashBoard.API.Models.DTO;
+using DashBoard.API.Repositories.Inteface;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
@@ -15,14 +17,14 @@ namespace DashBoard.API.Repositories.Implementation
         {
             this.configuration = configuration;
         }
-        public string CreateJwtToken(IdentityUser user, List<string> roles)
+        public string CreateJwtToken(AccountUser user, List<GroupPermissionDto> roles)
         {
             //Create claims
             var claims = new List<Claim>
             {
                 new Claim(ClaimTypes.Email, user.Email)
             };
-            claims.AddRange(roles.Select(role => new Claim(ClaimTypes.Role, role)));
+            claims.AddRange(roles.Select(role => new Claim(ClaimTypes.Role, role.PermissionName)));
             // JWT security token paramater
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["Jwt:Key"]));
             var credentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
