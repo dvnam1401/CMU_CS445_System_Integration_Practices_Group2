@@ -260,10 +260,10 @@ namespace DashBoard.API.Repositories.Implementation
                     .Where(gp => gp.IsEnable != update.IsEnable)
                     .ToList();
 
-                if (!permissionsToUpdate.Any())
-                {
-                    throw new InvalidOperationException($"No permissions found to update for GroupName '{update.GroupName}' and PermissionId {update.PermissionId}.");
-                }
+                //if (!permissionsToUpdate.Any())
+                //{
+                //    throw new InvalidOperationException($"No permissions found to update for GroupName '{update.GroupName}' and PermissionId {update.PermissionId}.");
+                //}
 
                 // Chuẩn bị tất cả các quyền cần cập nhật
                 foreach (var perm in permissionsToUpdate)

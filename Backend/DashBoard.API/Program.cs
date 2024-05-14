@@ -50,6 +50,7 @@ builder.Services.AddScoped<ISummarizedRepository, SummarizedRepository>();
 builder.Services.AddScoped<ICreatedRepository, CreatedRepository>();
 builder.Services.AddScoped<IDeletedRepository, DeletedRepository>();
 builder.Services.AddScoped<IEditRepository, EditRepository>();
+builder.Services.AddScoped<IDetailRepository, DetailRepository>();
 
 
 builder.Services.AddIdentityCore<IdentityUser>()

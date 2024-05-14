@@ -3,28 +3,20 @@
   "WorkspaceRootPath": "D:\\Workspace\\CMU_CS445_System_Integration_Practices_Group2\\Backend\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{C712C63E-30BF-4280-A5BA-272340ED5412}|DashBoard.API\\DashBoard.API.csproj|d:\\workspace\\cmu_cs445_system_integration_practices_group2\\backend\\dashboard.api\\controllers\\admincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C712C63E-30BF-4280-A5BA-272340ED5412}|DashBoard.API\\DashBoard.API.csproj|solutionrelative:dashboard.api\\controllers\\admincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{C712C63E-30BF-4280-A5BA-272340ED5412}|DashBoard.API\\DashBoard.API.csproj|d:\\workspace\\cmu_cs445_system_integration_practices_group2\\backend\\dashboard.api\\controllers\\detailcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C712C63E-30BF-4280-A5BA-272340ED5412}|DashBoard.API\\DashBoard.API.csproj|solutionrelative:dashboard.api\\controllers\\detailcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C712C63E-30BF-4280-A5BA-272340ED5412}|DashBoard.API\\DashBoard.API.csproj|d:\\workspace\\cmu_cs445_system_integration_practices_group2\\backend\\dashboard.api\\repositories\\implementation\\adminrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C712C63E-30BF-4280-A5BA-272340ED5412}|DashBoard.API\\DashBoard.API.csproj|solutionrelative:dashboard.api\\repositories\\implementation\\adminrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{C712C63E-30BF-4280-A5BA-272340ED5412}|DashBoard.API\\DashBoard.API.csproj|d:\\workspace\\cmu_cs445_system_integration_practices_group2\\backend\\dashboard.api\\repositories\\implementation\\detailrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C712C63E-30BF-4280-A5BA-272340ED5412}|DashBoard.API\\DashBoard.API.csproj|solutionrelative:dashboard.api\\repositories\\implementation\\detailrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C712C63E-30BF-4280-A5BA-272340ED5412}|DashBoard.API\\DashBoard.API.csproj|D:\\Workspace\\CMU_CS445_System_Integration_Practices_Group2\\Backend\\dashboard.api\\models\\dto\\grouppermissiondto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C712C63E-30BF-4280-A5BA-272340ED5412}|DashBoard.API\\DashBoard.API.csproj|solutionrelative:dashboard.api\\models\\dto\\grouppermissiondto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{C712C63E-30BF-4280-A5BA-272340ED5412}|DashBoard.API\\DashBoard.API.csproj|d:\\workspace\\cmu_cs445_system_integration_practices_group2\\backend\\dashboard.api\\repositories\\implementation\\editrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C712C63E-30BF-4280-A5BA-272340ED5412}|DashBoard.API\\DashBoard.API.csproj|solutionrelative:dashboard.api\\repositories\\implementation\\editrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C712C63E-30BF-4280-A5BA-272340ED5412}|DashBoard.API\\DashBoard.API.csproj|d:\\workspace\\cmu_cs445_system_integration_practices_group2\\backend\\dashboard.api\\repositories\\inteface\\iadminrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C712C63E-30BF-4280-A5BA-272340ED5412}|DashBoard.API\\DashBoard.API.csproj|solutionrelative:dashboard.api\\repositories\\inteface\\iadminrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C712C63E-30BF-4280-A5BA-272340ED5412}|DashBoard.API\\DashBoard.API.csproj|D:\\Workspace\\CMU_CS445_System_Integration_Practices_Group2\\Backend\\dashboard.api\\models\\dto\\createpersonaldto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C712C63E-30BF-4280-A5BA-272340ED5412}|DashBoard.API\\DashBoard.API.csproj|solutionrelative:dashboard.api\\models\\dto\\createpersonaldto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{C712C63E-30BF-4280-A5BA-272340ED5412}|DashBoard.API\\DashBoard.API.csproj|D:\\Workspace\\CMU_CS445_System_Integration_Practices_Group2\\Backend\\dashboard.api\\models\\dto\\createuserdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{C712C63E-30BF-4280-A5BA-272340ED5412}|DashBoard.API\\DashBoard.API.csproj|solutionrelative:dashboard.api\\models\\dto\\createuserdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{C712C63E-30BF-4280-A5BA-272340ED5412}|DashBoard.API\\DashBoard.API.csproj|d:\\workspace\\cmu_cs445_system_integration_practices_group2\\backend\\dashboard.api\\models\\dto\\employeedetailsdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C712C63E-30BF-4280-A5BA-272340ED5412}|DashBoard.API\\DashBoard.API.csproj|solutionrelative:dashboard.api\\models\\dto\\employeedetailsdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -34,7 +26,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Bookmark",
@@ -42,79 +34,55 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "AdminController.cs",
-              "DocumentMoniker": "D:\\Workspace\\CMU_CS445_System_Integration_Practices_Group2\\Backend\\DashBoard.API\\Controllers\\AdminController.cs",
-              "RelativeDocumentMoniker": "DashBoard.API\\Controllers\\AdminController.cs",
-              "ToolTip": "D:\\Workspace\\CMU_CS445_System_Integration_Practices_Group2\\Backend\\DashBoard.API\\Controllers\\AdminController.cs",
-              "RelativeToolTip": "DashBoard.API\\Controllers\\AdminController.cs",
-              "ViewState": "AQIAAJcAAAAAAAAAAAAQwJ0AAAAJAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-13T05:14:50.332Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "IAdminRepository.cs",
-              "DocumentMoniker": "D:\\Workspace\\CMU_CS445_System_Integration_Practices_Group2\\Backend\\DashBoard.API\\Repositories\\Inteface\\IAdminRepository.cs",
-              "RelativeDocumentMoniker": "DashBoard.API\\Repositories\\Inteface\\IAdminRepository.cs",
-              "ToolTip": "D:\\Workspace\\CMU_CS445_System_Integration_Practices_Group2\\Backend\\DashBoard.API\\Repositories\\Inteface\\IAdminRepository.cs",
-              "RelativeToolTip": "DashBoard.API\\Repositories\\Inteface\\IAdminRepository.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABAAAAANAAAA",
+              "Title": "EmployeeDetailsDto.cs",
+              "DocumentMoniker": "D:\\Workspace\\CMU_CS445_System_Integration_Practices_Group2\\Backend\\DashBoard.API\\Models\\DTO\\EmployeeDetailsDto.cs",
+              "RelativeDocumentMoniker": "DashBoard.API\\Models\\DTO\\EmployeeDetailsDto.cs",
+              "ToolTip": "D:\\Workspace\\CMU_CS445_System_Integration_Practices_Group2\\Backend\\DashBoard.API\\Models\\DTO\\EmployeeDetailsDto.cs",
+              "RelativeToolTip": "DashBoard.API\\Models\\DTO\\EmployeeDetailsDto.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAAYAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-13T05:14:21.362Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "AdminRepository.cs",
-              "DocumentMoniker": "D:\\Workspace\\CMU_CS445_System_Integration_Practices_Group2\\Backend\\DashBoard.API\\Repositories\\Implementation\\AdminRepository.cs",
-              "RelativeDocumentMoniker": "DashBoard.API\\Repositories\\Implementation\\AdminRepository.cs",
-              "ToolTip": "D:\\Workspace\\CMU_CS445_System_Integration_Practices_Group2\\Backend\\DashBoard.API\\Repositories\\Implementation\\AdminRepository.cs",
-              "RelativeToolTip": "DashBoard.API\\Repositories\\Implementation\\AdminRepository.cs",
-              "ViewState": "AQIAALEAAAAAAAAAAAAYwAcBAAAQAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-12T15:45:30.959Z",
+              "WhenOpened": "2024-05-14T04:25:50.925Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "GroupPermissionDto.cs",
-              "DocumentMoniker": "D:\\Workspace\\CMU_CS445_System_Integration_Practices_Group2\\Backend\\DashBoard.API\\Models\\DTO\\GroupPermissionDto.cs",
-              "RelativeDocumentMoniker": "DashBoard.API\\Models\\DTO\\GroupPermissionDto.cs",
-              "ToolTip": "D:\\Workspace\\CMU_CS445_System_Integration_Practices_Group2\\Backend\\DashBoard.API\\Models\\DTO\\GroupPermissionDto.cs",
-              "RelativeToolTip": "DashBoard.API\\Models\\DTO\\GroupPermissionDto.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAuwAUAAAAkAAAA",
+              "Title": "EditRepository.cs",
+              "DocumentMoniker": "D:\\Workspace\\CMU_CS445_System_Integration_Practices_Group2\\Backend\\DashBoard.API\\Repositories\\Implementation\\EditRepository.cs",
+              "RelativeDocumentMoniker": "DashBoard.API\\Repositories\\Implementation\\EditRepository.cs",
+              "ToolTip": "D:\\Workspace\\CMU_CS445_System_Integration_Practices_Group2\\Backend\\DashBoard.API\\Repositories\\Implementation\\EditRepository.cs",
+              "RelativeToolTip": "DashBoard.API\\Repositories\\Implementation\\EditRepository.cs",
+              "ViewState": "AQIAAAkAAAAAAAAAAAAqwF0AAAA7AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-12T03:10:36.742Z",
+              "WhenOpened": "2024-05-14T04:05:59.306Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "CreateUserDto.cs",
-              "DocumentMoniker": "D:\\Workspace\\CMU_CS445_System_Integration_Practices_Group2\\Backend\\DashBoard.API\\Models\\DTO\\CreateUserDto.cs",
-              "RelativeDocumentMoniker": "DashBoard.API\\Models\\DTO\\CreateUserDto.cs",
-              "ToolTip": "D:\\Workspace\\CMU_CS445_System_Integration_Practices_Group2\\Backend\\DashBoard.API\\Models\\DTO\\CreateUserDto.cs",
-              "RelativeToolTip": "DashBoard.API\\Models\\DTO\\CreateUserDto.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAuwAIAAAAeAAAA",
+              "DocumentIndex": 1,
+              "Title": "DetailRepository.cs",
+              "DocumentMoniker": "D:\\Workspace\\CMU_CS445_System_Integration_Practices_Group2\\Backend\\DashBoard.API\\Repositories\\Implementation\\DetailRepository.cs",
+              "RelativeDocumentMoniker": "DashBoard.API\\Repositories\\Implementation\\DetailRepository.cs",
+              "ToolTip": "D:\\Workspace\\CMU_CS445_System_Integration_Practices_Group2\\Backend\\DashBoard.API\\Repositories\\Implementation\\DetailRepository.cs",
+              "RelativeToolTip": "DashBoard.API\\Repositories\\Implementation\\DetailRepository.cs",
+              "ViewState": "AQIAAGIAAAAAAAAAAAAgwGgAAABOAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-12T03:06:39.806Z"
+              "WhenOpened": "2024-05-14T03:21:59.894Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "CreatePersonalDto.cs",
-              "DocumentMoniker": "D:\\Workspace\\CMU_CS445_System_Integration_Practices_Group2\\Backend\\DashBoard.API\\Models\\DTO\\CreatePersonalDto.cs",
-              "RelativeDocumentMoniker": "DashBoard.API\\Models\\DTO\\CreatePersonalDto.cs",
-              "ToolTip": "D:\\Workspace\\CMU_CS445_System_Integration_Practices_Group2\\Backend\\DashBoard.API\\Models\\DTO\\CreatePersonalDto.cs",
-              "RelativeToolTip": "DashBoard.API\\Models\\DTO\\CreatePersonalDto.cs",
-              "ViewState": "AQIAAAgAAAAAAAAAAAAAwAAAAAAAAAAA",
+              "DocumentIndex": 0,
+              "Title": "DetailController.cs",
+              "DocumentMoniker": "D:\\Workspace\\CMU_CS445_System_Integration_Practices_Group2\\Backend\\DashBoard.API\\Controllers\\DetailController.cs",
+              "RelativeDocumentMoniker": "DashBoard.API\\Controllers\\DetailController.cs",
+              "ToolTip": "D:\\Workspace\\CMU_CS445_System_Integration_Practices_Group2\\Backend\\DashBoard.API\\Controllers\\DetailController.cs",
+              "RelativeToolTip": "DashBoard.API\\Controllers\\DetailController.cs",
+              "ViewState": "AQIAADcAAAAAAAAAAAAkwE0AAABJAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-12T03:06:32.07Z"
+              "WhenOpened": "2024-05-14T03:18:47.258Z",
+              "EditorCaption": ""
             }
           ]
         },
