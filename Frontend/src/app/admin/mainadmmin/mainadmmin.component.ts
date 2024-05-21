@@ -40,41 +40,6 @@ export class MainadmminComponent implements OnInit, OnDestroy {
     this.showResetForm = true;
     this.submitted = false;
   }
-
-  // updatePassword() {
-  //   this.submitted = true;
-  //   if (!this.newPassword || !this.confirmPassword) {
-  //     alert("Please fill out all password fields.");
-  //     return;
-  //   }
-
-  //   if (this.newPassword !== this.confirmPassword) {
-  //     alert("Passwords do not match!");
-  //     return;
-  //   }
-  //   if (this.id) {
-  //     const resetPassword: ResetPassword = {
-  //       userId: this.id,
-  //       newPassword: this.newPassword,
-  //     }
-  //     console.log("New password" + resetPassword);
-  //     this.adminService.resetPasword(resetPassword).subscribe({
-  //       next: (response) => {
-  //         alert("Password has been successfully updated!");
-  //         this.newPassword = '';
-  //         this.confirmPassword = '';
-  //         this.showResetForm = false;
-  //         this.submitted = false; // Reset trạng thái submit
-  //       },
-  //       error: (error) => {
-  //         alert("Error updating password: " + error.message);
-  //       }
-  //     });
-  //   } else {
-  //     alert("User ID is not available.");
-  //   }
-  // }
-
   updatePassword(): void {
     this.submitted = true;
     if (!this.newPassword || !this.confirmPassword) {

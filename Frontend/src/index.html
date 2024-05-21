@@ -1,293 +1,391 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <base href="/" />
+    <title>Dash Board</title>
+    <!-- plugins:css -->
+    <link
+      rel="stylesheet"
+      href="/assets/vendors/mdi/css/materialdesignicons.min.css"
+    />
+    <link rel="stylesheet" href="/assets/vendors/css/vendor.bundle.base.css" />
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/assets/css/style.css" />
+    <!-- End layout styles -->
+    <link rel="shortcut icon" href="/assets/images/favicon.ico" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+      integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <script src="/assets/vendors/js/vendor.bundle.base.js"></script>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <base href="/" />
-  <title>Dash Board</title>
-  <!-- plugins:css -->
-  <link rel="stylesheet" href="/assets/vendors/mdi/css/materialdesignicons.min.css" />
-  <link rel="stylesheet" href="/assets/vendors/css/vendor.bundle.base.css" />
-  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
-  <link rel="stylesheet" href="/assets/css/style.css" />
-  <!-- End layout styles -->
-  <link rel="shortcut icon" href="/assets/images/favicon.ico" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
-    integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
-    crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <script src="/assets/vendors/js/vendor.bundle.base.js"></script>
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script> -->
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-route/1.8.3/angular-route.min.js"></script> -->
+    <!-- <script src="controllers/HomeController.js"></script> -->
+    <!-- <script src="controllers/EmployeeController.js"></script> -->
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        var toggleButtons = document.querySelectorAll(".toggleTable");
+        var tableContainer = document.getElementById("tableContainer");
 
-  <!-- <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script> -->
-  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-route/1.8.3/angular-route.min.js"></script> -->
-  <!-- <script src="controllers/HomeController.js"></script> -->
-  <!-- <script src="controllers/EmployeeController.js"></script> -->
-  <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      var toggleButtons = document.querySelectorAll(".toggleTable");
-      var tableContainer = document.getElementById("tableContainer");
-
-      toggleButtons.forEach(function (button) {
-        button.addEventListener("click", function (e) {
-          e.preventDefault();
-          tableContainer.classList.toggle("hidden");
-          console.log("none");
+        toggleButtons.forEach(function (button) {
+          button.addEventListener("click", function (e) {
+            e.preventDefault();
+            tableContainer.classList.toggle("hidden");
+            console.log("none");
+          });
         });
       });
-    });
-  </script>
+    </script>
+  </head>
 
+  <body>
+    <app-root></app-root>
+    <!-- End custom js for this page -->
+    <app-auth-layout></app-auth-layout>
+    <script src="assets/js/misc.js"></script>
 
-
-</head>
-
-<body>
-  <app-root></app-root>
-  <!-- End custom js for this page -->
-  <app-auth-layout></app-auth-layout>
-  <script src="assets/js/misc.js"></script>
-
-
-  <script>
-    function validateForm() {
-      var isFirstNameValid = validateField("fname", "fname-error");
-      var isLastNameValid = validateField("lname", "lname-error");
-      var isMiddleNameValid = validateField("mname", "mname-error");
-      // var isMiddleNameValid = validateField("mname", "mname-error");
-      // var isBirthdayValid = validateBirthday("birthday", "bdate-error");
-      var isSocialSecurityNumberValid = validateField("ssn", "ssn-error");
-      // var isAddress1Valid = validateField("address1", "address1-error");
-      // var isAddress2Valid = validateField("address2", "address2-error");
-      // var isCityValid = validateField("city", "city-error");
-      // var isCountryValid = validateField("country", "country-error");
-      // var isZipValid = validateField("zip", "zip-error");
-      // var isPhoneValid = validatePhone("phone", "phone-error");
-      // var isEmailValid = validateField("email", "email-error");
-      // var isShareholderStatusValid = validateField("shareholderstatus", "shareholderstatus-error");
-      // var isBenefitPlanIdValid = validateField("benefitplanid", "benefitplanid-error");
-      // var isEthnicityValid = validateField("ethnicity", "ethnicity-error");
-      var isDepartmentValid = validateField("department", "department-error");
-      var isPayRateValid = validateField("payrate", "payrate-error");
-      var isEmploymentIdValid = validateField("employmentId", "employmentId-error");
-      var isEmploymentCodeValid = validateField("employmentcode", "employmentcode-error");
-      var isEmploymentStatusValid = validateField("employmentstatus", "employmentstatus-error");
-      var isnumberdaysrequirementofworkingpermonthValid = validateField("numberdaysrequirementofworkingpermonth", "numberdaysrequirementofworkingpermonth-error");
-      var isbenefitplanidValid = validateField("benefitplanid", "benefitplanid-error");
-      var ispayratesIdValid = validateField("payratesId", "payratesId-error");
-      var isPersonalIdValid = validateField("personalId", "personalId-error");
-      return isFirstNameValid && isLastNameValid && isMiddleNameValid && isBirthdayValid && isSocialSecurityNumberValid && isAddress1Valid && isAddress2Valid
-        && isCityValid && isCountryValid && isPhoneValid && isEmploymentCodeValid && isEmploymentIdValid && isPayRateValid && isDepartmentValid;
-    }
-
-    function validateField(fieldName, errorSpanId) {
-      var fieldValue = document.getElementById(fieldName).value;
-      var errorSpan = document.getElementById(errorSpanId);
-
-      if (fieldValue === "" || fieldValue.trim() === "") {
-        errorSpan.textContent = "(*Error) Please enter your data.";
-        return false;
-      } else {
-        errorSpan.textContent = "";
-        return true;
-      }
-    }
-    function validateBirthday(fieldName, errorSpanId) {
-      var birthdayValue = document.getElementById(fieldName).value;
-      var errorSpan = document.getElementById(errorSpanId);
-
-      // Kiểm tra ô Birthday có trống không
-      if (birthdayValue === "") {
-        errorSpan.textContent = "(*Error) Please enter your birthday.";
-        return false;
-      }
-
-      // Lấy ngày tháng hiện tại
-      var today = new Date();
-      today.setHours(0, 0, 0, 0); // Đặt giờ phút giây và mili giây thành 0 để so sánh chỉ về ngày
-
-      // Chuyển đổi giá trị ngày tháng nhập vào thành đối tượng Date
-      var birthdayDate = new Date(birthdayValue);
-
-      // Kiểm tra ngày nhập vào có lớn hơn ngày hiện tại không
-      if (birthdayDate > today) {
-        errorSpan.textContent = "(*Error) Birthday cannot be in the future.";
-        return false;
-      } else {
-        errorSpan.textContent = "";
-        return true;
-      }
-    }
-
-    function validatePhone(fieldName, errorSpanId) {
-      var phoneValue = document.getElementById(fieldName).value;
-      var errorSpan = document.getElementById(errorSpanId);
-
-      // Biểu thức chính quy kiểm tra định dạng số điện thoại (xxxx-xxx-xxx)
-      var phonePattern = /^\d{4}-\d{3}-\d{3}$/;
-
-      // Kiểm tra xem số điện thoại có khớp với mẫu không
-      if (!phonePattern.test(phoneValue)) {
-        errorSpan.textContent = "(*Error) Please enter a valid phone number (xxxx-xxx-xxx).";
-        return false;
-      } else {
-        errorSpan.textContent = "";
-        return true;
-      }
-    }
-  </script>
-  <script>
-    function validateForm2() {
-      var isPersonalIdValid = validateField("personalId", "personalId-error");
-      var isFirstNameValid = validateField("fname", "fname-error");
-      var isLastNameValid = validateField("lname", "lname-error");
-      var isMiddleNameValid = validateField("mname", "mname-error");
-      var isBirthdayValid = validateBirthday("birthday", "bdate-error");
-      var isSocialSecurityNumberValid = validateField("ssn", "ssn-error");
-      var isAddress1Valid = validateField("address1", "address1-error");
-      var isAddress2Valid = validateField("address2", "address2-error");
-      var isCityValid = validateField("city", "city-error");
-      var isCountryValid = validateField("country", "country-error");
-      var isZipValid = validateField("zip", "zip-error");
-      var isPhoneValid = validatePhone("phone", "phone-error");
-      var isEmailValid = validateField("email", "email-error");
-      var isShareholderStatusValid = validateField("shareholderstatus", "shareholderstatus-error");
-      var isBenefitPlanIdValid = validateField("benefitplanid", "benefitplanid-error");
-      var isEthnicityValid = validateField("ethnicity", "ethnicity-error");
-      // var isDepartmentValid = validateField("department", "department-error");
-      // var isPayRateValid = validateField("payrate", "payrate-error");
-      // var isEmploymentIdValid = validateField("employmentId", "employmentId-error");
-      // var isEmploymentCodeValid = validateField("employmentcode", "employmentcode-error");
-      return isFirstNameValid && isLastNameValid && isMiddleNameValid && isBirthdayValid && isSocialSecurityNumberValid && isAddress1Valid && isAddress2Valid
-        && isCityValid && isCountryValid && isPhoneValid && isEmploymentCodeValid && isEmploymentIdValid && isPayRateValid && isDepartmentValid;
-    }
-
-    function validateField(fieldName, errorSpanId) {
-      var fieldValue = document.getElementById(fieldName).value;
-      var errorSpan = document.getElementById(errorSpanId);
-
-      if (fieldValue === "" || fieldValue.trim() === "") {
-        errorSpan.textContent = "(*Error) Please enter your data.";
-        return false;
-      } else {
-        errorSpan.textContent = "";
-        return true;
-      }
-    }
-
-
-    function validateBirthday(fieldName, errorSpanId) {
-      var birthdayValue = document.getElementById(fieldName).value;
-      var errorSpan = document.getElementById(errorSpanId);
-
-      // Kiểm tra ô Birthday có trống không
-      if (birthdayValue === "") {
-        errorSpan.textContent = "(*Error) Please enter your birthday.";
-        return false;
+    <script>
+       window.validateForm =function () {
+        var isFirstNameValid = validateField("fname", "fname-error");
+        var isLastNameValid = validateField("lname", "lname-error");
+        var isMiddleNameValid = validateField("mname", "mname-error");
+        // var isMiddleNameValid = validateField("mname", "mname-error");
+        // var isBirthdayValid = validateBirthday("birthday", "bdate-error");
+        var isSocialSecurityNumberValid = validateField("ssn", "ssn-error");
+        // var isAddress1Valid = validateField("address1", "address1-error");
+        // var isAddress2Valid = validateField("address2", "address2-error");
+        // var isCityValid = validateField("city", "city-error");
+        // var isCountryValid = validateField("country", "country-error");
+        // var isZipValid = validateField("zip", "zip-error");
+        // var isPhoneValid = validatePhone("phone", "phone-error");
+        // var isEmailValid = validateField("email", "email-error");
+        // var isShareholderStatusValid = validateField("shareholderstatus", "shareholderstatus-error");
+        // var isBenefitPlanIdValid = validateField("benefitplanid", "benefitplanid-error");
+        // var isEthnicityValid = validateField("ethnicity", "ethnicity-error");
+        var isDepartmentValid = validateField("department", "department-error");
+        var isPayRateValid = validateField("payrate", "payrate-error");
+        var isEmploymentIdValid = validateField(
+          "employmentId",
+          "employmentId-error"
+        );
+        var isEmploymentCodeValid = validateField(
+          "employmentcode",
+          "employmentcode-error"
+        );
+        var isEmploymentStatusValid = validateField(
+          "employmentstatus",
+          "employmentstatus-error"
+        );
+        var isnumberdaysrequirementofworkingpermonthValid = validateField(
+          "numberdaysrequirementofworkingpermonth",
+          "numberdaysrequirementofworkingpermonth-error"
+        );
+        var isbenefitplanidValid = validateField(
+          "benefitplanid",
+          "benefitplanid-error"
+        );
+        var ispayratesIdValid = validateField("payratesId", "payratesId-error");
+        var isPersonalIdValid = validateField("personalId", "personalId-error");
+        return (
+          isFirstNameValid &&
+          isLastNameValid &&
+          isMiddleNameValid &&
+          isBirthdayValid &&
+          isSocialSecurityNumberValid &&
+          isAddress1Valid &&
+          isAddress2Valid &&
+          isCityValid &&
+          isCountryValid &&
+          isPhoneValid &&
+          isEmploymentCodeValid &&
+          isEmploymentIdValid &&
+          isPayRateValid &&
+          isDepartmentValid
+        );
       }
 
-      // Lấy ngày tháng hiện tại
-      var today = new Date();
-      today.setHours(0, 0, 0, 0); // Đặt giờ phút giây và mili giây thành 0 để so sánh chỉ về ngày
+      function validateField(fieldName, errorSpanId) {
+        var fieldValue = document.getElementById(fieldName).value;
+        var errorSpan = document.getElementById(errorSpanId);
 
-      // Chuyển đổi giá trị ngày tháng nhập vào thành đối tượng Date
-      var birthdayDate = new Date(birthdayValue);
-
-      // Kiểm tra ngày nhập vào có lớn hơn ngày hiện tại không
-      if (birthdayDate > today) {
-        errorSpan.textContent = "(*Error) Birthday cannot be in the future.";
-        return false;
-      } else {
-        errorSpan.textContent = "";
-        return true;
-      }
-    }
-  </script>
-  <script>
-    function togglePassword() {
-      var pwdInput = document.getElementById('pwd');
-      var toggleIcon = document.querySelector('.toggle-icon');
-
-      if (pwdInput.type === "password") {
-        pwdInput.type = "text";
-        toggleIcon.textContent = "👁️";
-      } else {
-        pwdInput.type = "password";
-        toggleIcon.textContent = "🔒";
-      }
-    }
-  </script>
-
-  <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      const resetButtons = document.querySelectorAll('.reset');
-      const resetForm = document.getElementById('resetForm');
-      const updatePasswordBtn = document.getElementById('updatePasswordBtn');
-      const cancelResetBtn = document.getElementById('cancelResetBtn');
-
-      resetButtons.forEach(button => {
-        button.addEventListener('click', function () {
-          if (confirm("Bạn có muốn đổi mật khẩu không?")) {
-            resetForm.style.display = 'block';
-          }
-        });
-      });
-
-      updatePasswordBtn.addEventListener('click', function () {
-        // Thực hiện kiểm tra mật khẩu mới và xử lý cập nhật tại đây
-        // Sau khi cập nhật thành công, bạn có thể hiển thị thông báo
-        alert('Mật khẩu đã được cập nhật thành công!');
-        resetForm.style.display = 'none'; // Ẩn form reset mật khẩu sau khi cập nhật thành công
-      });
-
-      cancelResetBtn.addEventListener('click', function () {
-        resetForm.style.display = 'none'; // Ẩn form reset mật khẩu nếu người dùng hủy
-      });
-    });
-  </script>
-
-  <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      const deleteButtons = document.querySelectorAll('.delete');
-      console.log("dang an xoa")
-      const deleteForm = document.getElementById('deleteForm');
-      const okDeleteBtn = document.getElementById('OkDeleteBtn');
-      const cancelDeleteBtn = document.getElementById('cancelDeleteBtn');
-
-      deleteButtons.forEach(button => {
-        button.addEventListener('click', function () {
-          if (confirm("Bạn có muốn xoá không?")) {
-            deleteForm.style.display = 'block';
-          }
-        });
-      });
-
-      okDeleteBtn.addEventListener('click', function () {
-        alert('Đã xóa thành công!');
-        deleteForm.style.display = 'none'; // Hide the form after successful deletion
-      });
-
-      cancelDeleteBtn.addEventListener('click', function () {
-        deleteForm.style.display = 'none'; // Hide the form if the user cancels
-      });
-    });
-  </script>
-
-  <script>
-    document.addEventListener('DOMContentLoaded', function () {
-      document.getElementById('show-select-button').addEventListener('click', function (event) {
-        event.preventDefault(); // Prevent the default form submission behavior
-        const select = document.getElementById('cars');
-        if (select.style.display === 'none' || select.style.display === '') {
-          select.style.display = 'block'; // Show the select element
+        if (fieldValue === "" || fieldValue.trim() === "") {
+          errorSpan.textContent = "(*Error) Please enter your data.";
+          return false;
         } else {
-          select.style.display = 'none'; // Hide the select element if it's already visible
+          errorSpan.textContent = "";
+          return true;
         }
+      }
+      function validateBirthday(fieldName, errorSpanId) {
+        var birthdayValue = document.getElementById(fieldName).value;
+        var errorSpan = document.getElementById(errorSpanId);
+
+        // Kiểm tra ô Birthday có trống không
+        if (birthdayValue === "") {
+          errorSpan.textContent = "(*Error) Please enter your birthday.";
+          return false;
+        }
+
+        // Lấy ngày tháng hiện tại
+        var today = new Date();
+        today.setHours(0, 0, 0, 0); // Đặt giờ phút giây và mili giây thành 0 để so sánh chỉ về ngày
+
+        // Chuyển đổi giá trị ngày tháng nhập vào thành đối tượng Date
+        var birthdayDate = new Date(birthdayValue);
+
+        // Kiểm tra ngày nhập vào có lớn hơn ngày hiện tại không
+        if (birthdayDate > today) {
+          errorSpan.textContent = "(*Error) Birthday cannot be in the future.";
+          return false;
+        } else {
+          errorSpan.textContent = "";
+          return true;
+        }
+      }
+
+      function validatePhone(fieldName, errorSpanId) {
+        var phoneValue = document.getElementById(fieldName).value;
+        var errorSpan = document.getElementById(errorSpanId);
+
+        // Biểu thức chính quy kiểm tra định dạng số điện thoại (xxxx-xxx-xxx)
+        var phonePattern = /^\d{4}-\d{3}-\d{3}$/;
+
+        // Kiểm tra xem số điện thoại có khớp với mẫu không
+        if (!phonePattern.test(phoneValue)) {
+          errorSpan.textContent =
+            "(*Error) Please enter a valid phone number (xxxx-xxx-xxx).";
+          return false;
+        } else {
+          errorSpan.textContent = "";
+          return true;
+        }
+      }
+    </script>
+    <script>
+      window.validateForm2 = function () {
+        // Định nghĩa logic validation của bạn ở đây
+        var isPersonalIdValid = validateField("personalId", "personalId-error");
+        var isFirstNameValid = validateField("fname", "fname-error");
+        var isLastNameValid = validateField("lname", "lname-error");
+        var isMiddleNameValid = validateField("mname", "mname-error");
+        var isBirthdayValid = validateBirthday("birthday", "bdate-error");
+        var isSocialSecurityNumberValid = validateField("ssn", "ssn-error");
+        var isAddress1Valid = validateField("address1", "address1-error");
+        var isAddress2Valid = validateField("address2", "address2-error");
+        var isCityValid = validateField("city", "city-error");
+        var isCountryValid = validateField("country", "country-error");
+        var isZipValid = validateField("zip", "zip-error");
+        var isPhoneValid = validatePhone("phone", "phone-error");
+        var isEmailValid = validateField("email", "email-error");
+        var isShareholderStatusValid = validateField(
+          "shareholderstatus",
+          "shareholderstatus-error"
+        );
+        var isBenefitPlanIdValid = validateField(
+          "benefitplanid",
+          "benefitplanid-error"
+        );
+        var isEthnicityValid = validateField("ethnicity", "ethnicity-error");
+        return (
+          isPersonalIdValid &&
+          isFirstNameValid &&
+          isLastNameValid &&
+          isMiddleNameValid &&
+          isBirthdayValid &&
+          isSocialSecurityNumberValid &&
+          isAddress1Valid &&
+          isAddress2Valid &&
+          isCityValid &&
+          isCountryValid &&
+          isZipValid &&
+          isPhoneValid &&
+          isEmailValid &&
+          isShareholderStatusValid &&
+          isBenefitPlanIdValid &&
+          isEthnicityValid
+        );
+      };
+
+      // function validateForm2() {
+      //   var isPersonalIdValid = validateField("personalId", "personalId-error");
+      //   var isFirstNameValid = validateField("fname", "fname-error");
+      //   var isLastNameValid = validateField("lname", "lname-error");
+      //   var isMiddleNameValid = validateField("mname", "mname-error");
+      //   var isBirthdayValid = validateBirthday("birthday", "bdate-error");
+      //   var isSocialSecurityNumberValid = validateField("ssn", "ssn-error");
+      //   var isAddress1Valid = validateField("address1", "address1-error");
+      //   var isAddress2Valid = validateField("address2", "address2-error");
+      //   var isCityValid = validateField("city", "city-error");
+      //   var isCountryValid = validateField("country", "country-error");
+      //   var isZipValid = validateField("zip", "zip-error");
+      //   var isPhoneValid = validatePhone("phone", "phone-error");
+      //   var isEmailValid = validateEmail("email", "email-error");
+      //   var isShareholderStatusValid = validateField(
+      //     "shareholderstatus",
+      //     "shareholderstatus-error"
+      //   );
+      //   var isBenefitPlanIdValid = validateField(
+      //     "benefitplanid",
+      //     "benefitplanid-error"
+      //   );
+      //   var isEthnicityValid = validateField("ethnicity", "ethnicity-error");
+      //   return (
+      //     isPersonalIdValid &&
+      //     isFirstNameValid &&
+      //     isLastNameValid &&
+      //     isMiddleNameValid &&
+      //     isBirthdayValid &&
+      //     isSocialSecurityNumberValid &&
+      //     isAddress1Valid &&
+      //     isAddress2Valid &&
+      //     isCityValid &&
+      //     isCountryValid &&
+      //     isZipValid &&
+      //     isPhoneValid &&
+      //     isEmailValid &&
+      //     isShareholderStatusValid &&
+      //     isBenefitPlanIdValid &&
+      //     isEthnicityValid
+      //   );
+      // }
+
+      function validateField(fieldName, errorSpanId) {
+        var fieldValue = document.getElementById(fieldName).value;
+        var errorSpan = document.getElementById(errorSpanId);
+
+        if (fieldValue === "" || fieldValue.trim() === "") {
+          errorSpan.textContent = "(*Error) Please enter your data.";
+          return false;
+        } else {
+          errorSpan.textContent = "";
+          return true;
+        }
+      }
+
+      function validateBirthday(fieldName, errorSpanId) {
+        var birthdayValue = document.getElementById(fieldName).value;
+        var errorSpan = document.getElementById(errorSpanId);
+
+        // Kiểm tra ô Birthday có trống không
+        if (birthdayValue === "") {
+          errorSpan.textContent = "(*Error) Please enter your birthday.";
+          return false;
+        }
+
+        // Lấy ngày tháng hiện tại
+        var today = new Date();
+        today.setHours(0, 0, 0, 0); // Đặt giờ phút giây và mili giây thành 0 để so sánh chỉ về ngày
+
+        // Chuyển đổi giá trị ngày tháng nhập vào thành đối tượng Date
+        var birthdayDate = new Date(birthdayValue);
+
+        // Kiểm tra ngày nhập vào có lớn hơn ngày hiện tại không
+        if (birthdayDate > today) {
+          errorSpan.textContent = "(*Error) Birthday cannot be in the future.";
+          return false;
+        } else {
+          errorSpan.textContent = "";
+          return true;
+        }
+      }
+    </script>
+    <script>
+      function togglePassword() {
+        var pwdInput = document.getElementById("pwd");
+        var toggleIcon = document.querySelector(".toggle-icon");
+
+        if (pwdInput.type === "password") {
+          pwdInput.type = "text";
+          toggleIcon.textContent = "👁️";
+        } else {
+          pwdInput.type = "password";
+          toggleIcon.textContent = "🔒";
+        }
+      }
+    </script>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const resetButtons = document.querySelectorAll(".reset");
+        const resetForm = document.getElementById("resetForm");
+        const updatePasswordBtn = document.getElementById("updatePasswordBtn");
+        const cancelResetBtn = document.getElementById("cancelResetBtn");
+
+        resetButtons.forEach((button) => {
+          button.addEventListener("click", function () {
+            if (confirm("Bạn có muốn đổi mật khẩu không?")) {
+              resetForm.style.display = "block";
+            }
+          });
+        });
+
+        updatePasswordBtn.addEventListener("click", function () {
+          // Thực hiện kiểm tra mật khẩu mới và xử lý cập nhật tại đây
+          // Sau khi cập nhật thành công, bạn có thể hiển thị thông báo
+          alert("Mật khẩu đã được cập nhật thành công!");
+          resetForm.style.display = "none"; // Ẩn form reset mật khẩu sau khi cập nhật thành công
+        });
+
+        cancelResetBtn.addEventListener("click", function () {
+          resetForm.style.display = "none"; // Ẩn form reset mật khẩu nếu người dùng hủy
+        });
       });
-    });
-  </script>
+    </script>
 
-  
-</body>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const deleteButtons = document.querySelectorAll(".delete");
+        console.log("dang an xoa");
+        const deleteForm = document.getElementById("deleteForm");
+        const okDeleteBtn = document.getElementById("OkDeleteBtn");
+        const cancelDeleteBtn = document.getElementById("cancelDeleteBtn");
 
+        deleteButtons.forEach((button) => {
+          button.addEventListener("click", function () {
+            if (confirm("Bạn có muốn xoá không?")) {
+              deleteForm.style.display = "block";
+            }
+          });
+        });
+
+        okDeleteBtn.addEventListener("click", function () {
+          alert("Đã xóa thành công!");
+          deleteForm.style.display = "none"; // Hide the form after successful deletion
+        });
+
+        cancelDeleteBtn.addEventListener("click", function () {
+          deleteForm.style.display = "none"; // Hide the form if the user cancels
+        });
+      });
+    </script>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        document
+          .getElementById("show-select-button")
+          .addEventListener("click", function (event) {
+            event.preventDefault(); // Prevent the default form submission behavior
+            const select = document.getElementById("cars");
+            if (
+              select.style.display === "none" ||
+              select.style.display === ""
+            ) {
+              select.style.display = "block"; // Show the select element
+            } else {
+              select.style.display = "none"; // Hide the select element if it's already visible
+            }
+          });
+      });
+    </script>
+  </body>
 </html>

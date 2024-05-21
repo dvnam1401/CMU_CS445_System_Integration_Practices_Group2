@@ -109,7 +109,7 @@ namespace DashBoard.API.Repositories.Implementation
             }
 
             // Update information for all fetched employees
-            UpdateEmployeeInfo(employees, employeeDto);
+            //UpdateEmployeeInfo(employees, employeeDto);
 
             // Update specific employee's pay information
             UpdateSpecificEmployeePayInfo(tempEmp, employeeDto);
@@ -172,18 +172,57 @@ namespace DashBoard.API.Repositories.Implementation
             editEmployment.EmploymentStatus = employeeDto.EmploymentStatus;
             editEmployment.HireDateForWorking = employeeDto.HireDateForWorking;
             editEmployment.NumberDaysRequirementOfWorkingPerMonth = employeeDto.NumberDaysRequirementOfWorkingPerMonth;
-
-            var editEmploymentWorkingTime = await sqlServerContext.EmergencyContacts.FirstOrDefaultAsync(e => e.EmploymentId == Convert.ToDecimal(employeeDto.IdEmployee));
+            var temp = Convert.ToDecimal(employeeDto.IdEmployee);
+            var editEmploymentWorkingTime = await sqlServerContext.EmergencyContacts.FirstOrDefaultAsync(e => e.EmploymentId == temp);
             if (editEmploymentWorkingTime != null && editEmploymentWorkingTime.YearWorking != employeeDto.HireDateForWorking)
             {
                 editEmploymentWorkingTime.YearWorking = employeeDto.HireDateForWorking;
             }
+            else
+            {
+                var tempWorkingTime =  new EmploymentWorkingTime
+                {
+                    EmploymentWorkingTimeId = GetAllIdWorkingTime() + 1,
+                    EmploymentId = temp,
+                    YearWorking = employeeDto.HireDateForWorking,
+                };
+                await sqlServerContext.EmergencyContacts.AddAsync(tempWorkingTime);
 
-            var editJobHistory = await sqlServerContext.JobHistory.FirstOrDefaultAsync(e => e.EmploymentId == Convert.ToDecimal(employeeDto.IdEmployee));
+            }
+
+            var editJobHistory = await sqlServerContext.JobHistory.FirstOrDefaultAsync(e => e.EmploymentId == temp);
             if (editJobHistory != null && editJobHistory.Department != employeeDto.Department)
             {
                 editJobHistory.Department = employeeDto.Department;
             }
+            else
+            {
+                var tempJobHistory = new JobHistory
+                {
+                    JobHistoryId = GetAllIdJobHistory() + 1,
+                    EmploymentId = temp,
+                    Department = employeeDto.Department,
+                    FromDate = employeeDto.HireDateForWorking,
+                };
+                await sqlServerContext.JobHistory.AddAsync(tempJobHistory);
+            }
+
+        }
+
+        private int GetAllIdJobHistory()
+        {
+            var result = sqlServerContext.JobHistory
+                         .Select(e => (int?)e.JobHistoryId)
+                         .Max() ?? 0; // If Max returns null, replace with 0
+            return result;
+        }
+
+        private decimal GetAllIdWorkingTime()
+        {
+            var result = sqlServerContext.EmergencyContacts
+                         .Select(e => (decimal?)e.EmploymentWorkingTimeId)
+                         .Max() ?? 0;
+            return result;
         }
 
         public async Task EditPersonalAsync(UpdatePersonalDto personal)

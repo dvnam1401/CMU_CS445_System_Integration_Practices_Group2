@@ -3,6 +3,7 @@ using DashBoard.API.Models.Domain;
 using DashBoard.API.Models.DTO;
 using DashBoard.API.Repositories.Inteface;
 using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
 
 namespace DashBoard.API.Repositories.Implementation
 {
@@ -37,7 +38,7 @@ namespace DashBoard.API.Repositories.Implementation
                     CurrentZip = p.CurrentZip,
                     CurrentMaritalStatus = p.CurrentMaritalStatus,
                     ShareholderStatus = p.ShareholderStatus,
-                    BenefitPlanName= p.BenefitPlan.PlanName,
+                    BenefitPlanName = p.BenefitPlan.PlanName,
                     CurrentCountry = p.CurrentCountry,
                     CurrentAddress2 = p.CurrentAddress2,
                     CurrentCity = p.CurrentCity,
@@ -77,7 +78,7 @@ namespace DashBoard.API.Repositories.Implementation
                 .Where(e => e.IdEmployee == id)
                 .Select(e => new EmployeeDetailsDto
                 {
-                    Id = e.IdEmployee,
+                    IdEmployee = e.IdEmployee,
                     EmploymentCode = e.EmployeeNumber,
                     FirstName = e.FirstName,
                     LastName = e.LastName,
@@ -100,6 +101,7 @@ namespace DashBoard.API.Repositories.Implementation
                 {
                     EmploymentStatus = e.EmploymentStatus,
                     HireDateForWorking = e.HireDateForWorking,
+                    NumberDaysRequirementOfWorkingPerMonth = e.NumberDaysRequirementOfWorkingPerMonth,
                     Department = e.JobHistories.Where(jh => e.EmploymentId == jh.EmploymentId)
                                 .Select(jh => jh.Department).FirstOrDefault(),
                 })
@@ -109,19 +111,72 @@ namespace DashBoard.API.Repositories.Implementation
             {
                 employee.EmploymentStatus = employment.EmploymentStatus;
                 employee.HireDateForWorking = employment.HireDateForWorking;
+                employee.NumberDaysRequirementOfWorkingPerMonth = employment.NumberDaysRequirementOfWorkingPerMonth;
                 employee.Department = employment.Department;
             }
 
             return employee;
         }
 
-        public async Task<IEnumerable<EmployeeDetailsDto>> GetAllEmployeeAsync()        
+        public async Task<IEnumerable<EmployeeDetailsDto>> GetAllEmployeeByIdAsync(int personalId)
+        {
+            // Create a list to temporarily store employee details
+            var employeeDetailsList = new List<EmployeeDetailsDto>();
+
+            // Get all employments associated with the given PersonalId
+            var employments = await sqlServerContext.Employments
+                .Where(e => e.PersonalId == personalId)
+                .Include(e => e.JobHistories)
+                .ToListAsync();
+            // Iterate through each employment record to fetch associated employee details
+            foreach (var employment in employments)
+            {
+                var employee = await mysqlContext.Employees
+            .Where(e => e.IdEmployee == employment.EmploymentId)
+            .Select(e => new
+            {
+                e.IdEmployee,
+                e.EmployeeNumber,
+                e.FirstName,
+                e.LastName,
+                e.Ssn,
+                e.PayRate,
+                e.PayRatesIdPayRates
+            })
+            .FirstOrDefaultAsync();
+
+                if (employee != null)
+                {
+                    var department = employment.JobHistories.FirstOrDefault()?.Department ?? "Unknown";
+                    var details = new EmployeeDetailsDto
+                    {
+                        IdEmployee = employee.IdEmployee,
+                        EmploymentCode = employee.EmployeeNumber,
+                        FirstName = employee.FirstName,
+                        LastName = employee.LastName,
+                        Ssn = employee.Ssn,
+                        PayRate = employee.PayRate,
+                        PayRatesIdPayRates = employee.PayRatesIdPayRates,
+                        EmploymentStatus = employment.EmploymentStatus,
+                        HireDateForWorking = employment.HireDateForWorking,
+                        NumberDaysRequirementOfWorkingPerMonth = employment.NumberDaysRequirementOfWorkingPerMonth,
+                        Department = department
+                    };
+                    employeeDetailsList.Add(details);
+                }
+            }
+
+            // Return the IEnumerable by converting the list to an IEnumerable
+            return employeeDetailsList.AsEnumerable();
+        }
+
+        public async Task<IEnumerable<EmployeeDetailsDto>> GetAllEmployeeAsync()
         {
             // Get employee information from the first database and order by EmployeeNumber
             var employees = await mysqlContext.Employees
                 .Select(e => new EmployeeDetailsDto
                 {
-                    Id = e.IdEmployee,
+                    IdEmployee = e.IdEmployee,
                     EmploymentCode = e.EmployeeNumber, // Assuming EmployeeNumber is the equivalent to EmploymentCode
                     FirstName = e.FirstName,
                     LastName = e.LastName,
@@ -133,7 +188,7 @@ namespace DashBoard.API.Repositories.Implementation
                 .ToListAsync();
 
             // For each employee, get employment information from the second database
-            var employeeIds = employees.Select(e => Convert.ToDecimal(e.Id)).ToList();
+            var employeeIds = employees.Select(e => Convert.ToDecimal(e.IdEmployee)).ToList();
             var employments = await sqlServerContext.Employments
                 .Include(e => e.JobHistories)
                 .Where(e => employeeIds.Contains(e.EmploymentId))
@@ -141,7 +196,7 @@ namespace DashBoard.API.Repositories.Implementation
 
             foreach (var employee in employees)
             {
-                var employment = employments.FirstOrDefault(e => e.EmploymentId == Convert.ToDecimal(employee.Id));
+                var employment = employments.FirstOrDefault(e => e.EmploymentId == Convert.ToDecimal(employee.IdEmployee));
                 if (employment != null)
                 {
                     employee.EmploymentStatus = employment.EmploymentStatus;
@@ -152,6 +207,5 @@ namespace DashBoard.API.Repositories.Implementation
 
             return employees;
         }
-
     }
 }

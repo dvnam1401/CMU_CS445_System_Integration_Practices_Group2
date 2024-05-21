@@ -76,6 +76,25 @@ namespace DashBoard.API.Controllers
             }
         }
 
+
+        [HttpGet("getAll-Employment-byPersonaId")]
+        public async Task<IActionResult> GetAllEmploymentByPersonalId(int personalId)
+        {
+            try
+            {
+                var employeeDto = await detailRepository.GetAllEmployeeByIdAsync(personalId);
+                return Ok(employeeDto);
+            }
+            catch (KeyNotFoundException ex)
+            {
+                return NotFound(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
         [HttpGet("getAll-employee")]
         public async Task<ActionResult<PersonalDetailDto>> GetAllEmployee()
         {
@@ -146,5 +165,7 @@ namespace DashBoard.API.Controllers
                 return NotFound(ex.Message);
             }
         }
+
+       
     }
 }

@@ -12,7 +12,7 @@ namespace DashBoard.API.Repositories.Inteface
         Task ResetPassword(int userId, string newPassword);
         Task UpdateAccountUserWithGroups(int userId, string firstName, string lastName, string userName, string email, string phoneNumber, string department, bool isActive, int[] groupIds);
         Task<Dictionary<string, List<GroupPermissionDto>>> GetAllPermissionsForUser(int userId);
-        Task<List<GroupPermissionDto>> GetPermissionsForUserIsEnable(int userId);
+        Task< List<string>> GetPermissionsForUserIsEnable(int userId);
         Task<IEnumerable<DetailAccountUserDto>> GetAllUser();
         Task<IEnumerable<Group>> GetAllGroup();
         Task<Dictionary<string, List<GroupPermissionDto>>> GetGroupPermissionById(int id);

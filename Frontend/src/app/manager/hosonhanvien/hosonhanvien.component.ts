@@ -1,14 +1,14 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 
 import { ActivatedRoute, Router } from '@angular/router';
-import { EthnicitySelectorComponent } from 'src/app/components/contents/ethnicity-selector/ethnicity-selector.component';
 import { Ethnicity } from 'src/app/components/contents/models/ethnicity-enum.model';
 import { ManagerService } from '../services/manager.service';
-import { Observable, Subscription } from 'rxjs';
+import {  Subscription } from 'rxjs';
 import { PersonalResponse } from '../models/personal-response.model';
 import { PersonalEdit } from '../models/edit-personal.model';
-import { BenefitPlan } from 'src/app/components/contents/models/benefit-plan.model';
+
 import { BenefitPlanResponse } from '../models/benefit-request.model';
+declare function validateForm2(): boolean;
 
 @Component({
   selector: 'app-hosonhanvien',
@@ -25,7 +25,8 @@ export class HosonhanvienComponent implements OnInit, OnDestroy {
   private addPersonalSubscription?: Subscription;
   Ethnicity: Ethnicity;
   benefits: BenefitPlanResponse[];
-  selectBenefitId: number;
+  selectBenefitId: number;  
+
   constructor(
     private managerService: ManagerService,
     private route: ActivatedRoute,
@@ -51,7 +52,7 @@ export class HosonhanvienComponent implements OnInit, OnDestroy {
       ethnicity: '',
       benefitPlanName: '',
     }
-  }
+  }  
 
   ngOnInit(): void {
     this.routeSubscription = this.route.paramMap.subscribe({
@@ -82,6 +83,10 @@ export class HosonhanvienComponent implements OnInit, OnDestroy {
   }
 
   onSubmitForm(): void {
+    if (!validateForm2()) {
+      console.error('Form validation failed');
+      return; // Ngăn chặn việc submit form nếu validation thất bại
+    }
     // convert this model to request object
     if (this.isEditMode) {
       if (this.model && this.id) {

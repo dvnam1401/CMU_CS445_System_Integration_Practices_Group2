@@ -17,7 +17,7 @@ namespace DashBoard.API.Repositories.Implementation
         {
             this.configuration = configuration;
         }
-        public string CreateJwtToken(AccountUser user, List<GroupPermissionDto> roles)
+        public string CreateJwtToken(AccountUser user, List<string> roles)
         {
             //Create claims
             var claims = new List<Claim>
@@ -25,11 +25,11 @@ namespace DashBoard.API.Repositories.Implementation
                 new Claim(ClaimTypes.Email, user.Email)
             };
             //claims.AddRange(roles.Select(role => new Claim(ClaimTypes.Role, role.PermissionName)));
-            claims.AddRange(roles
-              .Select(role => role.PermissionName)
-                .Distinct()  // Đảm bảo rằng quyền là duy nhất
-                .Select(permission => new Claim(ClaimTypes.Role, permission))
-   );
+            //claims.AddRange(roles
+            //  .Select(role => role.PermissionName)
+            //    .Distinct()  // Đảm bảo rằng quyền là duy nhất
+            //    .Select(permission => new Claim(ClaimTypes.Role, permission)));
+            claims.AddRange(roles.Select(role => new Claim(ClaimTypes.Role, role)));
             // JWT security token paramater
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["Jwt:Key"]));
             var credentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);

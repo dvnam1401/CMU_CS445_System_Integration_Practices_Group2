@@ -8,6 +8,7 @@ namespace DashBoard.API.Repositories.Inteface
         Task<PersonalDetailDto> GetPersonalByIdAsync(decimal personalId);
         Task<IEnumerable<PersonalDetailDto>> GetAllPersonalAsync();
         Task<EmployeeDetailsDto> GetEmployeeByIdAsync(int id);
+        Task<IEnumerable<EmployeeDetailsDto>> GetAllEmployeeByIdAsync(int personalId);
         Task<IEnumerable<EmployeeDetailsDto>> GetAllEmployeeAsync();
     }
 }

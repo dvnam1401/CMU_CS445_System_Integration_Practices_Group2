@@ -32,6 +32,8 @@ import { HosonhanvienComponent } from './manager/hosonhanvien/hosonhanvien.compo
 import { ManageemployeeComponent } from './manager/manageemployee/manageemployee.component';
 import { DangkigroupComponent } from './admin/dangkigroup/dangkigroup.component';
 import { TaoemployeeComponent } from './manager/taoemployee/taoemployee.component';
+import { XemthongtinchitietComponent } from './manager/xemthongtinchitiet/xemthongtinchitiet.component';
+import { UpdateemployeeComponent } from './manager/updateemployee/updateemployee.component';
 
 
 @NgModule({
@@ -62,6 +64,8 @@ import { TaoemployeeComponent } from './manager/taoemployee/taoemployee.componen
     ManageemployeeComponent,
     DangkigroupComponent,
     TaoemployeeComponent,
+    XemthongtinchitietComponent,
+    UpdateemployeeComponent,
   ],
   imports: [
     BrowserModule,

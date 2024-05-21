@@ -25,6 +25,8 @@ export class LoginComponent implements OnDestroy {
     };
   }
   onFormSubmit(): void {
+    this.model.email = this.model.email.trim();
+    this.model.password = this.model.password.trim();
     this.authService.login(this.model)
       .subscribe({
         next: (response) => {
@@ -36,8 +38,20 @@ export class LoginComponent implements OnDestroy {
             email: response.email,
             roles: response.roles
           });
-          // this.router.navigateByUrl ('/');
-          window.location.href = '/';
+          // Kiểm tra roles
+          if (!response.roles.includes('Read')) {  // Giả sử 'user' là role cần thiết
+            alert('Bạn không có quyền truy cập vào khu vực này.');
+            this.authService.logout();  // Đăng xuất người dùng
+            this.router.navigateByUrl('/login');  // Chuyển hướng người dùng về trang đăng nhập
+          } else {
+            this.router.navigateByUrl('/');  // Chuyển hướng người dùng đến trang chủ
+          }
+          // this.router.navigateByUrl('/');
+          // window.location.href = '/';
+        },
+        error: (error) => {
+          console.error('Login failed', error);
+          alert('Đăng nhập không thành công. Vui lòng thử lại.');
         }
       })
   }

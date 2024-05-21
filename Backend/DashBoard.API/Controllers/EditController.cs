@@ -27,7 +27,7 @@ namespace DashBoard.API.Controllers
             try
             {
                 await editRepository.EditEmployeeAsync(employeeDto);
-                return Ok("Employee updated successfully.");
+                return Ok(/*"Employee updated successfully."*/);
             }
             catch (Exception ex)
             {

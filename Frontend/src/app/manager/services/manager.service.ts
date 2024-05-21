@@ -8,6 +8,7 @@ import { BenefitPlan } from 'src/app/components/contents/models/benefit-plan.mod
 import { BenefitPlanResponse } from '../models/benefit-request.model';
 import { AddEmployee } from '../models/add-employee.model';
 import { PayRate } from '../models/pay-rate.model';
+import { EmployeeResponse } from '../models/employee-request.model';
 
 @Injectable({
   providedIn: 'root'
@@ -50,7 +51,7 @@ export class ManagerService {
       (`${environment.apiUrl}/api/Deleted/DeletePersonal/${id}`, { observe: 'response' });
   }
 
-  deleteEmployee(idEmployment: number) : Observable<HttpResponse<any>> {
+  deleteEmployee(idEmployment: number): Observable<HttpResponse<any>> {
     return this.http.delete<any>
       (`${environment.apiUrl}/api/Deleted/DeleteEmployee/${idEmployment}`, { observe: 'response' });
   }
@@ -58,5 +59,20 @@ export class ManagerService {
   addEmployee(employee: AddEmployee): Observable<AddEmployee> {
     return this.http.post<AddEmployee>
       (`${environment.apiUrl}/api/Created/createEmployee`, employee);
+  }
+
+  getAllEmployeeById(id: number): Observable<EmployeeResponse[]> {
+    return this.http.get<EmployeeResponse[]>
+      (`${environment.apiUrl}/api/Detail/getAll-Employment-byPersonaId?personalId=${id}`);
+  }
+
+  getEmployeeById(id: number): Observable<EmployeeResponse> {
+    return this.http.get<EmployeeResponse>
+      (`${environment.apiUrl}/api/Detail/get-employee-by-id/${id}`);
+  }
+
+  updateEmployee(id: number, personal: EmployeeResponse): Observable<EmployeeResponse> {
+    return this.http.put<EmployeeResponse>
+      (`${environment.apiUrl}/api/Edit/edit-employee?id=${id}`, personal);
   }
 }

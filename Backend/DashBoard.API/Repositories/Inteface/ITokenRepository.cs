@@ -6,6 +6,6 @@ namespace DashBoard.API.Repositories.Inteface
 {
     public interface ITokenRepository
     {
-        public string CreateJwtToken(AccountUser user, List<GroupPermissionDto> roles);
+        public string CreateJwtToken(AccountUser user, List<string> roles);
     }
 }

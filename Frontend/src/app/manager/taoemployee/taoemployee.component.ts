@@ -50,11 +50,13 @@ export class TaoemployeeComponent implements OnInit, OnDestroy {
           this.managerService.getPersonalById(this.id).subscribe(
             (data) => {
               this.personal$ = data;
+              console.log(this.personal$.currentFirstName + " " + this.personal$.currentLastName + " " + this.personal$.currentMiddleName);
             })
         }
       }
     })
     this.payRates$ = this.managerService.getAllPayRate();
+    console.log(this.payRates$.forEach(x => console.log(x)));
     this.departments$ = this.employeeService.getAllDepartment();
   }
 

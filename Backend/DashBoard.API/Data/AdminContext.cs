@@ -35,7 +35,12 @@ namespace DashBoard.API.Data
                 .AddEntityFrameworkStores<AdminContext>()
                 .AddDefaultTokenProviders(); // Đảm bảo thêm Token Provider
 
-            // Các cài đặt khác...
+            services.AddIdentity<AccountUser, IdentityRole>(options =>
+            {
+                // Cấu hình thêm tùy chỉnh (nếu có)
+            })
+                .AddEntityFrameworkStores<AdminContext>()
+                .AddDefaultTokenProviders();
         }
 
 

@@ -9,13 +9,6 @@
         onsubmit="return validateForm()"
         (ngSubmit)="onSubmitForm()"
       >
-        <!-- <div class="form-group">
-                    <label for="exampleInputEmploymentId">EmploymentId</label>
-                    <input type="number" class="form-control" id="employmentId" name="employmentId" min="0"
-                        placeholder="EmploymentId" />
-                    <br>
-                    <span class="error-message" id="employmentId-error"></span>
-                </div> -->
         <div class="form-group">
           <label for="exampleInputEmploymentCode">Employment Code</label>
           <input
@@ -24,7 +17,7 @@
             id="employmentcode"
             name="employmentcode"
             placeholder="Employment Code"
-            [(ngModel)] = "model.employmentCode"
+            [(ngModel)]="model.employmentCode"
           />
           <br />
           <span class="error-message" id="employmentcode-error"></span>
@@ -37,7 +30,7 @@
             id="fname"
             name="firstName"
             placeholder="First Name"
-            [(ngModel)] = "personal$.currentFirstName"
+            [(ngModel)]="personal$.currentFirstName"
             disabled
           />
           <br />
@@ -49,8 +42,8 @@
             type="text"
             class="form-control"
             id="lname"
-            name="LastName"
-            [(ngModel)] = "personal$.currentLastName"
+            name="lastName"
+            [(ngModel)]="personal$.currentLastName"
             placeholder="Last Name"
             disabled
           />
@@ -58,19 +51,19 @@
           <span class="error-message" id="lname-error"></span>
         </div>
         <div class="form-group">
-            <label for="exampleInputName2">Middle Name</label>
-            <input
-              type="text"
-              class="form-control"
-              id="mname"
-              name="LastName"
-            [(ngModel)] = "personal$.currentMiddleName"
-              placeholder="Middle Name"
-              disabled
-            />
-            <br />
-            <span class="error-message" id="mname-error"></span>
-          </div>
+          <label for="exampleInputName2">Middle Name</label>
+          <input
+            type="text"
+            class="form-control"
+            id="mname"
+            name="middleName"
+            [(ngModel)]="personal$.currentMiddleName"
+            placeholder="Middle Name"
+            
+          />
+          <br />
+          <span class="error-message" id="mname-error"></span>
+        </div>
         <div class="form-group">
           <label for="exampleInputNumber">Social Security Number</label>
           <input
@@ -78,7 +71,7 @@
             class="form-control"
             id="ssn"
             name="SocialSecurityNumber"
-            [(ngModel)] = "personal$.socialSecurityNumber"
+            [(ngModel)]="personal$.socialSecurityNumber"
             disabled
             min="1"
             placeholder="Social Security Number"
@@ -93,7 +86,7 @@
             class="form-control"
             id="employmentstatus"
             name="employmentstatus"
-            [(ngModel)] = "model.employmentStatus"
+            [(ngModel)]="model.employmentStatus"
             placeholder="EmploymentStatus"
           />
           <br />
@@ -109,7 +102,7 @@
             name="hiredateforworking"
             placeholder="Hire Date For Working"
             style="width: 100%; height: 50px"
-            [(ngModel)] = "model.hireDateForWorking"
+            [(ngModel)]="model.hireDateForWorking"
           />
           <br />
           <span class="error-message" id="bdate-error"></span>
@@ -125,7 +118,7 @@
             name="numberdaysrequirementofworkingpermonth"
             min="1"
             placeholder="Number Days Requirement Of Working Per Month"
-            [(ngModel)] = "model.numberDaysRequirementOfWorkingPerMonth"
+            [(ngModel)]="model.numberDaysRequirementOfWorkingPerMonth"
           />
           <br />
           <span
@@ -141,7 +134,7 @@
               id="department"
               name="department"
               placeholder="Department"
-            [(ngModel)] = "model.department"
+              [(ngModel)]="model.department"
             >
               <option
                 *ngFor="let department of departments"
@@ -154,19 +147,6 @@
           <br />
           <span class="error-message" id="department-error"></span>
         </div>
-        <!-- <div class="form-group">
-          <label for="exampleInputPayRatesIdPayRates">Pay Rates Id</label>
-          <input
-            type="number"
-            class="form-control"
-            id="payratesId"
-            name="payratesId"
-            placeholder="PayRatesIdPayRates"
-            min="1"
-          />
-          <br />
-          <span class="error-message" id="payratesId-error"></span>
-        </div> -->
         <div class="form-group">
           <label for="exampleInputPayRate">PayRate</label>
           <ng-container *ngIf="payRates$ | async as payRates">
@@ -175,12 +155,9 @@
               class="form-control"
               id="payrate"
               name="payrate"
-            [(ngModel)] = "selectedPayRate"
+              [(ngModel)]="selectedPayRate"
             >
-              <option
-                *ngFor="let payRate of payRates"
-                [ngValue]="payRate"
-              >
+              <option *ngFor="let payRate of payRates" [ngValue]="payRate">
                 {{ payRate.payRateName }}
               </option>
             </select>
@@ -188,32 +165,6 @@
           <br />
           <span class="error-message" id="payrate-error"></span>
         </div>
-        <!-- <div class="form-group">
-          <label for="exampleInputBenefitPlanId ">Benefit Plan Id </label>
-          <input
-            type="number"
-            class="form-control"
-            id="benefitplanid"
-            name="benefitplanid"
-            placeholder="Benefit PlanId"
-            min="1"
-          />
-          <br />
-          <span class="error-message" id="benefitplanid-error"></span>
-        </div> -->
-        <!-- <div class="form-group">
-          <label for="exampleInputPersonalId">Personal Id</label>
-          <input
-            type="number"
-            class="form-control"
-            id="personalId"
-            name="personalId"
-            placeholder="Personal Id"
-            min="1"
-          />
-          <br /> -->
-        <!-- <span class="error-message" id="personalId-error"></span>
-        </div> -->
         <button type="submit" class="btn me-2"><a>Add</a></button>
       </form>
     </div>

@@ -8,7 +8,6 @@ import { HomeComponent } from './home/home/home.component';
 import { AuthLayoutComponent } from './auth/auth-layout/auth-layout.component';
 import { NotificationHiringComponent } from './components/contents/notification-hiring/notification-hiring.component';
 import { authGuard } from './auth/guards/auth.guard';
-import { roleGuard } from './components/guards/role.guard';
 import { LayoutNotfoundComponent } from './components/contents/layout-notfound/layout-notfound.component';
 import { NotfoundComponent } from './components/contents/notfound/notfound.component';
 import { ManageformComponent } from './manager/manageform/manageform.component';
@@ -25,13 +24,15 @@ import { TaogroupComponent } from './admin/taogroup/taogroup.component';
 import { HosonhanvienComponent } from './manager/hosonhanvien/hosonhanvien.component';
 import { ManageemployeeComponent } from './manager/manageemployee/manageemployee.component';
 import { DangkigroupComponent } from './admin/dangkigroup/dangkigroup.component';
+import { XemthongtinchitietComponent } from './manager/xemthongtinchitiet/xemthongtinchitiet.component';
+import { UpdateemployeeComponent } from './manager/updateemployee/updateemployee.component';
 
 
 const routes: Routes = [
   {
     path: '',
     component: HomeComponent,
-    // canActivate: [authGuard],
+    canActivate: [authGuard],
     children: [
       {
         path: '',
@@ -77,21 +78,6 @@ const routes: Routes = [
           },
         ]
       },
-      // {
-      //   path: 'edit-hr',
-      //   component: EditComponent,
-      //   // canActivate: [roleGuard],
-      // },
-      // {
-      //   path: 'edit-payroll',
-      //   component: EditpayComponent,
-      //   // canActivate: [roleGuard],
-      // },
-      // {
-      //   path: 'add',
-      //   component: AddComponent,
-      //   // canActivate: [roleGuard],
-      // }
     ]
   },
   {
@@ -107,6 +93,7 @@ const routes: Routes = [
   {
     path: 'manage',
     component: LayoutmanageComponent,
+    canActivate: [authGuard],
     children: [
       {
         path: 'personal',
@@ -121,8 +108,8 @@ const routes: Routes = [
         component: HosonhanvienComponent,
       },
       {
-        path: 'edit-employee',
-        component: TaoemployeeComponent,
+        path: 'edit-employee/:id',
+        component: UpdateemployeeComponent,
       },
       {
         path: 'add-employee/:id',
@@ -132,11 +119,16 @@ const routes: Routes = [
         path: 'edit-personal/:id',
         component: HosonhanvienComponent,
       },
+      {
+        path: 'thongtinchitiet-employee/:id',
+        component: XemthongtinchitietComponent,
+      },
     ]
   },
   {
     path: 'admin',
     component: PageAdminComponent,
+    canActivate: [authGuard],
     children: [
       {
         path: '',

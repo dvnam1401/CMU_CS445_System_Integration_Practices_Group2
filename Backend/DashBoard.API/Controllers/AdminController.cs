@@ -3,6 +3,7 @@ using DashBoard.API.Models.Admin;
 using DashBoard.API.Models.DTO;
 using DashBoard.API.Repositories.Implementation;
 using DashBoard.API.Repositories.Inteface;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -14,6 +15,7 @@ namespace DashBoard.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    //[Authorize(Roles = "Admin")]
     public class AdminController : ControllerBase
     {
         private readonly ITokenRepository tokenRepository;
@@ -120,16 +122,16 @@ namespace DashBoard.API.Controllers
                 if (checkPassResult)
                 {
                     var permissions = await authRepository.GetPermissionsForUserIsEnable(identityUser.UserId);
-                    var distinctPermissions = permissions
-                .Select(p => p.PermissionName)
-                .Distinct()  // Sử dụng Distinct để loại bỏ các quyền trùng lặp
-                .ToList();
+                    //var distinctPermissions = permissions
+                    //    .Select(p => p.PermissionName)
+                    //    .Distinct()  // Sử dụng Distinct để loại bỏ các quyền trùng lặp
+                    //    .ToList();
                     var jwtToken = tokenRepository.CreateJwtToken(identityUser, permissions);
                     var response = new LoginResponseDto
                     {
                         Email = loginDto.Email,
                         //Roles = permissions.Select(p => p.PermissionName).ToList(),
-                        Roles = distinctPermissions,
+                        Roles = permissions,
                         Token = jwtToken,
                     };
                     return Ok(response);
@@ -348,7 +350,7 @@ namespace DashBoard.API.Controllers
             {
                 return NotFound(ex.Message);
             }
-          
+
         }
 
         [HttpDelete]

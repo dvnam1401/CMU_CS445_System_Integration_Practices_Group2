@@ -1,0 +1,52 @@
+<div class="container">
+  <h1 class="mt-3">Job History</h1>
+  <div class="d-flex justify-content-end mt-3"></div>
+
+  <table class="table table-bordered mt-3 table-wrapper">
+    <thead>
+      <tr>
+        <th>IdEmployee</th>
+        <th>EmploymentCode</th>
+        <th>FullName</th>
+        <th>Ssn</th>
+        <th>Employmen Status</th>
+        <th>Hire Date For Working</th>
+        <th>Number Days Requirement Of Working Per Month</th>
+        <th>Department</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <ng-container
+        *ngIf="employees$ | async as employees; else noDataTemplate"
+      >
+        <tr *ngFor="let employee of employees">
+          <td>{{employee.idEmployee}}</td>
+          <td>{{ employee.employmentCode }}</td>
+          <td>
+            {{
+              (employee.firstName ? employee.firstName + " " : "") +
+                (employee.lastName ? employee.lastName : "")
+            }}
+          </td>
+          <td>{{ employee.ssn }}</td>
+          <td>{{ employee.employmentStatus }}</td>
+          <td>{{ employee.hireDateForWorking }}</td>
+          <td>{{ employee.numberDaysRequirementOfWorkingPerMonth }}</td>
+          <td>{{ employee.department }}</td>
+          <td>
+            <a
+              ><i
+                class="fa-regular fa-pen-to-square"
+                [routerLink]="['/manage/edit-employee', employee.idEmployee]"
+              ></i
+            ></a>
+          </td>
+        </tr>
+      </ng-container>
+      <ng-template #noDataTemplate>
+        <p>No data available.</p>
+      </ng-template>
+    </tbody>
+  </table>
+</div>

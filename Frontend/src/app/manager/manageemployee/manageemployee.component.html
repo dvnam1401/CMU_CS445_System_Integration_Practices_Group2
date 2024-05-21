@@ -34,31 +34,32 @@
           <td>{{ personal.currentCity }}</td>
           <td>{{ personal.currentPhoneNumber }}</td>
           <td>{{ personal.currentPersonalEmail }}</td>
-          <td style="width: 20px">
-            <a class="btn"
+          <td style="width: 30px; height: 30px; position: relative">
+            <a style="padding: 10px;"
               ><i
                 class="fa-solid fa-plus"
                 [routerLink]="['/manage/add-employee', personal.personalId]"
-              ></i></a
-            ><br />
-            <!-- <a class="btn"
-              ><i
-                class="fa-regular fa-pen-to-square"
-                [routerLink]="['/manage/edit-employee']"
-              ></i></a
-            ><br /> -->
-            <button
-              class="delete"
-              style="
-                width: 62px;
-                border: none;
-                background-color: transparent;
-                text-align: center;
-              "
+              ></i
+            ></a>
+            <br /><br />
+            <a style="padding: 10px; color: #000;"
+              class="delete"              
               (click)="deleteAccount(personal.personalId)"
             >
               <i class="fa-solid fa-trash"></i>
-            </button>
+            </a>
+            <a [routerLink]="['/manage/thongtinchitiet-employee', personal.personalId]"
+              ><i
+                class="fa-solid fa-angles-down"
+                style="
+                  color: #000;
+                  font-size: 10px;
+                  position: absolute;
+                  bottom: 8px;
+                  right: 5px;
+                "
+              ></i
+            ></a>
           </td>
         </tr>
       </tbody>

@@ -246,73 +246,38 @@ namespace DashBoard.API.Repositories.Implementation
                 }
             }
 
-            return permissions;
-
-            //var userGroups = await adminContext.UserGroups
-            //        .Where(ug => ug.UserId == userId /*&& ug.IsEnable == true*/)
-            //        .Select(ug => ug.GroupId)
-            //        .ToListAsync();
-
-            //Dictionary<string, List<GroupPermissionDto>> permissions = new Dictionary<string, List<GroupPermissionDto>>();
-
-            //foreach (var groupId in userGroups)
-            //{
-            //    var permissionsInfo = await adminContext.GroupPermissions
-            //                        .Where(gp => groupId == gp.GroupId) /*&& gp.IsEnable == true*/
-            //                        .Include(gp => gp.Permission)
-            //                        .Select(gp => new GroupPermissionDto
-            //                        {
-            //                            GroupName = gp.Group.GroupName,
-            //                            PermissionId = gp.PermissionId,
-            //                            PermissionName = gp.Permission.PermisstionName,
-            //                            IsEnable = gp.IsEnable
-            //                        })
-            //                        .Distinct()
-            //                        .ToListAsync();
-
-            //    foreach (var permission in permissionsInfo)
-            //    {
-            //        if (!permissions.ContainsKey(permission.GroupName))
-            //        {
-            //            // Only add a new list to the dictionary if the key doesn't exist
-            //            permissions[permission.GroupName] = new List<GroupPermissionDto>();
-            //        }
-            //        // Now safely add the permission info to the list for this group name
-            //        permissions[permission.GroupName].Add(permission);
-            //    }
-            //}
-
-            //return permissions;
+            return permissions;            
         }
 
         // lấy ds quyền người dùng được cho phép theo userId
         // dùng viết chức năng login
-        public async Task<List<GroupPermissionDto>> GetPermissionsForUserIsEnable(int userId)
+        public async Task<List<string>> GetPermissionsForUserIsEnable(int userId)
         {
-            var userGroups = await adminContext.UserGroups
+            var roles = await adminContext.UserPermissions
                         .Where(ug => ug.UserId == userId && ug.IsEnable == true)
-                        .Select(ug => ug.GroupId)
+                        .Select(ug => ug.PermisisonName)
+                        .Distinct()
                         .ToListAsync();
 
-            var permissionsInfo = await adminContext.GroupPermissions
-                                .Where(gp => userGroups.Contains(gp.GroupId) && gp.IsEnable == true)
-                                .Select(gp => new GroupPermissionDto
-                                {
-                                    GroupName = gp.Group.GroupName,
-                                    PermissionId = gp.PermissionId,
-                                    PermissionName = gp.Permission.PermisstionName,
-                                    IsEnable = gp.IsEnable
-                                })
-                                .Distinct()
-                                .ToListAsync();
+            //var permissionsInfo = await adminContext.GroupPermissions
+            //                    .Where(gp => userGroups.Contains(gp.GroupId) && gp.IsEnable == true)
+            //                    .Select(gp => new GroupPermissionDto
+            //                    {
+            //                        GroupName = gp.Group.GroupName,
+            //                        PermissionId = gp.PermissionId,
+            //                        PermissionName = gp.Permission.PermisstionName,
+            //                        IsEnable = gp.IsEnable
+            //                    })
+            //                    .Distinct()
+            //                    .ToListAsync();
 
-            // Loại bỏ các quyền trùng lặp
-            var distinctPermissionsInfo = permissionsInfo
-                .GroupBy(p => new { p.GroupName, p.PermissionId, p.PermissionName, p.IsEnable })
-                .Select(g => g.First())
-                .ToList();
+            //// Loại bỏ các quyền trùng lặp
+            //var distinctPermissionsInfo = permissionsInfo
+            //    .GroupBy(p => new { p.GroupName, p.PermissionId, p.PermissionName, p.IsEnable })
+            //    .Select(g => g.First())
+            //    .ToList();
 
-            return distinctPermissionsInfo;
+            return roles;
         }
 
         // lấy tất cả ds quyền trong group

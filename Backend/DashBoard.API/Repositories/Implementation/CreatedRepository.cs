@@ -10,7 +10,10 @@ namespace DashBoard.API.Repositories.Implementation
     {
         private readonly MysqlContext mysqlContext;
         private readonly SqlServerContext sqlServerContext;
-
+        public CreatedRepository()
+        {
+            
+        }
         public CreatedRepository(MysqlContext mysqlContext, SqlServerContext sqlServerContext)
         {
             this.mysqlContext = mysqlContext;
