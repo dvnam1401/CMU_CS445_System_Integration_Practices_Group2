@@ -17,6 +17,12 @@ namespace DashBoard.API.Repositories.Implementation
             this.mysqlContext = mysqlContext;
         }
 
+        // lấy ra danh sách benefit
+        public async Task<IEnumerable<PayRate?>> GetByAllPayRate()
+        {
+            return await mysqlContext.Payrates.ToListAsync();
+        }
+
         public async Task<IEnumerable<EmployeeMysqlDto>> FetchMysqlEmployeeDataAsync()
         {
             //using (var mysqlContext = new MysqlContext()) // Tạo phiên bản DbContext mới

@@ -20,16 +20,28 @@ namespace DashBoard.API.Repositories.Implementation
         {
             var personal = await sqlServerContext.Personals
                 .Where(p => p.PersonalId == personalId)
+                .Include(p => p.BenefitPlan)
                 .Select(p => new PersonalDetailDto
                 {
                     PersonalId = p.PersonalId,
-                    CurrentFirstName = p.CurrentFirstName + " " + p.CurrentMiddleName,
+                    CurrentFirstName = p.CurrentFirstName,
                     CurrentLastName = p.CurrentLastName,
+                    CurrentMiddleName = p.CurrentMiddleName,
                     BirthDate = p.BirthDate,
                     CurrentGender = p.CurrentGender,
                     CurrentPersonalEmail = p.CurrentPersonalEmail,
                     CurrentPhoneNumber = p.CurrentPhoneNumber,
-                    CurrentCity = p.CurrentCity
+                    DriversLicense = p.DriversLicense,
+                    SocialSecurityNumber = p.SocialSecurityNumber,
+                    CurrentAddress1 = p.CurrentAddress1,
+                    CurrentZip = p.CurrentZip,
+                    CurrentMaritalStatus = p.CurrentMaritalStatus,
+                    ShareholderStatus = p.ShareholderStatus,
+                    BenefitPlanName= p.BenefitPlan.PlanName,
+                    CurrentCountry = p.CurrentCountry,
+                    CurrentAddress2 = p.CurrentAddress2,
+                    CurrentCity = p.CurrentCity,
+                    Ethnicity = p.Ethnicity,
                 })
                 .FirstOrDefaultAsync();
 
@@ -47,8 +59,9 @@ namespace DashBoard.API.Repositories.Implementation
                 .Select(p => new PersonalDetailDto
                 {
                     PersonalId = p.PersonalId,
-                    CurrentFirstName = p.CurrentFirstName + " " + p.CurrentMiddleName,
+                    CurrentFirstName = p.CurrentFirstName,
                     CurrentLastName = p.CurrentLastName,
+                    CurrentMiddleName = p.CurrentMiddleName,
                     BirthDate = p.BirthDate,
                     CurrentGender = p.CurrentGender,
                     CurrentPersonalEmail = p.CurrentPersonalEmail,

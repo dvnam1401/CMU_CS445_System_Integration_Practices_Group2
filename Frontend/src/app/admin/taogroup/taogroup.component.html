@@ -1,0 +1,64 @@
+<div class="container" style="background-color: #fff; height: 100%">
+  <h1 class="mt-3">Group Permissions</h1>
+  <div class="d-flex justify-content-end mt-3">
+    <a
+      class="btn"
+      style="
+        padding: 14px 16px;
+        background-color: antiquewhite;
+        border-radius: 10px;
+      "
+      href="/admin/dangkigroup"
+      >Add Group</a
+    >
+  </div>
+  <table class="table table-bordered mt-3 table-wrapper">
+    <thead>
+      <tr>
+        <th>Group Name</th>
+        <!-- <th>User</th> -->
+        <th>Permission Name</th>
+      </tr>
+    </thead>
+    <tbody>
+      <ng-container *ngIf="groupPermission$ | async as groupPermissions">
+        <ng-container *ngFor="let groupKey of objectKeys(groupPermissions)">
+          <tr
+            *ngFor="
+              let groupPermission of groupPermissions[groupKey];
+              let i = index
+            "
+          >
+            <!-- <td *ngIf="i === 0" [attr.rowspan]="groupPermissions[groupKey].length">
+              {{ groupKey }}
+            </td> -->
+            <td
+              *ngIf="i === 0"
+              [attr.rowspan]="groupPermissions[groupKey].length"
+            >
+              <div style="display: flex; width: 100%">
+                <div style="flex: 1">{{ groupKey }}</div>
+                <div style="flex: 1">
+                  <button (click)="updateGroupPermissions(groupKey)"  class="btn btn-info btn-lg">
+                    <i class="fa-solid fa-arrows-rotate"></i> Update
+                  </button>
+                </div>
+              </div>
+            </td>
+
+            <td>{{ groupPermission.permissionName }}</td>
+            <td>
+              <input
+                type="checkbox"
+                id="role{{ i }}"
+                name="role"
+                [checked]="groupPermission.isEnable"                
+                (change)="onCheckboxChange($event, groupPermission, groupKey)"
+              />
+            </td>
+          </tr>
+        </ng-container>
+      </ng-container>
+    </tbody>
+  </table>
+</div>

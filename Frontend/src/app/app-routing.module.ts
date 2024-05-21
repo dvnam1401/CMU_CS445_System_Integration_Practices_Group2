@@ -6,20 +6,32 @@ import { LayoutsmainComponent } from './components/contents/layoutsmain/layoutsm
 import { NotificationComponent } from './components/contents/notification/notification.component';
 import { HomeComponent } from './home/home/home.component';
 import { AuthLayoutComponent } from './auth/auth-layout/auth-layout.component';
-import { EditComponent } from './components/contents/edit/edit.component';
-import { EditpayComponent } from './components/contents/editpay/editpay.component';
-import { AddComponent } from './components/contents/add/add.component';
 import { NotificationHiringComponent } from './components/contents/notification-hiring/notification-hiring.component';
 import { authGuard } from './auth/guards/auth.guard';
 import { roleGuard } from './components/guards/role.guard';
 import { LayoutNotfoundComponent } from './components/contents/layout-notfound/layout-notfound.component';
 import { NotfoundComponent } from './components/contents/notfound/notfound.component';
+import { ManageformComponent } from './manager/manageform/manageform.component';
+import { LayoutmanageComponent } from './manager/layoutmanage/layoutmanage.component';
+
+import { TaoemployeeComponent } from './manager/taoemployee/taoemployee.component';
+
+
+import { PageAdminComponent } from './admin/page-admin/page-admin.component';
+import { TaoaccountComponent } from './admin/taoaccount/taoaccount.component';
+import { MainadmminComponent } from './admin/mainadmmin/mainadmmin.component';
+import { UpdateaccountComponent } from './admin/updateaccount/updateaccount.component';
+import { TaogroupComponent } from './admin/taogroup/taogroup.component';
+import { HosonhanvienComponent } from './manager/hosonhanvien/hosonhanvien.component';
+import { ManageemployeeComponent } from './manager/manageemployee/manageemployee.component';
+import { DangkigroupComponent } from './admin/dangkigroup/dangkigroup.component';
+
 
 const routes: Routes = [
   {
     path: '',
     component: HomeComponent,
-    canActivate: [authGuard],
+    // canActivate: [authGuard],
     children: [
       {
         path: '',
@@ -65,21 +77,21 @@ const routes: Routes = [
           },
         ]
       },
-      {
-        path: 'edit-hr',
-        component: EditComponent,
-        canActivate: [roleGuard],
-      },
-      {
-        path: 'edit-payroll',
-        component: EditpayComponent,
-        canActivate: [roleGuard],
-      },
-      {
-        path: 'add',
-        component: AddComponent,
-        canActivate: [roleGuard],
-      }
+      // {
+      //   path: 'edit-hr',
+      //   component: EditComponent,
+      //   // canActivate: [roleGuard],
+      // },
+      // {
+      //   path: 'edit-payroll',
+      //   component: EditpayComponent,
+      //   // canActivate: [roleGuard],
+      // },
+      // {
+      //   path: 'add',
+      //   component: AddComponent,
+      //   // canActivate: [roleGuard],
+      // }
     ]
   },
   {
@@ -93,6 +105,63 @@ const routes: Routes = [
     ]
   },
   {
+    path: 'manage',
+    component: LayoutmanageComponent,
+    children: [
+      {
+        path: 'personal',
+        component: ManageformComponent
+      },
+      {
+        path: 'employee',
+        component: ManageemployeeComponent,
+      },
+      {
+        path: 'add-personal',
+        component: HosonhanvienComponent,
+      },
+      {
+        path: 'edit-employee',
+        component: TaoemployeeComponent,
+      },
+      {
+        path: 'add-employee/:id',
+        component: TaoemployeeComponent,
+      },
+      {
+        path: 'edit-personal/:id',
+        component: HosonhanvienComponent,
+      },
+    ]
+  },
+  {
+    path: 'admin',
+    component: PageAdminComponent,
+    children: [
+      {
+        path: '',
+        component: MainadmminComponent
+      },
+      {
+        path: 'add-user',
+        component: TaoaccountComponent
+      },
+      {
+        path: 'manage-group',
+        component: TaogroupComponent
+      },
+      {
+        path: 'edit-user/:id',
+        component: UpdateaccountComponent
+      },
+      {
+        path: 'dangkigroup',
+        component: DangkigroupComponent
+      },
+    ]
+  },
+
+  {
     path: '',
     component: LayoutNotfoundComponent,
     children: [
@@ -100,7 +169,8 @@ const routes: Routes = [
         path: '**',
         component: NotfoundComponent
       },]
-  }
+  },
+
 ];
 
 @NgModule({

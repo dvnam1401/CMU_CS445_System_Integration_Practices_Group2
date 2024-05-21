@@ -1,0 +1,40 @@
+<nav>
+  <div class="menu">
+    <div class="logo">
+      <!-- <a href="#">
+                <img src="logo.png" alt="">
+            </a> -->
+    </div>
+    <ul>
+      <li>
+        <a [routerLink]="['/admin']">
+          <span><i class="fas fa-home"></i></span>
+          Home
+        </a>
+      </li>
+      <li>
+        <!-- <a [routerLink]="['/admin/add-user']"> -->
+        <a href="/admin/add-user">
+          <span><i class="fas fa-address-card"></i></span>
+          Create Account
+        </a>
+      </li>
+      <li>
+        <a [routerLink]="['/admin/manage-group']">
+          <span><i class="fas fa-address-book"></i></span>
+          Group Permissions
+        </a>
+      </li>
+      <li>
+        <a href="/">
+          <i class="fa-solid fa-backward"></i>
+          Back to dashboard
+        </a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<div class="body">
+  <router-outlet></router-outlet>
+</div>

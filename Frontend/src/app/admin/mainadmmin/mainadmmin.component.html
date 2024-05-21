@@ -1,0 +1,140 @@
+<div class="row">
+  <div class="col-12 grid-margin">
+    <div class="card">
+      <div class="card-body" style="height: 83vh">
+        <h2 class="card-title" style="font-size: 27px; margin-bottom: 10px">
+          Administrator
+          <form id="search-box">
+            <input
+              type="text"
+              id="search-text"
+              placeholder="Search.."
+              name="id"
+              [(ngModel)]="searchText"
+              (ngModelChange)="findEmployee()"
+            />
+            <button id="search-btn" type="submit" (click)="findEmployee()">
+              <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+          </form>
+        </h2>
+        <div class="table-responsive table-wrapper">
+          <ng-container *ngIf="users$ | async as users; else noDataTemplate">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Full Name</th>
+                  <th>User Name</th>
+                  <th>Email</th>
+                  <th>Phone</th>
+                  <th>Departement</th>
+                  <th>Group</th>
+
+                  <th style="width: 80px">Status</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let user of users">
+                  <td>{{ user.fullName }}</td>
+                  <td>{{ user.userName }}</td>
+                  <td>{{ user.email }}</td>
+                  <td>{{ user.phoneNumber }}</td>
+                  <td>{{ user.department }}</td>
+                  <td>{{ user.userNameGroups.join(", ") }}</td>
+                  <td style="width: 80px">{{ user.isActive }}</td>
+                  <td>
+                    <i
+                      class="fa-solid fa-pen-to-square icon"
+                      [routerLink]="['/admin/edit-user', user.userId]"
+                    ></i>
+                    <button
+                      class="delete"
+                      style="
+                        width: 40px;
+                        height: 50px;
+                        border: none;
+                        background-color: transparent;
+                        margin-left: -1px;
+                        padding: 0;
+                      "
+                      (click)="deleteAccount(user.userId)"
+                    >
+                      <i class="fa-solid fa-trash"></i>
+                    </button>
+
+                    <button
+                      class="reset"
+                      style="
+                        width: 40px;
+                        height: 50px;
+                        border: none;
+                        background-color: transparent;
+                        padding: 0;
+                        margin-left: -5px;
+                      "
+                      (click)="toggleResetForm(user.userId)"
+                    >
+                      <i class="fa-solid fa-rotate-right"></i>
+                    </button>
+                  </td>
+                </tr>
+                <!-- Other rows -->
+              </tbody>
+            </table>
+          </ng-container>
+        </div>
+        <ng-template #noDataTemplate>
+          <p>No data available.</p>
+        </ng-template>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="showDeleteForm" id="deleteForm" class="deleteForm-form">
+  <h2>Confirm Delete</h2>
+  <div class="button-group">
+    <button id="OkDeleteBtn" (click)="confirmDelete()">OK</button>
+    <button id="cancelDeleteBtn" (click)="cancelDelete()">Cancel</button>
+  </div>
+</div>
+
+<div *ngIf="showResetForm" id="resetForm" class="reset-form">
+  <h2>Reset Password</h2>
+  <form (submit)="updatePassword()">
+    <div class="form-group">
+      <label for="newPassword">New Password:</label><br />
+      <input
+        type="password"
+        id="newPassword"
+        [(ngModel)]="newPassword"
+        name="newPassword"
+        required
+      />
+    </div>
+    <div class="form-group">
+      <label for="confirmPassword">Confirm Password:</label><br />
+      <input
+        type="password"
+        id="confirmPassword"
+        [(ngModel)]="confirmPassword"
+        name="confirmPassword"
+        required
+      />
+      <div *ngIf="submitted && !confirmPassword" class="alert alert-warning">
+        Please confirm your password.
+      </div>
+      <div
+        *ngIf="
+          newPassword && confirmPassword && newPassword !== confirmPassword
+        "
+        class="alert alert-danger"
+      >
+        Passwords do not match!
+      </div>
+    </div>
+    <button type="submit">Update</button>
+    <button type="button" (click)="showResetForm = false">Cancel</button>
+  </form>
+</div>

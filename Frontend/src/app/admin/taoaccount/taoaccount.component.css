@@ -1,0 +1,64 @@
+.password-toggle {
+    position: relative;
+    width: 100%;
+}
+
+.password-toggle input {
+    height: 50px;
+    width: 100%;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.password-toggle .toggle-icon {
+    position: absolute;
+    right: 0;
+    height: 50px;
+    width: 30px;
+    line-height: 50px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.error-message {
+    color: red;
+    font-size: 0.8em;
+}
+
+.btn {
+    text-decoration: none;
+    color: #333;
+    padding: 15px 30px;
+    background-color: #6ceb84;
+    text-align: right;
+    border-radius: 10px;
+}
+
+#cars {
+    display: none;
+    /* Initially hide the select element */
+    margin-top: 10px;
+}
+
+#show-select-button {
+    margin-top: px;
+    padding: 10px 20px;
+    font-size: 16px;
+    color: white;
+    background-color: #007bff;
+    /* Bootstrap primary color */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#show-select-button:hover {
+    background-color: #0056b3;
+    /* Darker shade for hover effect */
+}
+
+#show-select-button:focus {
+    outline: none;
+    box-shadow: 0 0 0 4px rgba(0, 123, 255, 0.25);
+    /* Bootstrap focus shadow */
+}

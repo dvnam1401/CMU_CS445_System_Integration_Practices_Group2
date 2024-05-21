@@ -59,24 +59,22 @@ namespace DashBoard.API.Repositories.Implementation
             var result = sqlServerContext.JobHistory
                          .Select(e => (int?)e.JobHistoryId)                         
                          .Max() ?? 0; // If Max returns null, replace with 0
-
             return result;
         }
 
         private decimal GetAllIdWorkingTime()
         {
             var result = sqlServerContext.EmergencyContacts
-                         .Select(e => e.EmploymentWorkingTimeId)
-                         .DefaultIfEmpty(0) // Đặt giá trị mặc định nếu không có phần tử nào
-                         .Max();
+                         .Select(e => (decimal?)e.EmploymentWorkingTimeId)
+                         .Max()?? 0;
             return result;
         }
 
         // taọ nhân viên mới
         public async Task CreateEmployeeAsync(CreateEmployeeDto employment)
         {
-            var checkEmployee = await mysqlContext.Employees.FindAsync(employment.EmploymentCode);
-            if (checkEmployee is not null)
+            var checkEmployee = await mysqlContext.Employees.FindAsync(Convert.ToUInt32(employment.EmploymentCode));
+            if (checkEmployee is null)
             {
                 var tempEmployee = AddEmployee(employment);
                 await mysqlContext.Employees.AddAsync(tempEmployee);

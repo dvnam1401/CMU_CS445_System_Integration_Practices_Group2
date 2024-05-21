@@ -3,6 +3,7 @@ using DashBoard.API.Models.Domain;
 using DashBoard.API.Repositories.Inteface;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Linq;
 
 namespace DashBoard.API.Repositories.Implementation
 {
@@ -17,12 +18,20 @@ namespace DashBoard.API.Repositories.Implementation
             this.sqlServerContext = sqlServerContext;
         }
 
-        public async Task DeleteEmployeeAsync(int employeeCode)
+        public async Task DeleteEmployeeAsync(int personalIdCode)
         {
-            // Bước 1: Tìm nhân viên thông qua EmployeeCode
+            var employments = await sqlServerContext.Employments
+                                           .Where(em => em.PersonalId == Convert.ToUInt64(personalIdCode))
+                                           //.Select(em => em.EmploymentCode)
+                                           .ToListAsync();
+            
+            // Chuyển EmploymentCode sang string nếu cần
+            var employeeNumbers = employments.Select(em => em.EmploymentCode.ToString()).Distinct().ToList();
+            // Tìm và xóa các Employee
             var employees = await mysqlContext.Employees
-                                             .Where(e => e.EmployeeNumber == employeeCode)
-                                             .ToListAsync();
+                .Where(e => employeeNumbers.Contains(e.EmployeeNumber.ToString()))
+                .ToListAsync();
+
             if (employees.Any())
             {
                 foreach (var employee in employees)
@@ -37,10 +46,6 @@ namespace DashBoard.API.Repositories.Implementation
                     sqlServerContext.EmergencyContacts.RemoveRange(employmentWorkingTimes);
                 }
             }
-
-            var employments = await sqlServerContext.Employments                                           
-                                           .Where(em => em.EmploymentCode == employeeCode.ToString())
-                                           .ToListAsync();
 
             sqlServerContext.Employments.RemoveRange(employments);
             mysqlContext.Employees.RemoveRange(employees);

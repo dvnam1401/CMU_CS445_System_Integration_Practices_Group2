@@ -24,7 +24,12 @@ namespace DashBoard.API.Repositories.Implementation
             {
                 new Claim(ClaimTypes.Email, user.Email)
             };
-            claims.AddRange(roles.Select(role => new Claim(ClaimTypes.Role, role.PermissionName)));
+            //claims.AddRange(roles.Select(role => new Claim(ClaimTypes.Role, role.PermissionName)));
+            claims.AddRange(roles
+              .Select(role => role.PermissionName)
+                .Distinct()  // Đảm bảo rằng quyền là duy nhất
+                .Select(permission => new Claim(ClaimTypes.Role, permission))
+   );
             // JWT security token paramater
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["Jwt:Key"]));
             var credentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);

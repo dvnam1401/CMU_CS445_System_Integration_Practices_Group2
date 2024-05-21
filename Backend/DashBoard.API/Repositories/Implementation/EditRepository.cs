@@ -186,5 +186,37 @@ namespace DashBoard.API.Repositories.Implementation
             }
         }
 
+        public async Task EditPersonalAsync(UpdatePersonalDto personal)
+        {
+            var tempPersonal = await sqlServerContext.Personals
+                                 .FirstOrDefaultAsync(e => e.PersonalId == personal.PersonalId);
+            if (tempPersonal == null)
+            {
+                throw new Exception("Specific employee not found");
+            }
+
+            // Update properties
+            tempPersonal.CurrentFirstName = personal.CurrentFirstName;
+            tempPersonal.CurrentLastName = personal.CurrentLastName;
+            tempPersonal.CurrentMiddleName = personal.CurrentMiddleName;
+            tempPersonal.BirthDate = personal.BirthDate; // Make sure BirthDate in your entity is compatible with DateOnly
+            tempPersonal.CurrentCity = personal.CurrentCity;
+            tempPersonal.SocialSecurityNumber = personal.SocialSecurityNumber;
+            tempPersonal.CurrentAddress1 = personal.CurrentAddress1;
+            tempPersonal.CurrentZip = personal.CurrentZip;
+            tempPersonal.CurrentMaritalStatus = personal.CurrentMaritalStatus;
+            tempPersonal.ShareholderStatus = personal.ShareholderStatus;
+            tempPersonal.BenefitPlanId = personal.BenefitPlanId;
+            tempPersonal.CurrentCountry = personal.CurrentCountry;
+            tempPersonal.CurrentAddress2 = personal.CurrentAddress2;
+            tempPersonal.CurrentGender = personal.CurrentGender;
+            tempPersonal.CurrentPhoneNumber = personal.CurrentPhoneNumber;
+            tempPersonal.CurrentPersonalEmail = personal.CurrentPersonalEmail;
+            tempPersonal.Ethnicity = personal.Ethnicity;
+            tempPersonal.DriversLicense = personal.DriversLicense;
+
+            // Save changes in the database
+            await sqlServerContext.SaveChangesAsync();
+        }
     }
 }

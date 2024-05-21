@@ -36,7 +36,8 @@ export class LoginComponent implements OnDestroy {
             email: response.email,
             roles: response.roles
           });
-          this.router.navigateByUrl('/');
+          // this.router.navigateByUrl ('/');
+          window.location.href = '/';
         }
       })
   }

@@ -162,6 +162,51 @@ namespace DashBoard.API.Migrations.Admin
                     b.ToTable("UserGroups");
                 });
 
+            modelBuilder.Entity("DashBoard.API.Models.Admin.UserPermission", b =>
+                {
+                    b.Property<int>("IdUserRole")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasColumnName("id_user_role");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdUserRole"));
+
+                    b.Property<int>("GroupId")
+                        .HasColumnType("int")
+                        .HasColumnName("group_id");
+
+                    b.Property<string>("GroupName")
+                        .HasMaxLength(50)
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(50)")
+                        .HasColumnName("group_name");
+
+                    b.Property<bool?>("IsEnable")
+                        .HasColumnType("bit")
+                        .HasColumnName("is_enable");
+
+                    b.Property<string>("PermisisonName")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(50)")
+                        .HasColumnName("permisison_name");
+
+                    b.Property<int>("PermissionId")
+                        .HasColumnType("int")
+                        .HasColumnName("permission_id");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int")
+                        .HasColumnName("user_id");
+
+                    b.HasKey("IdUserRole");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("UserPermissions");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
                 {
                     b.Property<string>("Id")
@@ -398,6 +443,17 @@ namespace DashBoard.API.Migrations.Admin
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("DashBoard.API.Models.Admin.UserPermission", b =>
+                {
+                    b.HasOne("DashBoard.API.Models.Admin.AccountUser", "User")
+                        .WithMany("UserPermissions")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -452,6 +508,8 @@ namespace DashBoard.API.Migrations.Admin
             modelBuilder.Entity("DashBoard.API.Models.Admin.AccountUser", b =>
                 {
                     b.Navigation("UserGroups");
+
+                    b.Navigation("UserPermissions");
                 });
 
             modelBuilder.Entity("DashBoard.API.Models.Admin.Group", b =>

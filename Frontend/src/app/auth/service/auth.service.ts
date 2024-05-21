@@ -17,9 +17,9 @@ export class AuthService {
   constructor(private http: HttpClient, private cookieService: CookieService, private router: Router) { }
 
   login(request: LoginRequest): Observable<LoginResponse> {
-    return this.http.post<LoginResponse>(`${environment.apiUrl}/api/auth/login`, {
+    return this.http.post<LoginResponse>(`${environment.apiUrl}/api/Admin/login`, {
       email: request.email,
-      password: request.password
+      password: request.password,      
     });
   }
 
@@ -39,8 +39,8 @@ export class AuthService {
     if (email && roles) {
       return {
         email: email,
-        roles: roles.split(',')
-      }
+        roles: roles.split(','),
+      };
     }
     return undefined;
   }

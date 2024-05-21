@@ -5,6 +5,7 @@ import { EmployeeService } from '../services/employee.service';
 import { EmployeeFilter } from '../models/employee-filter.model';
 import { ActivatedRoute } from '@angular/router';
 import { EthnicitySelectorComponent } from '../ethnicity-selector/ethnicity-selector.component';
+import { Ethnicity } from '../models/ethnicity-enum.model';
 
 @Component({
   selector: 'app-employee',
@@ -24,12 +25,13 @@ export class EmployeeComponent implements OnInit, OnDestroy {
   };
   employeeSalary$?: Observable<EmployeeTotal[]>;
   title?: string;
-  selectedEthnicity: EthnicitySelectorComponent;
+  // selectedEthnicity: EthnicitySelectorComponent;
+  selectedEthnicity = Object.values(Ethnicity);
   selectedDate: string;
   departments$?: Observable<string[]>;
   constructor(private service: EmployeeService,
     private route: ActivatedRoute,) {
-    this.selectedEthnicity = new EthnicitySelectorComponent();
+    // this.selectedEthnicity = new EthnicitySelectorComponent();
     this.departments$ = this.service.getAllDepartment();
   }
   ngOnDestroy(): void {
@@ -70,10 +72,10 @@ export class EmployeeComponent implements OnInit, OnDestroy {
         return this.service.getEmployeeSalary(this.model);
       case 'vacationDays':
         return this.service.getEmployeeNumberVacation(this.model);
-      case 'averageBenefits':
-        return this.service.getEmployeeAvergeBenefit(this.model);
+      // case 'averageBenefits':
+      //   return this.service.getEmployeeAvergeBenefit(this.model);
       default:
-        return this.service.getEmployeeSalary(this.model);
+        return this.service.getEmployeeAvergeBenefit(this.model);
     }
   }
 }

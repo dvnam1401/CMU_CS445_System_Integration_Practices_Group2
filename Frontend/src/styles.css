@@ -4369,11 +4369,13 @@ button:visited {
   color: #b66dff;
 }
 
+
 .sidebar {
-  width: 240px;
-  transition: width 0.3s;
+  width: 240px; /* Kích thước mặc định của thanh sidebar */
+  transition: width 0.3s; /* Hiệu ứng chuyển đổi */
 }
 
 body.sidebar-icon-only .sidebar {
-  width: 0;
+  width: 0; /* Kích thước thu gọn của thanh sidebar */
 }
+

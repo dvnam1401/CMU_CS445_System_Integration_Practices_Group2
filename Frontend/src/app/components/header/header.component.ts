@@ -10,7 +10,6 @@ import { AuthService } from 'src/app/auth/service/auth.service';
 })
 export class HeaderComponent implements OnInit {
   user?: User;
-
   constructor(private authService: AuthService, private router: Router) {
   }
 
@@ -22,6 +21,7 @@ export class HeaderComponent implements OnInit {
         }
       });
     this.user = this.authService.getUser();
+    console.log(this.user);
   }
   onLogout(): void {
     this.authService.logout();

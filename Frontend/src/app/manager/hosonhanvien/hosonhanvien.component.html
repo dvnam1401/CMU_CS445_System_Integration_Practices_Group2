@@ -1,0 +1,290 @@
+<div class="col-12 grid-margin stretch-card">
+  <div class="card">
+    <h1 class="mt-3" style="margin-left: 40px">Profile Management</h1>
+    <ng-container *ngIf="model">
+      <div class="card-body">
+        <form
+          class="forms-sample"
+          id="profileForm"
+          method="post"
+          onsubmit="return validateForm2()"
+          (ngSubmit)="onSubmitForm()"
+        >
+          <div class="form-group">
+            <label for="exampleInputPersonalId">Personal Id</label>
+            <input
+              type="number"
+              class="form-control"
+              id="personalId"
+              [(ngModel)]="model.personalId"
+              name="personalId"
+              placeholder="Personal Id"
+              min="1"
+            />
+            <br />
+            <span class="error-message" id="personalId-error"></span>
+          </div>
+          <div class="form-group">
+            <label for="exampleInputName1">First Name</label>
+            <input
+              type="text"
+              class="form-control"
+              id="fname"
+              name="firstName"
+              placeholder="First Name"
+              [(ngModel)]="model.currentFirstName"
+            />
+            <br />
+            <span class="error-message" id="fname-error"></span>
+          </div>
+          <div class="form-group">
+            <label for="exampleInputName2">Last Name</label>
+            <input
+              type="text"
+              class="form-control"
+              id="lname"
+              name="LastName"
+              placeholder="Last Name"
+              [(ngModel)]="model.currentLastName"
+            />
+            <br />
+            <span class="error-message" id="lname-error"></span>
+          </div>
+          <div class="form-group">
+            <label for="exampleInputName3">Middle Name</label>
+            <input
+              type="text"
+              class="form-control"
+              id="mname"
+              name="MiddleName"
+              placeholder="Middle Name"
+              [(ngModel)]="model.currentMiddleName"
+            />
+            <br />
+            <span class="error-message" id="mname-error"></span>
+          </div>
+          <div class="form-group">
+            <label for="exampleInputBirthday">Birthday</label><br />
+            <input
+              type="date"
+              id="birthday"
+              name="birthday"
+              placeholder="Birthday"
+              [(ngModel)]="model.birthDate"
+              style="width: 100%; height: 50px"
+            />
+            <br />
+            <span class="error-message" id="bdate-error"></span>
+          </div>
+          <div class="form-group">
+            <label for="exampleInputNumber">Social Security Number</label>
+            <input
+              type="text"
+              class="form-control"
+              id="ssn"
+              name="SocialSecurityNumber"
+              min="1"
+              placeholder="Social Security Number"
+              [(ngModel)]="model.socialSecurityNumber"
+            />
+            <br />
+            <span class="error-message" id="ssn-error"></span>
+          </div>
+          <div class="form-group">
+            <label for="exampleInputName3">Drivers License</label>
+            <input
+              type="text"
+              class="form-control"
+              id="driversLicense"
+              name="driversLicense"
+              placeholder="Drivers License"
+              [(ngModel)]="model.driversLicense"
+            />
+          </div>
+          <div class="form-group">
+            <label for="exampleInputAddress1">Current Address 1</label>
+            <input
+              type="text"
+              class="form-control"
+              id="address1"
+              name="Address1"
+              placeholder="Current Address 1 "
+              [(ngModel)]="model.currentAddress1"
+            />
+            <br />
+            <span class="error-message" id="address1-error"></span>
+          </div>
+          <div class="form-group">
+            <label for="exampleInputAddress2">Current Address 2</label>
+            <input
+              type="text"
+              class="form-control"
+              id="address2"
+              name="Address2"
+              [(ngModel)]="model.currentAddress2"
+              placeholder="Current Address 2"
+            />
+            <br />
+            <span class="error-message" id="address2-error"></span>
+          </div>
+          <div class="form-group">
+            <label for="exampleInputCity">City</label>
+            <input
+              type="text"
+              class="form-control"
+              id="city"
+              name="city"
+              placeholder="City"
+              [(ngModel)]="model.currentCity"
+            />
+            <br />
+            <span class="error-message" id="city-error"></span>
+          </div>
+          <div class="form-group">
+            <label for="exampleInputCountry">Country</label>
+            <input
+              type="text"
+              class="form-control"
+              id="country"
+              name="country"
+              placeholder="Country"
+              [(ngModel)]="model.currentCountry"
+            />
+            <br />
+            <span class="error-message" id="country-error"></span>
+          </div>
+          <div class="form-group">
+            <label for="exampleInputZip">Zip</label>
+            <input
+              type="number"
+              class="form-control"
+              id="zip"
+              name="zip"
+              placeholder="Zip"
+              [(ngModel)]="model.currentZip"
+              min="1"
+            />
+            <br />
+            <span class="error-message" id="zip-error"></span>
+          </div>
+          <div class="form-group">
+            <label for="exampleInputGender">Gender</label>
+            <select
+              class="form-control"
+              id="gender"
+              name="currentGender"
+              style="height: 50px"
+              [(ngModel)]="model.currentGender"
+            >
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="exampleInputPhone">Phone Number</label>
+            <input
+              type="tel"
+              class="form-control"
+              id="phone"
+              name="phone"
+              placeholder="Format Phone Number: xxxx-xxx-xxx"
+              pattern="[0-9]{4}[09]{3}[0-9]{3}"
+              [(ngModel)]="model.currentPhoneNumber"
+              required
+            />
+            <br />
+            <span class="error-message" id="phone-error"></span>
+          </div>
+          <div class="form-group">
+            <label for="email">PersonalEmail</label>
+            <input
+              type="email"
+              class="form-control"
+              id="email"
+              name="currentPersonalEmail"
+              placeholder="PersonalEmail"
+              [(ngModel)]="model.currentPersonalEmail"
+            />
+            <br />
+            <span class="error-message" id="email-error"></span>
+          </div>
+          <div class="form-group">
+            <label for="exampleInputMaritalStatus">Marital Status</label>
+            <select
+              class="form-control"
+              id="maritalstatus"
+              name="maritalstatus"
+              style="height: 50px"
+              [(ngModel)]="model.currentMaritalStatus"
+            >
+              <option value="Married">Đã kết hôn</option>
+              <option value="Single">Độc thân</option>
+              <option value="Other">Khác</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="exampleInputEthnicity">Ethnicity</label>
+            <select
+              name="ethnicity"
+              id="ethnicity"
+              style="
+                width: 100%;
+                height: 50px;
+                border: 1px solid rgba(0, 0, 0, 0.1);
+              "
+              [(ngModel)]="model.ethnicity"
+            >
+              <option
+                *ngFor="let ethnicity of selectedEthnicity"
+                [value]="ethnicity"
+              >
+                {{ ethnicity }}
+              </option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="exampleInputShareholderStatus"
+              >Shareholder Status</label
+            >
+            <input
+              type="number"
+              class="form-control"
+              id="shareholderstatus"
+              name="shareholderstatus"
+              placeholder="ShareholderStatus"
+              [(ngModel)]="model.shareholderStatus"
+              min="1"
+            />
+            <br />
+            <span class="error-message" id="shareholderstatus-error"></span>
+          </div>
+          <div class="form-group">
+            <label for="exampleInputBenefitPlanId ">Benefit Plan</label>
+            <ng-container *ngIf="benefits">
+              <select
+                id="selectBenefitId"
+                class="form-control"
+                [(ngModel)]="selectBenefitId"
+                name="benefitplanid"
+              >
+                <option
+                  *ngFor="let benefit of benefits"
+                  [ngValue]="benefit.benefitPlansId"
+                >
+                  {{ benefit.planName }}
+                </option>
+              </select>
+            </ng-container>
+            <br />
+            <span class="error-message" id="benefitplanid-error"></span>
+          </div>
+          <!-- <button type="submit" class="btn me-2"><a>Add</a></button> -->
+          <button type="submit" class="btn me-2">
+            <a>{{ isEditMode ? "Update" : "Add" }}</a>
+          </button>
+        </form>
+      </div>
+    </ng-container>
+  </div>
+</div>

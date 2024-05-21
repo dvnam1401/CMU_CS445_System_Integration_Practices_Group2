@@ -20,7 +20,7 @@ namespace DashBoard.API.Controllers
             try
             {
                 await deletedRepository.DeleteEmployeeAsync(id);
-                return Ok($"Employee with ID {id} has been deleted successfully.");
+                return Ok(/*$"Employee with ID {id} has been deleted successfully."*/);
             }
             catch (KeyNotFoundException ex)
             {
@@ -30,15 +30,15 @@ namespace DashBoard.API.Controllers
             {
                 return StatusCode(500, $"Internal server error: {ex.Message}");
             }
-        } 
-        
+        }
+
         [HttpDelete("DeletePersonal/{id}")]
         public async Task<IActionResult> DeletePersonal(decimal id)
         {
             try
             {
                 await deletedRepository.DeletePersonalAsync(id);
-                return Ok($"Employee with ID {id} has been deleted successfully.");
+                return Ok(/*$"Employee with ID {id} has been deleted successfully."*/);
             }
             catch (KeyNotFoundException ex)
             {

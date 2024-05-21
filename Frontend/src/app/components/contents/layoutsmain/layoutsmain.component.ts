@@ -21,8 +21,7 @@ export class LayoutsmainComponent implements OnInit, OnDestroy{
  
 
   ngOnInit(): void {  
-    this.employment$ = this.employeeService.getAllNotification();
-   
+    this.employment$ = this.employeeService.getAllNotification();   
   }
 
   loadEarnings() {
@@ -44,7 +43,7 @@ export class LayoutsmainComponent implements OnInit, OnDestroy{
 
   onSubmit(): EmployeeFilter {
     return {
-      isAscending: true,
+      isAscending: null,
       gender: null,
       category: null,
       ethnicity: null,

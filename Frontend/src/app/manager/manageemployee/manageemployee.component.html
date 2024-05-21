@@ -1,0 +1,78 @@
+<div class="container">
+  <h1 class="mt-3">Employee List</h1>
+  <div class="d-flex justify-content-end mt-3"></div>
+  <ng-container *ngIf="personals$ | async as personals; else noDataTemplate">
+    <table class="table table-bordered mt-3 table-wrapper">
+      <thead>
+        <tr>
+          <th>Personal ID</th>
+          <th>FullName</th>
+          <th>Birthdate</th>
+          <th>Gender</th>
+          <th>City</th>
+          <th>Phone Number</th>
+          <th>Email</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let personal of personals">
+          <td>{{ personal.personalId }}</td>
+          <td>
+            {{
+              (personal.currentFirstName
+                ? personal.currentFirstName + " "
+                : "") +
+                (personal.currentMiddleName
+                  ? personal.currentMiddleName + " "
+                  : "") +
+                (personal.currentLastName ? personal.currentLastName : "")
+            }}
+          </td>
+          <td>{{ personal.birthDate }}</td>
+          <td>{{ personal.currentGender }}</td>
+          <td>{{ personal.currentCity }}</td>
+          <td>{{ personal.currentPhoneNumber }}</td>
+          <td>{{ personal.currentPersonalEmail }}</td>
+          <td style="width: 20px">
+            <a class="btn"
+              ><i
+                class="fa-solid fa-plus"
+                [routerLink]="['/manage/add-employee', personal.personalId]"
+              ></i></a
+            ><br />
+            <!-- <a class="btn"
+              ><i
+                class="fa-regular fa-pen-to-square"
+                [routerLink]="['/manage/edit-employee']"
+              ></i></a
+            ><br /> -->
+            <button
+              class="delete"
+              style="
+                width: 62px;
+                border: none;
+                background-color: transparent;
+                text-align: center;
+              "
+              (click)="deleteAccount(personal.personalId)"
+            >
+              <i class="fa-solid fa-trash"></i>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </ng-container>
+  <ng-template #noDataTemplate>
+    <p>No data available.</p>
+  </ng-template>
+</div>
+
+<div *ngIf="showDeleteForm" id="deleteForm" class="deleteForm-form">
+  <h2>Confirm Delete</h2>
+  <div class="button-group">
+    <button id="OkDeleteBtn" (click)="confirmDelete()">OK</button>
+    <button id="cancelDeleteBtn" (click)="cancelDelete()">Cancel</button>
+  </div>
+</div>

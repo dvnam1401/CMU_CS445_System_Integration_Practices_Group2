@@ -1,0 +1,43 @@
+.password-toggle {
+    position: relative;
+    width: 100%;
+}
+
+.password-toggle input {
+    height: 50px;
+    width: 100%;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.password-toggle .toggle-icon {
+    position: absolute;
+    right: 0;
+    height: 50px;
+    width: 30px;
+    line-height: 50px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.error-message {
+    color: red;
+    font-size: 0.8em;
+}
+
+a {
+    text-decoration: none;
+    color: #333;
+    padding: 15px 30px;
+    background-color: #ddd;
+    margin-left: -40px;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+  th, td {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+  }

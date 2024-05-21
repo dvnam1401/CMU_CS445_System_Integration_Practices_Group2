@@ -1,0 +1,15 @@
+.menu {
+    background-color: black;
+}
+
+.menu li{
+    display: inline-block;
+    margin: 20px 16px;
+}
+
+.menu a {
+    text-decoration: none;
+    font-size: 20px;
+    color: #fff;
+    padding: 14px 20px 16px;
+}

@@ -46,4 +46,7 @@ public partial class AccountUser
 
     [InverseProperty("User")]
     public virtual ICollection<UserGroup> UserGroups { get; set; } = new List<UserGroup>();
+
+    [InverseProperty("User")]
+    public virtual ICollection<UserPermission> UserPermissions { get; set; } = new List<UserPermission>();
 }

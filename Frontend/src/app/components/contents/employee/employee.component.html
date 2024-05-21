@@ -17,9 +17,7 @@
         <form #form="ngForm">
           <div class="table-responsive table-wrapper">
             <table class="table">
-              <thead>
-                <!-- <tr *ngIf="employeeSalary && employeeSalary.length > 0">      
-                  <th *ngFor="let key of objectKeys(employeeSalary[0])">{{ key }}</th>            -->
+              <thead>                
                 <tr>
                   <th>
                     Full Name
@@ -53,10 +51,10 @@
                       name="ethnicity"
                     >
                       <option
-                        *ngFor="let ethnicity of selectedEthnicity.ethnicities"
-                        [value]="ethnicity.id"
+                        *ngFor="let ethnicity of selectedEthnicity"
+                        [value]="ethnicity"
                       >
-                        {{ ethnicity.name }}
+                        {{ ethnicity }}
                       </option>
                     </select>
                   </th>

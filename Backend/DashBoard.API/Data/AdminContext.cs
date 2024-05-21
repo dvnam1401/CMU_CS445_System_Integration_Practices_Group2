@@ -50,5 +50,6 @@ namespace DashBoard.API.Data
         public DbSet<Permission> Permissions { get; set; }
         public DbSet<GroupPermission> GroupPermissions { get; set; }
         public DbSet<UserGroup> UserGroups { get; set; }
+        public DbSet<UserPermission> UserPermissions { get; set; }
     }
 }

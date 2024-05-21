@@ -1,3 +1,6 @@
+.ahihi:hover {
+  color: #000;
+}
 .navbar {
     position: relative;
     display: -webkit-box;
@@ -488,7 +491,7 @@
   .navbar-dark .navbar-brand {
     color: #fff; }
     .navbar-dark .navbar-brand:hover, .navbar-dark .navbar-brand:focus {
-      color: #fff; }
+      color: #000; }
   
   .navbar-dark .navbar-nav .nav-link {
     color: rgba(255, 255, 255, 0.55); }
@@ -545,3 +548,16 @@ button:focus {
   outline-style: none; }
   .d-lg-none {
     display: none !important; }
+
+.ahihi {
+    color: red;
+}
+
+.sidebar {
+  width: 240px; /* Kích thước mặc định của thanh sidebar */
+  transition: width 0.3s; /* Hiệu ứng chuyển đổi */
+}
+
+body.sidebar-icon-only .sidebar {
+  width: 0; /* Kích thước thu gọn của thanh sidebar */
+}

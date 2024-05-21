@@ -1,0 +1,233 @@
+.btn {
+  display: inline-block;
+  padding: 14px 16px;
+  background-color: azure;
+  margin-top: 30px;
+  margin-left: 20px;
+  margin-bottom: 20px;
+}
+
+.table p {
+  padding: 14px 16px;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+table {
+  table-layout: fixed;
+}
+
+thead {
+  /* background: #f9f9f9; */
+  display: table;
+  /* width: 100%;
+  width: calc(100% - 18px); */
+}
+
+tbody {
+  height: 100%;
+  overflow: auto;
+  display: block;
+  width: 100%;
+  /* height: 100%; */
+  
+}
+tr {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+}
+
+.hidden {
+position: none;
+}
+
+.table tbody tr i {
+  margin: 10px;
+}
+
+.table-wrapper {
+  max-height: 100%;
+  /* Đặt chiều cao tối đa cho phần tử <div> */
+  overflow-y: auto;
+  /* Tạo thanh cuộn dọc khi cần */
+}
+.card .card-body {
+  padding: 2.5rem 2.5rem;
+  height: 100vh;
+}
+
+#search-box {
+  display: inline-block;
+  background: #fff;
+  border-radius: 30px;
+  border: 1px solid #000000;
+  margin-bottom: 20px;
+  margin-left: 677px;
+}
+
+#search-box #search-text {
+  border: none;
+  outline: none;
+  background: none;
+  font-size: 18px;
+  width: 0;
+  padding: 0;
+}
+
+#search-box:hover #search-text,
+#search-box #search-text:valid {
+  width: 300px;
+  padding: 5px 0px 5px 10px;
+}
+
+#search-box #search-btn {
+  background-color: #fff;
+  cursor: pointer;
+  border: none;
+  padding: 8px;
+  border-radius: 50%;
+  font-size: 18px;
+}
+
+.reset-form {
+position: fixed;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+background-color: #f9f9f9;
+padding: 30px;
+border: 1px solid #ddd;
+border-radius: 10px;
+box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+z-index: 1000;
+width: 300px; /* Fixed width for a cleaner look */
+}
+
+.reset-form h2 {
+margin-top: 0;
+font-size: 24px;
+color: #333;
+text-align: center;
+}
+
+.form-group {
+margin-bottom: 20px;
+}
+
+.form-group label {
+display: block;
+font-weight: bold;
+margin-bottom: 5px;
+color: #555;
+}
+
+.form-group input {
+width: 100%;
+padding: 10px;
+border: 1px solid #ddd;
+border-radius: 5px;
+box-sizing: border-box;
+font-size: 16px;
+}
+
+.button-group {
+text-align: right;
+}
+
+button {
+padding: 10px;
+border: none;
+border-radius: 5px;
+font-size: 16px;
+cursor: pointer;
+}
+
+#updatePasswordBtn {
+background-color: #28a745;
+color: white;
+}
+
+#cancelResetBtn {
+background-color: #dc3545;
+color: white;
+margin-left: 10px;
+}
+
+button:hover {
+opacity: 0.9;
+}
+
+.table th, .table td {
+vertical-align: middle;
+font-size: 0.875rem;
+line-height: 1;
+white-space: nowrap;
+padding: 0.5375rem;
+/* word-break: break-all; */
+word-wrap: break-word; max-width: 150px;
+}
+
+.table thead th {
+position: sticky;
+top: 0;
+left: 0;
+background-color: #f9f9f9;
+}
+
+.deleteForm-form {
+position: fixed;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+background-color: #f9f9f9;
+padding: 30px 27px 30px 35px;
+border: 1px solid #ddd;
+border-radius: 10px;
+box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+z-index: 1000;
+width: 300px; /* Fixed width for a cleaner look */
+}
+
+.deleteForm-form h2 {
+margin-top: 0;
+font-size: 24px;
+color: #333;
+text-align: center;
+}
+
+.form-group {
+margin-bottom: 20px;
+}
+
+.button-group {
+text-align: center;
+}
+
+button {
+padding: 10px 20px;
+border: none;
+border-radius: 5px;
+font-size: 16px;
+cursor: pointer;
+}
+
+#OkDeleteBtn {
+background-color: #28a745;
+color: white;
+}
+
+#cancelDeleteBtn {
+background-color: #dc3545;
+color: white;
+margin-left: 10px;
+}
+
+button:hover {
+opacity: 0.9;
+}
+
+.table tbody tr td {
+  white-space: normal;
+  word-break: break-all;
+}

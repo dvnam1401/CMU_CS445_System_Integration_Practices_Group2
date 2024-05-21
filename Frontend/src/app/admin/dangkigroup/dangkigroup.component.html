@@ -1,0 +1,64 @@
+<div class="col-12 grid-margin stretch-card">
+  <div class="card">
+    <h1 class="mt-3" style="margin-left: 40px">Create Group</h1>
+    <div class="card-body">
+      <form
+        #form="ngForm"
+        (ngSubmit)="onSubmitForm()"
+        class="forms-sample"
+        id="profileForm"
+        method="post"
+        onsubmit="return validateForm2()"
+      >
+        <div class="form-group">
+          <label for="exampleInputName1">Group Name</label>
+          <input
+            type="text"
+            class="form-control"
+            id="fname"
+            name="firstName"
+            placeholder="First Name"
+            [(ngModel)]="model.groupName"
+          />
+          <br />
+          <span class="error-message" id="fname-error"></span>
+        </div>
+        <div class="form-group">
+          <label for="exampleInputName1">Group ID</label><br />
+          <button id="show-select-button" type="button">Choose a group</button>
+          <ng-container *ngIf="permission$ | async as permissions">
+            <select
+              name="groupIds"
+              id="cars"
+              multiple
+              style="width: 100%"
+              [(ngModel)]="model.permissionIds"
+            >
+              <option *ngFor="let permission of permissions" [value]="permission.permissionId">
+                {{ permission.permisstionName }}
+              </option>
+            </select>
+          </ng-container>
+          <br /><br />
+          <span class="error-message" id="groupIds-error"></span>
+        </div>
+        <button type="submit" class="btn me-2">Add</button>
+      </form>
+    </div>
+  </div>
+</div>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    document
+      .getElementById("show-select-button")
+      .addEventListener("click", function (event) {
+        event.preventDefault(); // Prevent the default form submission behavior
+        const select = document.getElementById("cars");
+        if (select.style.display === "none" || select.style.display === "") {
+          select.style.display = "block"; // Show the select element
+        } else {
+          select.style.display = "none"; // Hide the select element if it's already visible
+        }
+      });
+  });
+</script>

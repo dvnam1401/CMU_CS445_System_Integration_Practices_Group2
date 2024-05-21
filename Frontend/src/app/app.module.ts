@@ -17,11 +17,22 @@ import { AuthLayoutComponent } from './auth/auth-layout/auth-layout.component';
 import { EthnicitySelectorComponent } from './components/contents/ethnicity-selector/ethnicity-selector.component';
 import { NotificationHiringComponent } from './components/contents/notification-hiring/notification-hiring.component';
 import { AuthInterceptor } from './components/interceptors/auth.interceptor';
-import { EditComponent } from './components/contents/edit/edit.component';
-import { EditpayComponent } from './components/contents/editpay/editpay.component';
-import { AddComponent } from './components/contents/add/add.component';
 import { NotfoundComponent } from './components/contents/notfound/notfound.component';
 import { LayoutNotfoundComponent } from './components/contents/layout-notfound/layout-notfound.component';
+import { ManageformComponent } from './manager/manageform/manageform.component';
+import { LayoutmanageComponent } from './manager/layoutmanage/layoutmanage.component';
+
+import { MainadmminComponent } from './admin/mainadmmin/mainadmmin.component';
+
+import { PageAdminComponent } from './admin/page-admin/page-admin.component';
+import { TaoaccountComponent } from './admin/taoaccount/taoaccount.component';
+import { UpdateaccountComponent } from './admin/updateaccount/updateaccount.component';
+import { TaogroupComponent } from './admin/taogroup/taogroup.component';
+import { HosonhanvienComponent } from './manager/hosonhanvien/hosonhanvien.component';
+import { ManageemployeeComponent } from './manager/manageemployee/manageemployee.component';
+import { DangkigroupComponent } from './admin/dangkigroup/dangkigroup.component';
+import { TaoemployeeComponent } from './manager/taoemployee/taoemployee.component';
+
 
 @NgModule({
   declarations: [
@@ -38,11 +49,19 @@ import { LayoutNotfoundComponent } from './components/contents/layout-notfound/l
     AuthLayoutComponent,
     EthnicitySelectorComponent,
     NotificationHiringComponent,
-    EditComponent,
-    EditpayComponent,
     NotfoundComponent,
     LayoutNotfoundComponent,
-    AddComponent,
+    ManageformComponent,
+    LayoutmanageComponent,
+    MainadmminComponent,
+    PageAdminComponent,
+    TaoaccountComponent,
+    TaogroupComponent,
+    UpdateaccountComponent,
+    HosonhanvienComponent,
+    ManageemployeeComponent,
+    DangkigroupComponent,
+    TaoemployeeComponent,
   ],
   imports: [
     BrowserModule,
@@ -60,6 +79,7 @@ import { LayoutNotfoundComponent } from './components/contents/layout-notfound/l
   bootstrap: [
     AuthLayoutComponent,
     HomeComponent,
+    LayoutmanageComponent
   ]
 })
 

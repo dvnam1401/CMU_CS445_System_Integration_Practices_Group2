@@ -1,0 +1,189 @@
+<div class="col-12 grid-margin stretch-card">
+  <div class="card">
+    <h1 class="mt-3" style="margin-left: 40px">Update Account</h1>
+    <div class="card-body">
+      <ng-container *ngIf="modelGroup">
+      <form
+        class="forms-sample"
+        id="profileForm"
+        method="post"
+        onsubmit="return validateForm2()"
+        (ngSubmit)="onSubmitForm()"
+      >
+        <div class="form-group">
+          <label for="exampleInputName1">First Name</label>
+          <input
+            type="text"
+            class="form-control"
+            [(ngModel)]="modelGroup.firstName"
+            id="fname"
+            name="firstName"
+            placeholder="First Name"
+          />
+          <br />
+          <span class="error-message" id="fname-error"></span>
+        </div>
+        <div class="form-group">
+          <label for="exampleInputName2">Last Name</label>
+          <input
+            type="text"
+            class="form-control"
+            [(ngModel)]="modelGroup.lastName"
+            id="lname"
+            name="LastName"
+            placeholder="Last Name"
+          />
+          <br />
+          <span class="error-message" id="lname-error"></span>
+        </div>
+        <div class="form-group">
+          <label for="exampleInputName3">User Name</label>
+          <input
+            type="text"
+            class="form-control"
+            [(ngModel)]="modelGroup.userName"
+            id="uname"
+            name="UserName"
+            placeholder="User Name"
+          />
+          <br />
+          <span class="error-message" id="uname-error"></span>
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input
+            type="email"
+            [(ngModel)]="modelGroup.email"
+            class="form-control"
+            id="email"
+            name="email"
+            placeholder="PersonalEmail"
+          />
+          <br />
+          <span class="error-message" id="email-error"></span>
+        </div>
+        <div class="form-group">
+          <label for="exampleInputPhone">Phone Number</label>
+          <input
+            type="tel"
+            class="form-control"
+            [(ngModel)]="modelGroup.phoneNumber"
+            id="phone"
+            name="phone"
+            placeholder="Format Phone Number: xxxx-xxx-xxx"
+            pattern="[0-9]{4}-[0-9]{3}-[0-9]{3}"
+            required
+          />
+          <br />
+          <span class="error-message" id="phone-error"></span>
+        </div>
+        <!-- <div class="form-group password-toggle">
+          <label for="pwd">Password</label><br />
+          <input type="password" id="pwd" name="pwd" />
+          <span class="toggle-icon" onclick="togglePassword()">👁️</span>
+          <span class="error-message" id="pwd-error"></span>
+        </div> -->
+        <div class="form-group">
+          <label for="exampleInputCountry">Department</label>
+          <!-- <input
+            type="text"
+            class="form-control"
+            [(ngModel)]="modelGroup.department"
+            id="department"
+            name="department"
+            placeholder="Department"
+          /> -->
+          <select
+                    [(ngModel)]="modelGroup.department"                     
+                      name="department"
+                      class="form-control"
+                    >
+                      <option
+                        *ngFor="let department of departments$ | async"
+                        value="{{ department }}"
+                      >
+                        {{ department }}
+                      </option>
+                    </select>
+          <br />
+          <span class="error-message" id="department-error"></span>
+        </div>
+        <div class="form-group">
+          <label for="exampleInputIsActive">IsActive</label>
+          <select
+            class="form-control"
+            [(ngModel)]="modelGroup.isActive"
+            id="isActive"
+            name="isActive"
+            style="height: 50px"
+          >
+            <option [ngValue]="true">Active</option>
+            <option [ngValue]="false">Inactive</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="exampleInputGroupIds">Group Name</label>
+          <ng-container *ngIf="groups$ | async as groups">
+            <select
+              class="form-control"
+              [(ngModel)]="selectedGroup"
+              name="categories"
+              id="groups"
+              (ngModelChange)="getPermissionsById($event)"
+              multiple
+            >
+              <option *ngFor="let group of groups" [value]="group.groupId">
+                {{ group.groupName }}
+              </option>
+            </select>
+          </ng-container>
+          <br />
+          <span class="error-message" id="groupIds-error"></span>
+        </div>
+        <div class="form-group">
+          <!-- <ng-container *ngIf="permission$ | async as permissions"> -->
+          <table>
+            <thead>
+              <tr>
+                <th>Group Name</th>
+                <th>Roles</th>
+              </tr>
+            </thead>          
+            <tbody>
+              <ng-container *ngIf="permission$ | async as permissions">
+                <ng-container *ngFor="let groupKey of objectKeys(permissions)">
+                  <tr
+                    *ngFor="
+                      let permission of permissions[groupKey];
+                      let i = index
+                    "
+                  >
+                    <td
+                      *ngIf="i === 0"
+                      [attr.rowspan]="permissions[groupKey].length"
+                    >
+                      {{ groupKey }}
+                    </td>
+                    <td>
+                      {{ permission.permissionName }}
+                      <input
+                        type="checkbox"
+                        id="role{{ i }}"
+                        name="role"
+                        [checked]="permission.isEnable"
+                        (change)="onCheckboxChange($event, permission, groupKey)"
+                      />
+                    </td>
+                  </tr>
+                </ng-container>
+              </ng-container>
+            </tbody>
+          </table>
+          <!-- </ng-container> -->
+        </div>
+        <button type="submit" class="btn me-2"><a>Update</a></button>
+      </form>
+    </ng-container>
+    </div>
+  </div>
+</div>
