@@ -59,19 +59,7 @@
         var isFirstNameValid = validateField("fname", "fname-error");
         var isLastNameValid = validateField("lname", "lname-error");
         var isMiddleNameValid = validateField("mname", "mname-error");
-        // var isMiddleNameValid = validateField("mname", "mname-error");
-        // var isBirthdayValid = validateBirthday("birthday", "bdate-error");
         var isSocialSecurityNumberValid = validateField("ssn", "ssn-error");
-        // var isAddress1Valid = validateField("address1", "address1-error");
-        // var isAddress2Valid = validateField("address2", "address2-error");
-        // var isCityValid = validateField("city", "city-error");
-        // var isCountryValid = validateField("country", "country-error");
-        // var isZipValid = validateField("zip", "zip-error");
-        // var isPhoneValid = validatePhone("phone", "phone-error");
-        // var isEmailValid = validateField("email", "email-error");
-        // var isShareholderStatusValid = validateField("shareholderstatus", "shareholderstatus-error");
-        // var isBenefitPlanIdValid = validateField("benefitplanid", "benefitplanid-error");
-        // var isEthnicityValid = validateField("ethnicity", "ethnicity-error");
         var isDepartmentValid = validateField("department", "department-error");
         var isPayRateValid = validateField("payrate", "payrate-error");
         var isEmploymentIdValid = validateField(
@@ -191,10 +179,10 @@
           "shareholderstatus",
           "shareholderstatus-error"
         );
-        var isBenefitPlanIdValid = validateField(
-          "benefitplanid",
-          "benefitplanid-error"
-        );
+        // var isBenefitPlanIdValid = validateField(
+        //   "benefitplanid",
+        //   "benefitplanid-error"
+        // );
         var isEthnicityValid = validateField("ethnicity", "ethnicity-error");
         return (
           isPersonalIdValid &&
@@ -210,8 +198,7 @@
           isZipValid &&
           isPhoneValid &&
           isEmailValid &&
-          isShareholderStatusValid &&
-          isBenefitPlanIdValid &&
+          isShareholderStatusValid &&          
           isEthnicityValid
         );
       };

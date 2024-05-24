@@ -11,10 +11,11 @@
 using System;
 using System.Reflection;
 
+[assembly: Microsoft.Extensions.Configuration.UserSecrets.UserSecretsIdAttribute("66952f2a-2a1a-4d63-8e20-3e0efee78264")]
 [assembly: System.Reflection.AssemblyCompanyAttribute("DashBoard.API")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e8b40f6e8c484a2a808f4804e3cc768155f53fc5")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+31d559d52973c3f28b946e9aafa291b0d6e90fa8")]
 [assembly: System.Reflection.AssemblyProductAttribute("DashBoard.API")]
 [assembly: System.Reflection.AssemblyTitleAttribute("DashBoard.API")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

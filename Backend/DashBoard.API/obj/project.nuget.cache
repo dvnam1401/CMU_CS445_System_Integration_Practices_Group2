@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "BUSwQ07Jy+21goPf/CpJFw9OBaoYqYXVvrqL4IpsCW4DKeQZbhcYzQP3agoNbxGS1/j/P1KL01IDl+6kslVG6w==",
+  "dgSpecHash": "LJrqEpuNZB4=",
   "success": true,
   "projectFilePath": "D:\\Workspace\\CMU_CS445_System_Integration_Practices_Group2\\Backend\\DashBoard.API\\DashBoard.API.csproj",
   "expectedPackageFiles": [
@@ -57,6 +57,7 @@
     "C:\\Users\\VANNAM\\.nuget\\packages\\microsoft.netcore.targets\\1.1.0\\microsoft.netcore.targets.1.1.0.nupkg.sha512",
     "C:\\Users\\VANNAM\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
     "C:\\Users\\VANNAM\\.nuget\\packages\\microsoft.sqlserver.server\\1.0.0\\microsoft.sqlserver.server.1.0.0.nupkg.sha512",
+    "C:\\Users\\VANNAM\\.nuget\\packages\\microsoft.visualstudio.azure.containers.tools.targets\\1.20.1\\microsoft.visualstudio.azure.containers.tools.targets.1.20.1.nupkg.sha512",
     "C:\\Users\\VANNAM\\.nuget\\packages\\microsoft.win32.systemevents\\6.0.0\\microsoft.win32.systemevents.6.0.0.nupkg.sha512",
     "C:\\Users\\VANNAM\\.nuget\\packages\\mono.texttemplating\\2.2.1\\mono.texttemplating.2.2.1.nupkg.sha512",
     "C:\\Users\\VANNAM\\.nuget\\packages\\mysql.data\\8.3.0\\mysql.data.8.3.0.nupkg.sha512",

@@ -1,89 +1,93 @@
 <nav class="sidebar sidebar-offcanvas sidebar-icon-only" id="sidebar">
-  <ul class="nav">
-    <li class="nav-item nav-profile">
-      <a href="#" class="nav-link">
-        <div class="nav-profile-image">
-          <img src="assets/images/faces/face1.jpg" alt="profile" />
-          <span class="login-status online"></span>
+  <ng-container *ngIf="user !== undefined">
+    <ul class="nav">
+      <li class="nav-item nav-profile">
+        <a href="#" class="nav-link">
+          <div class="nav-profile-image">
+            <img src="assets/images/faces/face1.jpg" alt="profile" />
+            <span class="login-status online"></span>
+          </div>
+          <div class="nav-profile-text d-flex flex-column">
+            <span class="font-weight-bold mb-2">{{ user.email }}</span>
+            <span class="text-secondary text-small">Project Manager</span>
+          </div>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/">
+          <span class="menu-title">Dashboard</span>
+          <i class="mdi mdi-home menu-icon"></i>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a
+          class="nav-link"
+          data-bs-toggle="collapse"
+          href="#ui-basic"
+          aria-expanded="false"
+          aria-controls="ui-basic"
+        >
+          <span class="menu-title">Summarized Information</span>
+          <!-- <i class="menu-arrow"></i> -->
+          <i class="bx bxs-food-menu menu-icon"></i>
+        </a>
+        <div class="collapse" id="ui-basic">
+          <ul class="nav flex-column sub-menu">
+            <li class="nav-item">
+              <a class="nav-link" [routerLink]="['/employee']"
+                >Total earnings</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" [routerLink]="['/vacation']"
+                >Number of vacation days</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" [routerLink]="['/benefits']"
+                >Average benefits</a
+              >
+            </li>
+          </ul>
         </div>
-        <div class="nav-profile-text d-flex flex-column">
-          <span class="font-weight-bold mb-2">David Grey. H</span>
-          <span class="text-secondary text-small">Project Manager</span>
+      </li>
+      <li class="nav-item">
+        <a
+          class="nav-link"
+          data-bs-toggle="collapse"
+          href="#general-pages"
+          aria-expanded="false"
+          aria-controls="general-pages"
+        >
+          <span class="menu-title">Notifications</span>
+          <!-- <i class="menu-arrow"></i> -->
+          <i class="bx bxs-notification menu-icon"></i>
+        </a>
+        <div class="collapse" id="general-pages">
+          <ul class="nav flex-column sub-menu">
+            <li class="nav-item">
+              <a class="nav-link" [routerLink]="['/notification/anniversary']">
+                Hiring anniversary
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" [routerLink]="['/notification/vacation']">
+                Notifications of vacation
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" [routerLink]="['/notification/benefit']">
+                Change benefits plan
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" [routerLink]="['/notification/birthday']">
+                Birthdays
+              </a>
+            </li>
+          </ul>
         </div>
-      </a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="/">
-        <span class="menu-title">Dashboard</span>
-        <i class="mdi mdi-home menu-icon"></i>
-      </a>
-    </li>
-    <li class="nav-item">
-      <a
-        class="nav-link"
-        data-bs-toggle="collapse"
-        href="#ui-basic"
-        aria-expanded="false"
-        aria-controls="ui-basic"
-      >
-        <span class="menu-title">Summarized Information</span>
-        <!-- <i class="menu-arrow"></i> -->
-        <i class="bx bxs-food-menu menu-icon"></i>
-      </a>
-      <div class="collapse" id="ui-basic">
-        <ul class="nav flex-column sub-menu">
-          <li class="nav-item">
-            <a class="nav-link" [routerLink]="['/employee']">Total earnings</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" [routerLink]="['/vacation']"
-              >Number of vacation days</a
-            >
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" [routerLink]="['/benefits']"
-              >Average benefits</a
-            >
-          </li>
-        </ul>
-      </div>
-    </li>
-    <li class="nav-item">
-      <a
-        class="nav-link"
-        data-bs-toggle="collapse"
-        href="#general-pages"
-        aria-expanded="false"
-        aria-controls="general-pages"
-      >
-        <span class="menu-title">Notifications</span>
-        <!-- <i class="menu-arrow"></i> -->
-        <i class="bx bxs-notification menu-icon"></i>
-      </a>
-      <div class="collapse" id="general-pages">
-        <ul class="nav flex-column sub-menu">
-          <li class="nav-item">
-            <a class="nav-link" [routerLink]="['/notification/anniversary']">
-              Hiring anniversary
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" [routerLink]="['/notification/vacation']">
-              Notifications of vacation
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" [routerLink]="['/notification/benefit']">
-              Change benefits plan
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" [routerLink]="['/notification/birthday']">
-              Birthdays
-            </a>
-          </li>
-        </ul>
-      </div>
-    </li>
-  </ul>
+      </li>
+    </ul>
+  </ng-container>
 </nav>

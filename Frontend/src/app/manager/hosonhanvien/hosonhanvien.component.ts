@@ -83,10 +83,10 @@ export class HosonhanvienComponent implements OnInit, OnDestroy {
   }
 
   onSubmitForm(): void {
-    if (!validateForm2()) {
-      console.error('Form validation failed');
-      return; // Ngăn chặn việc submit form nếu validation thất bại
-    }
+    // if (!validateForm2()) {
+    //   console.error('Form validation failed');
+    //   return; // Ngăn chặn việc submit form nếu validation thất bại
+    // }
     // convert this model to request object
     if (this.isEditMode) {
       if (this.model && this.id) {
@@ -110,7 +110,9 @@ export class HosonhanvienComponent implements OnInit, OnDestroy {
           currentPersonalEmail: this.model.currentPersonalEmail,
           ethnicity: this.model.ethnicity,
           benefitPlanId: this.selectBenefitId,
+          
         };
+        console.log(updatePersonal);
         this.updatePersonalSubscription = this.managerService.updatePersonal(this.id, updatePersonal).subscribe({
           next: (response) => {
             this.router.navigateByUrl('/manage/personal');

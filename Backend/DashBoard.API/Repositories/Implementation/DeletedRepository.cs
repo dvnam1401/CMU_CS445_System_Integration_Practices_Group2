@@ -1,4 +1,4 @@
-﻿using DashBoard.API.Data;
+﻿ using DashBoard.API.Data;
 using DashBoard.API.Models.Domain;
 using DashBoard.API.Repositories.Inteface;
 using Microsoft.AspNetCore.Mvc;
