@@ -4,7 +4,7 @@ namespace DashBoard.API.Models.DTO
 {
     public class CreateEmployeeDto
     {
-        //public int EmploymentId { get; set; }
+        public int EmploymentId { get; set; }
         public string? EmploymentCode { get; set; }
         public string? LastName { get; set; }
         public string? FirstName { get; set; }        

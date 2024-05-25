@@ -19,7 +19,7 @@ namespace DashBoard.API.Controllers
         [HttpGet("GetEmployeeAnniversary")]
         public async Task<ActionResult<IEnumerable<NotificationEmployee>>> GetEmployeeAnniversary([FromQuery] int daysLimit)
         {
-            List<NotificationEmployee> view = new List<NotificationEmployee>();
+          List<NotificationEmployee> view = new List<NotificationEmployee>();
             try
             {
                 var employments = await notificationRepository.GetEmployeesAnniversaryInfo(daysLimit);

@@ -9,5 +9,6 @@
         public string? Department { get; set; } // phong ban
         public int? Year { get; set; }
         public int? Month { get; set; }
+        public short? ShareholderStatus { get; set; }
     }
 }

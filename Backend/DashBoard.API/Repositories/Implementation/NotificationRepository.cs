@@ -18,25 +18,24 @@ namespace DashBoard.API.Repositories.Implementation
         public async Task<IEnumerable<NotificationEmployee>> GetEmployeesAnniversaryInfo(int daysLimit)
         {
             var today = DateTime.Today;
-            var employments = await sqlDataRepository.FetchEmployments();
+            var employments = await sqlDataRepository.FetchPersonal();
 
             // Trước tiên, lọc danh sách để chỉ giữ lại những đối tượng có HireDate và số ngày đến ngày kỷ niệm nằm trong phạm vi được truyền vào
             var employeeAnniversary = employments
                 .Where(e => e.HireDateForWorking is not null)
                 .Select(e =>
                 {
-                    var hireDateThisYear = DateTime.Now;
-                    if (e.RehireDateForWorking is not null)
-                    {
-                        hireDateThisYear = new DateTime(today.Year, e.RehireDateForWorking.Value.Month, e.RehireDateForWorking.Value.Day);
-                    }
-                    else
-                    {
+
+                    DateTime hireDateThisYear;
+                    //if (e.RehireDateForWorking is not null)
+                    //{
+                    //    hireDateThisYear = new DateTime(today.Year, e.RehireDateForWorking.Value.Month, e.RehireDateForWorking.Value.Day);
+                    //}
+                    //else
+                    //{
                         hireDateThisYear = new DateTime(today.Year, e.HireDateForWorking.Value.Month, e.HireDateForWorking.Value.Day);
-
-                    }
+                    //}
                     // Tính ngày kỷ niệm trong năm hiện tại
-
                     // Nếu ngày kỷ niệm đã qua, chuyển sang năm tiếp theo
                     if (hireDateThisYear < today)
                     {
@@ -54,17 +53,11 @@ namespace DashBoard.API.Repositories.Implementation
 
                     return new NotificationEmployee
                     {
-                        FullName = $"{e.LastName} {e.FirstName}",
+                        FullName = $"{e.FirstName} {e.MiddleName} {e.LastName}",
                         Department = department,
                         Content = content
                     };
                 }).Where(e => e is not null);
-            //{
-            //    if (e.Employments?.HireDate is null) return false;
-            //    var hireDateThisYear = new DateTime(today.Year, e.Employments.HireDate.Value.Month, e.Employments.HireDate.Value.Day);
-            //    if (hireDateThisYear < today) hireDateThisYear = hireDateThisYear.AddYears(1); // Chuyển sang năm tiếp theo nếu đã qua
-            //    var daysUntilNextAnniversary = (hireDateThisYear - today).Days;
-            //    return daysUntilNextAnniversary <= daysLimit;
             return employeeAnniversary;
         }
 
@@ -99,7 +92,7 @@ namespace DashBoard.API.Repositories.Implementation
         }
         public async Task<IEnumerable<NotificationEmployee>> GetEmployeesWithBirthdaysThisMonth(int daysLimit)
         {
-            var brithdayTask = sqlDataRepository.FetchEmployments();
+            var brithdayTask = sqlDataRepository.FetchPersonal();
             var birthdays = await brithdayTask;
 
             var today = DateTime.Today;
@@ -127,7 +120,7 @@ namespace DashBoard.API.Repositories.Implementation
                     var department = e.Department;
                     return new NotificationEmployee
                     {
-                        FullName = $"{e.LastName} {e.FirstName}",
+                        FullName = $"{e.FirstName} {e.MiddleName} {e.LastName} ",
                         Department = department,
                         Content = content
                     };

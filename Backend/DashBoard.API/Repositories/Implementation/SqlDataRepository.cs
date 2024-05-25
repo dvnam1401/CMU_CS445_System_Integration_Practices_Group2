@@ -30,7 +30,36 @@ namespace DashBoard.API.Repositories.Implementation
                 .ToList();
             return departments;
         }
+        public async Task<IEnumerable<EmploymentDto>> FetchPersonal()
+        {
+            using (var sqlServerContext = new SqlServerContext()) // Tạo phiên bản DbContext mới
+            {
+                var query = sqlServerContext.Personals.AsQueryable();
+                // Project the filtered job histories to JobHistoryDto
+                var result = await query.Select(e => new EmploymentDto
+                {
+                    EmploymentId = e.PersonalId,
+                    LastName = e.CurrentLastName,
+                    FirstName = e.CurrentFirstName,
+                    MiddleName = e.CurrentMiddleName,
+                    Birthday = e.BirthDate,
+                    Department = e.Employments.SelectMany(emp => emp.JobHistories)
+                    .OrderByDescending(jh => jh.FromDate)
+                    .Select(jh => jh.Department)
+                    .FirstOrDefault(),
+                    HireDateForWorking = e.Employments
+                    .OrderByDescending(emp => emp.HireDateForWorking)
+                    .Select(emp => emp.HireDateForWorking)
+                    .FirstOrDefault(),
+                    RehireDateForWorking = e.Employments
+                .OrderByDescending(emp => emp.RehireDateForWorking)
+                .Select(emp => emp.RehireDateForWorking)
+                .FirstOrDefault(),
+                }).ToListAsync();
 
+                return result;
+            }
+        }
         public async Task<IEnumerable<EmploymentDto?>> FetchEmployments()
         {
             using (var sqlServerContext = new SqlServerContext()) // Tạo phiên bản DbContext mới
@@ -42,6 +71,7 @@ namespace DashBoard.API.Repositories.Implementation
                     EmploymentId = e.EmploymentId,
                     LastName = e.Personal.CurrentLastName,
                     FirstName = e.Personal.CurrentFirstName,
+                    MiddleName = e.Personal.CurrentMiddleName,
                     Birthday = e.Personal.BirthDate,
                     Department = e.JobHistories.FirstOrDefault().Department,
                     HireDateForWorking = e.HireDateForWorking,
@@ -128,6 +158,7 @@ namespace DashBoard.API.Repositories.Implementation
             using (var sqlServerContext = new SqlServerContext()) // Tạo phiên bản DbContext mới
             {
                 var query = sqlServerContext.JobHistory.AsQueryable();
+
                 if (filter.Year.HasValue)
                 {
                     query = query.Where(jh => jh.FromDate.HasValue && jh.FromDate.Value.Year == filter.Year.Value);
@@ -135,7 +166,16 @@ namespace DashBoard.API.Repositories.Implementation
                 if (filter.Month.HasValue)
                 {
                     query = query.Where(jh => jh.FromDate.HasValue && jh.FromDate.Value.Month == filter.Month.Value);
-                }              
+                }
+                if (filter.Category is not null)
+                {
+                    query = query.Where(jh => jh.JobTitle.Contains(filter.Category));
+                }
+                if (filter.Department is not null)
+                {
+                    query = query.Where(jh => jh.Department.Contains(filter.Department));
+                }
+
                 var result = await query.Select(jh => new JobHistoryDto
                 {
                     EmploymentId = jh.EmploymentId,
@@ -165,12 +205,16 @@ namespace DashBoard.API.Repositories.Implementation
         // lấy dữ liệu từ sql server
         public async Task<IEnumerable<EmploymentSqlServerDto>> FetchSqlServerData(EmployeeFilterDto filter)
         {
+            var personalFilterIds = (await FetchPersonal(filter)).Select(p => p.PersonalId).ToList();
             var employments = await sqlServerContext.Employments
+                .Where(e => personalFilterIds.Contains(e.PersonalId))
                 .Select(e => new EmploymentSqlServerDto
                 {
                     EmploymentId = e.EmploymentId,
                     LastName = e.Personal.CurrentLastName,
                     FirstName = e.Personal.CurrentFirstName,
+                    MiddleName = e.Personal.CurrentMiddleName,
+                    HireDateForWorking = e.HireDateForWorking,
                     ShareholderStatus = e.Personal.ShareholderStatus,
                     BenefitPlan = e.Personal.BenefitPlan.Deductable,
                     NumberDaysRequirementOfWorkingPerMonth = e.NumberDaysRequirementOfWorkingPerMonth,
@@ -179,36 +223,83 @@ namespace DashBoard.API.Repositories.Implementation
                     Ethnicity = e.Personal.Ethnicity,
                     Personal = e.Personal,
                 }).ToListAsync();
+            var lastestEmployments = employments.GroupBy(e => e.Personal.PersonalId)
+                .Select(g => g.OrderByDescending(e => e.HireDateForWorking).FirstOrDefault())
+                .ToList();
+
             var workingTimes = await FetchWorkingTimes(filter);
             var jobHistories = await FetchJobHistories(filter);
 
             var workingTimesDict = workingTimes?.GroupBy(wt => wt.EmploymentId)?
-                                       .ToDictionary(g => g.Key, g => g.ToList());
-            var jobHistoriesDict = jobHistories?.GroupBy(jh => jh.EmploymentId)?
-                                               .ToDictionary(g => g.Key, g => g.ToList());
+                   .ToDictionary(g => g.Key, g => g.OrderByDescending(wt => wt.YearWorking).FirstOrDefault());
 
-            employments = employments.Where(emp =>
-                workingTimesDict.ContainsKey(emp.EmploymentId) || jobHistoriesDict.ContainsKey(emp.EmploymentId)).ToList();
-            foreach (var employment in employments)
+            var jobHistoriesDict = jobHistories?
+                .GroupBy(jh => jh.EmploymentId)
+                .ToDictionary(g => g.Key, g => g.OrderByDescending(jh => jh.FromDate).FirstOrDefault());
+            lastestEmployments = lastestEmployments.Where(emp =>
+             workingTimesDict.ContainsKey(emp.EmploymentId) || jobHistoriesDict.ContainsKey(emp.EmploymentId)).ToList();
+
+            foreach (var employment in lastestEmployments)
             {
                 if (workingTimesDict.TryGetValue(employment.EmploymentId, out var wtList))
                 {
-                    employment.WorkingTime = wtList;
+                    //employment.WorkingTime =;
+                    employment.WorkingTime = new List<EmploymentWorkingTimeDto> { wtList };
                 }
-                else
-                {
-                    employment.WorkingTime = new List<EmploymentWorkingTimeDto>();
-                }
+                //else
+                //{
+                //    employment.WorkingTime = new List<EmploymentWorkingTimeDto>();
+                //}
                 if (jobHistoriesDict.TryGetValue(employment.EmploymentId, out var jhList))
                 {
-                    employment.JobHistories = jhList;
+                    //employment.JobHistories = jhList;
+                    employment.JobHistories = new List<JobHistoryDto> { jhList };
                 }
-                else
-                {
-                    employment.JobHistories = new List<JobHistoryDto>();
-                }
+                //else
+                //{
+                //    employment.JobHistories = new List<JobHistoryDto>();
+                //}
             }
-            return employments;
+            return lastestEmployments;
+        }
+
+        private async Task<IEnumerable<PersonalDto>> FetchPersonal(EmployeeFilterDto filter)
+        {
+            using (var sqlServerContext = new SqlServerContext()) // Tạo phiên bản DbContext mới
+            {
+                var query = sqlServerContext.Personals.AsQueryable();
+                if (filter != null)
+                {
+                    if (filter.ShareholderStatus.HasValue)
+                    {
+                        query = query.Where(p => p.ShareholderStatus.HasValue && p.ShareholderStatus.Value == filter.ShareholderStatus);
+                    }
+                }
+                var result = await query.Select(ewt => new PersonalDto
+                {
+                    PersonalId = ewt.PersonalId,
+                    ShareholderStatus = ewt.ShareholderStatus,
+                    CurrentFirstName = ewt.CurrentFirstName,
+                    CurrentLastName = ewt.CurrentLastName,
+                    CurrentMiddleName = ewt.CurrentMiddleName,
+                    BirthDate = ewt.BirthDate,
+                    SocialSecurityNumber = ewt.SocialSecurityNumber,
+                    DriversLicense = ewt.DriversLicense,
+                    CurrentAddress1 = ewt.CurrentAddress1,
+                    CurrentAddress2 = ewt.CurrentAddress2,
+                    CurrentCity = ewt.CurrentCity,
+                    CurrentCountry = ewt.CurrentCountry,
+                    CurrentZip = ewt.CurrentZip,
+                    CurrentGender = ewt.CurrentGender,
+                    CurrentPhoneNumber = ewt.CurrentPhoneNumber,
+                    CurrentPersonalEmail = ewt.CurrentPhoneNumber,
+                    CurrentMaritalStatus = ewt.CurrentMaritalStatus,
+                    Ethnicity = ewt.Ethnicity,
+                    BenefitPlanId = ewt.BenefitPlanId,
+                }).ToListAsync();
+                //var filteredData = await result.ToListAsync();
+                return result;
+            }
         }
     }
 }

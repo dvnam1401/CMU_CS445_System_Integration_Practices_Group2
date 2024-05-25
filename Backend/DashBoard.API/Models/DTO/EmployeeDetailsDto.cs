@@ -6,7 +6,8 @@
         public uint EmploymentCode { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public decimal Ssn { get; set; }
+        public string MiddleName { get; set; }
+        public string Ssn { get; set; }
         public string EmploymentStatus { get; set; }
         public DateOnly? HireDateForWorking { get; set; }
         public decimal? NumberDaysRequirementOfWorkingPerMonth { get; set; }

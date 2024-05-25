@@ -3,6 +3,7 @@ export interface EmployeeResponse {
     employmentCode: number,
     firstName: string,
     lastName: string,
+    middleName: string,
     ssn: number,
     employmentStatus: string,
     hireDateForWorking: Date,

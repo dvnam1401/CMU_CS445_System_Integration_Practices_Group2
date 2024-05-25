@@ -10,15 +10,16 @@
             id="birthday"
             name="birthday"
             style="width: 23px; border: none"
-            [(ngModel)]="selectedDate"            
+            [(ngModel)]="selectedDate"
             (ngModelChange)="onFilterChange()"
           />
         </h4>
         <form #form="ngForm">
           <div class="table-responsive table-wrapper">
             <table class="table">
-              <thead>                
+              <thead>
                 <tr>
+                  <th>STT</th>
                   <th>
                     Full Name
                     <select
@@ -60,16 +61,20 @@
                   </th>
                   <th>
                     Category
-                    <!-- <select (ngModelChange)="onFilterChange()" name="category">
-                      <option value="male">Male</option>
-                      <option value="female">Female</option>
-                      <option value="other">Other</option>
-                    </select> -->
+                    <select
+                      (ngModelChange)="onFilterChange()"
+                      [(ngModel)]="model.category"
+                      name="category"
+                    >
+                      <option value="PartTime">Part Time</option>
+                      <option value="FullTime">Full Time</option>
+                      <option [ngValue]="['null']">Other</option>
+                    </select>
                   </th>
                   <th>
                     Department
                     <select
-                    [(ngModel)]="model.department"
+                      [(ngModel)]="model.department"
                       (ngModelChange)="onFilterChange()"
                       name="department"
                     >
@@ -79,6 +84,19 @@
                       >
                         {{ department }}
                       </option>
+                    </select>
+                  </th>
+                  <th>
+                    Shareholder
+                    <select
+                      name="shareholder"
+                      id="shareholder"
+                      [(ngModel)]="model.shareholderStatus"
+                      (ngModelChange)="onFilterChange()"
+                    >
+                      <option [ngValue]="1">Yes</option>
+                      <option [ngValue]="0">No</option>
+                      <option [ngValue]="null">All</option>
                     </select>
                   </th>
                   <th>Total</th>
@@ -92,12 +110,17 @@
               >
                 <tbody>
                   <tr *ngFor="let employee of employeeSalary; let i = index">
-                    <!-- <td>{{ i + 1 }}</td> -->
+                    <td>{{ i + 1 }}</td>
                     <td>{{ employee.fullName }}</td>
                     <td>{{ employee.gender }}</td>
                     <td>{{ employee.ethnicity }}</td>
                     <td>{{ employee.category }}</td>
                     <td>{{ employee.department }}</td>
+                    <td>
+                      <!-- {{ employee.shareholderStatus === 1 ? "True" : "False" }} -->
+                      {{ (employee.shareholderStatus === 1) ? "True" : (employee.shareholderStatus === 0 ? "False" : "Khác") }}
+
+                    </td>
                     <td>{{ employee.total }}</td>
                   </tr>
                 </tbody>

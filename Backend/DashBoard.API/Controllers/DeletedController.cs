@@ -17,19 +17,19 @@ namespace DashBoard.API.Controllers
         [HttpDelete("DeleteEmployee/{id}")]
         public async Task<IActionResult> DeleteEmployee(int id)
         {
-            try
-            {
+            //try
+            //{
                 await deletedRepository.DeleteEmployeeAsync(id);
                 return Ok(/*$"Employee with ID {id} has been deleted successfully."*/);
-            }
-            catch (KeyNotFoundException ex)
-            {
-                return NotFound(ex.Message);
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(500, $"Internal server error: {ex.Message}");
-            }
+            //}
+            //catch (KeyNotFoundException ex)
+            //{
+            //    return NotFound(ex.Message);
+            //}
+            //catch (Exception ex)
+            //{
+            //    return StatusCode(500, $"Internal server error: {ex.Message}");
+            //}
         }
 
         [HttpDelete("DeletePersonal/{id}")]

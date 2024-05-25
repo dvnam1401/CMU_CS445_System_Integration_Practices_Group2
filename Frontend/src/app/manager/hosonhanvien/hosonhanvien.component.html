@@ -246,7 +246,7 @@
             <label for="exampleInputShareholderStatus"
               >Shareholder Status</label
             >
-            <input
+            <!-- <select
               type="number"
               class="form-control"
               id="shareholderstatus"
@@ -254,7 +254,18 @@
               placeholder="ShareholderStatus"
               [(ngModel)]="model.shareholderStatus"
               min="1"
-            />
+            >
+            
+          </select> -->
+            <select
+              class="form-control"
+              name="shareholder"
+              id="shareholder"
+              [(ngModel)]="model.shareholderStatus"
+            >
+              <option [ngValue]="1">Yes</option>
+              <option [ngValue]="0">No</option>
+            </select>
             <br />
             <span class="error-message" id="shareholderstatus-error"></span>
           </div>

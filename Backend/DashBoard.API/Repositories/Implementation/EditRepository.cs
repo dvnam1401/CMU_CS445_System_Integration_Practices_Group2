@@ -140,9 +140,9 @@ namespace DashBoard.API.Repositories.Implementation
                 {
                     employee.LastName = employeeDto.LastName;
                 }
-                if (employee.Ssn != employeeDto.Ssn)
+                if (employee.Ssn  == Convert.ToDecimal(employeeDto.Ssn))
                 {
-                    employee.Ssn = employeeDto.Ssn;
+                    employee.Ssn = Convert.ToDecimal(employeeDto.Ssn);
                 }
             }
         }
@@ -199,7 +199,7 @@ namespace DashBoard.API.Repositories.Implementation
             {
                 var tempJobHistory = new JobHistory
                 {
-                    JobHistoryId = GetAllIdJobHistory() + 1,
+                  JobHistoryId = GetAllIdJobHistory() + 1,
                     EmploymentId = temp,
                     Department = employeeDto.Department,
                     FromDate = employeeDto.HireDateForWorking,

@@ -49,7 +49,8 @@ export class LayoutsmainComponent implements OnInit, OnDestroy{
       ethnicity: null,
       department: null,
       year: null,
-      month: null
+      month: null,
+      shareholderStatus: null
     };
   }
 }

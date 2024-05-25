@@ -63,6 +63,7 @@ export class HosonhanvienComponent implements OnInit, OnDestroy {
           this.managerService.getPersonalById(this.id).subscribe(
             (data) => {
               this.model = data;
+              console.log(data);
             });
         } else {
           this.isEditMode = false; // No ID, so we're adding a new profile          

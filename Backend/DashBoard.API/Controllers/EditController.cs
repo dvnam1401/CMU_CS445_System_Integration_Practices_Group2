@@ -19,21 +19,21 @@ namespace DashBoard.API.Controllers
         [HttpPut("edit-employee")]
         public async Task<IActionResult> EditEmployee(int id, [FromBody] EditEmployeeDto employeeDto)
         {
-            if (id != employeeDto.IdEmployee)
-            {
-                return BadRequest("ID mismatch in the URL and the body.");
-            }
+            //if (id != employeeDto.IdEmployee)
+            //{
+            //    return BadRequest("ID mismatch in the URL and the body.");
+            //}
 
-            try
-            {
+            //try
+            //{
                 await editRepository.EditEmployeeAsync(employeeDto);
                 return Ok(/*"Employee updated successfully."*/);
-            }
-            catch (Exception ex)
-            {
-                // Log the exception details here to investigate further
-                return StatusCode(500, $"Internal server error: {ex.Message}");
-            }
+            //}
+            //catch (Exception ex)
+            //{
+            //    // Log the exception details here to investigate further
+            //    return StatusCode(500, $"Internal server error: {ex.Message}");
+            //}
         }
 
         [HttpPut("edit-personal")]

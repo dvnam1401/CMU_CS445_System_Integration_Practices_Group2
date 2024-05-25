@@ -82,8 +82,8 @@ namespace DashBoard.API.Repositories.Implementation
                    select new EmployeeAverageBenefitDto
                    {
                        ShareholderStatus = p.ShareholderStatus,
-                       FullName = $"{e.LastName} {e.FirstName}",
-                       Gender = p.Gender,
+                       FullName = $"{p.FirstName} {p.LastName} {p.MiddleName}",
+                       Gender = p.Gender.ToUpper(),
                        Ethnicity = p.Ethnicity?.Trim(),
                        Category = p.JobHistories?.FirstOrDefault()?.JobTitle,
                        JobHistories = p.JobHistories != null ? new List<JobHistoryDto>(p.JobHistories) : new List<JobHistoryDto>(),
@@ -134,40 +134,44 @@ namespace DashBoard.API.Repositories.Implementation
 
         private IEnumerable<EmployeeSalaryDto> JoinAndTransformDataSalary(IEnumerable<EmployeeMysqlDto> dataMysql, IEnumerable<EmploymentSqlServerDto> dataSqlServer)
         {
-            return from e in dataMysql
-                   join p in dataSqlServer on e.EmployeeId equals p.EmploymentId
-                   select new EmployeeSalaryDto
-                   {
-                       ShareholderStatus = p.ShareholderStatus,
-                       FullName = $"{e.LastName} {e.FirstName}",
-                       Gender = p.Gender,
-                       Ethnicity = p.Ethnicity?.Trim(),
-                       Category = p.JobHistories?.FirstOrDefault()?.JobTitle,
-                       JobHistories = p.JobHistories != null ? new List<JobHistoryDto>(p.JobHistories) : new List<JobHistoryDto>(),
-                       //TotalSalary = p.WorkingTime?.SingleOrDefault(wk => wk.TotalNumberVacationWorkingDaysPerMonth != null)?.TotalNumberVacationWorkingDaysPerMonth,
-                       TotalSalary = (e.PayRate * p.NumberDaysRequirementOfWorkingPerMonth +
-                                    e.PayRate * p.WorkingTime?.SingleOrDefault(wk => wk.TotalNumberVacationWorkingDaysPerMonth != null)?.TotalNumberVacationWorkingDaysPerMonth) -
-                                    (e.PayRate * p.NumberDaysRequirementOfWorkingPerMonth +
-                                   (e.PayRate * p.WorkingTime?.SingleOrDefault(wk => wk.TotalNumberVacationWorkingDaysPerMonth != null)?.TotalNumberVacationWorkingDaysPerMonth) *
-                                    e.PayRatesIdPayRates.TaxPercentage) / 100,
-                   };
+            var result = from e in dataMysql
+                         join p in dataSqlServer on e.EmployeeId equals p.EmploymentId
+                         select new EmployeeSalaryDto
+                         {
+                             ShareholderStatus = p.ShareholderStatus,
+                             FullName = $"{p.FirstName} {p.LastName} {p.MiddleName}",
+                             Gender = p.Gender,
+                             Ethnicity = p.Ethnicity?.Trim(),
+                             Category = p.JobHistories?.FirstOrDefault()?.JobTitle,
+                             JobHistories = p.JobHistories != null ? new List<JobHistoryDto>(p.JobHistories) : new List<JobHistoryDto>(),
+                             TotalSalary = e.PayRatesIdPayRates.Value,
+                             //TotalSalary = p.WorkingTime?.SingleOrDefault(wk => wk.TotalNumberVacationWorkingDaysPerMonth != null)?.TotalNumberVacationWorkingDaysPerMonth,
+                             //TotalSalary = (e.PayRate * p.NumberDaysRequirementOfWorkingPerMonth +
+                             //             e.PayRate * p.WorkingTime?.SingleOrDefault(wk => wk.TotalNumberVacationWorkingDaysPerMonth != null)?.TotalNumberVacationWorkingDaysPerMonth) -
+                             //             (e.PayRate * p.NumberDaysRequirementOfWorkingPerMonth +
+                             //            (e.PayRate * p.WorkingTime?.SingleOrDefault(wk => wk.TotalNumberVacationWorkingDaysPerMonth != null)?.TotalNumberVacationWorkingDaysPerMonth) *
+                             //             e.PayRatesIdPayRates.TaxPercentage) / 100,
+                         };
+            return result;
         }
 
         private IEnumerable<NumberOfVacationDay> JoinAndTransformData(IEnumerable<EmployeeMysqlDto> dataMysql, IEnumerable<EmploymentSqlServerDto> dataSqlServer)
         {
-            return from e in dataMysql
-                   join p in dataSqlServer on e.EmployeeId equals p.EmploymentId
-                   select new NumberOfVacationDay
-                   {
-                       ShareholderStatus = p.ShareholderStatus,
-                       FullName = $"{e.LastName} {e.FirstName}",
-                       Gender = p.Gender,
-                       Ethnicity = p.Ethnicity?.Trim(),
-                       //Category = p.JobHistories?.FirstOrDefault()?.JobTitle,
-                       Category = p.EmploymentStatus?.ToString().Trim(),
-                       JobHistories = p.JobHistories != null ? new List<JobHistoryDto>(p.JobHistories) : new List<JobHistoryDto>(),
-                       TotalDaysOff = p.WorkingTime?.SingleOrDefault(wk => wk.TotalNumberVacationWorkingDaysPerMonth != null)?.TotalNumberVacationWorkingDaysPerMonth,
-                   };
+            var result = from e in dataMysql
+                         join p in dataSqlServer on e.EmployeeId equals p.EmploymentId
+                         select new NumberOfVacationDay
+                         {
+                             ShareholderStatus = p.ShareholderStatus,
+                             FullName = $"{p.FirstName} {p.MiddleName} {p.LastName} ",
+                             Gender = p.Gender,
+                             Ethnicity = p.Ethnicity?.Trim(),
+                             //Category = p.JobHistories?.FirstOrDefault()?.JobTitle,
+                             Category = p.EmploymentStatus?.ToString().Trim(),
+                             JobHistories = p.JobHistories != null ? new List<JobHistoryDto>(p.JobHistories) : new List<JobHistoryDto>(),
+                             //TotalDaysOff = p.WorkingTime?.SingleOrDefault(wk => wk.TotalNumberVacationWorkingDaysPerMonth != null)?.TotalNumberVacationWorkingDaysPerMonth,
+                             TotalDaysOff = p.WorkingTime?.Sum(wk => wk.TotalNumberVacationWorkingDaysPerMonth ?? 0),
+                         };
+            return result;
         }
     }
 }

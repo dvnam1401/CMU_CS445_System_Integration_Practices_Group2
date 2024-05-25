@@ -73,49 +73,74 @@ namespace DashBoard.API.Repositories.Implementation
 
         public async Task<EmployeeDetailsDto> GetEmployeeByIdAsync(int id)
         {
+            var employment = await sqlServerContext.Employments
+                .Include(e => e.Personal)
+                .Where(e => e.EmploymentId == id)
+                .Select(e => new
+                {
+                    FirstName = e.Personal.CurrentFirstName,
+                    LasName = e.Personal.CurrentLastName,
+                    Middle = e.Personal.CurrentMiddleName,
+                    SSN = e.Personal.SocialSecurityNumber,
+                    EmploymentStatus = e.EmploymentStatus,
+                    HireDateForWorking = e.HireDateForWorking,
+                    NumberDaysRequirementOfWorkingPerMonth = e.NumberDaysRequirementOfWorkingPerMonth,
+                    Department = e.JobHistories.Where(j => j.EmploymentId == e.EmploymentId).Select(j => j.Department).FirstOrDefault(),
+                }).FirstOrDefaultAsync();
             // Get employee information from the first database
             var employee = await mysqlContext.Employees
                 .Where(e => e.IdEmployee == id)
-                .Select(e => new EmployeeDetailsDto
+                .Select(e => new
                 {
                     IdEmployee = e.IdEmployee,
                     EmploymentCode = e.EmployeeNumber,
-                    FirstName = e.FirstName,
-                    LastName = e.LastName,
-                    Ssn = e.Ssn,
                     PayRate = e.PayRate,
                     PayRatesIdPayRates = e.PayRatesIdPayRates
                 })
                 .FirstOrDefaultAsync();
-
+            var result = new EmployeeDetailsDto
+            {
+                IdEmployee = employee.IdEmployee,
+                EmploymentCode = employee.EmploymentCode,
+                FirstName = employment.FirstName,
+                LastName = employment.LasName,
+                MiddleName = employment.Middle,
+                Ssn = employment.SSN,
+                Department = employment.Department,
+                PayRate = employee.PayRate,
+                PayRatesIdPayRates = employee.PayRatesIdPayRates,
+                EmploymentStatus = employment.EmploymentStatus,
+                HireDateForWorking = employment.HireDateForWorking,
+                NumberDaysRequirementOfWorkingPerMonth = employment.NumberDaysRequirementOfWorkingPerMonth,
+            };
             if (employee == null)
             {
                 throw new KeyNotFoundException($"An employee with the ID {id} was not found.");
             }
 
-            // Get employment information from the second database
-            var employment = await sqlServerContext.Employments
-                .Include(e => e.JobHistories)
-                .Where(e => e.EmploymentId == Convert.ToDecimal(id))
-                .Select(e => new
-                {
-                    EmploymentStatus = e.EmploymentStatus,
-                    HireDateForWorking = e.HireDateForWorking,
-                    NumberDaysRequirementOfWorkingPerMonth = e.NumberDaysRequirementOfWorkingPerMonth,
-                    Department = e.JobHistories.Where(jh => e.EmploymentId == jh.EmploymentId)
-                                .Select(jh => jh.Department).FirstOrDefault(),
-                })
-                .FirstOrDefaultAsync();
+            //// Get employment information from the second database
+            //var employment = await sqlServerContext.Employments
+            //    .Include(e => e.JobHistories)
+            //    .Where(e => e.EmploymentId == Convert.ToDecimal(id))
+            //    .Select(e => new
+            //    {
+            //        EmploymentStatus = e.EmploymentStatus,
+            //        HireDateForWorking = e.HireDateForWorking,
+            //        NumberDaysRequirementOfWorkingPerMonth = e.NumberDaysRequirementOfWorkingPerMonth,
+            //        Department = e.JobHistories.Where(jh => e.EmploymentId == jh.EmploymentId)
+            //                    .Select(jh => jh.Department).FirstOrDefault(),
+            //    })
+            //    .FirstOrDefaultAsync();
 
-            if (employment != null)
-            {
-                employee.EmploymentStatus = employment.EmploymentStatus;
-                employee.HireDateForWorking = employment.HireDateForWorking;
-                employee.NumberDaysRequirementOfWorkingPerMonth = employment.NumberDaysRequirementOfWorkingPerMonth;
-                employee.Department = employment.Department;
-            }
+            //if (employment != null)
+            //{
+            //    employee.EmploymentStatus = employment.EmploymentStatus;
+            //    employee.HireDateForWorking = employment.HireDateForWorking;
+            //    employee.NumberDaysRequirementOfWorkingPerMonth = employment.NumberDaysRequirementOfWorkingPerMonth;
+            //    employee.Department = employment.Department;
+            //}
 
-            return employee;
+            return result;
         }
 
         public async Task<IEnumerable<EmployeeDetailsDto>> GetAllEmployeeByIdAsync(int personalId)
@@ -126,24 +151,25 @@ namespace DashBoard.API.Repositories.Implementation
             // Get all employments associated with the given PersonalId
             var employments = await sqlServerContext.Employments
                 .Where(e => e.PersonalId == personalId)
+                .Include(e => e.Personal)
                 .Include(e => e.JobHistories)
                 .ToListAsync();
             // Iterate through each employment record to fetch associated employee details
             foreach (var employment in employments)
             {
                 var employee = await mysqlContext.Employees
-            .Where(e => e.IdEmployee == employment.EmploymentId)
-            .Select(e => new
-            {
-                e.IdEmployee,
-                e.EmployeeNumber,
-                e.FirstName,
-                e.LastName,
-                e.Ssn,
-                e.PayRate,
-                e.PayRatesIdPayRates
-            })
-            .FirstOrDefaultAsync();
+                    .Where(e => e.IdEmployee == employment.EmploymentId)
+                    .Select(e => new
+                    {
+                        e.IdEmployee,
+                        e.EmployeeNumber,
+                        e.FirstName,
+                        e.LastName,
+                        e.Ssn,
+                        e.PayRate,
+                        e.PayRatesIdPayRates
+                    })
+                    .FirstOrDefaultAsync();
 
                 if (employee != null)
                 {
@@ -154,7 +180,7 @@ namespace DashBoard.API.Repositories.Implementation
                         EmploymentCode = employee.EmployeeNumber,
                         FirstName = employee.FirstName,
                         LastName = employee.LastName,
-                        Ssn = employee.Ssn,
+                        Ssn = employment.Personal.SocialSecurityNumber,
                         PayRate = employee.PayRate,
                         PayRatesIdPayRates = employee.PayRatesIdPayRates,
                         EmploymentStatus = employment.EmploymentStatus,
@@ -180,7 +206,6 @@ namespace DashBoard.API.Repositories.Implementation
                     EmploymentCode = e.EmployeeNumber, // Assuming EmployeeNumber is the equivalent to EmploymentCode
                     FirstName = e.FirstName,
                     LastName = e.LastName,
-                    Ssn = e.Ssn,
                     PayRate = e.PayRate,
                     PayRatesIdPayRates = e.PayRatesIdPayRates
                 })
@@ -200,6 +225,7 @@ namespace DashBoard.API.Repositories.Implementation
                 if (employment != null)
                 {
                     employee.EmploymentStatus = employment.EmploymentStatus;
+                    employee.Ssn = employment.Personal.SocialSecurityNumber;
                     employee.HireDateForWorking = employment.HireDateForWorking;
                     employee.Department = employment.JobHistories.FirstOrDefault()?.Department;
                 }

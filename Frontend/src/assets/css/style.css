@@ -16593,10 +16593,10 @@ code {
 }
 
 /* Utilities */
-.grid-margin,
+/* .grid-margin,
 .purchase-popup {
   margin-bottom: 2.5rem;
-}
+} */
 
 @media (min-width: 576px) {
   .grid-margin-sm-0 {

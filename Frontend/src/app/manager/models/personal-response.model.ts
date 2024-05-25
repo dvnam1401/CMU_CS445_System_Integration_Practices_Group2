@@ -19,6 +19,5 @@ export class PersonalResponse {
     currentPhoneNumber: string;
     currentPersonalEmail: string
     ethnicity: string;
-    benefitPlanName: string;
-    // BenefitPlan : BenefitPlanResponse[]
+    benefitPlanName: string;    
 }

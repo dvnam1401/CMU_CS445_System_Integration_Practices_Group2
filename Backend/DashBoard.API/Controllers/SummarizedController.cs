@@ -37,9 +37,10 @@ namespace DashBoard.API.Controllers
                     view.Add(new ViewTotal
                     {
                         FullName = employee.FullName,
-                        Gender = employee.Gender,
+                        Gender = employee.Gender.ToUpper(),
                         Ethnicity = employee.Ethnicity,
                         Category = employee.Category,
+                        ShareholderStatus = employee.ShareholderStatus,
                         Department = employee.JobHistories?.FirstOrDefault()?.Department,
                         Total = employee.TotalSalary,
                     });
@@ -58,28 +59,29 @@ namespace DashBoard.API.Controllers
         public async Task<ActionResult> GetNumberVacationDay([FromBody] EmployeeFilterDto filter)
         {
             List<ViewTotal> view = new List<ViewTotal>();
-            try
-            {
+            //try
+            //{
                 var employees = await summarizedRepository.GetNumberOfVacationDays(filter);
                 foreach (var employee in employees)
                 {
                     view.Add(new ViewTotal
                     {
                         FullName = employee.FullName,
-                        Gender = employee.Gender,
+                        Gender = employee.Gender.ToUpper(),
                         Ethnicity = employee.Ethnicity,
                         Category = employee.Category,
+                        ShareholderStatus = employee.ShareholderStatus,
                         Department = employee.JobHistories?.FirstOrDefault()?.Department,
                         Total = employee.TotalDaysOff,
                     });
                 }
                 return Ok(view);
-            }
-            catch (Exception ex)
-            {
-                // Xử lý lỗi
-                return StatusCode(500, ex.Message);
-            }
+           // }
+            //catch (Exception ex)
+            //{
+            //    // Xử lý lỗi
+            //    return StatusCode(500, ex.Message);
+            //}
         }
 
         [HttpPost("filter/average-benefit")]
@@ -96,6 +98,7 @@ namespace DashBoard.API.Controllers
                         FullName = employee.FullName,
                         Gender = employee.Gender,
                         Ethnicity = employee.Ethnicity,
+                        ShareholderStatus = employee.ShareholderStatus,
                         Category = employee.Category,
                         Department = employee.JobHistories?.FirstOrDefault()?.Department,
                         Total = employee.TotalAverageBenefit,

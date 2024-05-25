@@ -25,21 +25,18 @@ namespace DashBoard.API.Repositories.Implementation
 
         public async Task<IEnumerable<EmployeeMysqlDto>> FetchMysqlEmployeeDataAsync()
         {
-            //using (var mysqlContext = new MysqlContext()) // Tạo phiên bản DbContext mới
-            //{
             var query = await mysqlContext.Employees
-        .Select(e => new EmployeeMysqlDto
-        {
-            EmployeeId = e.IdEmployee,
-            LastName = e.LastName,
-            FirstName = e.FirstName,
-            //PayRate = decimal.TryParse(e.PayRate, out decimal result) ? result : 0M,
-            PayRate = ParseDecimalOrDefault(e.PayRate),
-            PaidToDate = e.PaidToDate,
-            PayRatesIdPayRates = e.PayRatesIdPayRatesNavigation,
-        }).ToListAsync();
-            return query;
-            //}
+                .Select(e => new EmployeeMysqlDto
+                {
+                    EmployeeId = e.IdEmployee,
+                    LastName = e.LastName,
+                    FirstName = e.FirstName,
+                    //PayRate = decimal.TryParse(e.PayRate, out decimal result) ? result : 0M,
+                    PayRate = ParseDecimalOrDefault(e.PayRate),
+                    PaidToDate = e.PaidToDate,
+                    PayRatesIdPayRates = e.PayRatesIdPayRatesNavigation,
+                }).ToListAsync();
+            return query;            
         }
 
         private static decimal ParseDecimalOrDefault(string value)

@@ -27,7 +27,8 @@ export class VacationComponent implements OnInit {
       ethnicity: null,
       department: null,
       year: null,
-      month: null
+      month: null,
+      shareholderStatus: null
     };
   }
 

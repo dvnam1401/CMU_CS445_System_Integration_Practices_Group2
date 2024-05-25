@@ -29,6 +29,7 @@ export class UpdateemployeeComponent {
       employmentCode: 0,
       lastName: '',
       firstName: '',
+      middleName: '',
       ssn: 0,
       employmentStatus: '',
       hireDateForWorking: new Date(),
@@ -44,7 +45,7 @@ export class UpdateemployeeComponent {
     this.payRates$.subscribe(payRates => {
       if (this.model && this.model.payRatesIdPayRates) {
         this.selectedPayRate = payRates.find(payRate => payRate.idPayRates === this.model.payRatesIdPayRates);
-        this.selectedPayRate = payRates[0];
+        //this.selectedPayRate = payRates[0];
       }
     });
     console.log(this.payRates$.forEach(x => console.log(x)));
@@ -76,6 +77,7 @@ export class UpdateemployeeComponent {
         employmentCode: this.model.employmentCode,
         lastName: this.model.lastName,
         firstName: this.model.firstName,
+        middleName: this.model.middleName,
         ssn: this.model.ssn,
         employmentStatus: this.model.employmentStatus,
         hireDateForWorking: this.model.hireDateForWorking,

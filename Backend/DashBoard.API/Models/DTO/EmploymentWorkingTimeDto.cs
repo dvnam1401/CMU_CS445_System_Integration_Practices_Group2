@@ -1,4 +1,6 @@
-﻿namespace DashBoard.API.Models.DTO
+﻿using DashBoard.API.Models.Domain;
+
+namespace DashBoard.API.Models.DTO
 {
     public class EmploymentWorkingTimeDto
     {
@@ -8,6 +10,5 @@
         public decimal? MonthWorking { get; set; }
         public decimal? NumberDaysActualOfWorkingPerMonth { get; set; }
         public decimal? TotalNumberVacationWorkingDaysPerMonth { get; set; }
-
     }
 }

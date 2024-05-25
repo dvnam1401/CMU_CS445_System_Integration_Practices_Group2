@@ -10,7 +10,7 @@ thead {
 }
 
 tbody {
-  height: 210px;
+  height: 230px;
   overflow: auto;
   display: block;
   width: 100%;
@@ -29,4 +29,14 @@ th select {
   border: none;
   margin-left: -2px;
   padding-bottom: 2px
+}
+
+/* td, th {
+  white-space: nomal;
+  word-break: break-all;
+} */
+
+tbody tr td {
+  white-space: normal;
+  word-break: break-all;
 }

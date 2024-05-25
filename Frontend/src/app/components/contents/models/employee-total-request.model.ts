@@ -4,5 +4,6 @@ export interface EmployeeTotal {
     category: string;
     ethnicity: string;
     department: string;
+    shareholderStatus: number;
     total: number;
 }

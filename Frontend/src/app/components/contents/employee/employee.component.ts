@@ -21,7 +21,8 @@ export class EmployeeComponent implements OnInit, OnDestroy {
     ethnicity: null,
     department: null,
     year: null,
-    month: null
+    month: null,
+    shareholderStatus: null
   };
   employeeSalary$?: Observable<EmployeeTotal[]>;
   title?: string;
